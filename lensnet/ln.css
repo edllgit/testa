@@ -1,0 +1,274 @@
+body{
+	background-image: url('http://www.direct-lens.com/lensnet/images/bg.jpg');
+	margin: 0px;
+}
+.formText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	text-align: left;
+}
+.buttonText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;'
+}
+.listBox {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+	width: 100px;
+}
+.formBox {
+	padding-top: 15px;
+	border-collapse:collapse;
+	border: 1px solid #333;
+	margin-top: 10px;
+	background-color: #FFF;
+}
+.formCell {
+	border: 1px solid #000066;
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+}
+.formCellNosides {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: left;
+}
+.formStockBulk {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+}
+.formCellNosidesRA {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: right;
+}
+.formCellNosides a {
+	color: #3366FF;
+	text-decoration: none;
+}
+.formCellNoleft {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	border-right: 1px solid #000066;
+}
+#leftColumn{
+	width: 200px;
+	float:left;
+	background-color: #CCC;
+	display: block;
+	background-image: url('http://www.direct-lens.com/lensnet/images/sidebar_bg.jpg');
+}
+
+#rightColumn{
+	width:850px;
+	float:right;
+	margin-right: 0px;
+	background-color: #FFF;
+	background-image: url('http://www.direct-lens.com/lensnet/images/mid_bg.jpg');
+	background-repeat: no-repeat;
+}
+#menu {
+	width: 200px; /* set width of menu */
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	padding-bottom: 10px;
+} 
+
+#menu ul { /* remove bullets and list indents */
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+/* style, color and size links and headings to suit */
+#menu a, #menu h2 {
+	font: normal 12px/14px Verdana, Arial, Helvetica, sans-serif;
+	display: block;
+	margin: 0;
+	padding-top: 4px;
+	padding-right: 3px;
+	padding-bottom: 4px;
+	padding-left: 15px;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #FFF;
+	border-bottom-color: #CCC;
+}
+
+#menu h2 {
+text-transform: uppercase;
+}
+
+#menu a {
+	text-decoration: none;
+	color: #666;
+}
+.chat-box {
+	background-color: #FFF;
+	border: 1px solid #FFF;
+}
+
+#menu a:hover {
+	color: #066;
+	background-color: #B5DD98;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-top-color: #A5C292;
+	border-bottom-color: #FFF;
+}
+.tableHead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	text-align: left;
+}
+.tableHead a {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-align: right;
+}
+.tableSubHead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+}
+.header {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #000066;
+	text-align: left;
+	margin-top: 25px;
+	margin-left: 15px;
+	height: 35px;
+}
+.header2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #000066;
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 15px;
+	height: 25px;
+}
+.total {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	text-align: right;
+	margin-top: 10px;
+	margin-left: 15px;
+	height: 20px;
+}
+.Subheader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 15px;
+	height: 20px;
+	margin-right: 15px;
+}
+.plainText{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 15px;
+}
+#headerGraphic {
+	float: right;
+	height: 40px;
+	width: 445px;
+	margin-top: 25px;
+}
+#headerBox {
+	float: left;
+	height: 40px;
+	width: 212px;
+}
+.formCellNosidesCenter {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: center;
+}
+.pullDownText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 10px;
+}
+.loginText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	text-align: right;
+	padding-top: 12px;
+	padding-right: 20px;
+}
+.formCellNosidesCenter {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: center;
+}
+
+#leftFeatureColumn{
+	width: 248px;
+	height:250px;
+	float:left;
+	background-color: #999;
+	display: block;
+	margin-right: 10px;
+	margin-left: 10px;
+	overflow: hidden;
+	background-image: url('http://www.direct-lens.com/lensnet/images/prescription_image.jpg');
+	border: 1px solid #A3DC8B;
+}
+
+#rightFeatureColumn{
+	width:248px;
+	height:250px;
+	float:right;
+	background-color: #666;
+	display: block;
+	margin-right: 10px;
+	margin-left: 10px;
+	overflow: hidden;
+	background-image: url('http://www.direct-lens.com/lensnet/images/stock_image.jpg');
+	border: 1px solid #A3DC8B;
+}
+#middleFeatureColumn{
+	width:248px;
+	height:250px;
+	background-color: #999;
+	display: block;
+	margin-right: 10px;
+	margin-left: 10px;
+	overflow: hidden;
+	float: left;
+	background-image: url('http://www.direct-lens.com/lensnet/images/frames_image.jpg');
+	border: 1px solid #A3DC8B;
+}
+#featureBox{
+	display: block;
+	width: 810px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: hidden;
+	margin-top: 20px;
+	padding-bottom: 30px;
+}

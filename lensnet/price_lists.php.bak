@@ -1,0 +1,156 @@
+<?php
+session_start() ;
+include "../Connections/directlens.php";
+include "../includes/getlang.php";
+?>
+<?php 
+
+if($_SESSION["sessionUser_Id"]=="")
+header("Location:loginfail.php");
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LensNet Club</title>
+
+
+<!--[if !IE]>-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.dropshadow.js"></script>
+<script type="text/javascript">
+      window.onload = function()  
+      {
+        $("#container").dropShadow({left:6, top:6, blur:5, opacity:0.7});
+		     
+      }
+    </script>
+<!--<![endif]-->
+   
+<link href="ln.css" rel="stylesheet" type="text/css" />
+<link href="ln_pt.css" rel="stylesheet" type="text/css" />
+    
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #B4C8F3;
+}
+
+-->
+</style>
+
+<style type="text/css">
+<!--
+.select1 {width:100px}
+-->
+</style>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21964858-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+
+
+<body>
+<div id="container">
+  <div id="masthead">
+  <img src="http://direct-lens-public.s3.amazonaws.com/lensnet/images/ln-masthead.jpg" width="1050" height="165" alt="LensNet Club"/>
+</div>
+<div id="maincontent">
+<div id="leftColumn">
+<div id="leftnav">
+  <?php include("includes/sideNav.inc.php"); ?>
+</div><!--END leftnav-->
+</div><!--END leftcolumn-->
+<div id="rightColumn">
+      <div class="header">
+		  
+      <div class="loginText"><?php echo $lbl_user_txt;?> <?php print $_SESSION["sessionUser_Id"];?></div>
+			
+		</div><!--END rightcolumn-->
+		  <?php
+		  
+		  if ($mylang == 'lang_french') {
+<<<<<<< HEAD
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/liste_prix_innovative_fr.pdf" target="_blank">Liste de prix Innovative</a></div>';
+		
+			}else if ($mylang == 'lang_english'){
+					
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/liste_prix_innovative_en.pdf" target="_blank">Price List Innovative</a></div>';
+			}else {
+			print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/liste_prix_innovative_sp.pdf" target="_blank">Price List Innovative Spanish</a></div>';
+=======
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://static.direct-lens.com/lensnet/pdf/liste_prix_innovative_fr.pdf" target="_blank">Liste de prix Innovative</a></div>';
+		
+			}else if ($mylang == 'lang_english'){
+					
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://static.direct-lens.com/lensnet/pdf/liste_prix_innovative_en.pdf" target="_blank">Price List Innovative</a></div>';
+			}else {
+			print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://static.direct-lens.com/lensnet/pdf/liste_prix_innovative_sp.pdf" target="_blank">Price List Innovative Spanish</a></div>';
+>>>>>>> origin/master
+			}
+		
+			?><br><br>
+            
+            
+             <?php
+		  
+		  if ($mylang == 'lang_french') {
+<<<<<<< HEAD
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/full_price_list_fr.pdf" target="_blank">Liste de prix</a></div>';
+			}else{
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/full_price_list_en.pdf" target="_blank">Price List</a></div>';
+=======
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://static.direct-lens.com/lensnet/pdf/full_price_list_fr.pdf" target="_blank">Liste de prix</a></div>';
+			}else{
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://static.direct-lens.com/lensnet/pdf/full_price_list_en.pdf" target="_blank">Price List</a></div>';
+>>>>>>> origin/master
+			}
+		
+			?><br><br>
+            
+            
+                 <?php
+		  
+		  if ($mylang == 'lang_french') {
+<<<<<<< HEAD
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/major_brand_fr.pdf" target="_blank">Grandes marques</a></div>';
+			}else{
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/major_brand_en.pdf" target="_blank">Major Brands</a></div>';
+=======
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://static.direct-lens.com/lensnet/pdf/major_brand_fr.pdf" target="_blank">Grandes marques</a></div>';
+			}else{
+	print '<div class="bigwelcome" class="Subheader"><a style="text-decoration:none;" href="http://static.direct-lens.com/lensnet/pdf/major_brand_en.pdf" target="_blank">Major Brands</a></div>';
+>>>>>>> origin/master
+			}
+		
+			?><br><br>
+
+
+</div><!--END maincontent-->
+<div id="footer1">
+  
+</div>
+</div><!--END containter-->
+</body>
+</html>
+<?php
+mysql_free_result($languages);
+
+mysql_free_result($languagetext);
+?>

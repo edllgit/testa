@@ -1,0 +1,20 @@
+table {
+  background-color: white;
+}
+
+tbody td {
+  background-color: white;
+}
+
+tbody td.odd {
+  background-color: #ADADAD;
+  color: white;
+}
+
+td.hovered {
+  background-color: lightblue;
+  color: #ADADAD;
+}
+
+#filter { display: none; }
+

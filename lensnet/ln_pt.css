@@ -1,0 +1,156 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#container{
+	width:1050px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+	overflow: hidden;
+	border: 2px solid #336;
+	background-color: #FFF;
+	}
+#masthead{
+	}
+#secmasthead{
+	padding:20px 0 0 0;
+	height:120px;
+	}
+#words{
+	padding-right: 50px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+	}
+#maincontent{
+	width:1050px;
+	overflow: hidden;
+	background-image: url('http://www.direct-lens.com/lensnet/images/sidebar_bg.jpg');
+	background-repeat: repeat-y;
+	}
+#leftad{
+	width:218px;
+	height:120px;
+	}
+#leftnav{
+	width:200px;
+	}
+
+#topright{
+	margin:15px 15px 6px 15px;
+	width:265px;
+	height:133px;
+	}
+
+#midright{
+	padding:6px 15px 6px 15px;
+	width:265px;
+	height:135px;
+	}
+
+#lowright{
+	padding:6px 15px 6px 15px;
+	width:265px;
+	height:95px;
+	}
+#content{
+	margin:0 293px 0 218px;
+	height:440px;
+	}
+#footer1{
+	width:1050px;
+	height:40px;
+	clear: both;
+	background-color: #000;
+	border-top-width: 7px;
+	border-top-style: solid;
+	border-top-color: #A5D674;
+	}
+#footer2{
+	width:880px;
+	height:50px;
+	}
+.boxheader {
+	color: #FFF;
+	font-family: Verdana, Geneva, sans-serif;
+	letter-spacing: 10px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 14px;
+	font-weight:normal;
+	height: 22px;
+	vertical-align: middle;
+	display: block;
+	padding-top: 8px;
+	background-color: #000;
+}
+.boxtext {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 16px;
+	line-height: 32px;
+	padding-right: 15px;
+	padding-left: 15px;
+	height: 180px;
+	display: block;
+	padding-top: 10px;
+}
+.boxfootertext {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 14px;
+	font-weight:normal;
+	height: 30px;
+	padding-top: 5px;
+	display: block;
+}
+.boxfootertext a {
+	color: #FFF;
+	text-decoration: none;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.boxfootertext a:hover {
+	color: #333;
+	background-color: #B2D87D;
+}
+
+.bigwelcome{
+	color:#76A54B;
+	font-family: Verdana, Geneva, sans-serif;
+	text-align: left;
+	font-size: 30px;
+	line-height:28px;
+	padding-top: 40px;
+	padding-left: 40px;
+}
+.bigtagline{
+	color:#5C7CC7;
+	font-family: Verdana, Geneva, sans-serif;
+	text-align: left;
+	font-size: 22px;
+	font-style:italic;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+}
+.bodycopy{
+	color:#333;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 15px;
+	line-height:30px;
+}
+.bodycopyHome {
+	color:#666;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 13px;
+	line-height:15px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+}

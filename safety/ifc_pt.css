@@ -1,0 +1,396 @@
+@charset "UTF-8";
+/* CSS Document */
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #B4C8F3;
+}
+.select1 {width:100px}
+#container{
+	width:1050px;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+	overflow: hidden;
+	background-color: #FFF;
+	;
+	;
+	;
+	;
+	border: 7px solid #FFF;
+	}
+#masthead{
+	}
+#secmasthead{
+	padding:20px 0 0 0;
+	height:120px;
+	}
+#words{
+	padding-right: 50px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+	}
+#maincontent{
+	width:1050px;
+	overflow: hidden;
+	background-image: url(images/sidebar_bg.jpg);
+	background-repeat: repeat-y;
+	}
+#leftad{
+	width:218px;
+	height:120px;
+	}
+#leftnav{
+	width:200px;
+	}
+
+#topright{
+	margin:15px 15px 6px 15px;
+	width:265px;
+	height:133px;
+	}
+
+#midright{
+	padding:6px 15px 6px 15px;
+	width:265px;
+	height:135px;
+	}
+
+#lowright{
+	padding:6px 15px 6px 15px;
+	width:265px;
+	height:95px;
+	}
+#content{
+	margin:0 293px 0 218px;
+	height:440px;
+	}
+#footerBox{
+	width:1050px;
+	height:50px;
+	clear: both;
+	background-color: #ed7e34;
+	color:#FFF;
+	border-top-width: 7px;
+	border-top-style: solid;
+	border-top-color: #FFF;
+	background-position: center;
+}
+#footerBox a{
+	color:#FFF;
+	font-size:14px;
+}
+
+.homep{
+	width:1100px !important;
+}
+
+#footer2{
+	width:880px;
+	height:50px;
+	}
+.boxheader {
+	color: #FFF;
+	font-family: Verdana, Geneva, sans-serif;
+	letter-spacing: 10px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 14px;
+	font-weight:normal;
+	height: 22px;
+	vertical-align: middle;
+	display: block;
+	padding-top: 8px;
+	background-color: #000;
+}
+.boxtext {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 16px;
+	line-height: 32px;
+	padding-right: 15px;
+	padding-left: 15px;
+	height: 180px;
+	display: block;
+	padding-top: 10px;
+}
+.boxfootertext {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 14px;
+	font-weight:normal;
+	height: 30px;
+	padding-top: 5px;
+	display: block;
+}
+.boxfootertext a {
+	color: #FFF;
+	text-decoration: none;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.boxfootertext a:hover {
+	color: #333;
+	background-color: #B2D87D;
+}
+
+.bigwelcome{
+	color:#76A54B;
+	font-family: Verdana, Geneva, sans-serif;
+	text-align: left;
+	font-size: 30px;
+	line-height:28px;
+	padding-top: 40px;
+	padding-left: 40px;
+}
+.bigtagline{
+	color:#5C7CC7;
+	font-family: Verdana, Geneva, sans-serif;
+	text-align: left;
+	font-size: 22px;
+	font-style:italic;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 15px;
+	padding-left: 40px;
+}
+.bodycopy{
+	color:#333;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 15px;
+	line-height:30px;
+}
+.home_features_boxes {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-image: url(images/home_feature_box.png);
+	padding: 10px;
+	height: 200px;
+	width: 290px;
+	background-repeat: no-repeat;
+}
+
+.accueil_top_nav{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	padding-top: 8px;
+	padding-right: 15px;	
+	padding-left: 15px;		
+}
+
+.accueil_top_nav a {
+	color: #666;
+	text-decoration: none;
+}
+.accueil_top_nav a:hover {
+	color: #ee7e32;
+	text-decoration: underline;
+}
+
+.accueil_footer_nav{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	padding-top: 8px;
+	padding-right: 15px;	
+	padding-left: 15px;		
+}
+
+.accueil_footer_nav a {
+	color: #ffffff;
+	text-decoration: none;
+}
+.accueil_footer_nav a:hover {
+	color: #000000;
+	text-decoration: underline;
+}
+
+.home_top_nav {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	clear: none;
+	padding-top: 8px;
+	padding-right: 17px;
+	padding-left: 17px;
+	margin-bottom: 70px;
+}
+.home_top_nav a {
+	color: #666;
+	text-decoration: none;
+}
+.home_top_nav a:hover {
+	color: #64A64E;
+	text-decoration: underline;
+}
+
+.home_mid_nav {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	color: #FFF;
+}
+.home_mid_nav a {
+	color: #FFF;
+	text-decoration: none;
+}
+.home_mid_nav a:hover {
+	text-decoration: underline;
+	color: #FFF;
+}
+.home_features_header {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 17px;
+	line-height: 16px;
+	color: #ee7e32;
+	padding-top: 15px;
+	padding-right: 13px;
+	padding-bottom: 8px;
+	padding-left: 13px;
+	text-align: left;
+}
+
+.bodycopyHome {
+	color:#666;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 13px;
+	line-height:15px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	margin-bottom: 30px;
+}
+#home_mid_nav-box {
+	background-image: url(images/top_piece__ait_menu.jpg);
+	height: 50px;
+	width: 1050px;
+}
+.home_features_body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	line-height: 19px;
+	padding-bottom: 15px;
+	color: #333;
+}
+	
+.frame-display-box {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #ee7e32;
+	height: 140px;
+	width: 200px;
+	text-align: center;
+	vertical-align: top;
+	padding: 0px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.img-box {
+	margin-top: 10px;
+}
+.product-name {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #ee7e32;
+	text-align: left;
+	padding-top: 15px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+	padding-left: 0px;
+}
+
+.product-name a {
+	color: #ee7e32;
+	text-decoration: none;	
+	font-size: 11px;
+}
+.product-name a:hover {
+	text-decoration: underline;	
+	
+}
+.frame-specs {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	text-align: left;
+	color: #333;
+	padding: 3px;
+}
+
+/*********** NEW Menu MYLENE 2015 ************************/
+
+#new-menu{
+	background:#ee7e32;	
+	color: #FFF;	
+	font-size: 18px;	
+	height:15px;
+	width:900px;
+	font-family: Arial, Helvetica, sans-serif;	
+	position:relative;
+	padding:0px 0px 10px 45px;
+}
+#new-menu li{
+    list-style:none;
+	float:left;
+}
+#new-menu li a{
+	color: #FFF;
+	text-decoration: none;
+	margin-right:65px;
+	margin-bottom:10px;
+}
+#new-menu li a:hover {
+	text-decoration: underline;
+	color: #FFF;
+}
+#new-menu li ul {
+    display: none;
+    z-index: 100;
+}
+#new-menu li:hover ul {
+	background:#ee7e32;
+	display: block;
+	padding:10px;
+	position: absolute;
+	margin-left:-10px;
+}
+#new-menu li ul li {
+	float: none;
+	padding:0px 0px 0px 0px;
+	margin:0px 0px 0px 0px;	
+}
+#nav-int{
+	background:#ee7e32;
+	padding:1px;
+}
+
+/*********** NEW HOME MYLENE 2015 ************************/
+
+.blocs {
+	font-family: Arial, Helvetica, sans-serif !important;	
+	text-align:center;
+	padding:20px 10px;
+	width:325px;
+	float:left;
+}
+.blocs p {
+	font-size: 14px;
+}
+.blocs h2{
+	font-size: 20px;	
+	font-weight:bold;
+	text-align:center;	
+}
+.title-home{
+	font-size: 28px;	
+	font-weight:bold;
+	text-align:center;	
+	color:#ee7e32;	
+	padding:25px 0;
+	font-family: Arial, Helvetica, sans-serif !important;		
+}

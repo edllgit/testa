@@ -1,0 +1,248 @@
+@charset "utf-8";
+/* DESIGN DU SITE */
+
+html, body {
+	background: #f0f0f0;
+} 
+#wrapper{
+	margin: 0pt auto;
+	width: 1000px;
+    box-shadow: 0pt 0pt 80px #76838B;	
+}   
+#header {  
+	background:url('http://www.direct-lens.com/direct-lens/images-design/bg-nav.gif') repeat-x;
+	height:130px; 
+	position:relative;	
+} 
+#header h1 {  
+	background: url('http://www.direct-lens.com/direct-lens/images-design/logo-direct-lens.png') repeat scroll 0pt 0pt transparent;
+	display: block;
+	height:41px;
+	margin-bottom: 15px; 
+	text-indent: -9999px;
+	position:absolute;		
+	width:384px;
+	left:20px;
+	top:40px;
+} 
+#social-ico {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+} 
+#social-ico ul li {
+     float:left;
+     margin-left:5px;
+}
+/**************************** MENU *****************************/
+#nav{ 
+	position:absolute;
+	right:10px;
+	top:65px;
+	height:31px;
+} 
+#nav li{
+	float:left;
+	font-size:18px;	
+	margin:0 10px;
+} 
+#nav li a{
+	color:#5e5e5e;
+	text-decoration:none;
+} 
+#nav li a:hover{
+    color:#ffffff;	
+    background:#306974 repeat scroll 0px 0px;
+	border-radius: 5px;	
+	padding: 8px 3px;
+    margin: -8px -3px; 
+    display:block;
+}
+/**************************** SLIDER ET IMAGES *****************************/
+.slider{
+	background:url('http://www.direct-lens.com/direct-lens/images-design/bg-slider.jpg') no-repeat;
+	height:260px;
+	position:relative;
+	z-index:100px;
+}
+#coin-slider-coin-slider{
+	height:236px;
+}
+#coin-slider {	
+	position:absolute !important;
+	top:-15px !important;
+	left:10px !important;
+}	
+#coin-slider a { 
+	text-decoration:none; 
+	outline:none; 
+	border:none;
+}
+.cs-buttons { 
+	font-size:0px; 
+	margin:0; 
+	padding:225px 8px 10px; 
+	float:left;
+}
+.cs-buttons a { 
+	margin:0 2px; 
+	width:26px; 
+	height:26px; 
+	float:left; 
+	background:url('http://www.direct-lens.com/direct-lens/images-design/slide_p.png') no-repeat left top; 
+	color:#fff; 
+	text-indent:-10000px;
+}
+.cs-buttons a.cs-active { 
+	background:url('http://www.direct-lens.com/direct-lens/images-design/slide_a.png') no-repeat left top; 
+	color:#fff;
+}
+.cs-prev, .cs-next { 
+	background:url('http://www.direct-lens.com/direct-lens/images-design/overlay.png') repeat left top; 
+	color:#fff; 
+	padding:0px 10px;
+}
+#middle-nav{
+	background:url('http://www.direct-lens.com/direct-lens/images-design/bg-box.gif') repeat-x;	
+	/* padding-top:7px; */
+	height:162px; 
+}
+#middle-nav .box{
+	width:313px; 
+	float:left; 
+	padding:10px;
+}
+#middle-nav .box h2{
+	font-size:16px; 
+	margin-bottom:12px;
+}
+#middle-nav .box p{
+	color:#306974;
+	font-size:11px;	
+	margin-bottom:15px;
+}
+#middle-nav .box a{
+	font-weight:bold;
+	font-size:16px;		
+}
+/**************************** CONTENT *****************************/
+#content{ 
+	padding:20px;
+}
+#content ul{
+	list-style:disc;
+	margin-left:20px;
+	margin-bottom:20px;
+}
+#content li{
+	margin-bottom:5px;
+} 
+.page{
+    background:#FFF;
+	border-top:#306974 solid 5px;	
+	padding:0px;	
+}
+#content-text{
+	width:620px; 
+	float:left; 
+	margin-right:30px;
+}
+#content-text.full{
+	width:920px;
+	padding:20px;
+	margin-right:0px;
+	float:none;
+}  
+#side-bar{
+	width:300px; 
+	float:left;
+}
+/**************************** FOOTER *****************************/
+#footer{
+	color:#FFF;
+} 
+#footer a {
+	color:#FFF;
+} 
+#footer a:hover {
+	color:#CCC;
+} 
+#footer-top{
+	background:url('http://www.direct-lens.com/direct-lens/images-design/footer-top-bg.gif') repeat-x;	
+	height:283px; 
+}
+#footer-top ul{
+	list-style:disc;
+	margin-left:20px;
+}
+#footer-top li{
+	margin-bottom:8px;
+}
+#footer-top .box{
+	width:300px;
+	float:left;
+	margin:20px 10px;
+}
+#footer-top .box h2{
+	font-size:16px;
+}
+#footer-bottom{
+	background:url('http://www.direct-lens.com/direct-lens/images-design/footer-bottom-bg.gif') repeat-x;	
+	height:79px;  
+}
+#footer-bottom .box {
+	width:470px;
+	float:left;
+	margin:20px 15px;
+}
+/************************ CONTACT DANS FOOTER *************************/
+#footer .form{
+	border:1px solid #000000;
+	color:#000;
+} 
+#footer .form p{
+	margin-bottom:10px; 	
+	display: block;	
+}
+#footer .form a{
+	color:#000;
+}
+#footer label{ 
+	margin-bottom:3px;
+	width:75px;
+	color:#000;
+} 
+#footer input[type=text]{ 
+	width:175px;
+	padding:2px; 	
+}
+/**************************** PAGES DU SITE *****************************/
+/************************ PAGE : CREATE ACCOUNT *************************/
+#create-account .box {
+	width:425px;
+	float:left;
+	margin:10px;
+}
+#create-account label{ 
+	width:175px;
+}
+#create-account input[type=button],
+#create-account a.submit{
+	margin-left:400px;
+}
+/************************** MODULE : CONTACT *****************************/
+.contact .form{  
+	margin-top:20px;
+	padding:20px;
+} 
+.contact label{ 
+	width:100px;
+} 
+.contact input[type=text]{ 
+	width:200px;
+}
+/************************** MODULE : CONNEXION *****************************/
+.connexion input[type=text], 
+.connexion input[type=password]{ 
+	width:120px;
+}

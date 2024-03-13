@@ -1,0 +1,21 @@
+
+Le nombre de commandes pour l'année 2023 chicoutimi est : 1938
+Le nombre de commandes pour l'année 2023 drummondville  est : 1993
+Le nombre de commandes pour l'année 2023 drummondville safety est : 19
+Le nombre de commandes pour l'année 2023 gatineau et  safety est : 1891
+Le nombre de commandes pour l'année 2023 granby et  safety est : 2409
+Le nombre de commandes pour l'année 2023 warehousehal et  safety est : 3723
+Le nombre de commandes pour l'année 2023 laval et  safety est : 1693
+Le nombre de commandes pour l'année 2023 levis et  safety est : 2250
+Le nombre de commandes pour l'année 2023 longueuil et  safety est : 1531
+Le nombre de commandes pour l'année 2023 moncton et  safety est : 2110
+Le nombre de commandes pour l'année 2023 edmundston et  safety est : 2043
+Le nombre de commandes pour l'année 2023 fredericton et  safety est : 787
+Le nombre de commandes pour l'année 2023   safety quebecsafe est : 43
+Le nombre de commandes pour l'année 2023   quebec est : 4288
+Le nombre de commandes pour l'année 2023   sherbrooke et safety est : 5445
+Le nombre de commandes pour l'année 2023   sherbrooke et safety est : 5445
+Le nombre de commandes pour l'année 2023  st jerome et safety est : 1511
+Le nombre de commandes pour l'année 2023  terrebonne et safety est : 4509
+Le nombre de commandes pour l'année 2023 vaudreuil et safety est : 1474
+Le nombre de commandes pour l'année 2023 Trois-rivieres est : 3840

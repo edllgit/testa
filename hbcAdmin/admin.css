@@ -1,0 +1,80 @@
+.formField {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+.formFieldBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+.messageText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	padding: 2px;
+	color: #FFFFFF;
+	background-color: #FF0000;
+}
+.formField2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.formField2RA {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: right;
+}
+
+
+table.formField1 {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.formField1 thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.formField1 thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.formField1 tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.formField1 tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.formField1 thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.formField1 thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+table.formField1 thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+.formField3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.formField3Bold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+}
+.form-text-large {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}

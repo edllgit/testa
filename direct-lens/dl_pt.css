@@ -1,0 +1,124 @@
+@charset "UTF-8";
+/* CSS Document */
+
+#container{
+	width:880px;
+	padding:18px;
+	margin:0 auto;
+	background-image:url('http://direct-lens-public.s3.amazonaws.com/ifcopticclub.ca/design_images/DL_BG.png');
+	background-repeat:no-repeat;
+	}
+#mymasthead{
+	width:880px;
+	height:140px;
+	}
+#secmasthead{
+	padding:20px 0 0 0;
+	height:120px;
+	}
+#words{
+	height:300px;
+	padding:20px;
+	}
+#maincontent{
+	width:880px;
+	height:480px;
+}
+#leftad{
+	width:218px;
+	height:120px;
+}
+#leftnav{
+	width:216px;
+	height:410px;
+}
+#myleftcolumn{
+	float:left;
+	width:218px;
+	height:440px;
+	}
+#myrightcolumn{
+	float:right;
+	width:293px;
+	height:440px;
+	}
+
+#topright{
+	margin:15px 15px 6px 15px;
+	width:265px;
+	height:133px;
+	}
+
+#midright{
+	padding:6px 15px 6px 15px;
+	width:265px;
+	height:135px;
+	}
+
+#lowright{
+	padding:6px 15px 6px 15px;
+	width:265px;
+	height:95px;
+	}
+#content{
+	margin:0 293px 0 218px;
+	height:440px;
+	}
+#footer1{
+	width:880px;
+	height:40px;
+	}
+#footer2{
+	width:880px;
+	height:50px;
+	}
+.boxheader {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 14px;
+	font-weight:bold;
+}
+.boxtext {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 13px;
+	font-weight:bold;
+	letter-spacing: -1px;
+}
+.boxfootertext {
+	color: #FFF;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 14px;
+	text-transform: uppercase;
+	font-weight:bold;
+}
+
+.bigwelcome{
+	color:#006;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 30px;
+	line-height:24px;
+	font-variant:small-caps;
+	font-weight:bold;
+}
+.bigtagline{
+	color:#030;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 18px;
+	font-style:italic;
+	font-weight:bold;
+}
+.bodycopy{
+	color:#000;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: left;
+	font-size: 14px;
+	line-height:24px;
+}

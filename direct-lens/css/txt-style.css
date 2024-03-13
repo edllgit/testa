@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body {
+	color: #373737;
+	font-family: arial;
+	font-size: 11pt;
+} 
+p{
+	margin-bottom:12px;
+	text-align:justify;
+}
+p.conf-pos{
+	color: #306974;
+	font-weight:bold;
+}
+p.conf-neg{
+	color: #728d24;
+	font-weight:bold;	
+}
+a{
+	color:#306974;
+	text-decoration:none;	
+}
+a:hover{
+	text-decoration:underline;
+} 
+h2{
+	border-bottom:1px solid #7c7c7c;
+	font-size:18px;
+	font-weight:bold; 
+	letter-spacing:2px;
+	margin-bottom:20px;
+	padding-bottom:5px;
+	text-transform:uppercase; 
+}
+h3{
+	color:#306974;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:20px;
+	letter-spacing:2px;	
+	text-transform:uppercase;	
+} 
+h4{
+	color:#2e2e2e;
+	font-size:16px;
+	font-weight:bold;
+	margin-bottom:20px;
+	font-style:italic;
+}  
+div.hr {
+  	height: 2px; 
+  	background: #306974 no-repeat scroll center;
+	margin-bottom:20px;  
+}
+div.hr hr {
+  display: none;
+}

@@ -1,0 +1,319 @@
+@charset "UTF-8";
+body{
+	background-image: url("http://www.direct-lens.com/safety/design_images/bg.png");
+	margin: 0px;
+	background-attachment: fixed;
+	background-repeat: repeat-x;
+	background-color: #FFF;
+}
+.formText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+	text-align: left;
+	color: #333;
+	padding-top: 2px;
+	padding-bottom: 1px;
+}
+.buttonText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+}
+.listBox {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+	width: 100px;
+}
+.formBox {
+	padding-top: 15px;
+	border-collapse:collapse;
+	border: 1px solid #333;
+	margin-top: 10px;
+	background-color: #FFF;
+}
+.formCell {
+	border: 1px solid #000066;
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+}
+.formCellNosides {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: left;
+}
+.formStockBulk {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+}
+.formCellNosidesRA {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: right;
+}
+.formCellNosides a {
+	color: #3366FF;
+	text-decoration: none;
+}
+.formCellNoleft {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	border-right: 1px solid #000066;
+}
+#leftColumn{
+	width: 200px;
+	float:left;
+	background-color: #CCC;
+	display: block;
+	background-image: url("http://www.direct-lens.com/safety/design_images/sidebar_bg.jpg");
+}
+
+#rightColumn{
+	width:850px;
+	float:right;
+	margin-right: 0px;
+	min-height:370px;
+	background-color: #FFF;
+	background-image: url("http://www.direct-lens.com/safety/design_images/mid_bg.jpg");
+	background-repeat: no-repeat;
+}
+#menu {
+	width: 200px; /* set width of menu */
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+	padding-bottom: 10px;
+} 
+
+#menu ul { /* remove bullets and list indents */
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+/* style, color and size links and headings to suit */
+#menu a, #menu h2 {
+	font: normal 12px/14px Verdana, Arial, Helvetica, sans-serif;
+	display: block;
+	margin: 0;
+	padding-top: 4px;
+	padding-right: 3px;
+	padding-bottom: 4px;
+	padding-left: 15px;
+	border-bottom-color: #FFF;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+#menu h2 {
+text-transform: uppercase;
+}
+
+#menu a {
+	text-decoration: none;
+	color: #333;
+}
+.chat-box {
+	background-color: #FFF;
+	border: 1px solid #FFF;
+}
+
+#menu a:hover {
+	color: #000000;
+	background-color: #ee7e32;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFF;
+}
+.tableHead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	text-align: left;
+}
+.messageText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #666;
+	padding: 25px;
+	line-height: 22px;
+}
+.tableHead a {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-align: right;
+}
+.tableSubHead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+}
+.header {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	color: #ed7e34;
+	margin-top: 25px;
+	margin-left: 15px;
+	height: 35px;
+}
+.header2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #2e2925;
+	margin-top: 5px;
+	height: 25px;
+}
+.total {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	text-align: right;
+	margin-top: 10px;
+	margin-left: 15px;
+	height: 20px;
+}
+.Subheader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 15px;
+	height: 20px;
+	margin-right: 15px;
+}
+.linksSubheader {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #333;
+	padding-bottom: 10px;
+	padding-left: 35px;
+}
+.linksSubheader a {
+	color: #3366FF;
+	text-decoration: none;
+}
+.linksSubheader a:hover {
+	color: #3366FF;
+	text-decoration: underline;	
+}
+.plainText{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 15px;
+}
+#headerGraphic {
+	float: right;
+	height: 40px;
+	width: 445px;
+	margin-top: 25px;
+}
+#headerBox {
+	float: left;
+	height: 40px;
+	width: 212px;
+}
+.formCellNosidesCenter {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: center;
+}
+.pullDownText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+.loginText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+	text-align: right;
+	padding-top: 12px;
+	padding-right: 20px;
+	color: #444;
+}
+.loginText a {
+	color: #444;
+	text-decoration: none;
+}
+.loginText a:hover {
+	text-decoration: underline;	
+}
+.formCellNosidesCenter {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: center;
+}
+#featureBox{
+	display: block;
+	width: 810px;
+	margin-right: auto;
+	margin-left: auto;
+	overflow: hidden;
+	margin-top: 20px;
+	padding-bottom: 30px;
+}
+.grey-bord-top {
+	border-top-width: 7px;
+	border-top-style: solid;
+	border-top-color: #FFF;
+}
+.grey-bord-left {
+	border-left-width: 7px;
+	border-left-style: solid;
+	border-left-color: #FFF;
+}
+.grey-bord-right {
+	border-right-width: 7px;
+	border-right-style: solid;
+	border-right-color: #FFF;
+}
+.grey-bord-bottom {
+	border-bottom-width: 7px;
+	border-bottom-style: solid;
+	border-bottom-color: #FFF;
+}
+#footerBox {
+	display: block;
+	overflow: hidden;
+	background-color: #ea8033;
+	background-repeat: no-repeat;
+	height: 45px;
+	padding-top: 10px;
+	text-align: left;
+}
+.home-link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #ee7e32;
+	text-align: right;
+	padding-right: 15px;
+	padding-left: 10px;
+	float: right;
+	font-style: italic;
+}
+.home-link a {
+	color: #ee7e32;
+	text-decoration: none;	
+}
+.home-link a:hover {
+	text-decoration: underline;
+	color: #FFF;	
+}
+.grey-border-right {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #CCC;
+}

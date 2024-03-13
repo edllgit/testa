@@ -1,0 +1,77 @@
+<html>
+<head>
+<title>ADMIN LOGIN PAGE</title>
+<script language="JavaScript">
+<!--
+// Copyright information must stay intact
+// FormCheck v1.02
+// Copyright NavSurf.com 2002, all rights reserved
+// For more scripts, visit NavSurf.com at http://navsurf.com
+
+function formCheck(formobj){
+	// name of mandatory fields
+	var fieldRequired = Array("username_test", "password_test");
+	// field description to appear in the dialog box
+	var fieldDescription = Array("User Name", "Password");
+	// dialog message
+	var alertMsg = "Please complete the following fields:\n";
+	
+	var l_Msg = alertMsg.length;
+	
+	for (var i = 0; i < fieldRequired.length; i++){
+		var obj = formobj.elements[fieldRequired[i]];
+		if (obj){
+			switch(obj.type){
+			case "select-one":
+				if (obj.selectedIndex == "" || obj.options[obj.selectedIndex].text == ""){
+					alertMsg += " - " + fieldDescription[i] + "\n";
+				}
+				break;
+			case "select-multiple":
+				if (obj.selectedIndex == -1){
+					alertMsg += " - " + fieldDescription[i] + "\n";
+				}
+				break;
+			case "text":
+			case "textarea":
+				if (obj.value == "" || obj.value == null){
+					alertMsg += " - " + fieldDescription[i] + "\n";
+				}
+				break;
+			default:
+				if (obj.value == "" || obj.value == null){
+					alertMsg += " - " + fieldDescription[i] + "\n";
+				}
+			}
+		}
+	}
+
+	if (alertMsg.length != l_Msg){
+		alert(alertMsg);
+		return false;
+	}
+}
+// -->
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<style type="text/css">
+<!--
+.text {
+	font-family: Verdana, Geneva, sans-serif;
+}
+.textCenter {
+	text-align: center;
+}
+-->
+</style>
+</head>
+
+<body>
+<form name="form1" method="post" action="" onSubmit="return formCheck(this);">
+  <p>&nbsp;</p>
+  <div class="textCenter"><span class="text">DOWN FOR MAINTENANCE </span>
+  </div>
+</form>
+  
+</body>
+</html>

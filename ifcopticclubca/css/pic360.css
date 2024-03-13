@@ -1,0 +1,10 @@
+@charset "utf-8";
+
+.PIC360{
+	display:none;
+	overflow:hidden;
+}
+.PIC360 UL,.PIC360 LI{margin:0; padding:0;}
+.PIC360 LI{list-style:none;}
+
+.PIC360{width:550px; margin:10px auto;}

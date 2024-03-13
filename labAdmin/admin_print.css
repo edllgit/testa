@@ -1,0 +1,39 @@
+.formField {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+
+.print_hidden{
+    display: none;
+}
+.print_zerow {
+  width: 0px;
+}
+.print_fullw {
+  width: 100%;
+}
+
+
+.formFieldBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+.messageText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	padding: 2px;
+	color: #FFFFFF;
+	background-color: #FF0000;
+}
+.formField2 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.formField2RA {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: right;
+}

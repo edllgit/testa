@@ -1,0 +1,196 @@
+.formText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	text-align: left;
+}
+.buttonText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+}
+.listBox {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 12px;
+	width: 100px;
+}
+.formBox {
+	padding-top: 15px;
+	border-collapse:collapse;
+	border: 1px solid #000066;
+	margin-top: 10px;
+}
+.formCell {
+	border: 1px solid #000066;
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+}
+.formCellNosides {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: left;
+}
+.formStockBulk {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+}
+.formCellNosidesRA {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: right;
+}
+.formCellNosides a {
+	color: #3366FF;
+	text-decoration: none;
+}
+.formCellNoleft {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	border-right: 1px solid #000066;
+}
+#leftColumn{
+	width: 185px;
+	float:left;
+	margin-left: 0px;
+	padding-left: 15px;
+}
+#rightColumn{
+	width:660px;
+	float:right;
+	margin-right: 0px;
+}
+#menu {
+	width: 216px; /* set width of menu */
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	padding-top: 15px;
+	text-align: left;
+} 
+#menu ul { /* remove bullets and list indents */
+list-style: none;
+margin: 0;
+padding: 0;
+}
+/* style, color and size links and headings to suit */
+#menu a, #menu h2 {
+font: normal 12px/14px Verdana, Arial, Helvetica, sans-serif;
+display: block;
+margin: 0;
+padding: 2px 3px 2px 15px;
+}
+
+#menu h2 {
+text-transform: uppercase;
+}
+
+#menu a {
+	text-decoration: none;
+	color: #293DA3;
+}
+
+#menu a:hover {
+	color: #294BBF;
+	background-color: #A9CAED;
+}
+.tableHead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #FFFFFF;
+	text-align: left;
+}
+.tableHead a {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-align: right;
+}
+.tableSubHead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-align: left;
+}
+.header {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #000066;
+	text-align: left;
+	margin-top: 25px;
+	margin-left: 15px;
+	height: 35px;
+}
+.header2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #000066;
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 15px;
+	height: 25px;
+}
+.total {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	text-align: right;
+	margin-top: 10px;
+	margin-left: 15px;
+	height: 20px;
+}
+.Subheader {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #000000;
+	text-align: left;
+	margin-top: 10px;
+	margin-left: 15px;
+	height: 20px;
+	margin-right: 15px;
+}
+.plainText{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000000;
+	text-align: left;
+	margin-top: 5px;
+	margin-left: 15px;
+}
+#headerGraphic {
+	float: right;
+	height: 40px;
+	width: 445px;
+	margin-top: 25px;
+}
+#headerBox {
+	float: left;
+	height: 40px;
+	width: 212px;
+}
+.formCellNosidesCenter {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: center;
+}
+.pullDownText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 10px;
+}
+.loginText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	text-align: right;
+	padding-top: 12px;
+	padding-right: 20px;
+}
+.formCellNosidesCenter {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+	border-top: 1px solid #000066;
+	border-bottom: 1px solid #000066;
+	text-align: center;
+}

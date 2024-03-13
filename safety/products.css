@@ -1,0 +1,367 @@
+.categoryText {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 20px;
+	color: #2D348E;
+	padding-left: 25px;
+	background-color: #2D348E;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	background-image: url(../images/purp_gradient.jpg);
+	font-weight: bold;
+}
+.categoryName {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 12px;
+	color: #CCC;
+}
+.productText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
+.cartHead {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	padding-left: 15px;
+}
+.productDescr {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #999;
+}
+.productDescr a {
+	color: #993;
+	text-decoration: none;
+}
+.productName {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #333;
+	padding-top: 6px;
+	font-weight: bold;
+	padding-bottom: 5px;
+	line-height: 14px;
+}
+.productDetails {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	color: #000;
+	padding-bottom: 5px;
+	text-align: left;
+	padding-left: 15px;
+}
+div#thumbBox {
+	height: 135px;
+	width: 135px;
+	border: none;
+	text-align: center;
+	vertical-align: middle;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+div#thumbBox a {
+	background-color: #999;
+}
+.blackBord {
+	border: 1px solid #000000;
+}
+.addToChartBox {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+}
+.CartBox {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #000000;
+	border-bottom-color: #000000;
+	border-left-color: #000000;
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #000000;
+}
+.categoryName a {
+	color: #999;
+	text-decoration: none;
+}
+.categoryName a:hover {
+	color: #E4D28B;
+	text-decoration: underline;
+}
+.productName a {
+	padding: 3px;
+	color: #2D348E;
+	text-decoration: none;
+	text-align: left;
+}
+.productName a:hover {
+	padding: 3px;
+	color: #157AC0;
+	text-decoration: underline;
+}
+.productDetails a {
+	color: #F1D38C;
+	text-decoration: none;
+}
+.productDetails a:hover {
+	color: #666;
+	text-decoration: underline;
+}
+.labelText {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 14px;
+	color: #666;
+	padding-bottom: 10px;
+}
+.headerText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFF;
+	background-color: #2D348E;
+	clear: both;
+	float: left;
+	padding-top: 5px;
+	padding-right: 10px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	margin-top: 10px;
+}
+.descriptionText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #333;
+	text-align: left;
+	clear: both;
+	line-height: 14px;
+	padding: 10px;
+	border: 1px solid #CCC;
+}
+.priceText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #999;
+	font-weight: normal;
+	text-align: left;
+}
+.priceText a {
+	font-weight: bold;
+	color: #ee7e32;
+	text-decoration: none;
+}
+.priceText a:hover {
+	text-decoration: underline;
+}
+.categoryText a {
+	color: #666;
+	text-decoration: none;
+}
+.categoryText a:hover {
+	color: #666;
+	text-decoration: underline;
+}
+.product-box {
+	height: 85px;
+	width: 180px;
+	overflow: hidden;
+	color: #999;
+}
+.addImagesBox {
+	margin-top: 10px;
+}
+.item-box {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	border: 1px solid #ee7e32;
+	padding: 10px;
+	height: 205px;
+	width: 190px;
+	margin-top: 10px;
+	background-color: #FFF;
+	background-image: url("http://www.direct-lens.com/safety/design_images/item-box-bg.jpg");
+}
+.clear {
+	clear: both;
+}
+.product-image {
+	float: right;
+	clear: both;
+}
+.titleText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 22px;
+	color: #2D348E;
+	font-weight: bold;
+	text-align: left;
+	padding-top: 20px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	padding-left: 10px;
+}
+.detailsText {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 13px;
+	color: #999;
+	font-weight: normal;
+	text-align: left;
+	padding-bottom: 15px;
+	padding-left: 20px;
+}
+.sale_priceText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	color: #157AC0;
+	font-weight: normal;
+	text-align: left;
+	padding-top: 10px;
+	padding-left: 15px;
+}
+.topProdBox {
+	margin-top: 10px;
+	margin-bottom: 0px;
+	border: 1px solid #CCC;
+	clear: both;
+	padding: 10px;
+}
+.diopterText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #333;
+	text-align: left;
+	padding-bottom: 3px;
+}
+.dimensionsText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000;
+	font-weight: normal;
+	text-align: center;
+	background-color: #EEEEEE;
+	padding: 3px;
+}
+.greyBord {
+	border: 1px solid #CCC;
+}
+.submitButton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/button_bg.png);
+	text-align: center;
+	height: 22px;
+	width: 119px;
+	font-weight: bold;
+	padding-top: 8px;
+	margin: 10px;
+	clear: both;
+	float: right;
+	background-repeat: no-repeat;
+}
+.submitButton a {
+	color: #FFF;
+	text-decoration: none;	
+}
+.submitButton a:hover {
+	color: #067AC0;	
+}
+.submitInputButton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/button_bg.png);
+	text-align: center;
+	height: 29px;
+	width: 119px;
+	font-weight: bold;
+	clear: both;
+	float: right;
+	margin: 10px;
+	background-repeat: no-repeat;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+.submitInputButton:hover {
+	color: #067AC0;	
+}
+
+.submitButtonWide {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/button_bg_wide.png);
+	text-align: center;
+	height: 22px;
+	width: 169px;
+	font-weight: bold;
+	padding-top: 8px;
+	margin: 10px;
+	clear: both;
+	float: right;
+	background-repeat: no-repeat;
+}
+.submitButtonWide a {
+	color: #FFF;
+	text-decoration: none;	
+}
+.submitButtonWide a:hover {
+	color: #067AC0;	
+}
+.submitInputButtonWide {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/button_bg_wide.png);
+	text-align: center;
+	height: 29px;
+	width: 169px;
+	font-weight: bold;
+	clear: both;
+	float: right;
+	margin: 10px;
+	background-repeat: no-repeat;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+}
+.submitInputButtonWide:hover {
+	color: #067AC0;	
+}
+
+#submitButton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #FFF;
+	background-image: url(../images/button_bg.png);
+	text-align: center;
+	height: 22px;
+	width: 119px;
+	font-weight: bold;
+	padding-top: 8px;
+	margin: 10px;
+	clear: both;
+	float: right;
+	background-repeat: no-repeat;
+}
+#submitButton a {
+	color: #FFF;
+	text-decoration: none;	
+}
+#submitButton a:hover {
+	color: #067AC0;	
+}

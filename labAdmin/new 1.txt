@@ -1,0 +1,134 @@
+	<?php /*
+				if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+					$uploadDirectory = '/S3-direct-lens-public';  // Changer le chemin selon vos besoins
+
+					// Vérifier si des fichiers ont été téléchargés
+					if (!empty($_FILES['file']['name'])) {
+						$targetFile = $uploadDirectory . basename($_FILES['file']['name']);
+
+						// Déplacer le fichier téléchargé vers le répertoire spécifié
+						if (move_uploaded_file($_FILES['file']['tmp_name'], $targetFile)) {
+							echo 'Fichier enregistré avec succès.';
+						} else {
+							echo 'Erreur lors de l\'enregistrement du fichier.';
+						}
+					} else {
+						echo 'Aucun fichier téléchargé.';
+					}
+				} 
+			?>
+                  
+            <!--form method="post"  enctype="multipart/form-data" action="https://<?php //echo constant('AWS_S3_BUCKET'); ?>.s3.amazonaws.com/" name="formShape"  id="formShape" target="_blank"-->
+			<form method="post"  enctype="multipart/form-data" action="/S3-direct-lens-public" name="formShape"  id="formShape" target="_blank">
+			<!--form method="post" enctype="multipart/form-data" action="close_page2.php" name="formShape" id="formShape" target="_blank">
+
+
+          
+
+            <?php         	
+            //Code pour uploader sur S3
+            if (!class_exists('S3')) require_once '../s3/S3.php';
+                
+            // AWS access info
+            if (!defined('awsAccessKey')) define('awsAccessKey', constant('AWS_S3_USER_ACCESS_KEY'));
+            if (!defined('awsSecretKey')) define('awsSecretKey', constant('AWS_S3_USER_SECRET_KEY'));
+            
+            // Check for CURL
+            if (!extension_loaded('curl') && !@dl(PHP_SHLIB_SUFFIX == 'so' ? 'curl.so' : 'php_curl.dll'))
+                exit("\nERROR: CURL extension not loaded\n\n");
+            
+            // Pointless without your keys!
+            if (awsAccessKey == 'change-this' || awsSecretKey == 'change-this')
+                exit("\nERROR: AWS access information required\n\nPlease edit the following lines in this file:\n\n".
+                "define('awsAccessKey', constant('AWS_S3_USER_ACCESS_KEY'));\ndefine('awsSecretKey', constant('AWS_S3_USER_SECRET_KEY'));\n\n");
+            
+            S3::setAuth(awsAccessKey, awsSecretKey);
+            
+            //Dans quel Bucket Uploader ces fichiers
+            $bucket = 'direct-lens-public';
+            $path = 'Shapes/'; // Dans quel dossier
+            
+            $lifetime = 3600; // Period for which the parameters are valid
+            $maxFileSize = (1024 * 1024 * 50); // 50 MB
+            
+            $metaHeaders = array('uid' => 123);
+            $requestHeaders = array(
+                'Content-Type'        => 'application/octet-stream',
+                'Content-Disposition' => 'attachment; filename=${filename}'
+            );
+            
+            
+            
+            $sucess_action_redirect= constant('DIRECT_LENS_URL').'/labAdmin/close_page2.php?ordernum='.$listItem[order_num]. '&filename='. $requestHeaders[Content-Disposition];//Page qui se ferme automatiquement
+			//var_dump($sucess_action_redirect);
+			//echo '<br> succes'$sucess_action_redirect;
+            
+            $params = S3::getHttpUploadPostParams(
+                $bucket,
+                $path,
+                S3::ACL_PUBLIC_READ,
+                $lifetime,
+                $maxFileSize,
+                $sucess_action_redirect, // Or a URL to redirect to on success
+                $metaHeaders,
+                $requestHeaders,
+                false // False since we're not using flash
+            );
+            
+            foreach ($params as $p => $v)
+                echo "        <input type=\"hidden\" name=\"{$p}\" value=\"{$v}\" />\n";
+            ?>
+          
+                   
+                <tr align="center">
+                    <td align="left"  bgcolor="#FFDA85" colspan="8">
+                    <?php  if ($mylang == 'lang_french'){
+                    echo "<strong>ATTACHER UNE FORME:&nbsp;</strong>";
+                    }else {
+                    echo "<strong>ATTACH A SHAPE:&nbsp;</strong>";
+                    } ?></td>
+                    </tr>
+                  
+                  <tr>
+                      <td align="left" colspan="8"><?php
+                        if ($mylang == 'lang_french'){
+                               echo "Forme présentement attachée:";
+                        }else {
+                            echo "Shape currently attached:";
+                        }
+                       ?>
+                       
+                      <b><?php if ($listItem['shape_name_bk'] <> '')  echo $listItem['shape_name_bk']; else echo 'None'; ?></b></td>
+                  </tr>
+                  
+                <?php 
+                if ($listItem['shape_name_bk'] == ''){
+                ?>
+                <tr>
+                   <td align="left">&nbsp;
+                   <input type="file"   name="file"       id="file"     onclick="btnupload.disabled=false;btnupload.value='Upload'"  size="40">&nbsp;
+                   </td>
+                   
+                   <td align="left" colspan="7">&nbsp;
+                   <input type="submit" name="btnupload" disabled id="btnupload" value="Upload"   onclick="this.disabled=true;this.value='Uploaded';this.form.submit();"/>
+                   <input type="hidden" name="order_num"  id="order_num" value="<?php echo $listItem[order_num] ?>"  >
+                   </td>
+               </tr>
+                <?php 
+                }
+                ?>
+				
+
+              </form>  */
+			  
+			  <!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Shape Uploaded Sucessfully</title>
+</head>
+
+<body onLoad="javascript:window.close()">  
+ 
+</body>
+</html>

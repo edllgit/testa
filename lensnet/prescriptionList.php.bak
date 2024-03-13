@@ -1,0 +1,900 @@
+<?php 
+include "../Connections/directlens.php";
+include "../includes/getlang.php";
+?>
+<?php 
+session_start();
+
+
+if($_SESSION["sessionUser_Id"]=="")
+
+	header("Location:loginfail.php");
+	
+require('../Connections/sec_connect.inc.php');
+require('../includes/dl_order_functions.inc.php');
+
+catchOrderData();
+
+
+$Lens_Category=$_POST[lens_category];
+switch ($Lens_Category) {
+case 'all' :$lenscategory = "('prog ds', 'prog ff', 'prog cl', 'bifocal', 'digital surfacing', 'freeform', 'glass', 'sv')"; break;
+case 'bifocal' :$lenscategory = "('bifocal')"; break;  
+case 'all prog' :$lenscategory = "('prog ds', 'prog ff', 'prog cl')"; break;
+case 'prog cl' :$lenscategory = "('prog cl')"; break;   
+case 'prog ds' :$lenscategory = "('prog ds')"; break;    
+case 'prog ff' :$lenscategory = "('prog ff')"; break;    
+case 'glass' :$lenscategory = "('glass')"; break;      
+case 'sv' :$lenscategory = "('sv')"; break;                            
+}
+
+
+
+$COATING=$_POST[COATING];
+
+
+
+switch ($COATING) {
+case 'ANY':
+$COATING = "('DH1','DH2','Hard Coat','Aqua Dream AR','Dream AR','ITO AR','MultiClear AR','Smart AR','Uncoated', 'Xlr')"; 
+break;
+
+case 'Hard Coat':
+$COATING = "('DH1','DH2','Hard Coat')";
+break;
+
+case 'AR':
+$COATING = "('Aqua Dream AR','Dream AR','ITO AR','MultiClear AR','Smart AR','Xlr')";
+break;
+
+case 'Uncoated':
+$COATING = "('Uncoated')";
+break;                                    
+}
+
+
+$INDEX=$_POST[INDEX];
+$tintable="yes";
+
+switch ($INDEX) {
+case 'ANY' :$INDEX = "(1.57, 1.60, 1.70, 1.50, 1.67, 1.53, 1.56, 1.74, 1.59, 1.54, 1.80, 1.90, 1.52)"; break;
+case '1.57': $INDEX = "(1.57)"; break;
+case '1.60': $INDEX = "(1.60)"; break;
+case '1.70': $INDEX = "(1.70)"; break;
+case '1.50': $INDEX = "(1.50)"; break;
+case '1.67': $INDEX = "(1.67)"; break;
+case '1.53': $INDEX = "(1.53)"; break;
+case '1.56': $INDEX = "(1.56)"; break;
+case '1.74': $INDEX = "(1.74)"; break;
+case '1.59': $INDEX = "(1.59)"; break;
+case '1.592':
+$INDEX = "(1.59)";
+$tintable="no";
+break;
+case '1.54': $INDEX = "(1.54)"; break;
+case '1.80': $INDEX = "(1.80)"; break;
+case '1.90': $INDEX = "(1.90)"; break;
+case '1.52': $INDEX = "(1.52)"; break;
+}
+
+$LE_HEIGHT=$_POST[LE_HEIGHT];
+$RE_HEIGHT=$_POST[RE_HEIGHT];
+
+if ($LE_HEIGHT =="")
+{
+$LE_HEIGHT = 0;
+}
+
+if ($RE_HEIGHT =="")
+{
+$RE_HEIGHT = 0;
+}
+
+
+$PHOTO=$_POST[PHOTO];
+$POLAR=$_POST[POLAR];
+$ORDER_PATIENT_LAST=$_POST[LAST_NAME];
+
+$RE_SPHERE=$_SESSION['PrescrData']['RE_SPHERE'];
+$LE_SPHERE=$_SESSION['PrescrData']['LE_SPHERE'];
+
+$RE_CYL=$_SESSION['PrescrData']['RE_CYL'];
+$LE_CYL=$_SESSION['PrescrData']['LE_CYL'];
+
+$RE_ADD=$_SESSION['PrescrData']['RE_ADD'];
+$LE_ADD=$_SESSION['PrescrData']['LE_ADD'];
+
+$RE_AXIS=$_SESSION['PrescrData']['RE_AXIS'];
+$LE_AXIS=$_SESSION['PrescrData']['LE_AXIS'];
+
+if ($_SESSION['PrescrData']['EYE']=="R.E."){
+	$LE_SPHERE=$_SESSION['PrescrData']['RE_SPHERE'];
+	$LE_CYL=$_SESSION['PrescrData']['RE_CYL'];
+	$LE_ADD=$_SESSION['PrescrData']['RE_ADD'];
+}
+
+if ($_SESSION['PrescrData']['EYE']=="L.E."){
+	$RE_SPHERE=$_SESSION['PrescrData']['LE_SPHERE'];
+	$RE_CYL=$_SESSION['PrescrData']['LE_CYL'];
+	$RE_ADD=$_SESSION['PrescrData']['LE_ADD'];
+}
+
+if (($_SESSION['PrescrData']['FRAME_MODEL']!="")&&($_SESSION['PrescrData']['ORDER_TYPE']=="Provide")){
+			  
+		$frame_model_num=$_SESSION['PrescrData']['FRAME_MODEL'];
+		$F_query="SELECT * FROM frames 
+		LEFT JOIN (frames_collections) ON (frames.frames_collections_id=frames_collections.frames_collections_id) 
+		WHERE model_num='$frame_model_num'";
+		$F_result=mysql_query($F_query)		or die  ('I cannot select items because: ' . mysql_error());
+		$F_listItem=mysql_fetch_array($F_result);
+
+	$collections=array();
+	$collections=explode(";",$F_listItem[avail_prescript_collections]);
+	$collectionNum=count($collections);
+	
+	if ($collectionNum!=0){
+		$collectionString=" AND (collection='".$collections[0]."' ";
+
+		for($i=1;$i<$collectionNum;$i++){
+		$collectionString.=" OR collection='".$collections[$i]."' ";
+		}
+		$collectionString.=") ";
+	}//END collectionNum
+}//END IF FRAME
+
+if ($_SESSION["sessionUserData"]["currency"]=="CA"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND coating IN $COATING 
+AND index_v IN $INDEX 
+AND tintable = '$tintable'
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD)".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+
+
+
+if ($COATING=="ANY"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND index_v='$INDEX' 
+AND tintable = '$tintable'
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD)".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+if ($INDEX=="ANY"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND tintable = '$tintable'
+AND coating='$COATING' 
+AND photo='$PHOTO' 
+AND lens_category IN $lenscategory
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD)".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+if (($INDEX=="ANY")&($COATING=="ANY")){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND tintable = '$tintable'
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND lens_category IN $lenscategory
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD)".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+}//END CA CONDITIONAL
+
+
+
+if ($_SESSION["sessionUserData"]["currency"]=="US"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND price!='0.00' 
+AND coating IN $COATING 
+AND index_v IN $INDEX 
+AND tintable = '$tintable'
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+
+if ($COATING=="ANY"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND price !='0.00' 
+AND index_v IN $INDEX 
+AND tintable = '$tintable'
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+if ($INDEX=="ANY"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection)
+WHERE prod_status='active' 
+AND tintable = '$tintable'
+AND price!='0.00' 
+AND coating IN $COATING 
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+if (($INDEX=="ANY")&($COATING=="ANY")){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND tintable = '$tintable'
+AND price!='0.00' 
+AND photo='$PHOTO' 
+AND lens_category IN $lenscategory
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+}//END US CODITIONAL
+
+
+
+
+
+//BEGIN EURO
+if ($_SESSION["sessionUserData"]["currency"]=="EU"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND price_eur !='0.00' 
+AND coating IN $COATING 
+AND index_v IN $INDEX 
+AND tintable = '$tintable'
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+
+if ($COATING=="ANY"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND price_eur !='0.00' 
+AND index_v IN $INDEX 
+AND tintable = '$tintable'
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+if ($INDEX=="ANY"){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection)
+WHERE prod_status='active' 
+AND tintable = '$tintable'
+AND price_eur !='0.00' 
+AND coating IN $COATING 
+AND lens_category IN $lenscategory
+AND photo='$PHOTO' 
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+if (($INDEX=="ANY")&($COATING=="ANY")){
+$query="select * from acct_collections 
+LEFT JOIN liste_collection_info on (liste_collection_info.liste_collection_id = acct_collections.collection_id) 
+LEFT JOIN exclusive on (liste_collection_info.collection_name = exclusive.collection) 
+WHERE prod_status='active' 
+AND tintable = '$tintable'
+AND price_eur !='0.00' 
+AND photo='$PHOTO' 
+AND lens_category IN $lenscategory
+AND polar='$POLAR' 
+AND min_height <= $LE_HEIGHT
+AND max_height >= $RE_HEIGHT
+AND (sphere_over_max>=$RE_SPHERE) 
+AND (sphere_over_min<=$RE_SPHERE) 
+AND (sphere_over_max>=$LE_SPHERE) 
+AND (sphere_over_min<=$LE_SPHERE) 
+AND (cyl_max>=$RE_CYL) 
+AND (cyl_over_min<=$RE_CYL) 
+AND (cyl_max>=$LE_CYL) 
+AND (cyl_over_min<=$LE_CYL) 
+AND (add_max>=$RE_ADD) 
+AND (add_min<=$RE_ADD) 
+AND (add_max>=$LE_ADD) 
+AND (add_min<=$LE_ADD) ".$collectionString." 
+AND acct_collections.acct_id = '".$_SESSION["id"]."' 
+order by product_name asc"; //EXCLUSIVE
+}
+
+}//END EURO CODITIONAL
+
+
+
+
+//echo '<br><br>'.$query;
+
+$result=mysql_query($query)	or die  ("Please resubmit your form.<br><a href='javascript:history.back()'>Go Back 1 step.</a>". mysql_error());
+$usercount=mysql_num_rows($result);
+
+?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Lensnet Club</title>
+
+   
+   
+  <!--[if !IE]>-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.dropshadow.js"></script>
+<script type="text/javascript">
+      window.onload = function()  
+      {
+        $("#container").dropShadow({left:6, top:6, blur:5, opacity:0.7});
+        $(".formBox").dropShadow({left:6, top:6, blur:5, opacity:0.7});
+      }
+    </script>
+<!--<![endif]-->
+ 
+   
+   
+
+<link href="ln_pt.css" rel="stylesheet" type="text/css" />
+<link href="ln.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21964858-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+<body>
+<div id="container">
+  <div id="masthead">
+  <img src="http://direct-lens-public.s3.amazonaws.com/lensnet/images/ln-masthead.jpg" width="1050" height="165" alt="LensNet Club"/>
+</div>
+<div id="maincontent">
+<div id="leftColumn">
+<div id="leftnav">
+  <?php include("includes/sideNav.inc.php"); ?>
+</div><!--END leftnav-->
+</div><!--END leftcolumn-->
+<div id="rightColumn"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0"><tr><td><div id="headerBox" class="header"><?php echo $lbl_availprod_txt;?></div></td><td><div id="headerGraphic"><img src="http://direct-lens-public.s3.amazonaws.com/lensnet/images/list_graphic.gif" alt="prescription search" width="445" height="40" /></div></td></tr></table>
+           
+         
+
+           <?php
+		   if ($_SESSION['PrescrData']['EYE']=="L.E."){
+		   //echo '<br><br>left eye only<br><br>';
+		   $queryDoublons = "SELECT order_num from orders where
+		    le_add    = '$LE_ADD'
+			and le_axis   = '$LE_AXIS'
+			and le_cyl    = '$LE_CYL'
+			and le_sphere = '$LE_SPHERE' 
+			and order_patient_last = '$ORDER_PATIENT_LAST'
+			 ";		   
+		   }
+		   
+		   
+		   
+		   if ($_SESSION['PrescrData']['EYE']=="R.E."){
+		    // echo '<br><br>right eye only<br><br>';
+		    $queryDoublons = "SELECT order_num from orders where
+		    	re_add    = '$RE_ADD' 
+			and re_axis   = '$RE_AXIS'
+			and re_cyl    = '$RE_CYL'
+			and re_sphere = '$RE_SPHERE'
+			and order_patient_last = '$ORDER_PATIENT_LAST'
+			 ";
+		   }
+		   
+		   
+		   
+		   if ($_SESSION['PrescrData']['EYE']=="Both"){
+		     //echo '<br><br>both eyes<br><br>';
+           $queryDoublons = "SELECT order_num from orders where
+		    	re_add    = '$RE_ADD' 
+			and le_add    = '$LE_ADD'
+			and le_axis   = '$LE_AXIS'
+			and re_axis   = '$RE_AXIS'
+			and re_cyl    = '$RE_CYL'
+			and le_cyl    = '$LE_CYL'
+			and le_sphere = '$LE_SPHERE'
+			and re_sphere = '$RE_SPHERE'
+			and order_patient_last = '$ORDER_PATIENT_LAST'
+			 ";
+		   
+		   }
+		   
+		   			 
+		//   echo '<br><br>'. $queryDoublons . '<br><br>';
+		   $resultDoublons = mysql_query($queryDoublons)	or die  ("Erreur:". mysql_error() );
+		   $countDoublons  = mysql_num_rows($resultDoublons);
+		  // echo '<br><br>Nombre de commande pareilles: ' .$countDoublons;
+		   
+		   $queryAfficherWarning = "SELECT display_double_warning from accounts where user_id = '". 
+		   $_SESSION["sessionUser_Id"] . "'";
+		   $resultAfficherWarning = mysql_query($queryAfficherWarning)	or die  ("Erreur:". mysql_error() );
+		   	$DataAfficherWarning=mysql_fetch_array($resultAfficherWarning);
+			$AfficherWarning = $DataAfficherWarning['display_double_warning'];
+		 //
+		   
+		   
+		   if (($countDoublons > 0) && ($AfficherWarning == 'yes')){
+		   echo '<br><font color="#FF0000" >Warning: An order with the same patient ref number and Rx is already in the system</font>.<br> ';
+		   }
+		   ?>
+
+		    <div class="loginText"><?php echo $lbl_user_txt;?> <?php echo $_SESSION["sessionUser_Id"]?></div>
+		    <div class="Subheader"><?php echo $lbl_srchres_txt;?></div>
+		   
+      <div class="plainText"><?php echo $lbl_numofitemsfnd_txt;?> <?php echo $usercount?> </div>
+   <?php   if ($usercount != 0){
+
+echo"<form id=\"form1\" name=\"form1\" method=\"post\" action=\"prescriptionDetail.php\"   onSubmit=\"return validate(this.name,'product_id')\">";
+}
+else{
+echo"<form id=\"form1\" name=\"form1\" method=\"post\" action=\"prescription_retry.php\">";
+}
+?>
+
+		    <table width="770" border="0" align="center" cellpadding="3" cellspacing="0"  class="formBox">
+              <tr >
+                <td colspan="9" bgcolor="#000098" class="tableHead">&nbsp;</td>
+                </tr>
+              <tr>
+                <td align="center"  class="formCell"><?php echo $adm_prodname_txt;?></td>
+                <td align="center" class="formCell"><?php echo $lbl_material_txt_pl;?></td>
+                <td align="center" class="formCell"><?php echo $adm_coating_txt;?></td>
+                <td align="center" class="formCell"><?php echo $lbl_photochro_txt_pl;?></td>
+                <td align="center" class="formCell"><?php echo $lbl_polarized_txt_pl;?></td>
+                <td align="center" class="formCell"><?php echo $lbl_overrang_txt;?></td>
+                <td align="center" class="formCell"><?php echo $adm_price_txt;?><br /><?php 
+				
+				if ($_SESSION["sessionUserData"]["e_lab"]=="E-Lab US"){
+					echo " E-Lab US";}
+				else if ($_SESSION["sessionUserData"]["e_lab"]=="E-Lab CAN"){
+					echo " E-Lab CA";}
+				else {
+					
+				if ($_SESSION["sessionUserData"]["currency"]=="US"){
+					echo " US";}
+				else if ($_SESSION["sessionUserData"]["currency"]=="CA"){
+					echo " CA";}
+				else if ($_SESSION["sessionUserData"]["currency"]=="EU"){
+					echo " EUR";}
+				}
+				?></td>
+                <td align="center" class="formCell"><?php echo $adm_select_txt;?></td>
+              </tr>
+			  <?php
+
+if ($usercount == 0){ /* no positions to list */
+	echo "<tr><td colspan=\"9\" class=\"formCell\">Sorry, no items found.</td></tr>";
+	}else{
+		echo "<tr>";
+		while ($listItem=mysql_fetch_array($result)){
+		$item++;
+			echo "<td align=\"left\" class=\"formCell\">";
+			
+			
+			switch ($listItem[logo_file]) {
+			case '1' :$LogoAInclure = "logo-essilor.gif";    break; //logo essilor 
+			case '2' :$LogoAInclure = "logo-hoya.gif"; 		 break; //logo Hoya
+			case '3' :$LogoAInclure = "logo-kodak.gif";	     break; //logo Kodak
+			case '4' :$LogoAInclure = "logo-shamir.gif"; 	 break; //logo Shamir
+			case '5' :$LogoAInclure = "logo-sola.gif"; 		 break; //logo SOLA
+			case '6' :$LogoAInclure = "logo-rodenstock.gif"; break; //logo RODENSTOCK
+			case '7' :$LogoAInclure = "logo-zeiss.gif"; 	 break; //logo ZEISS      
+			default  :$LogoAInclure = "vide.jpg";			 break; //Aucun logo, logo blanc
+			}
+
+			if ($LogoAInclure <> "")
+			{
+			//There is a logo to display
+			echo "<div style=\"float:left;width:50px;\"><img src=\"http://direct-lens-public.s3.amazonaws.com/lensnet/images/$LogoAInclure\" width='50px' /></div>&nbsp;&nbsp;";
+			}
+			echo "<a  href=\"#\" onClick=\"MM_openBrWindow('lens_specs.php?pkey=$listItem[primary_key]','popup','toolbar=no,location=no,status=no,menubar=no,scrollbars=no,resizable=no,width=350,height=450')\">";
+			
+			$Product_name =  $listItem[product_name];
+			$Product_name =str_replace('CMF','Comfort',$Product_name);
+			$Product_name =str_replace('ELPS','Ellipse',$Product_name);
+			$Product_name =str_replace('PSI','Physio',$Product_name);
+			
+			echo $Product_name;
+			echo "</a></td>";
+			
+			echo "<td  align=\"center\" class=\"formCell\">";
+			echo $listItem[index_v];
+			echo "</td>";
+			
+			echo "<td  align=\"center\" class=\"formCell\">";
+			echo $listItem[coating];
+			echo "</td>";
+			
+			echo "<td  align=\"center\" class=\"formCell\">";
+			echo $listItem[photo];
+			echo "</td>";
+			
+			echo "<td  align=\"center\" class=\"formCell\">";
+			echo $listItem[polar];
+			echo "</td>";
+			
+				echo "<td  align=\"right\" class=\"formCell\">";
+			$over_range_re=0;
+			$over_range_le=0;
+			
+			if ($_SESSION['PrescrData']['EYE']!="L.E."){
+			
+				if (($RE_SPHERE>$listItem[sphere_max])||($RE_SPHERE<$listItem[sphere_min])||($RE_CYL<$listItem[cyl_min])){
+				$over_range_re=10.00;
+					echo "R.E. $";
+				
+					$over_range=money_format('%.2n',$over_range_re);
+					echo $over_range;
+					echo "<br>";
+				}
+			}
+			
+			if ($_SESSION['PrescrData']['EYE']!="R.E."){
+				if (($LE_SPHERE>$listItem[sphere_max])||($LE_SPHERE<$listItem[sphere_min])||($LE_CYL<$listItem[cyl_min])){
+					$over_range_le=10.00;
+					echo "L.E. $";
+				
+					$over_range=money_format('%.2n',$over_range_le);
+					echo $over_range;
+					echo "<br>";
+				}
+			}
+			echo "</td>";
+			
+			echo "<td  align=\"center\" class=\"formCell\">";
+			
+			if ($_SESSION["sessionUserData"]["currency"]=="US"){
+				$price=$listItem[price];}
+			else if ($_SESSION["sessionUserData"]["currency"]=="CA"){
+				$price=$listItem[price_can];}	
+			else if ($_SESSION["sessionUserData"]["currency"]=="EU"){
+				$price=$listItem[price_eur];}
+			
+			if ($_SESSION["sessionUserData"]["e_lab"]=="E-Lab US"){
+				$price=$listItem[e_lab_us_price];}	
+			else if ($_SESSION["sessionUserData"]["e_lab"]=="E-Lab CAN"){
+				$price=$listItem[e_lab_can_price];}
+				
+			if (($_SESSION['PrescrData']['EYE']=="R.E.")||($_SESSION['PrescrData']['EYE']=="L.E.")){
+				$price=money_format('%.2n',$price/2);
+			}
+			
+			
+			//WARRANTY
+			if (($_SESSION[PrescrData][WARRANTY]== 1) &&  ($_SESSION['PrescrData']['EYE']=="Both")){
+			$price = $price + 6;
+			}
+			
+			if (($_SESSION[PrescrData][WARRANTY]== 1) &&  ($_SESSION['PrescrData']['EYE']=="R.E.")){
+			$price = $price + 3;
+			}
+			
+			if (($_SESSION[PrescrData][WARRANTY]== 1) &&  ($_SESSION['PrescrData']['EYE']=="L.E.")){
+			$price = $price + 3;
+			}
+			
+				
+						
+			if (($_SESSION[PrescrData][WARRANTY]== 2) &&  ($_SESSION['PrescrData']['EYE']=="Both")){
+			$price = $price + 10;
+			}
+			
+			if (($_SESSION[PrescrData][WARRANTY]== 2) &&  ($_SESSION['PrescrData']['EYE']=="R.E.")){
+			$price = $price + 5;
+			}
+			
+			if (($_SESSION[PrescrData][WARRANTY]== 2) &&  ($_SESSION['PrescrData']['EYE']=="L.E.")){
+			$price = $price + 5;
+			}
+			
+
+			
+			if (($_SESSION[PrescrData][WARRANTY]== 'extension') &&  ($_SESSION['PrescrData']['EYE']=="Both")){
+			$price = $price + 40;
+			}
+			
+			if (($_SESSION[PrescrData][WARRANTY]== 'extension') &&  ($_SESSION['PrescrData']['EYE']=="L.E.")){
+			$price = $price + 20;
+			}
+			
+			if (($_SESSION[PrescrData][WARRANTY]== 'extension') &&  ($_SESSION['PrescrData']['EYE']=="R.E.")){
+			$price = $price + 20;
+			}
+			
+			
+			/*	if (($_SESSION[PrescrData][WARRANTY]== "2 complete") &&  ($_SESSION['PrescrData']['EYE']=="Both")){
+			$price = $price + 23.50;
+			}
+			
+			if (($_SESSION[PrescrData][WARRANTY]== "2 complete") &&  ($_SESSION['PrescrData']['EYE']=="R.E.")){
+			$price = $price + 11.75;
+			}
+						
+			if (($_SESSION[PrescrData][WARRANTY]== "2 complete") &&  ($_SESSION['PrescrData']['EYE']=="L.E.")){
+			$price = $price + 11.75;
+			}*/
+			
+			
+						
+			$price= money_format('%.2n',$price); 
+				
+				
+			$queryLanguage = "SELECT language from accounts WHERE user_id = '" .  $_SESSION["sessionUser_Id"] . "'";
+			$LanguageResult=mysql_query($queryLanguage)	or die  ('I cannot select items because: ' . mysql_error());
+			$DataLanguage=mysql_fetch_array($LanguageResult);
+			$CustomerLanguage = $DataLanguage['language'];
+			if ($CustomerLanguage == 'english'){
+			echo "$".$price;
+			}else{
+			echo $price . "$";
+			}	
+
+			echo "</td>";
+			
+		
+			
+			echo "<td  align=\"center\" class=\"formCell\">";
+			
+			echo "<input type=\"radio\" name=\"product_id\" id=\"product_id\" value=\"$listItem[primary_key]\"";
+			
+			if ($item==1){
+				echo  "checked=\"checked\" />";}
+			else{
+				echo"/>";}
+			echo "</td></tr>";
+			   }//end of while
+}//end of 0 usercount
+?>
+
+          </table> <?php
+if ($usercount != 0){ 
+
+ echo "<div align=\"center\" style=\"margin:11px\"><input name=\"back\" type=\"button\" value=\"".$adm_backtoform_txt."\"  onclick=\"window.open('prescription_retry.php', '_top')\"/>&nbsp;<input name=\"Submit\" type=\"submit\" value=\"".$adm_proceed_txt."\";/></div></form>";
+			}
+			else{
+			 echo "<div align=\"center\" style=\"margin:11px\"><input name=\"back\" type=\"button\" value=\"".$adm_backtoform_txt."\"  onclick=\"window.open('prescription_retry.php', '_top')\"/></div></form>";
+			}
+			
+			?>
+</div><!--END rightcolumn-->
+</div><!--END maincontent-->
+<div id="footer1">
+  
+</div>
+</div><!--END containter-->
+<?php
+
+	$_SESSION['PrescrData']['myupload'] = $_POST["uploadhold"];
+//////////if there is a new lens stored
+	if(($_FILES['myupload']['name'])){
+	$target_path = "C:\\cdrive\\websites\\directlens\\holdingfiles\\";
+	$target_path = $target_path . basename( $_FILES['myupload']['name']);
+	$_SESSION['PrescrData']['myupload'] = basename( $_FILES['myupload']['name']);
+	move_uploaded_file($_FILES['myupload']['tmp_name'], $target_path);
+	}
+
+//////////if there is already a lens stored...but no new lens
+	if((!$_FILES['myupload']['name']) && (($_SESSION['PrescrData']['myupload']) && ($_SESSION['PrescrData']['myupload'] != "none"))){
+	///no need to do anything- already done
+	}
+
+//////////if there is nothing
+	if((!$_FILES['myupload']['name']) && (!$_SESSION['PrescrData']['myupload']) || ($_SESSION['PrescrData']['myupload'] == "none")){
+		///no need to do anything
+	}
+
+?>
+</body>
+</html>
+<?php
+mysql_free_result($languages);
+mysql_free_result($languagetext);
+?>

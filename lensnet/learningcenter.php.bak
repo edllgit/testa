@@ -1,0 +1,145 @@
+<?php 
+include "../Connections/directlens.php";
+include "../includes/getlang.php";
+?>
+<?php 
+session_start();?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>LensNet Club</title>
+
+
+<!--[if !IE]>-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.dropshadow.js"></script>
+<script type="text/javascript">
+      window.onload = function()  
+      {
+        $("#container").dropShadow({left:6, top:6, blur:5, opacity:0.7});
+        $(".formBox").dropShadow({left:6, top:6, blur:5, opacity:0.7});
+      }
+    </script>
+<!--<![endif]-->
+   
+<link href="ln.css" rel="stylesheet" type="text/css" />
+<link href="ln_pt.css" rel="stylesheet" type="text/css" />
+    
+<style type="text/css">
+<!--
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	background-color: #B4C8F3;
+}
+
+-->
+</style>
+
+<script type="text/javascript" src="../includes/formvalidator.js"></script>
+<script type="text/javascript">
+<!--
+/* This script and many more are available free online at
+The JavaScript Source :: http://javascript.internet.com
+Created by: Amit Wadhwa :: http://amitwadhwa.fcpages.com/javascript.com/formvalidator.html */
+
+function check(formname, submitbutton) {
+  var errors = '';
+  errors += checkText(formname, 'Name', '<?php echo $lbl_nameerror1;?>');
+  errors += checkText(formname, 'Phone', '<?php echo $lbl_phoneerror1;?>');
+  //errors += checkRadio(formname, 'Question1', 'Question 1');
+  //errors += checkText(formname, 'Question1_explain', 'Explain Question 1');
+  //errors += checkSelect(formname, 'Country', 'Country Of Residence');
+  //errors += checkText(formname, 'age', 'Age Of Person');
+  //errors += checkNum(formname, 'age', 'Age Of Person');
+  checkThisForm(formname, submitbutton, errors);
+}
+//-->
+</script>
+<style type="text/css">
+<!--
+.select1 {width:100px}
+-->
+</style>
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-21964858-2']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+</head>
+
+
+<body>
+<div id="container">
+  <div id="masthead">
+  <img src="http://direct-lens-public.s3.amazonaws.com/lensnet/images/ln-masthead.jpg" width="1050" height="165" alt="LensNet Club"/>
+</div>
+<div id="maincontent">
+<div id="leftColumn">
+<div id="leftnav">
+  <?php include("includes/sideNav.inc.php"); ?>
+</div><!--END leftnav-->
+</div><!--END leftcolumn-->
+<div id="rightColumn"><form action="../send_email.php" method="post" name="contactForm" id="contactForm">
+      <div class="header">
+		  	</div><div class="loginText"></div>
+		    <br>
+		    <br>
+		    <div class="Subheader"></div>
+	   
+		   
+		   
+		  </form>
+</div><!--END rightcolumn-->
+
+             <div class="bigwelcome">
+            <?php
+  if ($mylang == 'lang_french') {
+	echo '<a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/order_online_fr.pdf">Comment commander en ligne</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/Innovative_fr.pdf">Information sur la collection Innovative</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/CouponremboursementLensNet.pdf">Livraison 7 jours - Coupon de remboursement</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/Formulaire de demande de crÃ©dit - LensNet.pdf">Formulaire de demande de crÃ©dit</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/precedes_fab.pdf">PrÃ©sentation des procÃ©dÃ©s de fabrication</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/formulaire_d_autorisation_carte_de_credit_fr.pdf">Formulaire de paiement par carte de crÃ©dit</a>';
+	
+			
+		
+		
+	}else{
+	echo '<a style="text-decoration:none;"  href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/order_online_en.pdf">How to order online</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/Innovative.pdf">Information about the Innovative Lenses</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/RefundTabLensnet.pdf">7 days delays - Refund tab</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/credit application - Lensnet.pdf">Credit Request Form</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/precedes_faben.pdf">Lens Category Details</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/Brochure 8 pages_Innovative_web.pdf">Innovative +</a>';
+	echo '<br><br><a  style="text-decoration:none;" href="http://direct-lens-public.s3.amazonaws.com/lensnet/pdf/cc_authorization_eng.pdf">Credit Card Authorization Form</a>';
+			}
+			
+?>
+</div>
+</div><!--END maincontent-->
+<div id="footer1">
+  
+</div>
+</div><!--END containter-->
+</body>
+</html>
+<?php
+mysql_free_result($languages);
+
+mysql_free_result($languagetext);
+?>

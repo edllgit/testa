@@ -1,0 +1,47 @@
+.formField {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+.formFieldBold {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+}
+P.breakhere {
+	page-break-before: always
+}
+#displayBox {
+	height: 580px;
+	overflow: auto;
+}
+.formText {
+	font-family: Helvetica, sans-serif, Arial;
+	font-size: 11px;
+}
+.subHeadNav {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+form {
+	margin: 0px;
+	padding: 0px;
+}
+.bord-right {
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #333;
+}
+
+table.formField1 thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+
+table.formField1 thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
