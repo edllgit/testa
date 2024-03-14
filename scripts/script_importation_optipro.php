@@ -10129,6 +10129,403 @@ switch($EYE){
 		}
 break;
 
+
+//=======================================================
+//PROGRESSIF SEIKO 
+case 'PROGRESSIF SEIKO STANDARD ETC':
+case 'PROGRESSIVE SEIKO STANDARD ETC':
+	$ProdName  				= " product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name NOT like '%solid%' and product_name NOT like '%photo%'"; 
+	$ProdTable 				= "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING 	= "ITO AR";
+	$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	
+	if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+		$OPTICAL_CENTER = $LE_HEIGHT;
+		$LE_HEIGHT = '';
+		$RE_HEIGHT = '';	
+}
+	
+	switch($CORRIDOR){
+		case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+		case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+		case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+		
+		default: 
+		$InsererDansBD  = false;
+		$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+		Options: 11, 13, 15mm. Please add the corridor and re-export the order.';
+	}
+break;
+
+
+case 'PROGRESSIF SEIKO STANDARD ETC PHOTO GRIS':
+case 'PROGRESSIVE SEIKO STANDARD ETC PHOTO GR':
+		$ProdName  				= " product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name NOT like '%solid%' and product_name like '%photo%' and 
+		product_name like '%grey%' "; 
+		$ProdTable 				= "ifc_ca_exclusive"; 
+		$ORDER_PRODUCT_COATING 	= "ITO AR";
+		$ORDER_PRODUCT_PHOTO 	= "Grey";
+		$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+		
+		if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+			$OPTICAL_CENTER = $LE_HEIGHT;
+			$LE_HEIGHT = '';
+			$RE_HEIGHT = '';	
+	}
+		
+		switch($CORRIDOR){
+			case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+			case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+			case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+			
+			default: 
+			$InsererDansBD  = false;
+			$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+			Options: 11, 13, 15mm. Please add the corridor and re-export the order.';
+		}
+	break;
+
+	case 'PROGRESSIF SEIKO STANDARD ETC PHOTO BRUN':
+	case 'PROGRESSIVE SEIKO STANDARD ETC PHOTO BR':
+				$ProdName  				= " product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name NOT like '%solid%' and product_name like '%photo%' and 
+				product_name like '%Brown%' "; 
+				$ProdTable 				= "ifc_ca_exclusive"; 
+				$ORDER_PRODUCT_COATING 	= "ITO AR";
+				$ORDER_PRODUCT_PHOTO 	= "Brown";
+				$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				
+				if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+					$OPTICAL_CENTER = $LE_HEIGHT;
+					$LE_HEIGHT = '';
+					$RE_HEIGHT = '';	
+			}
+				
+				switch($CORRIDOR){
+					case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+					case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+					case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+					
+					default: 
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+					Options: 11, 13, 15mm. Please add the corridor and re-export the order.';
+				}
+			break;
+
+
+	case 'PROGRESSIF SEIKO STANDARD ETC TEINTE GR':  // HKO--> 2016-08-31
+	case 'PROGRESSIVE SEIKO STANDARD ETC GR TINT':  // Halifax
+			
+			switch($EYE){	
+				case 'Both': 
+					if ($RE_ADD=='' || $LE_ADD==''){
+						if ($UnSvUnProg == false){	
+							$InsererDansBD = false;	
+							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+						}
+					}	
+			}//END Switch
+			
+				$ProdName  = "  product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name like '%solid%' and lens_category <> 'sv' AND polar='None' and photo='none' and product_name like '%Grey%' "; 
+				$ProdTable = "ifc_ca_exclusive"; 
+				$ORDER_PRODUCT_COATING = "ITO AR";
+				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				$SauterValidationFH = "";
+				if ($CORRIDOR <> ''){
+					//Produit HKO + corridor = On doit filtrer le corridor avec le code produit
+					switch($CORRIDOR){    
+						case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+						case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+						case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+						
+						default: 
+						$InsererDansBD  = false;
+						$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+						Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
+					}	
+				}elseif ($EYE == 'Both'){
+					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+				}elseif($EYE == 'R.E.'){
+					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+				}elseif($EYE == 'L.E.'){
+					$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+				}
+				$AjoutTeintePromo = 'oui';
+				//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+				//Inserer dans extra_product_order
+				$frame_type		= "";
+				$color			= "";
+				$order_type		= "";
+				$temple			= "";
+				$order_num		= -1;
+				$main_lab_id	= $LAB;
+				$category		= "Tint";
+				$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+				$ep_prod_id     = $listItem[prod_id];
+				$TINT           = 'Solid';
+				$TINT_COLOR     = 'Grey';
+				$FROM_PERC      = '85';
+				$TO_PERC        = '85';	
+			break;
+
+
+	case 'PROGRESSIF SEIKO STANDARD ETC TEINTE BR':  // HKO--> 2016-08-31
+	case 'PROGRESSIVE SEIKO STANDARD ETC BR TINT':  // Halifax
+		
+		switch($EYE){	
+			case 'Both': 
+				if ($RE_ADD=='' || $LE_ADD==''){
+					if ($UnSvUnProg == false){	
+						$InsererDansBD = false;	
+						$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+					}
+				}	
+		}//END Switch
+		
+			$ProdName  = "  product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name like '%solid%' and lens_category <> 'sv' AND polar='None' and photo='none' and product_name like '%Brown%' "; 
+			$ProdTable = "ifc_ca_exclusive"; 
+			$ORDER_PRODUCT_COATING = "ITO AR";
+			$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+			$SauterValidationFH = "";
+			if ($CORRIDOR <> ''){
+				//Produit HKO + corridor = On doit filtrer le corridor avec le code produit
+				switch($CORRIDOR){    
+					case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+					case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+					case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+					
+					default: 
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+					Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
+				}	
+			}elseif ($EYE == 'Both'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+			}elseif($EYE == 'R.E.'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+			}elseif($EYE == 'L.E.'){
+				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+			}
+			$AjoutTeintePromo = 'oui';
+			//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+			//Inserer dans extra_product_order
+			$frame_type		= "";
+			$color			= "";
+			$order_type		= "";
+			$temple			= "";
+			$order_num		= -1;
+			$main_lab_id	= $LAB;
+			$category		= "Tint";
+			$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+			$ep_prod_id     = $listItem[prod_id];
+			$TINT           = 'Solid';
+			$TINT_COLOR     = 'Brown';
+			$FROM_PERC      = '85';
+			$TO_PERC        = '85';	
+		break;
+
+
+
+
+case 'PROGRESSIF SEIKO STANDARD HC':
+case 'PROGRESSIVE SEIKO STANDARD HC':
+	$ProdName  				= " product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name NOT like '%solid%' and product_name NOT like '%photo%'"; 
+	$ProdTable 				= "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING 	= "Hard Coat";
+	$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	
+	if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+		$OPTICAL_CENTER = $LE_HEIGHT;
+		$LE_HEIGHT = '';
+		$RE_HEIGHT = '';	
+}
+	
+	switch($CORRIDOR){
+		case '11':  	$ProdName  .= " AND corridor = 11  "; 	$SauterValidationFH = "yes"; break;    
+		case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+		case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+		
+		default: 
+		$InsererDansBD  = false;
+		$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+		Options: 11, 13, 15mm. Please add the corridor and re-export the order.';
+	}
+break;
+
+
+case 'PROGRESSIF SEIKO STANDARD HC PHOTO GRIS':
+case 'PROGRESSIVE SEIKO STANDARD HC PHOTO GR':
+			$ProdName  				= " product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name NOT like '%solid%' and product_name like '%photo%' and 
+			product_name like '%grey%' "; 
+			$ProdTable 				= "ifc_ca_exclusive"; 
+			$ORDER_PRODUCT_COATING 	= "Hard Coat";
+			$ORDER_PRODUCT_PHOTO 	= "Grey";
+			$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+			
+			if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+				$OPTICAL_CENTER = $LE_HEIGHT;
+				$LE_HEIGHT = '';
+				$RE_HEIGHT = '';	
+		}
+			
+			switch($CORRIDOR){
+				case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+				case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+				case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+				
+				default: 
+				$InsererDansBD  = false;
+				$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+				Options: 11, 13, 15mm. Please add the corridor and re-export the order.';
+			}
+		break;
+	
+case 'PROGRESSIF SEIKO STANDARD HC PHOTO BRUN':
+case 'PROGRESSIVE SEIKO STANDARD HC PHOTO BR':
+			$ProdName  				= " product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name NOT like '%solid%' and product_name like '%photo%' and 
+			product_name like '%Brown%' "; 
+			$ProdTable 				= "ifc_ca_exclusive"; 
+			$ORDER_PRODUCT_COATING 	= "Hard Coat";
+			$ORDER_PRODUCT_PHOTO 	= "Brown";
+			$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+			
+			if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+				$OPTICAL_CENTER = $LE_HEIGHT;
+				$LE_HEIGHT = '';
+				$RE_HEIGHT = '';	
+		}
+			
+			switch($CORRIDOR){
+				case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+				case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+				case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+				
+				default: 
+				$InsererDansBD  = false;
+				$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+				Options: 11, 13, 15mm. Please add the corridor and re-export the order.';
+			}
+		break;
+
+
+case 'PROGRESSIF SEIKO STANDARD HC TEINTE GR':  // HKO--> 2016-08-31
+case 'PROGRESSIVE SEIKO STANDARD HC GR TINT':  // Halifax
+			
+			switch($EYE){	
+				case 'Both': 
+					if ($RE_ADD=='' || $LE_ADD==''){
+						if ($UnSvUnProg == false){	
+							$InsererDansBD = false;	
+							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+						}
+					}	
+			}//END Switch
+			
+				$ProdName  = "  product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name like '%solid%' and lens_category <> 'sv' AND polar='None' and photo='none' and product_name like '%Grey%' "; 
+				$ProdTable = "ifc_ca_exclusive"; 
+				$ORDER_PRODUCT_COATING = "Hard Coat";
+				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				$SauterValidationFH = "";
+				if ($CORRIDOR <> ''){
+					//Produit HKO + corridor = On doit filtrer le corridor avec le code produit
+					switch($CORRIDOR){    
+						case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+						case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+						case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+						
+						default: 
+						$InsererDansBD  = false;
+						$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+						Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
+					}	
+				}elseif ($EYE == 'Both'){
+					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+				}elseif($EYE == 'R.E.'){
+					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+				}elseif($EYE == 'L.E.'){
+					$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+				}
+				$AjoutTeintePromo = 'oui';
+				//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+				//Inserer dans extra_product_order
+				$frame_type		= "";
+				$color			= "";
+				$order_type		= "";
+				$temple			= "";
+				$order_num		= -1;
+				$main_lab_id	= $LAB;
+				$category		= "Tint";
+				$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+				$ep_prod_id     = $listItem[prod_id];
+				$TINT           = 'Solid';
+				$TINT_COLOR     = 'Grey';
+				$FROM_PERC      = '85';
+				$TO_PERC        = '85';	
+			break;
+
+
+	case 'PROGRESSIF SEIKO STANDARD HC PHOTO BRUN':  // HKO--> 2016-08-31
+	case 'PROGRESSIVE SEIKO STANDARD HC PHOTO BR':  // Halifax
+		
+		switch($EYE){	
+			case 'Both': 
+				if ($RE_ADD=='' || $LE_ADD==''){
+					if ($UnSvUnProg == false){	
+						$InsererDansBD = false;	
+						$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+					}
+				}	
+		}//END Switch
+		
+			$ProdName  = "  product_name like '%PROGRESSIVE SEIKO STANDARD%' and product_name like '%solid%' and lens_category <> 'sv' AND polar='None' and photo='none' and product_name like '%Brown%' "; 
+			$ProdTable = "ifc_ca_exclusive"; 
+			$ORDER_PRODUCT_COATING = "Hard Coat";
+			$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+			$SauterValidationFH = "";
+			if ($CORRIDOR <> ''){
+				//Produit HKO + corridor = On doit filtrer le corridor avec le code produit
+				switch($CORRIDOR){    
+					case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
+					case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
+					case '15': 		$ProdName  .= " AND corridor = 15 "; 	$SauterValidationFH = "yes"; break;    
+					
+					default: 
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
+					Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
+				}	
+			}elseif ($EYE == 'Both'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+			}elseif($EYE == 'R.E.'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+			}elseif($EYE == 'L.E.'){
+				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+			}
+			$AjoutTeintePromo = 'oui';
+			//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+			//Inserer dans extra_product_order
+			$frame_type		= "";
+			$color			= "";
+			$order_type		= "";
+			$temple			= "";
+			$order_num		= -1;
+			$main_lab_id	= $LAB;
+			$category		= "Tint";
+			$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+			$ep_prod_id     = $listItem[prod_id];
+			$TINT           = 'Solid';
+			$TINT_COLOR     = 'Brown';
+			$FROM_PERC      = '85';
+			$TO_PERC        = '85';	
+		break;
+
+//==================================================
+
+
+
+
+
+
 case 'STOCK AR-ETC UV 420 - BLUE CUT':
 	$ProdName  				= " product_name like '%Single Vision Stock%' and product_name like '%UV 420%'"; 
 	$ProdTable 				= "ifc_ca_exclusive"; 
