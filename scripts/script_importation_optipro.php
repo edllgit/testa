@@ -1017,7 +1017,7 @@ while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {//COLLECT DATA INTO ARR
 				case 'PRECISION+ 360 ACTIVE POLAR BR LOW REF':	$DESIGN = "";	break;
 				case 'PRECISION+ 360 ACTIVE LOW REF':			$DESIGN = "";	break;
 				case 'PRECISION+ 360 ACTIVE TRANS BR LOW REF':	$DESIGN = "";	break;
-				case 'PRECISION+ 360 ACTIVE TRANS GR LOW REF':	$DESIGN = "";	break;
+				case 'PRECISION+ 360 ACTIVE TRANS GR LOW REF':	$DESIGN = "";	break;  
 				case 'PRECISION+ 360 ACTIVE UV420 LOW REF':		$DESIGN = "";	break;
 				case 'PRECISION+ 360 ACTIVE XTRACT GR LOW REF':	$DESIGN = "";	break;
 				case 'PROMO PRECISION+ POL GRIS HC':				$DESIGN = "outdoor";   break;
