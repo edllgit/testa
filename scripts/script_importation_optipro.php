@@ -1017,7 +1017,7 @@ while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {//COLLECT DATA INTO ARR
 				case 'PRECISION+ 360 ACTIVE POLAR BR LOW REF':	$DESIGN = "";	break;
 				case 'PRECISION+ 360 ACTIVE LOW REF':			$DESIGN = "";	break;
 				case 'PRECISION+ 360 ACTIVE TRANS BR LOW REF':	$DESIGN = "";	break;
-				case 'PRECISION+ 360 ACTIVE TRANS GR LOW REF':	$DESIGN = "";	break;
+				case 'PRECISION+ 360 ACTIVE TRANS GR LOW REF':	$DESIGN = "";	break;  
 				case 'PRECISION+ 360 ACTIVE UV420 LOW REF':		$DESIGN = "";	break;
 				case 'PRECISION+ 360 ACTIVE XTRACT GR LOW REF':	$DESIGN = "";	break;
 				case 'PROMO PRECISION+ POL GRIS HC':				$DESIGN = "outdoor";   break;
@@ -11447,6 +11447,123 @@ case 'NUM TINTED BROWN LR BACK':
 		$FROM_PERC      = '85';
 		$TO_PERC        = '85';	
 	break;
+
+//precision 360 teint 
+
+
+case 'PROMO PRECISION+ 360 TEINTE GRIS LR BACK': 
+case 'PROMO PRECISION+ 360 TINTED GREY LR BACK':
+	
+	switch($EYE){	
+		case 'Both': 
+			if ($RE_ADD=='' || $LE_ADD==''){
+				if ($UnSvUnProg == false){	
+					$InsererDansBD = false;	
+					$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+				}
+			}	
+	}//END Switch
+	
+	
+	
+	if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+			$InsererDansBD  = false;
+			$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+			The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+	}//Fin si aucun corridor n'a été fournis
+	
+		$ProdName  = "  product_name like '%promo%' AND product_name  like '%360%' AND product_name  like '%Tinted%'"; 
+		$ProdTable = "ifc_ca_exclusive"; 
+		$ORDER_PRODUCT_COATING="Low Reflexion Backside";
+		$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+		if ($CORRIDOR <> ''){
+			switch($CORRIDOR){
+				case '7':  $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+				case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+				case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
+			}
+	}
+		if ($EYE == 'Both'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+			}elseif($EYE == 'R.E.'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+			}elseif($EYE == 'L.E.'){
+				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+			}
+		$AjoutTeintePromo = 'oui';
+		//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+		//Inserer dans extra_product_order
+		$frame_type		= "";
+		$color			= "";
+		$order_type		= "";
+		$temple			= "";
+		$order_num		= -1;
+		$main_lab_id	= $LAB;
+		$category		= "Tint";
+		$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+		$ep_prod_id     = $listItem[prod_id];
+		$TINT           = 'Solid';
+		$TINT_COLOR     = 'Grey';
+		$FROM_PERC      = '85';
+		$TO_PERC        = '85';		
+	break;
+
+	case 'PROMO PRECISION+ 360 TEINTE BRUN LR BACK': 
+	case 'PROMO PRECISION+ 360 TINTED BROW LR BACK':
+			
+			switch($EYE){	
+				case 'Both': 
+					if ($RE_ADD=='' || $LE_ADD==''){
+						if ($UnSvUnProg == false){	
+							$InsererDansBD = false;	
+							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+						}
+					}	
+			}//END Switch
+			
+			
+			
+			if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+					The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+			}//Fin si aucun corridor n'a été fournis
+			
+				$ProdName  = "  product_name like '%promo%' AND product_name  like '%360%' AND product_name  like '%Tinted%'"; 
+				$ProdTable = "ifc_ca_exclusive"; 
+				$ORDER_PRODUCT_COATING="Low Reflexion Backside";
+				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				if ($CORRIDOR <> ''){
+					switch($CORRIDOR){
+						case '7':  $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+						case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+						case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
+					}
+			}
+				if ($EYE == 'Both'){
+						$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+					}elseif($EYE == 'R.E.'){
+						$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+					}elseif($EYE == 'L.E.'){
+						$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+					}
+				$AjoutTeintePromo = 'oui';
+				//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+				//Inserer dans extra_product_order
+				$frame_type		= "";
+				$color			= "";
+				$order_type		= "";
+				$temple			= "";
+				$order_num		= -1;
+				$main_lab_id	= $LAB;
+				$category		= "Tint";
+				$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+				$ep_prod_id     = $listItem[prod_id];
+				$TINT           = 'Solid';
+				$TINT_COLOR     = 'Brown';
+				$FROM_PERC      = '85';
+				$TO_PERC        = '85';		
+			break;
 //clear
 
 
