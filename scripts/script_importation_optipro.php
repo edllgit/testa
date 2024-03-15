@@ -10882,6 +10882,576 @@ switch($EYE){
 	}//END SWITCH
 break;
 
+//====================================================================
+//ptomo xlr
+
+case 'SV SURFACE POL BRUN LR BACK':
+case 'SV SURFACE POL BROWN LR BACK':
+	//case 'PROMO PRECISION+ POLAR GREY SUPER AR BACK': 
+
+		$RE_ADD = 0;
+		$LE_ADD = 0;
+	
+		if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+			$OPTICAL_CENTER = $LE_HEIGHT;
+			$LE_HEIGHT = '';
+			$RE_HEIGHT = '';	
+		}
+	
+	
+		//Partie commune
+		$ProdTable = "ifc_ca_exclusive"; 
+		$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+		$SauterValidationFH = "";
+		//Paramètres propre à ce produit seulement
+		$ProdName  = "  product_name like '%Single vision%' AND product_name like '%promo%' AND product_name NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'
+		 AND product_name like '%LowReflexion %' AND product_name like '%Brown%' and product_name not like '%Tinted%' "; 
+		$ORDER_PRODUCT_COATING	= "Low Reflexion Backside";
+		$ORDER_PRODUCT_POLAR	= "Brown";
+		$ORDER_PRODUCT_PHOTO	= "None";
+		/*if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+			$InsererDansBD  = false;
+			$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+			The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+		}//Fin si aucun corridor n'a été fournis	
+		
+		switch($CORRIDOR){
+				case '7': 	$ProdName  .= " AND corridor = 7 "; 	$SauterValidationFH = "yes"; break;    
+				case '9': 	$ProdName  .= " AND corridor = 9 "; 	$SauterValidationFH = "yes"; break;    
+				case '11': 	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;     
+		}//END SWITCH */
+	break;
+
+
+	case 'SV SURFACE POL GRIS LR BACK':
+	case 'SV SURFACE POL GREY LR BACK':
+			//case 'PROMO PRECISION+ POLAR GREY SUPER AR BACK': 
+		$RE_ADD = 0;
+		$LE_ADD = 0;
+		if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+			$OPTICAL_CENTER = $LE_HEIGHT;
+			$LE_HEIGHT = '';
+			$RE_HEIGHT = '';	
+		}
+			
+				//Partie commune
+				$ProdTable = "ifc_ca_exclusive"; 
+				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				$SauterValidationFH = "";
+				//Paramètres propre à ce produit seulement
+				$ProdName  = "  product_name like '%Single vision%' AND product_name like '%promo%' AND product_name NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'
+				 AND product_name like '%LowReflexion %' AND product_name like '%Grey%' and product_name not like '%Tinted%' "; 
+				$ORDER_PRODUCT_COATING	= "Low Reflexion Backside";
+				$ORDER_PRODUCT_POLAR	= "Grey";
+				$ORDER_PRODUCT_PHOTO	= "None";
+				/*if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+					The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+				}//Fin si aucun corridor n'a été fournis	
+				
+				switch($CORRIDOR){
+						case '7': 	$ProdName  .= " AND corridor = 7 "; 	$SauterValidationFH = "yes"; break;    
+						case '9': 	$ProdName  .= " AND corridor = 9 "; 	$SauterValidationFH = "yes"; break;    
+						case '11': 	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;     
+				}//END SWITCH*/
+			break;
+
+	case 'PROMO PRECISION+ POL BRUN LR BACK':
+	case 'PROMO PRECISION+ POL BROWN LR BACK':
+		//case 'PROMO PRECISION+ POLAR Brown SUPER AR BACK': 
+		
+		switch($EYE){	
+			case 'Both': 
+				if ($RE_ADD=='' || $LE_ADD==''){
+					if ($UnSvUnProg == false){	
+						$InsererDansBD = false;	
+						$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+					}
+				}	
+		}//END Switch
+		
+			//Partie commune
+			$ProdTable = "ifc_ca_exclusive"; 
+			$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+			$SauterValidationFH = "";
+			//Paramètres propre à ce produit seulement
+			$ProdName  = "  product_name like '%Precision+%' AND product_name like '%promo%' AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%precision%' 
+			AND product_name not like '%360%' AND product_name not like '%420%' AND product_name not like '%clear%' "; 
+			$ORDER_PRODUCT_COATING	= "Low Reflexion Backside";
+			$ORDER_PRODUCT_POLAR	= "Brown";
+			$ORDER_PRODUCT_PHOTO	= "None";
+			if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+				$InsererDansBD  = false;
+				$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+				The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+			}//Fin si aucun corridor n'a été fournis	
+			
+			switch($CORRIDOR){
+					case '7': 	$ProdName  .= " AND corridor = 7 "; 	$SauterValidationFH = "yes"; break;    
+					case '9': 	$ProdName  .= " AND corridor = 9 "; 	$SauterValidationFH = "yes"; break;    
+					case '11': 	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;     
+			}//END SWITCH
+		break;
+
+		case 'PROMO PRECISION+ POL GRIS LR BACK':
+			case 'PROMO PRECISION+ POL GREY LR BACK':
+			//case 'PROMO PRECISION+ POLAR GREY SUPER AR BACK': 
+			
+			switch($EYE){	
+				case 'Both': 
+					if ($RE_ADD=='' || $LE_ADD==''){
+						if ($UnSvUnProg == false){	
+							$InsererDansBD = false;	
+							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+						}
+					}	
+			}//END Switch
+			
+				//Partie commune
+				$ProdTable = "ifc_ca_exclusive"; 
+				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				$SauterValidationFH = "";
+				//Paramètres propre à ce produit seulement
+				$ProdName  = "  product_name like '%Precision+%' AND product_name like '%promo%' AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%precision%' 
+				AND product_name not like '%360%' AND product_name not like '%420%' AND product_name not like '%clear%' "; 
+				$ORDER_PRODUCT_COATING	= "Low Reflexion Backside";
+				$ORDER_PRODUCT_POLAR	= "Grey";
+				$ORDER_PRODUCT_PHOTO	= "None";
+				if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+					The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+				}//Fin si aucun corridor n'a été fournis	
+				
+				switch($CORRIDOR){
+						case '7': 	$ProdName  .= " AND corridor = 7 "; 	$SauterValidationFH = "yes"; break;    
+						case '9': 	$ProdName  .= " AND corridor = 9 "; 	$SauterValidationFH = "yes"; break;    
+						case '11': 	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;     
+				}//END SWITCH
+			break;
+
+
+// precision 360+ 
+
+
+case 'PROMO PRECISION+ 360 POL BRUN LR BACK':
+case 'PROMO PRECISION+ 360 POL BROWN LR BACK':
+		//case 'PROMO PRECISION+ POLAR Brown SUPER AR BACK': 
+		
+		switch($EYE){	
+			case 'Both': 
+				if ($RE_ADD=='' || $LE_ADD==''){
+					if ($UnSvUnProg == false){	
+						$InsererDansBD = false;	
+						$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+					}
+				}	
+		}//END Switch
+		
+			//Partie commune
+			$ProdTable = "ifc_ca_exclusive"; 
+			$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+			$SauterValidationFH = "";
+			//Paramètres propre à ce produit seulement
+			$ProdName  = "  product_name like '%Precision+%' AND product_name like '%promo%' AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%precision%' 
+			AND product_name  like '%360%' AND product_name not like '%420%' AND product_name not like '%clear%' "; 
+			$ORDER_PRODUCT_COATING	= "Low Reflexion Backside";
+			$ORDER_PRODUCT_POLAR	= "Brown";
+			$ORDER_PRODUCT_PHOTO	= "None";
+			if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+				$InsererDansBD  = false;
+				$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+				The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+			}//Fin si aucun corridor n'a été fournis	
+			
+			switch($CORRIDOR){
+					case '7': 	$ProdName  .= " AND corridor = 7 "; 	$SauterValidationFH = "yes"; break;    
+					case '9': 	$ProdName  .= " AND corridor = 9 "; 	$SauterValidationFH = "yes"; break;    
+					case '11': 	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;     
+			}//END SWITCH
+		break;
+
+		case 'PROMO PRECISION+ 360 POL GRIS LR BACK':
+		case 'PROMO PRECISION+ 360 POL GREY LR BACK':
+			//case 'PROMO PRECISION+ POLAR GREY SUPER AR BACK': 
+			
+			switch($EYE){	
+				case 'Both': 
+					if ($RE_ADD=='' || $LE_ADD==''){
+						if ($UnSvUnProg == false){	
+							$InsererDansBD = false;	
+							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+						}
+					}	
+			}//END Switch
+			
+				//Partie commune
+				$ProdTable = "ifc_ca_exclusive"; 
+				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				$SauterValidationFH = "";
+				//Paramètres propre à ce produit seulement
+				$ProdName  = "  product_name like '%Precision+%' AND product_name like '%promo%' AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%precision%' 
+				AND product_name like '%360%' AND product_name not like '%420%' AND product_name not like '%clear%' "; 
+				$ORDER_PRODUCT_COATING	= "Low Reflexion Backside";
+				$ORDER_PRODUCT_POLAR	= "Grey";
+				$ORDER_PRODUCT_PHOTO	= "None";
+				if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+					The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+				}//Fin si aucun corridor n'a été fournis	
+				
+				switch($CORRIDOR){
+						case '7': 	$ProdName  .= " AND corridor = 7 "; 	$SauterValidationFH = "yes"; break;    
+						case '9': 	$ProdName  .= " AND corridor = 9 "; 	$SauterValidationFH = "yes"; break;    
+						case '11': 	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;     
+				}//END SWITCH
+			break;
+
+//promo progressif
+
+//case 'PROG HD POL GRIS AR BACK': 
+//case 'PROG HD POL GREY AR BACK':
+case 'NUM POL GRIS LR BACK':
+case 'NUM POL GREY LR BACK':
+	
+	$Design="Exterieur";
+	
+	switch($EYE){	
+		case 'Both': 
+			if ($RE_ADD=='' || $LE_ADD==''){
+				if ($UnSvUnProg == false){	
+					$InsererDansBD = false;	
+					$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+				}
+			}	
+	}//END Switch
+	
+	if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+			$InsererDansBD  = false;
+			$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+			The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+	}//Fin si aucun corridor n'a été fournis
+	
+	if ($ORDER_PRODUCT_COATING =='AR+ETC'){
+			$InsererDansBD  = false;
+			$ErrorDetail.= '<br>Ce produit polarisé est uniquement disponible avec AR+ETC Face Interne ou Hard Coat Svp faites la modification nécessaire et ré-exporter la commande.<br>This polarized 
+			product is only available in Hard Coat or AR Backside<br>';
+			
+	}//Fin si aucun corridor n'a été fournis	
+	
+	$ProdName  = "  product_name like '%promotion progressif%' AND  product_name like '%polarized grey%'"; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING ="Low Reflexion Backside";
+	$ORDER_PRODUCT_POLAR = 'Grey';
+	if ($CORRIDOR <> ''){
+			switch($CORRIDOR){
+				case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+				case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+				case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;   
+			}
+	}
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	if (($EYE == 'Both') && ($RE_HEIGHT<> '') && ($LE_HEIGHT<> '')){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+		}elseif($EYE == 'R.E.'){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+		}elseif($EYE == 'L.E.'){
+			$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+		}
+	break;
+
+
+	case 'NUM POL BRUN LR BACK':
+	case 'NUM POL BROWN LR BACK':
+			
+			$Design="Exterieur";
+			
+			switch($EYE){	
+				case 'Both': 
+					if ($RE_ADD=='' || $LE_ADD==''){
+						if ($UnSvUnProg == false){	
+							$InsererDansBD = false;	
+							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+						}
+					}	
+			}//END Switch
+			
+			if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+					The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+			}//Fin si aucun corridor n'a été fournis
+			
+			if ($ORDER_PRODUCT_COATING =='AR+ETC'){
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Ce produit polarisé est uniquement disponible avec AR+ETC Face Interne ou Hard Coat Svp faites la modification nécessaire et ré-exporter la commande.<br>This polarized 
+					product is only available in Hard Coat or AR Backside<br>';
+					
+			}//Fin si aucun corridor n'a été fournis	
+			
+			$ProdName  = "  product_name like '%promotion progressif%' AND  product_name like '%polarized grey%'"; 
+			$ProdTable = "ifc_ca_exclusive"; 
+			$ORDER_PRODUCT_COATING ="Low Reflexion Backside";
+			$ORDER_PRODUCT_POLAR = 'Brown';
+			if ($CORRIDOR <> ''){
+					switch($CORRIDOR){
+						case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+						case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+						case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;   
+					}
+			}
+			$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+			if (($EYE == 'Both') && ($RE_HEIGHT<> '') && ($LE_HEIGHT<> '')){
+					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+				}elseif($EYE == 'R.E.'){
+					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+				}elseif($EYE == 'L.E.'){
+					$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+				}
+			break;
+		
+
+
+//tint
+
+
+
+
+case 'SV SURFACE TEINTE BRUN 85% LR  BACK': 
+case 'SV SURFACE TINTED BROWN 85% LR BACK':
+	//case 'PROMO PRECISION+ 360 TINTED BROW AR BACK':
+	
+	switch($EYE){	
+		case 'Both': 
+			if ($RE_ADD=='' || $LE_ADD==''){
+				if ($UnSvUnProg == false){	
+					$InsererDansBD = false;	
+					$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+				}
+			}	
+	}//END Switch
+	
+	/*if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+			$InsererDansBD  = false;
+			$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+			The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+	}//Fin si aucun corridor n'a été fournis*/
+	
+		$ProdName  = "  product_name like '%Single vision%' AND product_name like '%promo%' AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  
+		AND product_name  like '%LowReflexion %' AND product_name  like '%Brown%' and product_name  like '%Tinted%'"; 
+		$ProdTable = "ifc_ca_exclusive"; 
+		$ORDER_PRODUCT_COATING="Low Reflexion Backside";
+		$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+		/*if ($CORRIDOR <> ''){
+			switch($CORRIDOR){
+				case '7':  $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+				case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+				case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
+			}
+	}*/
+		if ($EYE == 'Both'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+			}elseif($EYE == 'R.E.'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+			}elseif($EYE == 'L.E.'){
+				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+			}
+		$AjoutTeintePromo = 'oui';
+		//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+		//Inserer dans extra_product_order
+		$frame_type		= "";
+		$color			= "";
+		$order_type		= "";
+		$temple			= "";
+		$order_num		= -1;
+		$main_lab_id	= $LAB;
+		$category		= "Tint";
+		$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+		$ep_prod_id     = $listItem[prod_id];
+		$TINT           = 'Solid';
+		$TINT_COLOR     = 'Brown';
+		$FROM_PERC      = '85';
+		$TO_PERC        = '85';		
+	break;
+
+
+	case 'SV SURFACE TEINTE GRIS 85% LR BACK': 
+		case 'SV SURFACE TINTED GREY 85% LR BACK':
+			//case 'PROMO PRECISION+ 360 TINTED BROW AR BACK':
+			
+			switch($EYE){	
+				case 'Both': 
+					if ($RE_ADD=='' || $LE_ADD==''){
+						if ($UnSvUnProg == false){	
+							$InsererDansBD = false;	
+							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+						}
+					}	
+			}//END Switch
+			
+			/*if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+					$InsererDansBD  = false;
+					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+					The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+			}//Fin si aucun corridor n'a été fournis*/
+			
+				$ProdName  = "  product_name like '%Single vision%' AND product_name like '%promo%' AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  
+				AND product_name  like '%LowReflexion %' AND product_name  like '%Grey%' and product_name  like '%Tinted%'"; 
+				$ProdTable = "ifc_ca_exclusive"; 
+				$ORDER_PRODUCT_COATING="Low Reflexion Backside";
+				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+				/*if ($CORRIDOR <> ''){
+					switch($CORRIDOR){
+						case '7':  $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+						case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+						case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
+					}
+			}*/
+				if ($EYE == 'Both'){
+						$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+					}elseif($EYE == 'R.E.'){
+						$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+					}elseif($EYE == 'L.E.'){
+						$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+					}
+				$AjoutTeintePromo = 'oui';
+				//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+				//Inserer dans extra_product_order
+				$frame_type		= "";
+				$color			= "";
+				$order_type		= "";
+				$temple			= "";
+				$order_num		= -1;
+				$main_lab_id	= $LAB;
+				$category		= "Tint";
+				$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+				$ep_prod_id     = $listItem[prod_id];
+				$TINT           = 'Solid';
+				$TINT_COLOR     = 'Grey';
+				$FROM_PERC      = '85';
+				$TO_PERC        = '85';		
+			break;
+
+
+//promo progressif tint
+
+
+case 'NUM TEINTE GRIS 85% LR BACK':
+case 'NUM TINTED GREY LR BACK':
+	
+		switch($EYE){	
+			case 'Both': 
+				if ($RE_ADD=='' || $LE_ADD==''){
+					if ($UnSvUnProg == false){	
+						$InsererDansBD = false;	
+						$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+					}
+				}	
+		}//END Switch
+		
+		if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+				$InsererDansBD  = false;
+				$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+				The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+		}//Fin si aucun corridor n'a été fournis	
+		
+		$ProdName  = "  product_name like '%promo%' AND  product_name like '%tinted grey%' and product_name not like '%single%' "; 
+		$ProdTable = "ifc_ca_exclusive"; 
+		$ORDER_PRODUCT_COATING = "Low Reflexion Backside";
+		$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+		if ($CORRIDOR <> ''){
+				switch($CORRIDOR){
+					case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+					case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break; 
+					case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;   
+				}
+		}
+		if ($EYE == 'Both'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+			}elseif($EYE == 'R.E.'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+			}elseif($EYE == 'L.E.'){
+				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+			}
+			$AjoutTeintePromo = 'oui';
+			//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+			//Inserer dans extra_product_order
+			$frame_type		= "";
+			$color			= "";
+			$order_type		= "";
+			$temple			= "";
+			$order_num		= -1;
+			$main_lab_id	= $LAB;
+			$category		= "Tint";
+			$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+			$ep_prod_id     = $listItem[prod_id];
+			$TINT           = 'Solid';
+			$TINT_COLOR     = 'Grey';
+			$FROM_PERC      = '85';
+			$TO_PERC        = '85';	
+		break;
+
+case 'NUM TEINTE BRUN 85% LR BACK':
+case 'NUM TINTED BROWN LR BACK':
+
+	switch($EYE){	
+		case 'Both': 
+			if ($RE_ADD=='' || $LE_ADD==''){
+				if ($UnSvUnProg == false){	
+					$InsererDansBD = false;	
+					$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+				}
+			}	
+	}//END Switch
+	
+	if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+			$InsererDansBD  = false;
+			$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+			The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+	}//Fin si aucun corridor n'a été fournis	
+	
+	$ProdName  = "  product_name like '%promo%' AND  product_name like '%tinted brown%' and product_name not like '%single%' "; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING = "Low Reflexion Backside";
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	if ($CORRIDOR <> ''){
+			switch($CORRIDOR){
+				case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+				case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break; 
+				case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;   
+			}
+	}
+	if ($EYE == 'Both'){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+		}elseif($EYE == 'R.E.'){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+		}elseif($EYE == 'L.E.'){
+			$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+		}
+		$AjoutTeintePromo = 'oui';
+		//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+		//Inserer dans extra_product_order
+		$frame_type		= "";
+		$color			= "";
+		$order_type		= "";
+		$temple			= "";
+		$order_num		= -1;
+		$main_lab_id	= $LAB;
+		$category		= "Tint";
+		$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+		$ep_prod_id     = $listItem[prod_id];
+		$TINT           = 'Solid';
+		$TINT_COLOR     = 'Brown';
+		$FROM_PERC      = '85';
+		$TO_PERC        = '85';	
+	break;
+//clear
+
+
+
+//================================================================
 
 case 'PROMO PRECISION+ POL GREY AR BACK':
 case 'PROMO PRECISION+ POL GRIS AR BACK':
