@@ -11472,7 +11472,7 @@ case 'PROMO PRECISION+ 360 TINTED GREY LR BACK':
 			The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
 	}//Fin si aucun corridor n'a été fournis
 	
-		$ProdName  = "  product_name like '%promo%' AND product_name  like '%360%' AND product_name  like '%Tinted%'"; 
+		$ProdName  = "  product_name like '%promo%' AND product_name  like '%360%' AND product_name  like '%clear%' "; 
 		$ProdTable = "ifc_ca_exclusive"; 
 		$ORDER_PRODUCT_COATING="Low Reflexion Backside";
 		$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
@@ -11529,7 +11529,7 @@ case 'PROMO PRECISION+ 360 TINTED GREY LR BACK':
 					The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
 			}//Fin si aucun corridor n'a été fournis
 			
-				$ProdName  = "  product_name like '%promo%' AND product_name  like '%360%' AND product_name  like '%Tinted%'"; 
+				$ProdName  = "  product_name like '%promo%' AND product_name  like '%360%' AND product_name  like '%clear%'"; 
 				$ProdTable = "ifc_ca_exclusive"; 
 				$ORDER_PRODUCT_COATING="Low Reflexion Backside";
 				$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
