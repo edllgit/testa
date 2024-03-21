@@ -2377,6 +2377,128 @@ $message.="<tr bgcolor=\"$bgcolor\">
 
 
 
+//19-Partie ST-JOHN
+$user_id     = "('stjohn','stjohnsafe')";
+$Nom_de_l_entrepot = 'Entrepot St-John';
+$queryIfree  = "SELECT count(order_num) as iFree FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND (order_product_name like '%ifree%' OR  order_product_name like '%4d%'  OR  order_product_name like '%impression%' OR  order_product_name like '%maxiwide%' OR  order_product_name like '%360%')  
+AND order_status NOT IN ('cancelled')";
+$resultIfree = mysqli_query($con,$queryIfree) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataIfree   = mysqli_fetch_array($resultIfree,MYSQLI_ASSOC);
+$NB_iFree    = $DataIfree[iFree];		
+
+$queryiAction  = "SELECT count(order_num) as iAction FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_name like '%iAction%' 
+AND order_status NOT IN ('cancelled')";
+$resultiAction = mysqli_query($con,$queryiAction) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiAction   = mysqli_fetch_array($resultiAction,MYSQLI_ASSOC);
+$NB_iAction    = $DataiAction[iAction];	
+	
+$queryHD  = "SELECT count(order_num) as HD FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_name like '%HD%'  AND order_product_name not like '%SV%'  AND order_product_name not like '%single%' AND order_product_name not like '%digital%'
+AND order_status NOT IN ('cancelled')";
+$resultHD = mysqli_query($con,$queryHD) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHD   = mysqli_fetch_array($resultHD,MYSQLI_ASSOC);
+$NB_HD    = $DataHD[HD];	
+	
+$queryDigitalIOT  = "SELECT count(order_num) as Digital FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_name like '%digital progressive IOT%' 
+AND order_status NOT IN ('cancelled')";
+$resultDigitalIOT = mysqli_query($con,$queryDigitalIOT) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataDigitalIOT   = mysqli_fetch_array($resultDigitalIOT,MYSQLI_ASSOC);
+$NB_Digital_IOT    = $DataDigitalIOT[Digital];	
+
+
+$queryDigitalOptotech   = "SELECT count(order_num) as Digital FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND ( order_product_name like '%digital progressive par Optotech%'  OR order_product_name like '%Digital par Optotech%'  )
+AND order_status NOT IN ('cancelled')";
+$resultDigitalOptotech  = mysqli_query($con,$queryDigitalOptotech) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataDigitalOptotech    = mysqli_fetch_array($resultDigitalOptotech,MYSQLI_ASSOC);
+$NB_Digital_Optotech    = $DataDigitalOptotech[Digital];	
+
+
+$queryPromoInternet  = "SELECT count(order_num) as PromoInternet FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND (order_product_name like '%Promo Internet%' OR order_product_name like '%Promo duo internet%')
+AND order_status NOT IN ('cancelled')";
+$resultPromoInternet = mysqli_query($con,$queryPromoInternet) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataPromoInternet   = mysqli_fetch_array($resultPromoInternet,MYSQLI_ASSOC);
+$NB_PromoInternet    = $DataPromoInternet[PromoInternet];	
+
+
+
+$queryiRelax_Exe_Office  = "SELECT count(order_num) as iRelax_Exe_Office FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id AND order_product_name like '%irelax%'  
+AND order_status NOT IN ('cancelled')
+AND redo_order_num is null
+OR
+order_date_processed BETWEEN '$date1' and '$date2'
+AND redo_order_num is null
+AND user_id in $user_id AND order_product_name like '%executive%'  
+AND order_status NOT IN ('cancelled')";
+$resultiRelax_Exe_Office = mysqli_query($con,$queryiRelax_Exe_Office) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiRelax_Exe_Office   = mysqli_fetch_array($resultiRelax_Exe_Office,MYSQLI_ASSOC);
+$NB_iRelax_Exe_Office    = $DataiRelax_Exe_Office[iRelax_Exe_Office];	
+
+
+
+$queryCamber  = "SELECT count(order_num) as Camber FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_name like '%Precision%'  
+AND order_status NOT IN ('cancelled')";
+$resultCamber = mysqli_query($con,$queryCamber) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataCamber   = mysqli_fetch_array($resultCamber,MYSQLI_ASSOC);
+$NB_Camber    = $DataCamber[Camber];	
+
+$queryMaxiWide  = "SELECT count(order_num) as MaxiWide FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_name like '%MaxiWide%' 
+AND order_status NOT IN ('cancelled')";
+$resultMaxiWide = mysqli_query($con,$queryMaxiWide) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataMaxiWide   = mysqli_fetch_array($resultMaxiWide,MYSQLI_ASSOC);
+$NB_MaxiWide    = $DataMaxiWide[MaxiWide];
+
+$total = $NB_iFree + $NB_iAction + $NB_HD + $NB_Digital_IOT  + $NB_iRelax_Exe_Office  + $NB_Camber + $NB_PromoInternet +$NB_Digital_Optotech+ $NB_MaxiWide;
+
+$message.="<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\">$Nom_de_l_entrepot</td>
+			    <td align=\"center\">$NB_iFree</td>
+                <td align=\"center\">$NB_iAction</td>
+				<td align=\"center\">$NB_HD</td>
+			    <td align=\"center\">$NB_Digital_IOT</td>
+				<td align=\"center\">$NB_Digital_Optotech</td>
+                <td align=\"center\">$NB_iRelax_Exe_Office</td>
+				<td align=\"center\">$NB_Camber</td>
+				<td align=\"center\">$NB_PromoInternet</td>
+				<td align=\"center\">$NB_MaxiWide</td>
+				<td align=\"center\">$total</td>
+				</tr>";			
+//Fin partie St-John
+
+
+
 //19-Partie GRIFFE
 $user_id     = "('88666')";
 $Nom_de_l_entrepot = 'GRIFFE lunetier';
@@ -3370,6 +3492,51 @@ $message.="<tr bgcolor=\"$bgcolor\">
 			</tr>";
 
 //FIN fredericton
+
+
+//2.17 Partie St-John
+$user_id     = "('stjohn','stjohnsafe')";
+$Nom_de_l_entrepot = 'Entrepot St-John';
+
+$queryTransitions  = "SELECT count(order_num) as NbTransitions FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND (order_product_photo like '%brown%' OR  order_product_photo like '%grey%')  
+AND order_status NOT IN ('cancelled')";
+$resultTransitions = mysqli_query($con,$queryTransitions) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataTransitions   = mysqli_fetch_array($resultTransitions,MYSQLI_ASSOC);
+$NbTransitions     = $DataTransitions[NbTransitions];
+
+$queryPolarized  = "SELECT count(order_num) as NbPolarized FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND (order_product_polar like '%brown%' OR  order_product_polar like '%grey%' OR  order_product_polar like '%green%')  
+AND order_status NOT IN ('cancelled')";
+$resultPolarized = mysqli_query($con,$queryPolarized) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataPolarized   = mysqli_fetch_array($resultPolarized,MYSQLI_ASSOC);
+$NbPolarized     = $DataPolarized[NbPolarized];			
+
+$queryTeinte  = "SELECT count(orders.order_num) as NbTeintes FROM orders, extra_product_orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND orders.order_num =extra_product_orders.order_num
+AND extra_product_orders.category='Tint'
+AND user_id in $user_id
+AND redo_order_num is null 
+AND order_status NOT IN ('cancelled')";
+$resultTeinte    = mysqli_query($con,$queryTeinte) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataTeintes     = mysqli_fetch_array($resultTeinte,MYSQLI_ASSOC);
+$NbTeintes       = $DataTeintes[NbTeintes];	
+
+$message.="<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\">$Nom_de_l_entrepot</td>
+				<td align=\"center\">$NbPolarized</td>
+				<td align=\"center\">$NbTransitions</td>
+				<td align=\"center\">$NbTeintes</td>
+			</tr>";
+
+//FIN St-John
 
 
 

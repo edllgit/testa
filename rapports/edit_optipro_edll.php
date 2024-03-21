@@ -213,7 +213,8 @@ $Data[rx_le_axis] = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 			case 'vaudreuil':	case 'vaudreuilsafe':	$Succ = "Vaudreuil";  	  break;
 			case 'sorel':  		case 'sorelsafe':		$Succ = "Sorel";  	 	  break;
 			case 'moncton':     case 'monctonsafe':		$Succ = "Moncton";  	  break;
-            case 'fredericton': case 'frederictonsafe':	$Succ = "fredericton";  	  break;
+            case 'fredericton': case 'frederictonsafe':	$Succ = "fredericton";    break;
+            case 'stjohn':      case 'stjohnsafe':	    $Succ = "stjohn";  	  break;
             case '88666':     case 'griffesafe':		$Succ = "#88666";  	  break;
 		}
 		

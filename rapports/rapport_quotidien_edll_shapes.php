@@ -102,7 +102,7 @@ $to_address = array('rapports@direct-lens.com');
 
 $curTime	  = date("m-d-Y");	
 $from_address ='donotreply@entrepotdelalunette.com';
-$subject      = "Rapport des Shapes HBC: $today";
+$subject      = "Rapport des Shapes : $today";
 
 //SEND EMAIL
 	if ($SendEmail == 'yes'){

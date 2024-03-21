@@ -30,7 +30,7 @@ $aujourdhui    = "2018-04-21";
 $count    = 0;
 
 //FOR pour parcourir les Succursales
-for ($i = 1; $i <= 20; $i++) {
+for ($i = 1; $i <= 21; $i++) {
     echo '<br>'. $i;
 	
 
@@ -91,7 +91,7 @@ switch($i){
 	
 	/*case  5: $Userid =  " orders.user_id IN ('montreal','montrealsafe')";         $Compagnie = 'L\'Entrepot de la lunette Montreal HBC Zone Tendance 1';   $Succ = 'MTL-ZT1 HBC'; 	
 	$send_to_address = array('dbeaulieu@direct-lens.com','');
-<<<<<<< HEAD
+
 	//ob_start();
 	 break; */
 
@@ -173,6 +173,12 @@ switch($i){
 	break;
 
 	case 20: $Userid =  " orders.user_id IN ('88666')";       $Compagnie = 'Griffe Trois-Rivieres';  $Succ = '#88666 Griffe'; 	  			   
+	$send_to_address = array('rapports@direct-lens.com'); 
+
+	break;
+
+
+	case 21: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";       $Compagnie = 'L\'Entrepot de la lunette St-John';  $Succ = 'St-John'; 	  			   
 	$send_to_address = array('rapports@direct-lens.com'); 
 
 	break;

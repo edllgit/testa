@@ -20,7 +20,7 @@ $date2 = "2021-10-18";
 
 
 
-for ($i = 1; $i <= 16; $i++) {
+for ($i = 1; $i <= 17; $i++) {
 
    // echo '<br>'. $i;
 	
@@ -41,7 +41,8 @@ switch($i){
 
 	case 14: $Userid =  " orders.user_id IN ('edmundston','edmundstonsafe')";     $Partie = 'Edmundston';                   break;
 	case 15: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";   $Partie = 'Fredericton';  				break;
-	case 16: $Userid =  " orders.user_id IN ('88666')";      					  $Partie = '#88666-GR';           			break;
+	case 16: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";             $Partie = 'St-John';  				    break;
+	case 17: $Userid =  " orders.user_id IN ('88666')";      					  $Partie = '#88666-GR';           			break;
 
 	
 }//End Switch
@@ -211,6 +212,7 @@ switch($i){
 			case 'entrepotquebec':  case 'quebecsafe'    :    	$Succursale = 'Québec';        					break;
 
 			case 'fredericton':     case 'frederictonsafe'    : $Succursale = 'Fredericton';        			break;
+			case 'stjohn':          case 'stjohnsafe'    :      $Succursale = 'St-John';        			    break;
 			case '88666':           case '88666'    :    	    $Succursale = '#88666 Griffe';        			break;
 
 			case 'entrepotquebec':  case 'quebecsafe'    :    	$Succursale = 'Québec';        					break;

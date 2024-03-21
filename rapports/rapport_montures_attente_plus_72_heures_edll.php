@@ -14,7 +14,7 @@ $sheet = $spreadsheet->getActiveSheet();
 
 $time_start = microtime(true);	
 
-for ($i = 1; $i <= 19; $i++) {
+for ($i = 1; $i <= 20; $i++) {
     echo '<br>'. $i;
 	
 switch($i){
@@ -44,8 +44,7 @@ switch($i){
 
 	/*case  5: $Userid =  " orders.user_id IN ('montreal','montrealsafe')";         $Partie = 'Montreal HBC Zone Tendance 1';  
 	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
-<<<<<<< HEAD
-	//ob_start();
+
     break; */
 
 	
@@ -114,11 +113,18 @@ switch($i){
 	
 	case 18: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";             $Partie = 'Fredericton';  				   
 	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
-<<<<<<< HEAD
+
 	//ob_start();
 	break;
 
 	case 19: $Userid =  " orders.user_id IN ('88666')";             $Partie = '#88666-GR';  				   
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	//ob_start();
+
+	break;
+
+
+	case 20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";             $Partie = 'St-John';  				   
 	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
 	//ob_start();
 
@@ -238,6 +244,7 @@ switch($i){
 			case 'garantieatoutcasser' :       			   	$Succursale = 'Garantieatoutcasser';            break;
 			case 'stemarie' :   case 'stemariesafe' :    	$Succursale = 'Sainte-Marie de Beauce';         break;
 			case 'fredericton' :  case 'frederictonsafe' :  $Succursale = 'Fredericton';         			break;
+			case 'stjohn' :  	case 'stjohnsafe' :  		$Succursale = 'St-John';         				break;
 			case '88666' :                                  $Succursale = 'Griffe lunetier #88666';         break;
 			case 'redoifc' :       							$Succursale = 'Compte de reprise Interne IFC';  break;
 			case 'redosafety' :       						$Succursale = 'Compte de reprise Interne SAFE'; break;

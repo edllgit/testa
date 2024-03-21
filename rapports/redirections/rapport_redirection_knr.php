@@ -33,7 +33,7 @@ if ($_REQUEST[debug]=='yes'){
 
 
 
-	$rptQuery  = "SELECT accounts.user_id as user_id, accounts.account_num, accounts.company, labs.lab_name, orders.order_num as order_num, orders.po_num, orders.order_total, orders.order_date_processed, orders.order_date_shipped,           	        orders.order_patient_first,orders.order_product_name, orders.order_patient_last, orders.tray_num, accounts.company,     orders.order_status FROM orders
+	$rptQuery  = "SELECT accounts.user_id as user_id, accounts.account_num, accounts.company, labs.lab_name, orders.order_num as order_num, orders.po_num, orders.order_total, orders.order_date_processed, orders.order_date_shipped, orders.order_patient_first,orders.order_product_name, orders.order_patient_last, orders.tray_num, accounts.company,orders.order_status FROM orders
     LEFT JOIN (accounts) ON (orders.user_id = accounts.user_id) 
     LEFT JOIN (labs) ON (orders.lab = labs.primary_key) 
     WHERE prescript_lab='$lab_pkey' 

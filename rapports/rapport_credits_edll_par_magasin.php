@@ -21,7 +21,7 @@ $time_start = microtime(true);
 //Ce rapport serait généré la 1ère journée de chaque moi et concerne les crédit émis durant le mois précédent. 
 //Exemple: si exécuté le 1er février: le range de date Sera: '2020-01-01' AND '2020-01-31' 
 
-for ($i = 1; $i <= 17; $i++) {
+for ($i = 1; $i <= 18; $i++) {
     echo '<br>'. $i;
 	
 switch($i){
@@ -126,6 +126,12 @@ switch($i){
 
 	case 17: $Userid =  " memo_credits.mcred_acct_user_id IN ('88666','88666')";             	
 	$Partie = '# 88666-GR';			   
+	$send_to_address = array('rapports@direct-lens.com');  
+
+	break;
+
+	case 18: $Userid =  " memo_credits.mcred_acct_user_id IN ('stjohn','stjohnsafe')";             	
+	$Partie = 'St John';			   
 	$send_to_address = array('rapports@direct-lens.com');  
 
 	break;

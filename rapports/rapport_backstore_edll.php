@@ -5,6 +5,7 @@
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 //error_reporting(E_COMPILE_ERROR|E_ERROR|E_CORE_ERROR); 
+
 ini_set('display_errors', '1');
 include("../sec_connectEDLL.inc.php");
 include('../phpmailer_email_functions.inc.php');
@@ -145,6 +146,7 @@ switch($listItem[user_id]){
 	case 'sorel':	 	 $entrepot = 'Sorel'; 	   	   break; 
 	case 'moncton':	 	 $entrepot = 'Moncton'; 	   break; 
 	case 'fredericton':	 $entrepot = 'Fredericton';    break; 
+	case 'stjohn':	 	 $entrepot = 'stjohn';         break; 
 	case '88666':	     $entrepot = '#88666 Griffe';    break; 
 	default: $entrepot = "Inconnu";
 }

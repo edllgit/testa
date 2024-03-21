@@ -140,7 +140,7 @@ $CompteurValeurReprisesGlobal_Comparaison 	= 0;
 $CompteurVentesGlobalComparaison 			= 0;
     
 //FOR pour parcourir les Succursales
-for ($i = 1; $i <= 19; $i++) {
+for ($i = 1; $i <= 20; $i++) {
    // echo '<br>'. $i;	
         
 //Nouvelle partie
@@ -165,6 +165,7 @@ switch($i){
     case 17: $Userid =  " orders.user_id IN ('moncton','monctonsafe')";     	  $Compagnie = 'L\'Entrepot de la lunette Moncton';				$Succ = 'Moncton'; 		 	break; 		
     case 18: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";   $Compagnie = 'L\'Entrepot de la lunette Fredericton';			$Succ = 'Fredericton'; 	 		break; 		
     case 19: $Userid =  " orders.user_id IN ('88666')";     					  $Compagnie = 'Griffé Trois-Rivieres';							$Succ = 'Griffé TR'; 	 	break; 	
+    case 20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";   $Compagnie = 'L\'Entrepot de la lunette St-John';			$Succ = 'St-john'; 	 		break; 		
 
     
 }//End Switch
