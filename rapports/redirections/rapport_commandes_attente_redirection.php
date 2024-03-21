@@ -136,6 +136,10 @@ switch($listItem["user_id"]){//N'inclue pas les compte SAFE
 	//fredricton
 	case 'fredericton' 	 :  	 		 $CompteEntrepot= 'yes';  break;	
 	case 'frederictonsafe':  		 	 $CompteEntrepot= 'yes';  break;
+
+	//st -john
+	case 'stjohn' 	 :  	 		 $CompteEntrepot= 'yes';  break;	
+	case 'stjohnsafe':  		 	 $CompteEntrepot= 'yes';  break;
 }	
 	
 			

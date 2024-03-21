@@ -75,7 +75,7 @@ $WidthTableau = "100%";		//Pixels
 //Paramètres communs
 $from_address='donotreply@entrepotdelalunette.com';
 
-for ($i = 1; $i <= 16 ; $i++) {
+for ($i = 1; $i <= 17 ; $i++) {
 		//echo '<br> Magasin: '. $i;
 		switch($i){
 			case  1:  $Userid =  " ('chicoutimi')";    	$Partie = 'Chicoutimi';	 	
@@ -155,15 +155,21 @@ for ($i = 1; $i <= 16 ; $i++) {
 
 			case  15: $Userid =  " ('fredericton')";   $Partie = 'fredericton';		$send_to_address = array('rapports@direct-lens.com');
 			ob_start();
+			break;
 
 			case  16: $Userid =  " ('88666')";   $Partie = '#88666-GR';		       $send_to_address = array('rapports@direct-lens.com');
+			ob_start();
+			break;
+
+			case  17: $Userid =  " ('stjohn')";   $Partie = 'stjohn';		       $send_to_address = array('rapports@direct-lens.com');
 			ob_start();
 			break;
 		}//End Switch
 		
 	$TotalIfreePlusAdvance  = 0;//Initialise le compteur de bonus Ifree_Plus_Advance
 	$TotalProgressifAdvance = 0;//Initialise le compteur de bonus Progressif_Advance	
-		
+	
+
 		
 $message_Halifax="";
 

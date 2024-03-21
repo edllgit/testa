@@ -60,6 +60,7 @@ if ($_REQUEST[delete_id] <> ''){
 		case 'moncton':  		case 'monctonsafe':				$User_ID_IN = " ('moncton','monctonsafe') ";			break;	
 		case 'fredericton':  	case 'frederictonsafe':			$User_ID_IN = " ('fredericton','frederictonsafe') ";	break;	
 		case '88666':  											$User_ID_IN = " ('88666') ";							break;
+		case 'stjohn':  		case 'stjohnsafe':				$User_ID_IN = " ('stjohn',stjohnsafe) ";				break;
 		//case 'halifax':  	case 'warehousehalsafe':		$User_ID_IN = " ('warehousehal','warehousehalsafe') ";	break;
 	
 	}	
@@ -142,6 +143,7 @@ if ($_REQUEST[aviser_id] <> ''){
 		case 'sorel':			case 'sorelsafe':			$Succursale = "Sorel"; 			$EmailSuccursale = "sorel-tracy@entrepotdelalunette.com";  		break;
 		case 'moncton':			case 'monctonsafe':			$Succursale = "Moncton"; 		$EmailSuccursale = "moncton@entrepotdelalunette.com";  			break;
 		case 'fredericton':		case 'frederictonsafe':		$Succursale = "Fredericton"; 	$EmailSuccursale = "fredericton@entrepotdelalunette.com";  		break;
+		case 'stjohn':		    case 'stjohnsafe':		    $Succursale = "St John"; 	    $EmailSuccursale = "st-John@opticalwarehouse.ca";  		        break;
 		case '88666':										$Succursale = "Griffé lunetier #88666"; 		$EmailSuccursale = "trois-rivieres@griffelunetier.com";  		break;
 	}
 	
@@ -306,6 +308,7 @@ if ($_REQUEST[aviser_direction_id] <> ''){
 		case 'vaudreuil':  	case 'vaudreuilsafe':   $Succursale = "Vaudreuil"; 		break;
 		case 'moncton':  	case 'monctonsafe':		$Succursale = "Moncton"; 		break;
 		case 'fredericton': case 'frederictonsafe':	$Succursale = "Fredericton"; 	break;
+		case 'stjohn':      case 'stjohnsafe':	    $Succursale = "St John"; 		break;
 		case '88666': 								$Succursale = "Griffe Lunetier #88666"; 	break;
 	}
 	
@@ -472,6 +475,7 @@ switch($Aleatoire){
 			case 'sorel':  		case 'sorelsafe':			$Succ = "Sorel";     	  break;
 			case 'vaudreuil':  	case 'vaudreuilsafe':		$Succ = "Vaudreuil";      break;
 			case 'fredericton': case 'frederictonsafe':		$Succ = "Fredericton";    break;
+			case 'stjohn':      case 'stjohnsafe':		    $Succ = "St John";        break;
 			case '88666': 									$Succ = "Griffe lunetier #88666";    break;
 		}
 		
@@ -587,6 +591,9 @@ switch($Aleatoire){
 				
 				case 'fredericton':   	$LesComptes = "('fredericton','frederictonsafe') "; break;
 				case 'frederictonsafe':	$LesComptes = "('fredericton','frederictonsafe') "; break;
+
+				case 'stjohn':   	$LesComptes = "('stjohn','stjohnsafe') "; break;
+				case 'stjohnsafe':	$LesComptes = "('stjohn','stjohnsafe') "; break;
 				
 				case '88666':   		$LesComptes = "('88666') "; break;
 				
@@ -1105,6 +1112,33 @@ echo "</tbody></table>";
 		$NbrRedos_FREDERICTON                = $DataValiderAJD[NbrCommandeTransferer] ;
 
 
+
+		//St John
+		$CompteIFC              =  " user_id IN ('stjohn')";  
+		$CompteSAFE             =  " user_id IN ('stjohnsafe')";   
+		$queryJobPanierIFC 	    = "SELECT count(order_num) as NbrCommandeIfc FROM orders WHERE $CompteIFC AND order_num = -1 "; 
+		$resultPanierIFC   	    = mysqli_query($con,$queryJobPanierIFC) or die  ('I cannot select items because 78: ' . mysqli_error($con)); 
+		$DataPanierIFC     		= mysqli_fetch_array($resultPanierIFC,MYSQLI_ASSOC);
+		$NbrCommandeIfc_STJOHN = $DataPanierIFC[NbrCommandeIfc] ;
+		$queryJobPanierSAFE     = "SELECT count(order_num) as NbrCommandeSAFE FROM orders WHERE $CompteSAFE AND order_num = -1 "; 
+		$resultSAFE 			= mysqli_query($con,$queryJobPanierSAFE) or die  ('I cannot select items because 79: ' . mysqli_error($con));   
+		$DataPanierSAFE     	= mysqli_fetch_array($resultSAFE,MYSQLI_ASSOC);
+		$NbrCommandeSAFE_STJOHN   = $DataPanierSAFE[NbrCommandeSAFE] ;
+		$queryTotalValiderAjd   	= "SELECT count(order_num) as NbrCommandeTransferer FROM orders WHERE ($CompteIFC OR $CompteSAFE)  AND redo_order_num is null  AND order_date_processed = '$ajd'";
+		$resultValiderAJD   		= mysqli_query($con,$queryTotalValiderAjd) or die  ('I cannot select items because 80: ' . mysqli_error($con)); 
+		$DataValiderAJD        		= mysqli_fetch_array($resultValiderAJD,MYSQLI_ASSOC);
+		$NbrCommandeValiderAJD_STJOHN  = $DataValiderAJD[NbrCommandeTransferer] ;	
+		//Commandes Optipro
+		$queryTotalValiderAjd   	= "SELECT count(order_num) as NbrCommandeTransferer FROM orders WHERE ($CompteIFC OR $CompteSAFE) AND order_num_optipro<>'' AND order_date_processed = '$ajd'";
+		$resultValiderAJD   		= mysqli_query($con,$queryTotalValiderAjd) or die  ('I cannot select items because 81: ' . mysqli_error($con)); 
+		$DataValiderAJD        		= mysqli_fetch_array($resultValiderAJD,MYSQLI_ASSOC);
+		$NbrCommandeValiderAJD_STJOHN_OP = $DataValiderAJD[NbrCommandeTransferer] ;
+		//Redos
+		$queryTotalValiderAjd   	= "SELECT count(order_num) as NbrCommandeTransferer FROM orders WHERE ($CompteIFC OR $CompteSAFE) AND redo_order_num is not null AND order_date_processed = '$ajd'";
+		$resultValiderAJD   		= mysqli_query($con,$queryTotalValiderAjd) or die  ('I cannot select items because 82: ' . mysqli_error($con)); 
+		$DataValiderAJD        		= mysqli_fetch_array($resultValiderAJD,MYSQLI_ASSOC);
+		$NbrRedos_STJOHN                = $DataValiderAJD[NbrCommandeTransferer] ;
+
 		//Griffé
 		$CompteIFC              =  " user_id IN ('88666')";  
 		$CompteSAFE             =  " user_id IN ('88666')";   
@@ -1264,15 +1298,15 @@ echo "</tbody></table>";
 	
 		
 		//TOTAUX
-		$TotalOptipro = $NbrCommandeValiderAJD_TR_OP + $NbrCommandeValiderAJD_DR_OP  + $NbrCommandeValiderAJD_GR_OP + $NbrCommandeValiderAJD_LE_OP + $NbrCommandeValiderAJD_CH_OP + $NbrCommandeValiderAJD_LV_OP + $NbrCommandeValiderAJD_TB_OP + $NbrCommandeValiderAJD_SH_OP + $NbrCommandeValiderAJD_LO_OP  + $NbrCommandeValiderAJD_QC_OP + $NbrCommandeValiderAJD_MTL_OP +$NbrCommandeValiderAJD_HA_OP + $NbrCommandeValiderAJD_GAT_OP + $NbrCommandeValiderAJD_STJ_OP + $NbrCommandeValiderAJD_EDM_OP + $NbrCommandeValiderAJD_VAU_OP + $NbrCommandeValiderAJD_SOR_OP + $NbrCommandeValiderAJD_MONCTON_OP + $NbrCommandeValiderAJD_FREDERICTON_OP + $NbrCommandeValiderAJD_GRIFFE_OP ;
+		$TotalOptipro = $NbrCommandeValiderAJD_TR_OP + $NbrCommandeValiderAJD_DR_OP  + $NbrCommandeValiderAJD_GR_OP + $NbrCommandeValiderAJD_LE_OP + $NbrCommandeValiderAJD_CH_OP + $NbrCommandeValiderAJD_LV_OP + $NbrCommandeValiderAJD_TB_OP + $NbrCommandeValiderAJD_SH_OP + $NbrCommandeValiderAJD_LO_OP  + $NbrCommandeValiderAJD_QC_OP + $NbrCommandeValiderAJD_MTL_OP +$NbrCommandeValiderAJD_HA_OP + $NbrCommandeValiderAJD_GAT_OP + $NbrCommandeValiderAJD_STJ_OP + $NbrCommandeValiderAJD_EDM_OP + $NbrCommandeValiderAJD_VAU_OP + $NbrCommandeValiderAJD_SOR_OP + $NbrCommandeValiderAJD_MONCTON_OP + $NbrCommandeValiderAJD_FREDERICTON_OP + $NbrCommandeValiderAJD_GRIFFE_OP + $NbrCommandeValiderAJD_STJOHN_OP ;
 		
-		$TotalRedos = $NbrRedos_TR + $NbrRedos_DR + $NbrRedos_GR + $NbrRedos_LE+ $NbrRedos_CH + $NbrRedos_LV+ $NbrRedos_TB + $NbrRedos_SH+ $NbrRedos_LO +  $NbrRedos_QC + $NbrRedos_HA +$NbrRedos_MTL + $NbrRedos_GAT + $NbrRedos_STJ + $NbrRedos_EDM + $NbrRedos_VAU+ $NbrRedos_SOR + $NbrRedos_MONCTON + $NbrRedos_FREDERICTON + $NbrRedos_GRIFFE;
+		$TotalRedos = $NbrRedos_TR + $NbrRedos_DR + $NbrRedos_GR + $NbrRedos_LE+ $NbrRedos_CH + $NbrRedos_LV+ $NbrRedos_TB + $NbrRedos_SH+ $NbrRedos_LO +  $NbrRedos_QC + $NbrRedos_HA +$NbrRedos_MTL + $NbrRedos_GAT + $NbrRedos_STJ + $NbrRedos_EDM + $NbrRedos_VAU+ $NbrRedos_SOR + $NbrRedos_MONCTON + $NbrRedos_FREDERICTON + $NbrRedos_GRIFFE + $NbrRedos_STJOHN ;
 		
-		$totalPanierIFC = $NbrCommandeIfc_TR +$NbrCommandeIfc_DR+$NbrCommandeIfc_GR+$NbrCommandeIfc_LE+$NbrCommandeIfc_CH+$NbrCommandeIfc_LV+$NbrCommandeIfc_TE+$NbrCommandeIfc_SH+$NbrCommandeIfc_LO+$NbrCommandeIfc_HA+$NbrCommandeIfc_QC+$NbrCommandeIfc_MTL + $NbrCommandeIfc_GAT + $NbrCommandeIfc_STJ +$NbrCommandeIfc_EDM  + $NbrCommandeIfc_VAU + $NbrCommandeIfc_SOR + $NbrCommandeIfc_MONCTON + $NbrCommandeIfc_FREDERICTON + $NbrCommandeIfc_GRIFFE;
+		$totalPanierIFC = $NbrCommandeIfc_TR +$NbrCommandeIfc_DR+$NbrCommandeIfc_GR+$NbrCommandeIfc_LE+$NbrCommandeIfc_CH+$NbrCommandeIfc_LV+$NbrCommandeIfc_TE+$NbrCommandeIfc_SH+$NbrCommandeIfc_LO+$NbrCommandeIfc_HA+$NbrCommandeIfc_QC+$NbrCommandeIfc_MTL + $NbrCommandeIfc_GAT + $NbrCommandeIfc_STJ +$NbrCommandeIfc_EDM  + $NbrCommandeIfc_VAU + $NbrCommandeIfc_SOR + $NbrCommandeIfc_MONCTON + $NbrCommandeIfc_FREDERICTON + $NbrCommandeIfc_GRIFFE + $NbrCommandeIfc_STJOHN;
 		
-		$totalPanierSAFE = $NbrCommandeSAFE_TR +$NbrCommandeSAFE_DR+$NbrCommandeSAFE_GR+$NbrCommandeSAFE_LE+$NbrCommandeSAFE_CH+$NbrCommandeSAFE_LV+$NbrCommandeSAFE_TE+$NbrCommandeSAFE_SH+$NbrCommandeSAFE_LO+$NbrCommandeSAFE_HA+$NbrCommandeSAFE_QC + $NbrCommandeSAFE_MTL + $NbrCommandeSAFE_GAT + $NbrCommandeSAFE_STJ + $NbrCommandeSAFE_EDM  + $NbrCommandeSAFE_VAU +  $NbrCommandeSAFE_SOR + $NbrCommandeSAFE_MONCTON + $NbrCommandeSAFE_FREDERICTON + $NbrCommandeSAFE_GRIFFE;
+		$totalPanierSAFE = $NbrCommandeSAFE_TR +$NbrCommandeSAFE_DR+$NbrCommandeSAFE_GR+$NbrCommandeSAFE_LE+$NbrCommandeSAFE_CH+$NbrCommandeSAFE_LV+$NbrCommandeSAFE_TE+$NbrCommandeSAFE_SH+$NbrCommandeSAFE_LO+$NbrCommandeSAFE_HA+$NbrCommandeSAFE_QC + $NbrCommandeSAFE_MTL + $NbrCommandeSAFE_GAT + $NbrCommandeSAFE_STJ + $NbrCommandeSAFE_EDM  + $NbrCommandeSAFE_VAU +  $NbrCommandeSAFE_SOR + $NbrCommandeSAFE_MONCTON + $NbrCommandeSAFE_FREDERICTON + $NbrCommandeSAFE_GRIFFE + $NbrCommandeSAFE_STJOHN;
 		
-		$totalValidees = $NbrCommandeValiderAJD_TR+$NbrCommandeValiderAJD_DR+$NbrCommandeValiderAJD_GR+$NbrCommandeValiderAJD_LE+$NbrCommandeValiderAJD_CH+$NbrCommandeValiderAJD_LV +$NbrCommandeValiderAJD_TB+$NbrCommandeValiderAJD_SH+$NbrCommandeValiderAJD_LO+$NbrCommandeValiderAJD_HA+$NbrCommandeValiderAJD_QC +$NbrCommandeValiderAJD_MTL + $NbrCommandeValiderAJD_GAT + $NbrCommandeValiderAJD_STJ + $NbrCommandeValiderAJD_EDM + $NbrCommandeValiderAJD_VAU +  $NbrCommandeValiderAJD_SOR + $NbrCommandeValiderAJD_MONCTON + $NbrCommandeIfc_FREDERICTON + $NbrCommandeIfc_GRIFFE;
+		$totalValidees = $NbrCommandeValiderAJD_TR+$NbrCommandeValiderAJD_DR+$NbrCommandeValiderAJD_GR+$NbrCommandeValiderAJD_LE+$NbrCommandeValiderAJD_CH+$NbrCommandeValiderAJD_LV +$NbrCommandeValiderAJD_TB+$NbrCommandeValiderAJD_SH+$NbrCommandeValiderAJD_LO+$NbrCommandeValiderAJD_HA+$NbrCommandeValiderAJD_QC +$NbrCommandeValiderAJD_MTL + $NbrCommandeValiderAJD_GAT + $NbrCommandeValiderAJD_STJ + $NbrCommandeValiderAJD_EDM + $NbrCommandeValiderAJD_VAU +  $NbrCommandeValiderAJD_SOR + $NbrCommandeValiderAJD_MONCTON + $NbrCommandeValiderAJD_FREDERICTON + $NbrCommandeValiderAJD_GRIFFE + $NbrCommandeValiderAJD_STJOHN ;
 
 ?>	
 
@@ -1469,6 +1503,9 @@ echo "</tbody></table>";
 	</tr>	
 
 
+
+
+
 	<tr>
 		<th align="center">GRIFFE</th>
 		<th align="center" bgcolor="#ECAAAB"><?php if ($NbrCommandeIfc_GRIFFE == 15){ 
@@ -1501,7 +1538,21 @@ echo "</tbody></table>";
 	</tr>
 	 
     		
-				
+	<tr>
+		<th align="center">Saint-John</th>
+		<th align="center" bgcolor="#ECAAAB"><?php if ($NbrCommandeIfc_STJOHN == 15){ 
+														echo '<h2>'.$NbrCommandeIfc_STJOHN.'</h2>';
+													}else {
+														echo $NbrCommandeIfc_STJOHN; } ?>
+		
+		</th>
+			<th align="center" bgcolor="#F4F791"><?php echo  $NbrCommandeSAFE_STJOHN; ?></th>
+			<th align="center" bgcolor="#C7FCC4"><?php echo  $NbrCommandeValiderAJD_STJOHN_OP; ?></th>
+			<th align="center" bgcolor="#25A0DD"><?php echo  $NbrRedos_STJOHN ; ?></th>
+	</tr>		
+	
+
+
     
         <tr>
 			<th align="center">Sherbrooke</th>

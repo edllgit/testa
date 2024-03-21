@@ -19,7 +19,7 @@ $sheet = $spreadsheet->getActiveSheet();
 $time_start = microtime(true);	
 
 
-	$Userid =  " orders.user_id IN ('entrepotifc','entrepotsafe','entrepotdr','safedr','warehousehal','warehousehalsafe','laval','lavalsafe', 'terrebonne','terrebonnesafe',	 'sherbrooke','sherbrookesafe','chicoutimi','chicoutimisafe','levis','levissafe','longueuil','longueuilsafe','granby','granbysafe',	'stjerome','stjeromesafe','gatineau','gatineausafe',	'edmundston','edmundston','vaudreuil','vaudreuilsafe','sorel','sorelsafe','moncton','monctonsafe','fredericton','frederictonsafe','88666')";     
+	$Userid =  " orders.user_id IN ('entrepotifc','entrepotsafe','entrepotdr','safedr','warehousehal','warehousehalsafe','laval','lavalsafe', 'terrebonne','terrebonnesafe',	 'sherbrooke','sherbrookesafe','chicoutimi','chicoutimisafe','levis','levissafe','longueuil','longueuilsafe','granby','granbysafe',	'stjerome','stjeromesafe','gatineau','gatineausafe',	'edmundston','edmundston','vaudreuil','vaudreuilsafe','sorel','sorelsafe','moncton','monctonsafe','fredericton','frederictonsafe','88666','stjohn','stjohnsafe')";     
 	$Partie = 'Tous les EDLL';	       
 	
 	//LIVE
@@ -141,6 +141,7 @@ $time_start = microtime(true);
 			case 'longueuil' :    case 'longueuilsafe' :    $Succursale = 'Longueuil';        			    break;
 			case 'stjerome' :     case 'stjeromesafe' :     $Succursale = 'Saint-Jérome';        			break;
 			case 'fredericton' :  case 'frederictonsafe' :  $Succursale = 'Fredeticton';       				break;
+			case 'stjohn' :       case 'stjohnsafe' :       $Succursale = 'St-John';       				    break;
 			case '88666' :        case '88666' :            $Succursale = 'Griffe lunetier #88666';       	break;
 			case 'garantieatoutcasser' :       			   	$Succursale = 'Garantieatoutcasser';            break;
 			case 'stemarie' :   case 'stemariesafe' :    	$Succursale = 'Sainte-Marie de Beauce';         break;
