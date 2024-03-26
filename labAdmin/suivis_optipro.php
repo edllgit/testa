@@ -116,13 +116,13 @@ for ($y = 1; $y <= 31; $y++) {
 			case 1:  $Succ = "Trois-Rivieres";$user_id = "SELECT * FROM orders WHERE USER_ID IN ('entrepotifc','entrepotsafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 		break;
 			case 2:  $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('entrepotdr','safedr') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 				break;
 			case 3:  $Succ = "Granby"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('granby','granbysafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' ";		    	break;
-			case 4:  $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('levis','levissafe') AND order_date_processed ='$ladate' AND order_num_optipro<>''"; 				break;
-			case 5:  $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('chicoutimi','chicoutimisafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 		break;
-			case 6:  $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('laval','lavalsafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 				break;
-			case 7:  $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('terrebonne','terrebonnesafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 		break;
-			case 8:  $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('sherbrooke','sherbrookesafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 		break;
-			case 9:  $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('longueuil','longueuilsafe') AND order_date_processed ='$ladate' AND order_num_optipro<>''";		break;
-			case 10: $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('warehousehal','warehousehalsafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' ";	break;
+			case 4:  $Succ = "levis"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('levis','levissafe') AND order_date_processed ='$ladate' AND order_num_optipro<>''"; 				break;
+			case 5:  $Succ = "chicoutimi"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('chicoutimi','chicoutimisafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 		break;
+			case 6:  $Succ = "laval"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('laval','lavalsafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 				break;
+			case 7:  $Succ = "terrebonne"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('terrebonne','terrebonnesafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 		break;
+			case 8:  $Succ = "sherbrooke"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('sherbrooke','sherbrookesafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' "; 		break;
+			case 9:  $Succ = "longueuil"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('longueuil','longueuilsafe') AND order_date_processed ='$ladate' AND order_num_optipro<>''";		break;
+			case 10: $Succ = "warehousehal"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('warehousehal','warehousehalsafe') AND order_date_processed ='$ladate'AND order_num_optipro<>'' ";	break;
 			case 11: $Succ = "Drummondville"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('ghfjfg') AND order_date_processed ='$ladate' AND order_num_optipro<>''"; 			break;
 				
 			case 12: $Succ = "Quebec"; $user_id = "SELECT * FROM orders WHERE USER_ID IN ('entrepotquebec','quebecsafe')  AND order_date_processed ='$ladate' AND order_num_optipro<>''"; 			break;
