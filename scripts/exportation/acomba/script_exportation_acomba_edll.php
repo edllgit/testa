@@ -64,7 +64,7 @@ echo '<br>Début Partie 1-<br>';
 $orderQuery="SELECT distinct order_num FROM ORDERS WHERE order_total > 0 AND order_status='filled' AND order_date_shipped  <=  '$datefin'
 AND user_id not in $House_Accounts   AND  transfered_acomba_dln_customer <> 'yes' AND order_from in ('ifcclubca')  AND user_id <> 'garantieatoutcasser'
 AND order_product_type <> 'frame_stock_tray'
-AND order_date_processed AND orders.lab IN (66) AND order_date_processed > '2016-01-01' AND user_id not in ('St.Catharines','redoifc','warehousehal','edmundston','vaudreuil','sorel','moncton','fredericton') ORDER by order_num";
+AND order_date_processed AND orders.lab IN (66) AND order_date_processed > '2016-01-01' AND user_id not in ('St.Catharines','redoifc','warehousehal','edmundston','vaudreuil','sorel','moncton','fredericton','stjohn') ORDER by order_num";
 echo '<br>Partie 1: '. $orderQuery . '<br><br>';
 $orderResult=mysqli_query($con,$orderQuery)	or die  ('I cannot select items because: ' . mysqli_error($con));
 $itemcount=mysqli_num_rows($orderResult);
@@ -125,7 +125,7 @@ echo '<br>Fin Partie 2<br>';
 echo '<br>Début Partie 3-<br>';
 //3- SAFETY SEULEMENT EDLL (on soustrait le montant déja payé par le client avant l'envoie a acomba) 
 $orderQuerySAFE="SELECT distinct order_num FROM ORDERS WHERE order_total > 0 AND order_status='filled' AND order_date_shipped <=  '$datefin'
-AND user_id not in $House_Accounts  AND user_id NOT IN ('warehousehalsafe','edmundstonsafe','vaudreuilsafe','sorelsafe','monctonsafe','frederictonsafe') AND  transfered_acomba_dln_customer <> 'yes' AND order_from = 'safety'  AND order_date_shipped > '2019-04-01'  ORDER by order_num";
+AND user_id not in $House_Accounts  AND user_id NOT IN ('warehousehalsafe','edmundstonsafe','vaudreuilsafe','sorelsafe','monctonsafe','frederictonsafe','stjohnsafe') AND  transfered_acomba_dln_customer <> 'yes' AND order_from = 'safety'  AND order_date_shipped > '2019-04-01'  ORDER by order_num";
 echo '<br>Partie 3:'. $orderQuerySAFE. '<br><br>';
 
 $orderResultSafe=mysqli_query($con,$orderQuerySAFE)	or die  ('I cannot select items because: ' . mysqli_error($con));
@@ -160,7 +160,7 @@ $Clients_6667  .= ",'entrepotsafe','safedr','lavalsafe',
 'terrebonnesafe','sherbrookesafe','chicoutimisafe','longueuilsafe','levissafe','granbysafe','garagemp','BSG','villeshannon','gatineausafe','stjeromesafe'";
 $Clients_6667 .= ')';
 
-$QueryCredit="SELECT * FROM memo_credits WHERE  transfered_acomba_dln_customer <> 'yes' AND mcred_acct_user_id NOT IN ('warehousehal','warehousehalsafe','edmundston','edmundstonsafe','vaudreuil','vaudreuilsafe','sorel','sorelsafe','moncton','monctonsafe','fredericton','frederictonsafe')  AND mcred_date  <=  '$datefin' AND mcred_acct_user_id  NOT IN $House_Accounts AND mcred_acct_user_id  IN $Clients_6667 "; 
+$QueryCredit="SELECT * FROM memo_credits WHERE  transfered_acomba_dln_customer <> 'yes' AND mcred_acct_user_id NOT IN ('warehousehal','warehousehalsafe','edmundston','edmundstonsafe','vaudreuil','vaudreuilsafe','sorel','sorelsafe','moncton','monctonsafe','fredericton','frederictonsafe','stjohn','stjohnsafe')  AND mcred_date  <=  '$datefin' AND mcred_acct_user_id  NOT IN $House_Accounts AND mcred_acct_user_id  IN $Clients_6667 "; 
 echo '<br>'. $QueryCredit;
 $ResultCredit=mysqli_query($con,$QueryCredit)	or die  ('I cannot select items because: ' . mysqli_error($con));
 while ($DataCredit=mysqli_fetch_array($ResultCredit,MYSQLI_ASSOC)){

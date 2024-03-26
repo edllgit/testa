@@ -72,7 +72,13 @@ if($AccessData[id]== 191){//Entrepot Laval
 	$FiltreEntrepot = " AND orders.user_id  IN ('vaudreuil','vaudreuilsafe','redoifc','garantieatoutcasser','redoqc')";
 }elseif($AccessData[id]== 244){//Moncton
 	$FiltreEntrepot = " AND orders.user_id  IN ('moncton','monctonsafe','redoifc','garantieatoutcasser','redoqc')";
+}elseif($AccessData[id]== 250){//Fredericton
+	$FiltreEntrepot = " AND orders.user_id  IN ('fredericton','frederictonsafe','redoifc','garantieatoutcasser','redoqc')";
+}elseif($AccessData[id]== 255){//St-John
+	$FiltreEntrepot = " AND orders.user_id  IN ('stjohn','stjohnsafe','redoifc','garantieatoutcasser','redoqc')";
 }
+
+
 
 //echo $FiltreEntrepot;
 

@@ -408,6 +408,16 @@ require_once(__DIR__.'/../constants/url.constant.php');
               </form> 
 
 
+         <form action="rapport_incentive_stjohn.php" method="post">
+                <tr>
+                <th>Rapport de Bonus/Incentive [St-John seulement]</th>
+                <td>Date&nbsp;From: <input type="text" id="date1" name="date1" size="10">	</td>
+                <td>Date&nbsp;To:   <input type="text" id="date2" name="date2" size="10">	</td>
+                <td><button  type="submit"  class="btn btn-lg btn-danger">Exécuter</button></td>
+                </tr>
+              </form>       
+
+
             </tbody>
           </table>
 		</div>

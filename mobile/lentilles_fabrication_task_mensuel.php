@@ -61,7 +61,7 @@ echo 'date1 = ' . $date1;
 echo '<br><strong>Données utilisés pour générer ce rapport:</strong>';
 echo '<br><strong>Mois</strong>: '. $month . ' ' . $year.'<br><br>';
 
-	for ($i =1; $i <= 19 ; $i++) {
+	for ($i =1; $i <= 20 ; $i++) {
 		echo '<br> Magasin: '. $i;
 		switch($i){
 			case  1: $Userid =  " orders.user_id IN ('chicoutimi','chicoutimisafe')";    	$Partie = 'Chicoutimi';	       
@@ -119,6 +119,9 @@ echo '<br><strong>Mois</strong>: '. $month . ' ' . $year.'<br><br>';
 			$send_to_address = array('ojiaoqi@entrepotdelalunette.com');break;	
 			
 			case  19: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";     		$Partie = 'Fredericton';	       
+			$send_to_address = array('ojiaoqi@entrepotdelalunette.com');break;	
+
+			case  20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";     		$Partie = 'St-John';	       
 			$send_to_address = array('ojiaoqi@entrepotdelalunette.com');break;	
 							
 		}//End Switch

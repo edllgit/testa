@@ -128,6 +128,19 @@ $orderResult=mysqli_query($con,$orderQuery)	or die  ('I cannot select 2 items be
 		$outputstring=export_monthly_orders_acomba($orderData[order_num]);
 		fwrite($fp,$outputstring);
 	}//END WHILE	
+
+//2.5-Factures de ST-John
+$orderQuery="SELECT DISTINCT orders.order_num
+FROM orders WHERE order_date_shipped between '$datedebut' AND '$datefin'  AND order_total > 0 
+AND orders.user_id  IN ('stjohn','stjohnsafe')";
+	echo '<br><br><br>' .$orderQuery . '<br>';
+$orderResult=mysqli_query($con,$orderQuery)	or die  ('I cannot select 2 items because: ' . mysqli_error($con));
+
+	while ($orderData=mysqli_fetch_array($orderResult,MYSQLI_ASSOC)){
+		echo '<br>Order num :' . $orderData[order_num];
+		$outputstring=export_monthly_orders_acomba($orderData[order_num]);
+		fwrite($fp,$outputstring);
+	}//END WHILE
 	
 //2.5-Factures de Sorel
 $orderQuery="SELECT DISTINCT orders.order_num

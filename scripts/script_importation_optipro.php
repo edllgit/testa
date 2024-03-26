@@ -1150,6 +1150,7 @@ if (strtolower($SAFETY=='safety')){
 			case 'vaudreuil':			$USER_ID = 'vaudreuilsafe';    $ORDER_FROM = 'safety'; break;
 			case 'sorel':				$USER_ID = 'sorelsafe';    	   $ORDER_FROM = 'safety'; break;
 			case 'fredericton':			$USER_ID = 'frederictonsafe';  $ORDER_FROM = 'safety'; break;
+			case 'stjohn':			    $USER_ID = 'stjohnsafe';       $ORDER_FROM = 'safety'; break;
 			case '88666':												$ORDER_FROM = 'safety'; break;
 		}//End Switch                                                 
 	}//End IF Safety
@@ -1196,6 +1197,12 @@ switch($USER_ID){
 	case 'fredericton':  	 $LAB = 66; 	$EmailSuccursale="fredericton@entrepotdelalunette.com";  	break;	
 	case 'frederictonsafe':  $LAB = 59;		$EmailSuccursale="fredericton@entrepotdelalunette.com";  	break;		
 	
+
+	//STJOHN
+	case 'stjohn':  	     $LAB = 66; 	$EmailSuccursale="st-John@opticalwarehouse.ca";  	        break;	
+	case 'stjohnsafe':       $LAB = 59;		$EmailSuccursale="st-John@opticalwarehouse.ca";  	        break;	
+
+
 	//DR
 	case 'entrepotdr':   	 $LAB = 66; 	$EmailSuccursale="drummondville@entrepotdelalunette.com";  	break;	
 	case 'safedr': 		 	 $LAB = 59; 	$EmailSuccursale="drummondville@entrepotdelalunette.com";  	break;	

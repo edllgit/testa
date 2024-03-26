@@ -45,6 +45,7 @@ while ($DataErreurs=mysqli_fetch_array($resultErreur,MYSQLI_ASSOC)){
 		case 'sorel':  			case 'sorelsafe':				$User_ID_IN = " user_id IN ('sorel','sorelsafe') ";					break;
 		case 'moncton':  		case 'monctonsafe':				$User_ID_IN = " user_id IN ('moncton','monctonsafe') ";				break;
 		case 'fredericton':  	case 'frederictonsafe':			$User_ID_IN = " user_id IN ('fredericton','frederictonsafe') ";		break;
+		case 'stjohn':  	    case 'stjohnsafe':			    $User_ID_IN = " user_id IN ('stjohn','stjohnsafe') ";		        break;
 	}	
 	
 	switch($DataErreurs[user_id]){
@@ -67,6 +68,7 @@ while ($DataErreurs=mysqli_fetch_array($resultErreur,MYSQLI_ASSOC)){
 		case 'sorel':  		case 'sorelsafe':		$Succursale = "Sorel"; 			break;
 		case 'moncton':  	case 'monctonsafe':		$Succursale = "Moncton"; 		break;
 		case 'fredericton': case 'frederictonsafe':	$Succursale = "Fredericton"; 	break;
+		case 'stjohn':      case 'stjohnsafe':	    $Succursale = "stjohn"; 	    break;
 		
 	}
 	

@@ -34,7 +34,7 @@ switch($month){
 echo '<br><strong>Données utilisés pour générer ce rapport:</strong>';
 echo '<br><strong>Mois</strong>: '. $month . ' ' . $year.'<br><br>';
 
-	for ($i =1; $i <= 20 ; $i++) {
+	for ($i =1; $i <= 21 ; $i++) {
 		echo '<br> Magasin: '. $i;
 		switch($i){
 			case  1: $Userid =  " orders.user_id IN ('chicoutimi','chicoutimisafe')";    	$Partie = 'Chicoutimi';	       
@@ -92,9 +92,12 @@ echo '<br><strong>Mois</strong>: '. $month . ' ' . $year.'<br><br>';
 			$send_to_address = array('fdjibrilla@entrepotdelalunette.com');break;	
 
 			case  19: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";     $Partie = 'Fredericton';	       
-			$send_to_address = array('fdjibrilla@entrepotdelalunette.com');break;	
+			$send_to_address = array('fdjibrilla@entrepotdelalunette.com');break;
+			
+			case  20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";     $Partie = 'St-John';	       
+			$send_to_address = array('fdjibrilla@entrepotdelalunette.com');break;
 									
-			case  20: $Userid =  " orders.user_id IN ('88666')";     $Partie = '#88666-GR';	       
+			case  21: $Userid =  " orders.user_id IN ('88666')";     $Partie = '#88666-GR';	       
 			$send_to_address = array('fdjibrilla@entrepotdelalunette.com');break;	
 		}//End Switch
 	
