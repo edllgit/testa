@@ -237,11 +237,13 @@ $usercount=mysqli_num_rows($result);
  while ($listItem=mysqli_fetch_array($result,MYSQLI_ASSOC)){
   
   echo "<option value=\"$listItem[polar]\"";
+   
   
  if (strtoupper($productData[polar])==strtoupper($listItem[polar])) 
  echo "selected=\"selected\"";
- echo ">";
- $name=stripslashes($listItem[poflar]);
+ echo  ">";
+ //print_r($listItem);
+ $name=stripslashes($listItem[polar]);
  echo "$name</option>";}?>
         </select></td>
       </tr>
