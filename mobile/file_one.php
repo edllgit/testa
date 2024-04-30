@@ -15,7 +15,11 @@ if ($connexion->connect_error) {
 }
 
 // Requête SQL
-$sql = "SELECT * FROM `ifc_ca_exclusive` where product_name like '%precision%' and collection like '%knr%'";
+$sql = "
+
+SELECT * FROM `ifc_ca_exclusive` where product_name like '%transition%' and product_name not like '%drivewear%' and photo not like '%active%' and 
+photo not like '%green%' and product_name not like '%Xtractive%' and product_name not like '%2ieme paire%' and prod_status = 'active' 
+and product_name not like '%stock%' and product_name not like '%SV%' and product_name not like '%single vision%'AND primary_key not in (105626,47209,47210,47211,47212,47213,47216,47219,47221) ";
 
 // Exécution de la requête
 $resultat = $connexion->query($sql);
@@ -24,7 +28,7 @@ $resultat = $connexion->query($sql);
 if ($resultat) {
     // Nom du fichier CSV avec timestamp pour le rendre unique
     $timestamp = time();
-    $nom_fichier_csv = "/Bitnami/wampstack-7.1.14-0/apache2/htdocs/mobile/csv_FF/precision_chez_KNR_$timestamp.csv";
+    $nom_fichier_csv = "/Bitnami/wampstack-7.1.14-0/apache2/htdocs/mobile/csv_FF/NEW_AUG_avec_prix_$timestamp.csv";
 
     // Création et ouverture du fichier CSV en écriture
     $fichier_csv = fopen($nom_fichier_csv, 'w');

@@ -11,6 +11,7 @@ require_once('../../class.ses.php');
 
 $heure       	  = date("H:i:s"); // 17:16:18 // On doit soustraire 4 heure à cause du changement de fuseau horaire
 $todayDate   	  = date("Y-m-d G:i:s");// current date
+//$todayDate = '2024-03-29';
 $currentTime 	  = time($todayDate); //Change date into time
 $timeAfterOneHour = $currentTime-((60*60)*4);//Add one hour equavelent seconds 60*60	
 $heure     		  = date("H:i:s",$timeAfterOneHour);
@@ -27,6 +28,7 @@ $queryShape =  "SELECT * FROM orders
 echo '<br>'. $queryShape. '<br>';				
 	
 $resultShape = mysqli_query($con,$queryShape)	or die ("Could not select items 4". mysql_error($con));
+echo "Oui1"; 
 
 while ($DataShape   = mysqli_fetch_array($resultShape,MYSQLI_ASSOC)){
 $Prescription_Lab   = $DataShape[prescript_lab];
@@ -53,7 +55,7 @@ $Prescription_Lab   = $DataShape[prescript_lab];
 	$conn_id    = ftp_connect($ftp_server) or die("Couldn't connect to S3: $ftp_server"); 
 	//Login
 	if (@ftp_login($conn_id, $ftp_user, $ftp_pass)) {
-		//echo '<br><b>Connexion au ftp  Windows VM (Instance Windows AWS) Reussie</b>';
+		echo '<br><b>Connexion au ftp  Windows VM (Instance Windows AWS) Reussie</b>';
 	}else{
 		echo '<br><b> !!! Erreur durant la tentative de connexion avec ftp Windows VM !!!</b>';	
 	}
@@ -67,12 +69,18 @@ $Prescription_Lab   = $DataShape[prescript_lab];
 	$filteredOMAFiles = preg_grep( '/\.oma$/i', $filteredOMAFiles );
 	
 	//2-3: Chercher la forme dans l'array
-	//echo 'Je cherche ceci dans l\'array: '. $NomdeLaFormeAtrouver.'<br>';
+	echo '<br> Je cherche ceci dans l\'array: '. $NomdeLaFormeAtrouver.'<br>';
 	$PositionFormedansArray = array_search($NomdeLaFormeAtrouver, $filteredOMAFiles);
+	
+	//echo '<br>code'.$decodedPath.'<br>';
+	//$PositionFormedansArray = array_search($decodedPath, $filteredOMAFiles);
+	//$PositionFormedansArray = array_search($NomdeLaFormeAtrouver, $filteredOMAFiles);
+	echo '<br>position'.var_dump($PositionFormedansArray);
+	echo '<br>Position dans l\'Array:'. $PositionFormedansArray ;
 	
 
 	//Si un résultat a été trouvé: on poursuit
-	if ($PositionFormedansArray!=false){
+	if ($PositionFormedansArray!==false){
 		echo '<br>Position du fichier dans l\'Array:<b>' . $PositionFormedansArray.'</b><br>';
 		$local_file = "../../../../../../ftp_root/Banque de traces/En cours de copie/$NumeroCommandeEDLL.OMA";
 		$server_file = $filteredOMAFiles[$PositionFormedansArray];

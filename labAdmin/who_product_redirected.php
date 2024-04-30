@@ -103,6 +103,7 @@ if($_POST["rpt_search"]=="search by redirection"){
 		case 'Saint-Catharines' : $filtreManufacturer = " collection IN ('Entrepot STC','Entrepot FT')";  	break;
 		case 'Swiss' :      	  $filtreManufacturer = " collection IN ('Entrepot Swiss')";  				break;
 		case 'Trois-Rivieres' :	  $filtreManufacturer = " collection IN ('Entrepot SV')"; 					break;	
+		case 'Right Optical' :	  $filtreManufacturer = " collection IN ('Entrepot OVG')"; 					break;
 	}
 	
 	
@@ -328,6 +329,7 @@ Coating:
                     <option value="Saint-Catharines">Saint-Catharines/ Dlab</option>
                     <option value="Swiss">Swiss</option>
                     <option value="Trois-Rivieres">Trois-Rivieres</option>      
+					<option value="Right Optical">OVG_LAB</option>   
                 </select>
                     &nbsp;&nbsp;&nbsp;
                     <input name="submit" type="submit" id="submit" value="<?php echo 'Search by manufacturer'; ?>" class="formField">
@@ -393,6 +395,7 @@ if (($usercount != 0) && ($_POST["rpt_search"] <> '')){//some products were foun
 		case 'Entrepot SV'     :  $Fabriquant = "Trois-Rivieres"; 	break;	
 		case 'Entrepot FT'     :  $Fabriquant = "Dlab"; 			break;	
 		case 'Entrepot KNR'    :  $Fabriquant = "K and R"; 			break;	
+		case 'Entrepot OVG'    :  $Fabriquant = "Right Optical"; 			break;	
 	}
 	
 	

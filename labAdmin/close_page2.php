@@ -7,7 +7,7 @@ error_reporting(E_ALL);
 include "../sec_connectEDLL.inc.php";
 session_start();
 
-$order_num = isset($_REQUEST['ordernum']) ? $_REQUEST['ordernum'] : '';
+$order_num = isset($_REQUEST['order_num']) ? $_REQUEST['order_num'] : '';
 
 $que = "SELECT primary_key FROM ORDERS WHERE order_num = $order_num";
 $resultMajTrace1 = mysqli_query($con, $que) or die ('Erreur dans la requête de sélection : ' . $que  . mysqli_error($con));

@@ -937,7 +937,7 @@ while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {//COLLECT DATA INTO ARR
 				case 'PROMO PRECISION+ POL BRUN HC':		$DESIGN = "exterieur";	break;
 				case 'PROMO PRECISION+ POL BROWN HC':		$DESIGN = "exterieur";	break;
 				case 'PROMO PRECISION+ POL BROWN AR BACK': 	$DESIGN = "exterieur";	break;
-				case 'PROMO PRECISION+ POL BRUN AR BACK':	$DESIGN = "exterieur";	break;
+				//case 'PROMO PRECISION+ POL BRUN AR BACK':	$DESIGN = "exterieur";	break;
 				case 'PRECISION+ SUPER AR':					$DESIGN = "tout usage";	break;
 				case '2ND PRECISION+ POLAR BROWN HC':		$DESIGN = "tout usage";	break;
 				case 'PROMO PRECISION+ SUPER AR':			$DESIGN = "tout usage";	break;
@@ -1467,7 +1467,52 @@ switch($EYE){
 	}
 break;
 
+//========================================================
+case 'INTERNET ANTI-FATIGUE 0.60 AR+ETC':
+case 'INTERNET ANTI-FATIGUE 0.60 ETC':
+case 'INTERNET ANTI-FATIGUE 0.40 AR+ETC'://GKB
+case 'INTERNET ANTI-FATIGUE 0.40 ETC'://GKB HALIFAX
 
+
+	$ProdName  = "  product_name like '%Internet Anti-Fatigue%'"; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING = "Dream AR"; 
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	$SPECIAL_INSTRUCTIONS = mysqli_real_escape_string($con,$SPECIAL_INSTRUCTIONS)  . ' Regression: 0.40 ';
+	if ($EYE == 'Both'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+	}elseif($EYE == 'R.E.'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+	}elseif($EYE == 'L.E.'){
+		$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+	}
+break;
+
+case 'INTERNET ANTI-FATIGUE 0.40 LOW REFLEXION':
+case 'INTERNET ANTI-FATIGUE 0.60 LOW REFLEXION':
+case 'INTERNET ANTI-FATIGUE 0.40 LOW REFLEXION'://GKB
+case 'NTERNET ANTI-FATIGUE 0.60 LOW REFLEXION'://GKB HALIFAX
+
+
+	$ProdName  = "  product_name like '%Internet Anti-Fatigue%'"; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING = "Low Reflexion"; 
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	$SPECIAL_INSTRUCTIONS = mysqli_real_escape_string($con,$SPECIAL_INSTRUCTIONS)  . ' Regression: 0.40 ';
+	if ($EYE == 'Both'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+	}elseif($EYE == 'R.E.'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+	}elseif($EYE == 'L.E.'){
+		$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+	}
+break;
+
+
+
+
+
+//=======================================================
 
 case 'INTERNET ANTI-FATIGUE AR+ETC 0.40'://GKB
 case 'ANTI-FATIGUE INTERNET ETC 0.40'://GKB HALIFAX
@@ -8279,8 +8324,118 @@ break;
 
 
 
+case 'PROMO PRECISION+ TINTED BROWN LR BACK': 
+case 'PROMO PRECISION+ TEINTE BRUN LR BACK':
+
+switch($EYE){	
+	case 'Both': 
+		if ($RE_ADD=='' || $LE_ADD==''){
+			if ($UnSvUnProg == false){	
+				$InsererDansBD = false;	
+				$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+			}
+		}	
+}//END Switch
+
+if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+		$InsererDansBD  = false;
+		$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+		The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+}//Fin si aucun corridor n'a été fournis
+
+	$ProdName  = "  product_name like '%promo%' AND product_name like '%precision%' AND product_name not like '%360%' "; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING="Low Reflexion Backside";
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	if ($CORRIDOR <> ''){
+		switch($CORRIDOR){
+			case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+			case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+			case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
+		}
+}
+	if ($EYE == 'Both'){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+		}elseif($EYE == 'R.E.'){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+		}elseif($EYE == 'L.E.'){
+			$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+		}
+	$AjoutTeintePromo = 'oui';
+	//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+	//Inserer dans extra_product_order
+	$frame_type		= "";
+	$color			= "";
+	$order_type		= "";
+	$temple			= "";
+	$order_num		= -1;
+	$main_lab_id	= $LAB;
+	$category		= "Tint";
+	$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+	$ep_prod_id     = $listItem[prod_id];
+	$TINT           = 'Solid';
+	$TINT_COLOR     = 'Brown';
+	$FROM_PERC      = '85';
+	$TO_PERC        = '85';		
+break;
 
 
+
+
+case 'PROMO PRECISION+ TINTED GREY LR BACK': 
+case 'PROMO PRECISION+ TEINTE GRIS LR BACK':
+
+switch($EYE){	
+	case 'Both': 
+		if ($RE_ADD=='' || $LE_ADD==''){
+			if ($UnSvUnProg == false){	
+				$InsererDansBD = false;	
+				$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+			}
+		}	
+}//END Switch
+
+if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+		$InsererDansBD  = false;
+		$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+		The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+}//Fin si aucun corridor n'a été fournis
+
+	$ProdName  = "  product_name like '%promo%' AND product_name like '%precision%' AND product_name not like '%360%' "; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING="Low Reflexion Backside";
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	if ($CORRIDOR <> ''){
+		switch($CORRIDOR){
+			case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;  
+			case '9':  $ProdName  .= " AND corridor = 9 ";  $SauterValidationFH = "yes"; break;    
+			case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
+		}
+}
+	if ($EYE == 'Both'){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+		}elseif($EYE == 'R.E.'){
+			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+		}elseif($EYE == 'L.E.'){
+			$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+		}
+	$AjoutTeintePromo = 'oui';
+	//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
+	//Inserer dans extra_product_order
+	$frame_type		= "";
+	$color			= "";
+	$order_type		= "";
+	$temple			= "";
+	$order_num		= -1;
+	$main_lab_id	= $LAB;
+	$category		= "Tint";
+	$price          = 0; //0 car déja inclus dans le prix du produit 'promotion'
+	$ep_prod_id     = $listItem[prod_id];
+	$TINT           = 'Solid';
+	$TINT_COLOR     = 'Grey';
+	$FROM_PERC      = '85';
+	$TO_PERC        = '85';		
+break;
 
 
 
@@ -10146,11 +10301,11 @@ case 'PROGRESSIVE SEIKO STANDARD ETC':
 	$ORDER_PRODUCT_COATING 	= "ITO AR";
 	$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
 	
-	if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+	/*if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
 		$OPTICAL_CENTER = $LE_HEIGHT;
 		$LE_HEIGHT = '';
 		$RE_HEIGHT = '';	
-}
+}*/
 	
 	switch($CORRIDOR){
 		case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
@@ -10174,12 +10329,12 @@ case 'PROGRESSIVE SEIKO STANDARD ETC PHOTO GR':
 		$ORDER_PRODUCT_PHOTO 	= "Grey";
 		$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
 		
-		if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+	/*	if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
 			$OPTICAL_CENTER = $LE_HEIGHT;
 			$LE_HEIGHT = '';
 			$RE_HEIGHT = '';	
 	}
-		
+		*/
 		switch($CORRIDOR){
 			case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
 			case '13':  	$ProdName  .= " AND corridor = 13 "; 	$SauterValidationFH = "yes"; break;    
@@ -10201,11 +10356,11 @@ case 'PROGRESSIVE SEIKO STANDARD ETC PHOTO GR':
 				$ORDER_PRODUCT_PHOTO 	= "Brown";
 				$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
 				
-				if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+				/*if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
 					$OPTICAL_CENTER = $LE_HEIGHT;
 					$LE_HEIGHT = '';
 					$RE_HEIGHT = '';	
-			}
+			}*/
 				
 				switch($CORRIDOR){
 					case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
@@ -10250,13 +10405,13 @@ case 'PROGRESSIVE SEIKO STANDARD ETC PHOTO GR':
 						$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
 						Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
 					}	
-				}elseif ($EYE == 'Both'){
+				}/*elseif ($EYE == 'Both'){
 					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 				}elseif($EYE == 'R.E.'){
 					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 				}elseif($EYE == 'L.E.'){
 					$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-				}
+				}*/
 				$AjoutTeintePromo = 'oui';
 				//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 				//Inserer dans extra_product_order
@@ -10306,13 +10461,13 @@ case 'PROGRESSIVE SEIKO STANDARD ETC PHOTO GR':
 					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
 					Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
 				}	
-			}elseif ($EYE == 'Both'){
+			}/*elseif ($EYE == 'Both'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 			}elseif($EYE == 'R.E.'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 			}elseif($EYE == 'L.E.'){
 				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-			}
+			}*/
 			$AjoutTeintePromo = 'oui';
 			//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 			//Inserer dans extra_product_order
@@ -10341,11 +10496,11 @@ case 'PROGRESSIVE SEIKO STANDARD HC':
 	$ORDER_PRODUCT_COATING 	= "Hard Coat";
 	$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
 	
-	if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+	/*if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
 		$OPTICAL_CENTER = $LE_HEIGHT;
 		$LE_HEIGHT = '';
 		$RE_HEIGHT = '';	
-}
+}*/
 	
 	switch($CORRIDOR){
 		case '11':  	$ProdName  .= " AND corridor = 11  "; 	$SauterValidationFH = "yes"; break;    
@@ -10369,11 +10524,11 @@ case 'PROGRESSIVE SEIKO STANDARD HC PHOTO GR':
 			$ORDER_PRODUCT_PHOTO 	= "Grey";
 			$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
 			
-			if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+			/*if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
 				$OPTICAL_CENTER = $LE_HEIGHT;
 				$LE_HEIGHT = '';
 				$RE_HEIGHT = '';	
-		}
+		}*/
 			
 			switch($CORRIDOR){
 				case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
@@ -10396,11 +10551,11 @@ case 'PROGRESSIVE SEIKO STANDARD HC PHOTO BR':
 			$ORDER_PRODUCT_PHOTO 	= "Brown";
 			$CollectionNotIn       	= " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
 			
-			if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+		/*	if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
 				$OPTICAL_CENTER = $LE_HEIGHT;
 				$LE_HEIGHT = '';
 				$RE_HEIGHT = '';	
-		}
+		}*/
 			
 			switch($CORRIDOR){
 				case '11':  	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;    
@@ -10445,13 +10600,14 @@ case 'PROGRESSIVE SEIKO STANDARD HC GR TINT':  // Halifax
 						$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
 						Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
 					}	
-				}elseif ($EYE == 'Both'){
+				}
+				/*elseif ($EYE == 'Both'){
 					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 				}elseif($EYE == 'R.E.'){
 					$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 				}elseif($EYE == 'L.E.'){
 					$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-				}
+				}*/
 				$AjoutTeintePromo = 'oui';
 				//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 				//Inserer dans extra_product_order
@@ -10501,13 +10657,14 @@ case 'PROGRESSIVE SEIKO STANDARD HC GR TINT':  // Halifax
 					$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15mm). Svp ajouter le corridor et re-exporter la commande.<br> The corridor is mandatory for this product.
 					Options: 11, 13, 15mm. Please add the corridor and re-export the order.'; 
 				}	
-			}elseif ($EYE == 'Both'){
+			}
+			/*elseif ($EYE == 'Both'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 			}elseif($EYE == 'R.E.'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 			}elseif($EYE == 'L.E.'){
 				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-			}
+			}*/
 			$AjoutTeintePromo = 'oui';
 			//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 			//Inserer dans extra_product_order
@@ -10525,6 +10682,93 @@ case 'PROGRESSIVE SEIKO STANDARD HC GR TINT':  // Halifax
 			$FROM_PERC      = '85';
 			$TO_PERC        = '85';	
 		break;
+
+	//polar
+			
+
+		case 'PROGRESSIVE SEIKO STANDARD ETC POL BR':
+		case 'PROGRESSIF SEIKO STANDARD ETC POL BRUN':
+		//$design="Exterieur";
+		switch($EYE){	
+			case 'Both': 
+				if ($RE_ADD=='' || $LE_ADD==''){
+					if ($UnSvUnProg == false){	
+						$InsererDansBD = false;	
+						$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+					}
+				}	
+		}//END Switch
+
+		if (($CORRIDOR == '5') || ($CORRIDOR == '7') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+				$InsererDansBD  = false;
+				$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15). Svp ajouter le corridor (11-13-15) et re-exporter la commande.<br> 
+				The corridor (11-13-15) is mandatory for this product. Please add a corridor (11, 13 or 15) and re-export the order.';
+		}//Fin si aucun corridor n'a été fournis
+
+		$ProdName  = "  product_name like '%PROGRESSIVE SEIKO STANDARD%' AND  product_name like '%polarized brown%'"; 
+		$ProdTable = "ifc_ca_exclusive"; 
+		$ORDER_PRODUCT_POLAR 	= 'Brown';
+		$ORDER_PRODUCT_COATING	= "AR Backside";
+		if ($CORRIDOR <> ''){
+				switch($CORRIDOR){
+					case '11':  $ProdName  .= " AND corridor = 11 ";  $SauterValidationFH = "yes"; break;
+					case '13':  $ProdName  .= " AND corridor = 13 ";  $SauterValidationFH = "yes"; break;    
+					case '15': $ProdName  .= " AND corridor = 15 "; $SauterValidationFH = "yes"; break;  
+					  
+				}
+		}
+		$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+		/*if (($EYE == 'Both') && ($RE_HEIGHT<>'') && ($LE_HEIGHT<>'')){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+			}elseif($EYE == 'R.E.'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+			}elseif($EYE == 'L.E.'){
+				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+			}*/
+		break;
+
+
+		case 'PROGRESSIVE SEIKO STANDARD ETC POL GR':
+		case 'PROGRESSIF SEIKO STANDARD ETC POL GRIS':
+		//$design="Exterieur";
+		switch($EYE){	
+			case 'Both': 
+				if ($RE_ADD=='' || $LE_ADD==''){
+					if ($UnSvUnProg == false){	
+						$InsererDansBD = false;	
+						$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+					}
+				}	
+		}//END Switch
+
+		if (($CORRIDOR == '5') || ($CORRIDOR == '7') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
+				$InsererDansBD  = false;
+				$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (11, 13 ou 15). Svp ajouter le corridor (11-13-15) et re-exporter la commande.<br> 
+				The corridor (11-13-15) is mandatory for this product. Please add a corridor (11, 13 or 15) and re-export the order.';
+		}//Fin si aucun corridor n'a été fournis
+
+		$ProdName  = "  product_name like '%PROGRESSIVE SEIKO STANDARD%' AND  product_name like '%polarized grey%'"; 
+		$ProdTable = "ifc_ca_exclusive"; 
+		$ORDER_PRODUCT_POLAR 	= 'Grey';
+		$ORDER_PRODUCT_COATING	= "AR Backside";
+		if ($CORRIDOR <> ''){
+				switch($CORRIDOR){
+					case '11':  $ProdName  .= " AND corridor = 11 ";  $SauterValidationFH = "yes"; break;
+					case '13':  $ProdName  .= " AND corridor = 13 ";  $SauterValidationFH = "yes"; break;    
+					case '15': $ProdName  .= " AND corridor = 15 "; $SauterValidationFH = "yes"; break;  
+					  
+				}
+		}
+		$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	/*	if (($EYE == 'Both') && ($RE_HEIGHT<>'') && ($LE_HEIGHT<>'')){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+			}elseif($EYE == 'R.E.'){
+				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+			}elseif($EYE == 'L.E.'){
+				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+			}*/
+		break;
+
 
 //==================================================
 
@@ -11198,7 +11442,7 @@ case 'NUM POL GREY LR BACK':
 					
 			}//Fin si aucun corridor n'a été fournis	
 			
-			$ProdName  = "  product_name like '%promotion progressif%' AND  product_name like '%polarized grey%'"; 
+			$ProdName  = "  product_name like '%promotion progressif%' AND  product_name like '%polarized%'"; 
 			$ProdTable = "ifc_ca_exclusive"; 
 			$ORDER_PRODUCT_COATING ="Low Reflexion Backside";
 			$ORDER_PRODUCT_POLAR = 'Brown';
@@ -11225,12 +11469,12 @@ case 'NUM POL GREY LR BACK':
 
 
 
-
+case 'SV SURFACE TEINTE BRUN 85% LR BACK':
 case 'SV SURFACE TEINTE BRUN 85% LR  BACK': 
 case 'SV SURFACE TINTED BROWN 85% LR BACK':
 	//case 'PROMO PRECISION+ 360 TINTED BROW AR BACK':
 	
-	switch($EYE){	
+	/*switch($EYE){	
 		case 'Both': 
 			if ($RE_ADD=='' || $LE_ADD==''){
 				if ($UnSvUnProg == false){	
@@ -11238,7 +11482,7 @@ case 'SV SURFACE TINTED BROWN 85% LR BACK':
 					$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
 				}
 			}	
-	}//END Switch
+	}//END Switch*/
 	
 	/*if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
 			$InsererDansBD  = false;
@@ -11258,13 +11502,13 @@ case 'SV SURFACE TINTED BROWN 85% LR BACK':
 				case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
 			}
 	}*/
-		if ($EYE == 'Both'){
+		/*if ($EYE == 'Both'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 			}elseif($EYE == 'R.E.'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 			}elseif($EYE == 'L.E.'){
 				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-			}
+			}*/
 		$AjoutTeintePromo = 'oui';
 		//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 		//Inserer dans extra_product_order
@@ -11288,7 +11532,7 @@ case 'SV SURFACE TINTED BROWN 85% LR BACK':
 		case 'SV SURFACE TINTED GREY 85% LR BACK':
 			//case 'PROMO PRECISION+ 360 TINTED BROW AR BACK':
 			
-			switch($EYE){	
+			/*switch($EYE){	
 				case 'Both': 
 					if ($RE_ADD=='' || $LE_ADD==''){
 						if ($UnSvUnProg == false){	
@@ -11296,7 +11540,7 @@ case 'SV SURFACE TINTED BROWN 85% LR BACK':
 							$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
 						}
 					}	
-			}//END Switch
+			}//END Switch*/
 			
 			/*if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRIDOR == '')) {
 					$InsererDansBD  = false;
@@ -11316,13 +11560,13 @@ case 'SV SURFACE TINTED BROWN 85% LR BACK':
 						case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
 					}
 			}*/
-				if ($EYE == 'Both'){
+				/*if ($EYE == 'Both'){
 						$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 					}elseif($EYE == 'R.E.'){
 						$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 					}elseif($EYE == 'L.E.'){
 						$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-					}
+					}*/
 				$AjoutTeintePromo = 'oui';
 				//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 				//Inserer dans extra_product_order
@@ -11375,13 +11619,13 @@ case 'NUM TINTED GREY LR BACK':
 					case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;   
 				}
 		}
-		if ($EYE == 'Both'){
+		/*if ($EYE == 'Both'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 			}elseif($EYE == 'R.E.'){
 				$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 			}elseif($EYE == 'L.E.'){
 				$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-			}
+			}*/
 			$AjoutTeintePromo = 'oui';
 			//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 			//Inserer dans extra_product_order
@@ -11430,13 +11674,13 @@ case 'NUM TINTED BROWN LR BACK':
 				case '7': $ProdName  .= " AND corridor = 7 "; $SauterValidationFH = "yes"; break;   
 			}
 	}
-	if ($EYE == 'Both'){
+/*	if ($EYE == 'Both'){
 			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 		}elseif($EYE == 'R.E.'){
 			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 		}elseif($EYE == 'L.E.'){
 			$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-		}
+		}*/
 		$AjoutTeintePromo = 'oui';
 		//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 		//Inserer dans extra_product_order
@@ -27537,8 +27781,8 @@ $ORDER_STATUS 		   = 'basket';
 				  if ($nbrResultPO > 0){
 					 echo '<br>COMMANDE ' .	 $OrderNumberOptipro . ' Deja importee';
 					 //$ErrorDetail.= '<br>Numero de facture Optipro <b>'. $OrderNumberOptipro. '</b>  a deja ete importee pour ce client<br>';
-					 $InsererDansBD  = false;
-					// $InsererDansBD  = true;
+					$InsererDansBD  = false;
+					 //$InsererDansBD  = true;
 				  }else{
 				  $InsererDansBD  = true;// Po_Num inconnue, on peut importer la commande
 				  // echo '<br>COMMANDE ' .	 $OrderNumberOptipro . ' prete pour etre  importee.'; 
@@ -28274,6 +28518,12 @@ if ($InsererDansBD){
 			case 'sv': 
 			//echo '<br>Lens category: <b>SV</b>';
 			$validerSv   = true;
+			$validerProg = false;
+			break;	
+			
+			case 'sv surface': 
+			//echo '<br>Lens category: <b>SV</b>';
+			$validerSv   = false;
 			$validerProg = false;
 			break;	
 

@@ -174,6 +174,7 @@ $usercount=mysqli_num_rows($result);
     <option value="HKO"    <?php if ($productData[real_manufacturer]=='HKO') 	 echo ' selected=selected';  ?>>HKO</option>
     <option value="STC"    <?php if ($productData[real_manufacturer]=='STC') 	 echo ' selected=selected';  ?>>STC</option>
     <option value="Swiss"  <?php if ($productData[real_manufacturer]=='Swiss')   echo ' selected=selected';  ?>>Swiss</option>
+	<option value="Swiss"  <?php if ($productData[real_manufacturer]=='Right Optical')   echo ' selected=selected';  ?>>Ovg_lab</option>
 </select>
          
         </td>

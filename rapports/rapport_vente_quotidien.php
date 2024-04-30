@@ -1071,7 +1071,7 @@ $totalCharles 	= money_format('%.2n',$totalCharles);
 	$message.= "<tr><td align=\"right\" colspan=\"2\">Total:</td><td colspan=\"3\">$TotalCommandes orders = $totalCharles $</td></tr>
 	</table></body></html>";
 	$subject ="Daily Sales report: Ifc.ca Production:" . $date1;
-	$Report_Email	= array('thahn@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','r.iazzolino@direct-lens.com','rh@entrepotdelalunette.com');
+	$Report_Email	= array('thahn@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','r.iazzolino@direct-lens.com');
     //$Report_Email	= array('dbeaulieu@direct-lens.com');//TODO A RECOMMENTER APRÈS MES TESTS
 
 echo '<br><br>';
