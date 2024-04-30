@@ -135,6 +135,7 @@ $ordersnum=mysqli_num_rows($rptResult);
 				case 'moncton':		case 'monctonsafe':    			$AccountNumberWithPerfect = '2200';			break;
 				case 'fredericton':	case 'frederictonsafe':    		$AccountNumberWithPerfect = '92300';		break;
 				case '88666':	    case '88666':    		        $AccountNumberWithPerfect = '98200';		break;
+				case 'stjohn':	    case 'stjohnsafe':    		    $AccountNumberWithPerfect = '2400';		break;
 			}
 		
 			switch($DataFrame[supplier]){

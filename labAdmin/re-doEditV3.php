@@ -1394,6 +1394,8 @@ function ActiverChampEtSoumettreForm(){
 				$resultPkClient=mysqli_query($con,$queryPkClient)			or die ("Could not select items");	  
 				$DataPkClient=mysqli_fetch_array($resultPkClient,MYSQLI_ASSOC);
 				$Primary_Key_Acct = $DataPkClient[primary_key];
+				
+				//echo 	'<br> PKEY: '. $Primary_Key_Acct . '<br>';
 				$collections=array();
 				$collections=explode(";",$F_listItem[avail_prescript_collections]);
 				$collectionNum=count($collections);
@@ -2457,63 +2459,7 @@ LEFT JOIN $TabletoUse on (liste_collection_info.collection_name = $TabletoUse.co
 
 			</form>
                         
-                  
-        
-                  
-            <form method="post"  enctype="multipart/form-data" action="https://direct-lens-public.s3.amazonaws.com/" name="formShape"  id="formShape" target="_blank">
-          
 
-			<?php          	
-            //Code pour uploader sur S3
-            if (!class_exists('S3')) require_once '../s3/S3.php';
-                
-            // AWS access info
-            if (!defined('awsAccessKey')) define('awsAccessKey', 'AKIAYP4O5XKOQKSCJKOI');
-            if (!defined('awsSecretKey')) define('awsSecretKey', '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');
-            
-            // Check for CURL
-            if (!extension_loaded('curl') && !@dl(PHP_SHLIB_SUFFIX == 'so' ? 'curl.so' : 'php_curl.dll'))
-                exit("\nERROR: CURL extension not loaded\n\n");
-            
-            // Pointless without your keys!
-            if (awsAccessKey == 'change-this' || awsSecretKey == 'change-this')
-                exit("\nERROR: AWS access information required\n\nPlease edit the following lines in this file:\n\n".
-                "define('awsAccessKey', 'AKIAYP4O5XKOQKSCJKOI');\ndefine('awsSecretKey', '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');\n\n");
-            
-            S3::setAuth(awsAccessKey, awsSecretKey);
-            
-            //Dans quel Bucket Uploader ces fichiers
-            $bucket = 'direct-lens-public';
-            $path = 'Shapes/'; // Dans quel dossier
-            
-            $lifetime = 3600; // Period for which the parameters are valid
-            $maxFileSize = (1024 * 1024 * 50); // 50 MB
-            
-            $metaHeaders = array('uid' => 123);
-            $requestHeaders = array(
-                'Content-Type'        => 'application/octet-stream',
-                'Content-Disposition' => 'attachment; filename=${filename}'
-            );
-            
-			
-			
-            $sucess_action_redirect= 'http://c.direct-lens.com/labAdmin/close_page2.php?ordernum='.$listItem[order_num]. '&filename='. $requestHeaders[Content-Disposition];//Page qui se ferme automatiquement
-            
-            $params = S3::getHttpUploadPostParams(
-                $bucket,
-                $path,
-                S3::ACL_PUBLIC_READ,
-                $lifetime,
-                $maxFileSize,
-                $sucess_action_redirect, // Or a URL to redirect to on success
-                $metaHeaders,
-                $requestHeaders,
-                false // False since we're not using flash
-            );
-            
-            foreach ($params as $p => $v)
-                echo "        <input type=\"hidden\" name=\"{$p}\" value=\"{$v}\" />\n";
-            ?>
           
                    
                 <tr align="center">
@@ -2533,30 +2479,25 @@ LEFT JOIN $TabletoUse on (liste_collection_info.collection_name = $TabletoUse.co
                         	echo "Shape currently attached:";
                         }
                        ?>
-                       
-                      <b><?php if ($listItem['shape_name_bk'] <> '')  echo $listItem['shape_name_bk']; else echo 'None'; ?></b></td>
-                  </tr>
-                  
-                <?php 
-				if ($listItem['shape_name_bk'] == ''){
-				?>
-                <tr>
-                   <td align="left">&nbsp;
-                   <input type="file"   name="file"       id="file"     onclick="btnupload.disabled=false;btnupload.value='Upload'"  size="40">&nbsp;
-                   </td>
-                   
-                   <td align="left" colspan="7">&nbsp;
-                   <input type="submit" name="btnupload" disabled id="btnupload" value="Upload"   onclick="this.disabled=true;this.value='Uploaded';this.form.submit();"/>
-                   <input type="hidden" name="order_num"  id="order_num" value="<?php echo $listItem[order_num] ?>"  >
-                   </td>
-               </tr>
-                <?php 
-				}
-				?>
 
- 
-                    
-              </form>  
+          
+			  <tr align="center">
+				
+					<td align="left">&nbsp;
+			  <form method="post" enctype="multipart/form-data" action="traitement.php">
+			   </td>
+			    <td align="left" colspan="7">&nbsp;
+				<input type="file" name="file" id="file">
+				<input type="submit" name="btnupload" value="Upload">
+				<input type="hidden" name="order_num" value="<?php echo $listItem['order_num']; ?>">
+				    </td>
+               </tr>
+				
+			</form>
+
+			  
+			  
+			  
              </table>
             
    <tr>

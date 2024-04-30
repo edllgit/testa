@@ -60,7 +60,7 @@ if ($_REQUEST[delete_id] <> ''){
 		case 'moncton':  		case 'monctonsafe':				$User_ID_IN = " ('moncton','monctonsafe') ";			break;	
 		case 'fredericton':  	case 'frederictonsafe':			$User_ID_IN = " ('fredericton','frederictonsafe') ";	break;	
 		case '88666':  											$User_ID_IN = " ('88666') ";							break;
-		case 'stjohn':  		case 'stjohnsafe':				$User_ID_IN = " ('stjohn',stjohnsafe) ";				break;
+		case 'stjohn':  		case 'stjohnsafe':				$User_ID_IN = " ('stjohn','stjohnsafe') ";				break;
 		//case 'halifax':  	case 'warehousehalsafe':		$User_ID_IN = " ('warehousehal','warehousehalsafe') ";	break;
 	
 	}	
