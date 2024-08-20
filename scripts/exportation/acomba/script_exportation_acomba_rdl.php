@@ -16,8 +16,8 @@ $datefin   = date("Y-m-d");//"2018-06-18";
 $FichierestVide = 'oui';//pour identifier si le fichier est vide ou non, et donc si on doit le copier sur le ftp
 
 //DATE HARD CODÉ
-//$datedebut ="2024-02-13";
-//$datefin   ="2024-02-13";
+//$datedebut ="2024-04-29";
+//$datefin   ="2024-05-08";
 
 echo '<br><br>FichierestVide:' . $FichierestVide . '<br>';
 $LigneCommentaire = 'Du ' . $datedebut . ' au ' . $datefin;

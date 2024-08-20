@@ -67,7 +67,7 @@ FROM orders, redo_reasons, ifc_ca_exclusive
 WHERE orders.order_product_id = ifc_ca_exclusive.primary_key 
 AND orders.redo_reason_id = redo_reasons.redo_reason_id
 AND redo_order_num IS NOT NULL AND prescript_lab = 25
-AND order_date_processed BETWEEN '2023-06-01' AND '2024-02-02'
+AND order_date_processed BETWEEN '$datedebut' AND '$datefin'
 AND redo_reasons.redo_reason_id <> '' AND redo_reasons.redo_reason_id <> 0
 
 ORDER BY order_num";
@@ -210,8 +210,8 @@ $message.="<tr><td colspan=\"8\">Number of Orders: $Compteur</td>
 
 
 if ($ordersnum!=0 && !$isExporting){
-    //$to_address = array('rapports@direct-lens.com');
-	$to_address = array('fdjibrilla@entrepotdelalunette.com');
+    $to_address = array('rapports@direct-lens.com','fdjibrilla@entrepotdelalunette.com');
+	//$to_address = array('fdjibrilla@entrepotdelalunette.com');
     $from_address = 'donotreply@entrepotdelalunette.com';
     
     
@@ -223,8 +223,8 @@ if ($ordersnum!=0 && !$isExporting){
     }
         
     if($SendAdmin == 'yes'){
-        //$to_address = array('rapports@direct-lens.com');
-		$to_address = array('fdjibrilla@entrepotdelalunette.com');
+        $to_address = array('rapports@direct-lens.com','fdjibrilla@entrepotdelalunette.com');
+		//$to_address = array('fdjibrilla@entrepotdelalunette.com');
         $response   = office365_mail($to_address, $from_address, $subject, null, $message);	
     }
     

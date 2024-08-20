@@ -26,7 +26,7 @@ if (!$_POST[createProduct] == "Create Product"){
                   <option value="Other" selected="selected">Select a Collection</option>
   <?php
   $query="select collection_name from liste_collection_info 
-  WHERE collection_name IN ('Entrepot CSC','Entrepot HKO','Entrepot Promo','Entrepot Sky','Entrepot STC','Entrepot FT','Entrepot Swiss','NURBS sunglasses','Entrepot KNR') ORDER BY collection_name asc"; /* select all openings */
+  WHERE collection_name IN ('Entrepot CSC','Entrepot HKO','Entrepot Promo','Entrepot Sky','Entrepot STC','Entrepot FT','Entrepot Swiss','NURBS sunglasses','Entrepot KNR','Entrepot OVG','Entrepot PROCREA') ORDER BY collection_name asc"; /* select all openings */
   echo '<br>'. $query;
 $result=mysqli_query($con,$query) or die ("Could not select items". $query);
 $usercount=mysqli_num_rows($result);
@@ -172,16 +172,19 @@ $usercount=mysqli_num_rows($result);
     <option value="CSC"    <?php if ($productData[real_manufacturer]=='CSC') 	 echo ' selected=selected';  ?>>CSC</option>
     <option value="GKB"    <?php if ($productData[real_manufacturer]=='GKB') 	 echo ' selected=selected';  ?>>GKB</option>
     <option value="HKO"    <?php if ($productData[real_manufacturer]=='HKO') 	 echo ' selected=selected';  ?>>HKO</option>
+	<option value="Right Optical"  <?php if ($productData[real_manufacturer]=='Right Optical')   echo ' selected=selected';  ?>>Ovg_lab</option>
+	<option value="PROCREA"  <?php if ($productData[real_manufacturer]=='PROCREA')   echo ' selected=selected';  ?>>PROCREA</option>
     <option value="STC"    <?php if ($productData[real_manufacturer]=='STC') 	 echo ' selected=selected';  ?>>STC</option>
     <option value="Swiss"  <?php if ($productData[real_manufacturer]=='Swiss')   echo ' selected=selected';  ?>>Swiss</option>
-	<option value="Swiss"  <?php if ($productData[real_manufacturer]=='Right Optical')   echo ' selected=selected';  ?>>Ovg_lab</option>
+	
 </select>
          
         </td>
         <td align="right" valign="middle" nowrap="nowrap" bgcolor="#FFFFFF"><font size="1" face="Helvetica, sans-serif, Arial">Photochromatic:</font></td>
         <td align="left" nowrap="nowrap" bgcolor="#FFFFFF"><select name="photo" class="formField" id="photo">
   <?php
-  $query="SELECT photo FROM exclusive group by photo asc"; /* select all openings */
+  
+  $query="SELECT photo FROM ifc_ca_exclusive group by photo "; /* group by photo ascselect all openings */
 $result=mysqli_query($con,$query) or die ("Could not select items");
 $usercount=mysqli_num_rows($result);
  while ($listItem=mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -209,7 +212,7 @@ $usercount=mysqli_num_rows($result);
         <td align="right" valign="middle" nowrap="nowrap" bgcolor="#DDDDDD"><font size="1" face="Helvetica, sans-serif, Arial">Polarization:</font></td>
         <td align="left" nowrap="nowrap" bgcolor="#DDDDDD"><select name="polar" class="formText" id="polar">
   <?php
-  $query="SELECT polar FROM exclusive group by polar asc"; /* select all openings */
+  $query="SELECT polar FROM ifc_ca_exclusive group by polar asc"; /* select all openings */
 $result=mysqli_query($con,$query) or die ("Could not select items");
 $usercount=mysqli_num_rows($result);
  while ($listItem=mysqli_fetch_array($result,MYSQLI_ASSOC)){

@@ -2229,11 +2229,15 @@ LEFT JOIN $TabletoUse on (liste_collection_info.collection_name = $TabletoUse.co
 					
                 <td align="left" colspan="10" bgcolor="#DDDDDD">
 					
+					
               
 					<?php 
 					$query      = "SELECT tint,tint_color,from_perc,to_perc FROM extra_product_orders WHERE category='Tint' AND order_num='$listItem[order_num]'";
 					$tintResult = mysqli_query($con,$query) or die  ('I cannot select items because: ' . mysqli_error($con));
 					$tintItem   = mysqli_fetch_array($con,$tintResult);
+					$tintItem   = mysqli_fetch_array($tintResult,MYSQLI_ASSOC);
+					$message.= '<b>Type</b>:'.$tintItem[tint] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>From %</b>:" . $tintItem[from_perc]. "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>To %</b>:" .$tintItem[to_perc]."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<b>Tint Color:</b>:$tintItem[tint_color]";
 					?>
 					<select name="tint" id="tint" >
 						<option value="None" >None</option>
@@ -2255,6 +2259,7 @@ LEFT JOIN $TabletoUse on (liste_collection_info.collection_name = $TabletoUse.co
 							<option value="SW004"  			<?php if ($tintItem[tint_color]=="SW004")  			echo "selected=\"selected\"";?>>SW004</option>
 							<option value="SW007"     		<?php if ($tintItem[tint_color]=="SW007")  			echo "selected=\"selected\"";?>>SW007</option>
 							<option value="SW010"    		<?php if ($tintItem[tint_color]=="SW010")  			echo "selected=\"selected\"";?>>SW010</option>
+							<option value="SW012"    		<?php if ($tintItem[tint_color]=="SW012")  			echo "selected=\"selected\"";?>>SW012</option>
 							<option value="SW015"  			<?php if ($tintItem[tint_color]=="SW015")  			echo "selected=\"selected\"";?>>SW015</option>
 							<option value="SW016"     		<?php if ($tintItem[tint_color]=="SW016")  			echo "selected=\"selected\"";?>>SW016</option>  
 							<option value="SW023"   		<?php if ($tintItem[tint_color]=="SW023")  			echo "selected=\"selected\"";?>>SW023</option> 
@@ -2295,6 +2300,9 @@ LEFT JOIN $TabletoUse on (liste_collection_info.collection_name = $TabletoUse.co
 							<option value="Serengetti"  	<?php if ($tintItem[tint_color]=="Serengetti")		echo "selected=\"selected\"";?>>Serengetti</option>
 						
 						<option disabled="disabled">KNR TINTS</option>  
+						<option value="FL41 #1"   						<?php if ($tintItem[tint_color]=="FL41 #1")  						echo "selected=\"selected\"";?>>FL41 #1</option> 
+						<option value="FL41 #2"   						<?php if ($tintItem[tint_color]=="FL41 #2")  						echo "selected=\"selected\"";?>>FL41 #2</option> 
+						<option value="FL41 #3"   						<?php if ($tintItem[tint_color]=="FL41 #3")  						echo "selected=\"selected\"";?>>FL41 #3</option> 
 						<option value="Solid No Red Brown #1"   		<?php if ($tintItem[tint_color]=="Solid No Red Brown #1")  			echo "selected=\"selected\"";?>>Solid No Red Brown #1</option> 
 						<option value="Solid No Red Brown #2"   		<?php if ($tintItem[tint_color]=="Solid No Red Brown #2")  			echo "selected=\"selected\"";?>>Solid No Red Brown #2</option> 
 						<option value="Solid No Red Brown #3"   		<?php if ($tintItem[tint_color]=="Solid No Red Brown #3")  			echo "selected=\"selected\"";?>>Solid No Red Brown #3</option> 

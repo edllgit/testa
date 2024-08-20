@@ -145,7 +145,7 @@ echo '<br><br>' . $message;
 
 //
 $send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com',
-'approvisionnement@entrepotdelalunette.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','micoliieyewear@gmail.com','info@kooloptic.com');
+'approvisionnement@entrepotdelalunette.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','micoliieyewear@gmail.com','info@kooloptic.com','fdjibrilla@entrepotdelalunette.com');
 
 
 

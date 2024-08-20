@@ -138,7 +138,7 @@ echo '<br><br>' . $message;
 //laurie@eighttoeightyeyewear.com,barry@eighttoeightyeyewear.com,orders@eighttoeightyeyewear.com
 
 $send_to_address = array('rapports@direct-lens.com','thahn@direct-lens.com','approvisionnement@entrepotdelalunette.com',
-,'laurie@eighttoeightyeyewear.com','barry@eighttoeightyeyewear.com','orders@eighttoeightyeyewear.com');
+'laurie@eighttoeightyeyewear.com','barry@eighttoeightyeyewear.com','orders@eighttoeightyeyewear.com','fdjibrilla@entrepotdelalunette.com');
 
 
 

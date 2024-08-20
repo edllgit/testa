@@ -15,11 +15,8 @@ if ($connexion->connect_error) {
 }
 
 // Requête SQL
-$sql = "
-
-SELECT * FROM `ifc_ca_exclusive` where product_name like '%transition%' and product_name not like '%drivewear%' and photo not like '%active%' and 
-photo not like '%green%' and product_name not like '%Xtractive%' and product_name not like '%2ieme paire%' and prod_status = 'active' 
-and product_name not like '%stock%' and product_name not like '%SV%' and product_name not like '%single vision%'AND primary_key not in (105626,47209,47210,47211,47212,47213,47216,47219,47221) ";
+$sql = "select user_id, order_num,order_num_optipro,prescript_lab,order_date_processed,order_product_price,order_total 
+from orders where prescript_lab = 25 and user_id = 'VAUDREUILSAFE' ORDER BY `orders`.`order_date_processed` ASC  ";
 
 // Exécution de la requête
 $resultat = $connexion->query($sql);
@@ -28,7 +25,7 @@ $resultat = $connexion->query($sql);
 if ($resultat) {
     // Nom du fichier CSV avec timestamp pour le rendre unique
     $timestamp = time();
-    $nom_fichier_csv = "/Bitnami/wampstack-7.1.14-0/apache2/htdocs/mobile/csv_FF/NEW_AUG_avec_prix_$timestamp.csv";
+    $nom_fichier_csv = "/Bitnami/wampstack-7.1.14-0/apache2/htdocs/mobile/csv_FF/TOUTES VENTES VAUDREUILSAFE A HKO $timestamp.csv";
 
     // Création et ouverture du fichier CSV en écriture
     $fichier_csv = fopen($nom_fichier_csv, 'w');

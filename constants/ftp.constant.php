@@ -8,6 +8,13 @@
  define('FTP_USER_OVG_LAB','U56yKp1a');
  define('FTP_PASSWORD_OVG_LAB','w9H6n3xy');
  
+// PROCREA
+
+ define('PROCREA_FTP', 'ftp.daioptical.com');
+ define('FTP_USER_PROCREA','edll');
+ define('FTP_PASSWORD_PROCREA','10o8BS98dFcn');
+ 
+ 
  /*
  define('FTP_WINDOWS_VM', '192.168.2.60');
  define('FTP_USER_OPTIPRO_EDLL','Administrateur');
@@ -20,6 +27,9 @@ define("GKB_FTP", getenv('GKB_FTP'));
 define("SWISSCOAT_FTP", getenv('SWISSCOAT_FTP'));
 define("HKO_FTP", getenv('HKO_FTP'));
 define("OVG_LAB_FTP", getenv('OVG_LAB_FTP'));
+define("PROCREA_FTP", getenv('PROCREA_FTP'));
+
+
 
 // TODO - Define whos IP this is
 define("UNKNOWN_FTP_SERVER_210", getenv('UNKNOWN_FTP_SERVER_210'));
@@ -34,6 +44,11 @@ define('FTP_PASSWORD_HKO_ALT', getenv('FTP_PASSWORD_HKO_ALT')); // When connecti
 // OVG_LAB
 define('FTP_USER_OVG_LAB', getenv('FTP_USER_OVG_LAB'));
 define('FTP_PASSWORD_OVG_LAB', getenv('FTP_PASSWORD_OVG_LAB'));
+
+
+//PROCREA
+define('FTP_USER_PROCREA', getenv('FTP_USER_PROCREA'));
+define('FTP_PASSWORD_PROCREA', getenv('FTP_PASSWORD_PROCREA'));
 
 // RCO
 define('FTP_USER_RCO', getenv('FTP_USER_RCO'));
@@ -78,3 +93,41 @@ define('FTP_PASSWORD_SYNC_SHAPES', getenv('FTP_PASSWORD_SYNC_SHAPES'));
 // VOT
 define('FTP_USER_VOT', getenv('FTP_USER_VOT'));
 define('FTP_PASSWORD_VOT', getenv('FTP_PASSWORD_VOT'));
+
+/*
+
+// Vérifiez si la constante est définie et affichez sa valeur
+if (defined('GODADDY_FTP')) {
+    // Utilisation de echo pour afficher la valeur
+    echo "La valeur de GODADDY_FTP est : " . GODADDY_FTP;
+
+    // Ou utilisation de var_dump pour afficher la valeur et le type
+    var_dump(GODADDY_FTP);
+} else {
+    echo "La constante GODADDY_FTP n'est pas définie.";
+}
+
+// Vérifiez si la constante est définie et affichez sa valeur
+if (defined('FTP_USER_AGIASSON')) {
+    // Utilisation de echo pour afficher la valeur
+    echo "La valeur de FTP_USER_AGIASSON est : " . FTP_USER_AGIASSON;
+
+    // Ou utilisation de var_dump pour afficher la valeur et le type
+    var_dump(FTP_USER_AGIASSON);
+} else {
+    echo "La constante GODADDY_FTP n'est pas définie.";
+}
+
+
+// Vérifiez si la constante est définie et affichez sa valeur
+if (defined('FTP_PASSWORD_AGIASSON')) {
+    // Utilisation de echo pour afficher la valeur
+    echo "La valeur de FTP_PASSWORD_AGIASSON est : " . FTP_PASSWORD_AGIASSON;
+
+    // Ou utilisation de var_dump pour afficher la valeur et le type
+    var_dump(FTP_PASSWORD_AGIASSON);
+} else {
+    echo "La constante FTP_PASSWORD_AGIASSON n'est pas définie.";
+
+
+}*/

@@ -25,7 +25,7 @@ $time_start = microtime(true);
 	//LIVE
 	
 
-	$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');
+	$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');
 
 
 	//TEST

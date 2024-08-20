@@ -164,6 +164,8 @@ $message .= '</head>';
 		case 3:  $LabFabrique = "Dlab";    			break;
 		case 21: $LabFabrique = "N/A";    			break;
 		case 73: $LabFabrique = "Can Lab"; 			break;
+		case 76: $LabFabrique = "OVG_LAB"; 			break;
+		case 77: $LabFabrique = "PROCREA"; 			break;
 		default: $LabFabrique = '' ; 
 	}
 

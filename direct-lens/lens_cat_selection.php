@@ -117,101 +117,130 @@ body {
        
 <?php if (($mylang == 'lang_french') && ($Product_Line <> 'eye-recommend')){ ?>
              
-  <div style="font-size:14px; margin-left:60px; padding:3px;"><b>CATÉGORIE DE VERRES</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>TYPES DE VERRE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>FABRICANT</b></div> 
+  <div style="font-size:14px; margin-left:60px; padding:3px;"><b>CATÉGORIE DE VERRES</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>TYPES DE VERRE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- b>FABRICANT</b --!></div> 
   
-<div style="font-size:14px; margin-left:60px; margin-top:15px; padding:3px"> <input name="lens_category" type="radio" id="radio" value="all" checked="checked" />Tous&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="CMF 2 HD" />CMF 2 HD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="ESSILOR" />ESSILOR</div>
+<div style="font-size:14px; margin-left:60px; margin-top:15px; padding:3px"> <input name="lens_category" type="radio" id="radio" value="all" checked="checked" />Tous&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Precision+ S" />Precision+ S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="ESSILOR" ESSILOR/--!></div>
     
 
-<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="bifocal" />HD Bifocal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Easyone" />Easy one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SOLA" />SOLA</div>
+<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="bifocal" />Bifocal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Precision+360" />Precision+360&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- input type="radio" name="lens_category" id="radio" value="SOLA" SOLA/ --!></div>
  
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="glass" />Verre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice" />Econo Choice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SHAMIR" />SHAMIR</div>
+<!-- div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="glass" />Verre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- input type="radio" name="lens_category" id="radio" value="Econo Choice" />Econo Choice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SHAMIR" SHAMIR/ ></div --!>
      
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="all prog" />Tous Progressifs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice Ultra Short SV" />Econo Choice Ultra Short&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="MY WORLD" />MY WORLD</div>
+<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="all prog" />Tous Progressifs&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Maxiwide" />Maxiwide&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="MY WORLD" MY WORLD/ --!></div>
   
     
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="prog cl" />Progressif Classique&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice Ultra One" />Econo Choice Ultra One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="RODENSTOCK" />RODENSTOCK</div>
+<!-- div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="prog cl" />Progressif Classique&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice Ultra One" />Econo Choice Ultra One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="RODENSTOCK" />RODENSTOCK</div --!>
 
-<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ds" />Progressif DS
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="ELPS HD" />ELPS HD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="PRECISION" />PRECISION</div>
+<!-- div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ds" />Progressif DS
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="ELPS HD" />ELPS HD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="PRECISION" />PRECISION</div --!>
  
 
-<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ff" />Progressif FF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction" />iAction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="OPTOTECH" />OPTOTECH</div>
- 
+<!--div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ff" />Progressif FF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction" />iAction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="OPTOTECH" />OPTOTECH</div --!>
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Active" />Precision Active</div--!>  
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Single Vision" />Infocus Single Vision</div --!>
+<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Simple Vision" />Simple Vision&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction SV" />iAction SV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="SEIKO" SEIKO/ --!></div>
 
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="sv" />SV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction SV" />iAction SV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SEIKO" />SEIKO</div>
-
-
-
-
-
-<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Identity by Optotech" />Identity by Optotech&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="OPTIMIZE" />OPTIMIZE</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iFree" />iFree</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iAction" />iAction</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Alpha" />Alpha</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Alpha HD" />Alpha HD</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iOffice" />iOffice</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iReader" />iReader</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iRelax" />iRelax</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Flat Top" />Infocus Flat Top</div>
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iRoom" />iRoom</div> 
+
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Lifestyle" />Office Premium</div> 
+
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Simple Vision" />Simple Vision</div>  
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Simple Vision Stock" />Simple Vision Stock</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="FT28" />FT28</div>
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Seiko" />Seiko</div>
+
+
+
+
+
+<!-- div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iFree" />iFree</div--!> 
+
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Flat Top" />Infocus Flat Top</div>
 <div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Infocus RX Direct Progressive" />Infocus RX Direct Progressive</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Single Vision" />Infocus Single Vision</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Innovative II DS" />Innovative II DS</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Life II" />Life II</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Life XS" />Life XS</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Mini Pro HD" />Mini Pro HD</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Acuform" />Universal (Formerly Optimize Acuform)</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="IPL" />Alpha (Formerly Optimize IPL)</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="FIT" />Optimize Fit</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Horizon" />Optimize Horizon+</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="DMT" />Innovative (Formerly DMT)</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Acuform" />Universal (Formerly Optimize Acuform)</div--!> 
 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Lifestyle" />Office Premium</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Anti-Fatigue" />Eye Fatigue</div> 
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="FIT" />Optimize Fit</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Horizon" />Optimize Horizon+</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="DMT" />Innovative (Formerly DMT)</div --!> 
+
+
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Anti-Fatigue" />Eye Fatigue</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Ovation" />Ovation</div>  
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="PSI HD" />PSI HD</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Active" />Precision Active</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Daily" />Precision Daily</div>
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision SV HD" />Precision SV HD</div>
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Pro EZ HD"/>Pro EZ HD</div>
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Daily" />Precision Daily</div --!>
+
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Pro EZ HD"/>Pro EZ HD</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Purelife HD" />Purelife HD</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="SelectionRx" />SelectionRx</div>   
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="ST-25" />ST-25</div>  
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="ST-28" />ST-28</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="SV" />SV</div>   
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Truehd" />TrueHD</div>
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="ST-28" />ST-28</div--!> 
+  
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Truehd" />TrueHD</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Vision Classique HD" />Vision Classique HD</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Vision Pro HD" />Vision Pro HD</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Vision Pro HD" />Vision Pro HD</div --!> 
 
 <?php 
       }elseif (($mylang <> 'lang_french')&& ($Product_Line <> 'eye-recommend')) {
 ?>
-<div style="font-size:14px; margin-left:60px; padding:3px;"><b>LENS CATEGORY</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>LENS TYPE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>MANUFACTURER</b></div> 
+<div style="font-size:14px; margin-left:60px; padding:3px;"><b>LENS CATEGORY</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>LENS TYPE</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- b>MANUFACTURER</b --!></div> 
   
-<div style="font-size:14px; margin-left:60px; margin-top:15px; padding:3px"> <input name="lens_category" type="radio" id="radio" value="all" checked="checked" />All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="CMF 2 HD" />CMF 2 HD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="ESSILOR" />ESSILOR</div>
+<div style="font-size:14px; margin-left:60px; margin-top:15px; padding:3px"> <input name="lens_category" type="radio" id="radio" value="all" checked="checked" />All&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Precision+ S" />Precision+ S&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="ESSILOR" ESSILOR/ --!></div>
     
-<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="bifocal" />HD Bifocal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="EasyOne" />Easy One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SOLA" />SOLA</div>
+<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="bifocal" />Bifocal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Precison+360" />Precision+360&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="SOLA" SOLA/ --!></div>
  
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="glass" />Glass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice" />Econo Choice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SHAMIR" />SHAMIR</div>
+<!--div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="glass" />Glass&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice" />Econo Choice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SHAMIR" SHAMIR/ ></div --!>
      
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="all prog" />All Progressives&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice Ultra Short" />Econo Choice Ultra Short&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="MY WORLD" />MY WORLD</div>
+<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="all prog"/>All Progressives&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="maxiwide" />Maxiwide&nbsp;&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="MY WORLD" MY WORLD/ --!></div>
   
     
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="prog cl" />Classic Progressives &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice Ultra One" />Econo Choice Ultra One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="RODENSTOCK" />RODENSTOCK</div>
+<!-- div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="prog cl" />Classic Progressives &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="Econo Choice Ultra One" />Econo Choice Ultra One&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="RODENSTOCK" />RODENSTOCK</div --!>
 
-<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ds" />Progressive DS
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="ELPS HD" />ELPS HD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="PRECISION" />PRECISION</div>
+<!--div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ds" />Progressive DS
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="ELPS HD" />ELPS HD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="PRECISION" />PRECISION</div --!>
  
+<!--div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ff" / >Progressif FF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction" />iAction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!--input type="radio" name="lens_category" id="radio" value="OPTOTECH" />OPTOTECH</div --!>
 
-<div style="font-size:14px; margin-left:60px; padding:3px"><input type="radio" name="lens_category" id="radio" value="prog ff" />Progressive FF&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction" />iAction&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="OPTOTECH" />OPTOTECH</div>
- 
+ <!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Single Vision" />Infocus Single Vision</div --!>
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Active" />Precision Active</div --!> 
 
-<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="sv" />SV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction SV" />iAction SV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="SEIKO" />SEIKO</div>
+<div style="font-size:14px; margin-left:60px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Single Vision" />Single Vision&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="iAction SV" />iAction SV&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<!-- input type="radio" name="lens_category" id="radio" value="SEIKO" SEIKO/ --!></div>
 
 
-<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Identity by Optotech" />Identity by Optotech&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="OPTIMIZE" />OPTIMIZE</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iFree" />iFree</div> 
+<!-- div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Identity by Optotech" />Identity by Optotech&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lens_category" id="radio" value="OPTIMIZE" />OPTIMIZE</div --!> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iAction" />iAction</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Alpha" />Alpha</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Alpha HD" />Alpha HD</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iOffice" />iOffice</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iReader" />iReader</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iRelax" />iRelax</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Flat Top" />Infocus Flat Top</div>
-<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Infocus RX Direct Progressive" />Infocus RX Direct Progressive</div>
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Single Vision" />Infocus Single Vision</div>
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Innovative II DS" />Innovative II DS</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="iRoom" />iRoom</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Lifestyle" />Office Premium</div> 
+
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Single Vision" />Single Vision</div>  
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Single Vision Stock" />Single Vision Stock</div>  
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="FT28" />FT28</div>
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Seiko" />Seiko</div>
+
+
+
+
+
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Infocus Flat Top" />Infocus Flat Top</div>
+<div style="font-size:14px; margin-left:265px; padding:3px;"> <input type="radio" name="lens_category" id="radio" value="Infocus RX Direct Progressive" />Infocus RX Direct Progressive</div--!>
+
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Innovative II DS" />Innovative II DS</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Life II" />Life II</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Life XS" />Life XS</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Mini Pro HD" />Mini Pro HD</div> 
@@ -219,23 +248,23 @@ body {
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="IPL" />Alpha (Formerly Optimize IPL)</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="FIT" />Optimize Fit</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Horizon" />Optimize Horizon+</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="DMT" />Innovative (Formerly DMT)</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Lifestyle" />Office Premium</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Anti-Fatigue" />Eye Fatigue</div> 
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="DMT" />Innovative (Formerly DMT)</div--!> 
+
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Anti-Fatigue" />Eye Fatigue</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Ovation" />Ovation</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="PSI HD" />PSI HD</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Active" />Precision Active</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Daily" />Precision Daily</div>
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="PSI HD" />PSI HD</div --!> 
+
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision Daily" />Precision Daily</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Precision SV HD" />Precision SV HD</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Pro EZ HD"/>Pro EZ HD</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Purelife HD" />Purelife HD</div> 
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="SelectionRx" />SelectionRx</div>   
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="ST-25" />ST-25</div>  
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="ST-28" />ST-28</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="SV" />SV</div>   
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Truehd" />TrueHD</div>
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="ST-28" />ST-28</div--!> 
+ 
+<!--div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Truehd" />TrueHD</div>
 <div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Vision Classique HD" />Vision Classique HD</div> 
-<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Vision Pro HD" />Vision Pro HD</div>   
+<div style="font-size:14px; margin-left:265px; padding:3px"> <input type="radio" name="lens_category" id="radio" value="Vision Pro HD" />Vision Pro HD</div --!>   
 
 				<?php
                 }elseif ($Product_Line == 'eye-recommend') {
@@ -253,20 +282,20 @@ body {
 <tr align="center">
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input name="lens_category" type="radio" id="radio" value="all" checked="checked" />All</div></td>
     <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input name="lens_category" type="radio" id="radio" value="iAction" />iAction</div></td>
-    <td width="150" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input name="lens_category" type="radio" id="radio" value="IOT" />IOT</div></td>
+    <!--td width="150" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input name="lens_category" type="radio" id="radio" value="IOT" />IOT</div></td --!>
 </tr>
 
 
 <tr align="center">
-    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="bifocal" />HD Bifocal</div></td>
+    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="bifocal" />Bifocal</div></td>
     <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="iAction SV" />iAction SV</div></td>
-   <td width="150 "style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="OPTOTECH" />OPTOTECH</div></td>
+   <!--td width="150 "style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="OPTOTECH" />OPTOTECH</div></td--!>
 </tr>
 
 <tr align="center">
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="all prog" />All Progressives</div></td>
-    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="iFree" />iFree</div></td>
-    <td width="150" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="SHAMIR" />SHAMIR</div></td>
+    <!--td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="iFree" />iFree</div></td--!>
+    <!--td width="150" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="SHAMIR" />SHAMIR</div></td --!>
 </tr>
 
 <tr align="center">
@@ -288,18 +317,18 @@ body {
 </tr>
 
 <tr align="center">
-    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="sv" />SV</div></td>
-    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="Acuform" />Universal (Formerly Optimize Acuform)</div></td>
+    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="Single Vision" />Single Vision</div></td>
+    <!--td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="Acuform" />Universal (Formerly Optimize Acuform)</div></td --!>
     <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
 </tr>
 
 <tr align="center">
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="stock" />Stock</div></td>
-    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="IPL" />Alpha (Formerly Optimize IPL)</div></td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="IPL" />Alpha (Formerly Optimize IPL)</div></td >
     <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
 </tr>
 
-<tr align="center">
+<!--tr align="center">
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
     <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="DMT" />Innovative (Formerly DMT)</div></td>
     <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
@@ -333,25 +362,56 @@ body {
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
     <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="revolution sv" />Revolution SV</div></td>
     <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
-</tr>
+</tr --!>
 
 <tr align="center">
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
-    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="SV" />SV</div></td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="Single Vision" />Single Vision</div></td>
     <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
 </tr>
 
-<tr align="center">
+<!-- tr align="center">
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
     <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="camber" />Ultimate Freestyle (Camber)</div></td>
     <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
-</tr>
+</tr --!>
 	
 	<tr align="center">
     <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
-    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="maxiwide" /> New! MaxiWide</div></td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="FT28" /> FT28</div></td>
     <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
 </tr>
+
+	<tr align="center">
+    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="Precision+ S" /> Precision+ S</div></td>
+    <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+</tr>
+
+	<tr align="center">
+    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="Precision+360" /> Precision+360</div></td>
+    <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+</tr>
+
+	<tr align="center">
+    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="maxiwide" /> MaxiWide</div></td>
+    <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+</tr>
+
+	<tr align="center">
+    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="iRoom" /> iRoom</div></td>
+    <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+</tr>
+
+	<tr align="center">
+    <td width="170" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+    <td width="200" style="font-size:14px; margin-left:60px; padding:3px;"><div style="margin-left:60px;" align="left"><input type="radio" name="lens_category" id="radio" value="Seiko" /> Seiko</div></td>
+    <td width="150" style="font-size:14px; margin-left:60px; padding:3px;">&nbsp;</td>
+</tr>
+
    </table>   
 <?php }//End IF Eye Recommend  ?>
 

@@ -15,8 +15,8 @@ $datefin    = date("Y-m-d");//"2013-02-24";
 $FichierestVide = 'oui';//pour identifier si le fichier est vide ou non, et donc si on doit le copier sur le ftp
 
 //DATE HARD CODÉ
-//$datedebut ="2016-01-11";
-//$datefin   ="2016-01-11";
+//$datedebut ="2024-06-28";
+//$datefin   ="2024-06-28";
 
 
 echo '<br><br>FichierestVide:' . $FichierestVide . '<br>';
@@ -326,6 +326,8 @@ $dateheure   = date("Y-m-d H:i:s",$timeAfter3Hours);
 		{
 		$The_order_num .= ' ';
 		}		
+		
+
 		//Calcul de l'escompte accordé au client
 		$escompte = $orderItem["order_product_price"] - $orderItem["order_product_discount"];
 		$order_total_sans_escompte = $orderItem["order_total"] + $orderItem["order_shipping_cost"]  + $escompte;
@@ -1341,6 +1343,11 @@ $dateheure   = date("Y-m-d H:i:s",$timeAfter3Hours);
 		
 		if ($TermePaiement < 10)
 		$TermePaiement = ' ' . $TermePaiement;
+	
+		if(($orderItem['order_product_price'] == 0) || ($orderItem['order_total'] == 0)) {
+			$order_total = $orderItem['order_product_discount'];
+			echo "ORDER TOTAL : ".$order_total;
+		}
 		
 		$outputstring.= 'F'	.  $date_processed	 .  $account_num 		 .	$The_order_num	.  $order_total . $TermePaiement  . '  ' . $TermePaiement. '|' .$nom_patient  .  "\r\n" 	;//Ligne 1
 		$outputstring.= 'T ' . $CompteClient  	 . $order_total 			  .  "\r\n" 	;// (compte client)

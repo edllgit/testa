@@ -934,10 +934,10 @@ while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {//COLLECT DATA INTO ARR
 				case 'CAMBER ':				    			$DESIGN = "quotidien";	break;
 				case 'DUO INDIVIDUALIZED': 					$DESIGN = "quotidien";	break;
 				//PRECISION+ DEFAULT DESIGN = 'TOUT USAGE'
-				case 'PROMO PRECISION+ POL BRUN HC':		$DESIGN = "exterieur";	break;
-				case 'PROMO PRECISION+ POL BROWN HC':		$DESIGN = "exterieur";	break;
-				case 'PROMO PRECISION+ POL BROWN AR BACK': 	$DESIGN = "exterieur";	break;
-				//case 'PROMO PRECISION+ POL BRUN AR BACK':	$DESIGN = "exterieur";	break;
+				//case 'PROMO PRECISION+ POL BRUN HC':		$DESIGN = "exterieur";	break;
+				//case 'PROMO PRECISION+ POL BROWN HC':		$DESIGN = "exterieur";	break;
+				//case 'PROMO PRECISION+ POL BROWN AR BACK': 	$DESIGN = "exterieur";	break;
+				case 'PROMO PRECISION+ POL BRUN AR BACK':	$DESIGN = "exterieur";	break;
 				case 'PRECISION+ SUPER AR':					$DESIGN = "tout usage";	break;
 				case '2ND PRECISION+ POLAR BROWN HC':		$DESIGN = "tout usage";	break;
 				case 'PROMO PRECISION+ SUPER AR':			$DESIGN = "tout usage";	break;
@@ -1470,6 +1470,23 @@ break;
 //========================================================
 case 'INTERNET ANTI-FATIGUE 0.60 AR+ETC':
 case 'INTERNET ANTI-FATIGUE 0.60 ETC':
+
+
+	$ProdName  = "  product_name like '%Internet Anti-Fatigue%'"; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING = "Dream AR"; 
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	$SPECIAL_INSTRUCTIONS = mysqli_real_escape_string($con,$SPECIAL_INSTRUCTIONS)  . ' Regression: 0.60 ';
+	if ($EYE == 'Both'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+	}elseif($EYE == 'R.E.'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+	}elseif($EYE == 'L.E.'){
+		$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+	}
+break;
+
+
 case 'INTERNET ANTI-FATIGUE 0.40 AR+ETC'://GKB
 case 'INTERNET ANTI-FATIGUE 0.40 ETC'://GKB HALIFAX
 
@@ -1488,10 +1505,28 @@ case 'INTERNET ANTI-FATIGUE 0.40 ETC'://GKB HALIFAX
 	}
 break;
 
-case 'INTERNET ANTI-FATIGUE 0.40 LOW REFLEXION':
+
+
 case 'INTERNET ANTI-FATIGUE 0.60 LOW REFLEXION':
-case 'INTERNET ANTI-FATIGUE 0.40 LOW REFLEXION'://GKB
 case 'NTERNET ANTI-FATIGUE 0.60 LOW REFLEXION'://GKB HALIFAX
+
+
+	$ProdName  = "  product_name like '%Internet Anti-Fatigue%'"; 
+	$ProdTable = "ifc_ca_exclusive"; 
+	$ORDER_PRODUCT_COATING = "Low Reflexion"; 
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	$SPECIAL_INSTRUCTIONS = mysqli_real_escape_string($con,$SPECIAL_INSTRUCTIONS)  . ' Regression: 0.60 ';
+	if ($EYE == 'Both'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
+	}elseif($EYE == 'R.E.'){
+		$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
+	}elseif($EYE == 'L.E.'){
+		$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
+	}
+break;
+
+case 'INTERNET ANTI-FATIGUE 0.40 LOW REFLEXION':
+case 'INTERNET ANTI-FATIGUE 0.40 LOW REFLEXION'://GKB
 
 
 	$ProdName  = "  product_name like '%Internet Anti-Fatigue%'"; 
@@ -5081,7 +5116,7 @@ switch($EYE){
 	$ProdTable = "ifc_ca_exclusive"; 
 	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
 	$ORDER_PRODUCT_COATING = 'ITO AR';
-	$ORDER_PRODUCT_PHOTO   = 'Brown';
+	//$ORDER_PRODUCT_PHOTO   = 'Brown';
 	
 //TODO IMPORTANT, INCLURE l'extra teinte afin qu'il se rende au fournisseur!
 	$AjoutTeintePromo = 'oui';
@@ -8412,13 +8447,14 @@ if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRID
 			case '11': $ProdName  .= " AND corridor = 11 "; $SauterValidationFH = "yes"; break;  	 		
 		}
 }
-	if ($EYE == 'Both'){
+	/*if ($EYE == 'Both'){
 			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";
 		}elseif($EYE == 'R.E.'){
 			$ProdHeight = " AND min_height <= $RE_HEIGHT AND max_height >= $RE_HEIGHT ";	
 		}elseif($EYE == 'L.E.'){
 			$ProdHeight = " AND min_height <= $LE_HEIGHT AND max_height >= $LE_HEIGHT ";
-		}
+		}*/
+		
 	$AjoutTeintePromo = 'oui';
 	//Ajouter l'extra teinte immédiatement mais sans ajouter de montant associé car déja inclus dans le prix
 	//Inserer dans extra_product_order
@@ -8436,17 +8472,6 @@ if (($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15') || ($CORRID
 	$FROM_PERC      = '85';
 	$TO_PERC        = '85';		
 break;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -9208,14 +9233,14 @@ case 'ASPHERIC SINGLE VISION': //Halifax
 	$LE_ADD = 0;
 	
 	if ($ARMOUR420=='armour 420'){
-		$ProdName  = "   product_name like '%Single Vision%' AND collection not like '%knr%' AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name like '%420%'"; 	
+		$ProdName  = "   product_name like '%Single Vision%' AND collection not like '%OVG%'  AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name like '%420%'"; 	
 	}else{
-		$ProdName  = " product_name like '%Single Vision%' AND collection not like '%knr%' AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name not like '%420%'"; 	
+		$ProdName  = " product_name like '%Single Vision%'  AND collection not like '%OVG%'  AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name not like '%420%'"; 	
 	}
 	
 	//UV420
 	if ($UV420<>''){
-		$ProdName  = " product_name like '%Single Vision%' AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name like '%420%'";  
+		$ProdName  = " product_name like '%Single Vision%' AND collection not like '%OVG%'  AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name like '%420%'";  
 	}//END IF
 		
 		
@@ -16911,9 +16936,9 @@ switch($EYE){
 	$SauterValidationFH = "";
 	//Paramètres propre à ce produit seulement
 	if ($UV420<>''){
-		$ProdName  = "  product_name like '%Precision+ 360%' AND collection IN ('Entrepot Sky','Entrepot Promo') AND product_name  like '%420%'  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%' AND product_name not like '%active%' "; 
+		$ProdName  = "  product_name like '%Precision+ 360 %' AND collection IN ('Entrepot Sky','Entrepot Promo') AND product_name  like '%420%'  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%' AND product_name NOT LIKE '%Active%'  "; 
 	}else{
-		$ProdName  = "  product_name like '%Precision+ 360%' AND collection IN ('Entrepot Sky','Entrepot Promo') AND product_name not like '%420%'  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%' AND product_name not like '%active%' "; 
+		$ProdName  = "  product_name like '%Precision+ 360 %' AND collection IN ('Entrepot Sky','Entrepot Promo') AND product_name not like '%420%'  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%' AND product_name NOT LIKE '%Active%' "; 
 	}
 	
 
@@ -19996,8 +20021,46 @@ switch($EYE){
 break;
 
 
-case 'PRECISION OAG':
-case 'PRECISION OAG ':
+case 'ASPHERIC SINGLE VISION OVG':
+case 'ASPHERIC SINGLE VISION OVG ':
+case 'SIMPLE VISION SURFACE OVG': 
+case 'SIMPLE VISION SURFACE OVG ': //Halifax
+	$RE_ADD = 0;
+	$LE_ADD = 0;
+	
+	if ($ARMOUR420=='armour 420'){
+		$ProdName  = "   product_name like '%Single Vision%' AND Collection like '%OVG%'  AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name like '%420%'"; 	
+	}else{
+		$ProdName  = " product_name like '%Single Vision%'  AND Collection like '%OVG%'  AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name not like '%420%'"; 	
+	}
+	
+	//UV420
+	if ($UV420<>''){
+		$ProdName  = " product_name like '%Single Vision%' AND Collection like '%OVG%' AND product_name NOT like '%tinted%' AND product_name NOT like '%promo%' AND product_name not like '%mineral%' AND product_name NOT LIKE '%stock%' AND product_name NOT LIKE '%HD Single%' AND lens_Category ='sv' AND product_name like '%420%'";  
+	}//END IF
+		
+		
+	if ($ORDER_PRODUCT_COATING=='BluCut'){
+		//Produit impossible avec XLR, on doit afficher l'erreur ici
+		$ErrorDetail.=" SIMPLE VISION SURFACE  n\'est pas offert avec le traitement BluCut.<br> ASPHERIC SINGLE VISION  is not available with BlueCut. ";
+		$InsererDansBD  = false;
+	}	
+		
+	
+	$ProdTable = "ifc_ca_exclusive"; 
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	if (($LE_HEIGHT >0) || ($RE_HEIGHT >0)){
+			$OPTICAL_CENTER = $LE_HEIGHT;
+			$LE_HEIGHT = '';
+			$RE_HEIGHT = '';	
+	}
+break;
+
+
+
+
+case 'PRECISION OVG':
+case 'PRECISION OVG ':
 switch($EYE){	
 	case 'Both': 
 		if ($RE_ADD=='' || $LE_ADD==''){
@@ -20035,8 +20098,9 @@ switch($EYE){
 break;
 
 
-case 'PRECISION+ OAG':
-case 'PRECISION+ OAG ':
+case 'PRECISION+ OVG':
+case 'PRECISION+ OVG ':
+
 switch($EYE){	
 	case 'Both': 
 		if ($RE_ADD=='' || $LE_ADD==''){
@@ -20074,8 +20138,8 @@ switch($EYE){
 break;
 
 
-case 'PRECISION+ 360 OAG':
-case 'PRECISION+ 360 OAG ':
+case 'PRECISION+ 360 OVG':
+case 'PRECISION+ 360 OVG ':
 switch($EYE){	
 	case 'Both': 
 		if ($RE_ADD=='' || $LE_ADD==''){
@@ -20114,6 +20178,90 @@ break;
 
 
 
+case 'AI VIRTUAL ':
+case 'AI VIRTUAL':
+switch($EYE){	
+	case 'Both': 
+		if ($RE_ADD=='' || $LE_ADD==''){
+		$InsererDansBD = false;	
+		$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+		}
+}//END Switch
+
+	//Partie commune
+	$ProdTable = "ifc_ca_exclusive"; 
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	$SauterValidationFH = "";
+	//Paramètres propre à ce produit seulement
+
+	if ($UV420<>''){
+		$ProdName  = "  product_name like '%AI Virtual%' AND collection IN ('Entrepot PROCREA')  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%AQ3%' AND (product_name  LIKE '%380%' OR product_name  LIKE '%400%')"; 
+	}else{
+		$ProdName  = "  product_name like '%AI Virtual%' AND collection IN ('Entrepot PROCREA')  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%AQ3%'  AND (product_name not LIKE '%380%' OR product_name not LIKE '%400%') "; 
+	}
+	
+	
+	if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+		$InsererDansBD  = false;
+		$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7,9, ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+		The corridor (7-9-11) is mandatory for this product. Please add a corridor (7,9, or 11) and re-export the order.';
+	}//Fin si aucun corridor n'a été fournis	
+	
+	switch($CORRIDOR){
+			case '7': 	$ProdName  .= " AND corridor like '%7%' "; $SauterValidationFH = "yes"; break;
+			case '9': 	$ProdName  .= " AND corridor like '%9%' "; 	$SauterValidationFH = "yes"; break;   
+			case '11': 	$ProdName  .= " AND corridor like '%11%' "; $SauterValidationFH = "yes"; break;    
+			    
+			  
+	}//END SWITCH	
+break;
+
+
+
+case '2ND AI VIRTUAL ':
+case '2ND AI VIRTUAL':
+
+switch($EYE){	
+	case 'Both': 
+		if ($RE_ADD=='' || $LE_ADD==''){
+		$InsererDansBD = false;	
+		$ErrorDetail.= '<br>Il manque vos additions. Your additions are missing '.' <br>';
+		}
+}//END Switch
+
+	//Partie commune
+	$ProdTable = "ifc_ca_exclusive"; 
+	$CollectionNotIn       = " AND collection NOT IN ('IFC Crystal', 'IFC CA Free','IFC Swiss','SV IFC','IFC SteCath','FT IFC','Optimize IFC','IFC Club','IFC SteCath','')";
+	$SauterValidationFH = "";
+	//Paramètres propre à ce produit seulement
+	
+	
+	if ($UV420<>''){
+		$ProdName  = "   product_name LIKE '%AI Virtual%'  AND (product_name LIKE '%380%' OR product_name LIKE '%400%') AND product_name NOT LIKE '%promo%' AND product_name LIKE '%2ieme%' AND product_name LIKE '%pair%' AND product_name NOT LIKE '%active%' "; 
+	}else{
+		$ProdName  = "  product_name LIKE '%AI Virtual%'  AND (product_name not LIKE '%380%' OR product_name not LIKE '%400%') AND product_name NOT LIKE '%promo%' AND product_name LIKE '%2ieme%' AND product_name LIKE '%pair%' AND product_name NOT LIKE '%active%' ";
+	}
+	
+
+	
+	if ($CORRIDOR == ''){
+		$InsererDansBD  = false;
+		$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit. Svp ajouter le corridor et re-exporter la commande.<br> 
+		The corridor is mandatory for this product. Please add the corridor and re-export the order.';
+	}//Fin si aucun corridor n'a été fournis	
+	
+	if (($CORRIDOR == '') || ($CORRIDOR == '5') || ($CORRIDOR == '13') || ($CORRIDOR == '15')) {
+		$InsererDansBD  = false;
+		$ErrorDetail.= '<br>Le corridor est obligatoire pour ce produit (7, 9 ou 11). Svp ajouter le corridor (7-9-11) et re-exporter la commande.<br> 
+		The corridor (7-9-11) is mandatory for this product. Please add a corridor (7, 9 or 11) and re-export the order.';
+	}//Fin si aucun corridor n'a été fournis	
+	
+	switch($CORRIDOR){
+			case '7': 	$ProdName  .= " AND corridor = 7 "; 	$SauterValidationFH = "yes"; break;    
+			case '9': 	$ProdName  .= " AND corridor = 9 "; 	$SauterValidationFH = "yes"; break;    
+			case '11': 	$ProdName  .= " AND corridor = 11 "; 	$SauterValidationFH = "yes"; break;     
+	}//END SWITCH	
+break;	
 
 
 
@@ -20135,7 +20283,7 @@ switch($EYE){
 	$SauterValidationFH = "";
 	//Paramètres propre à ce produit seulement
 
-	if ($UV420<>''){
+	if ($ARMOUR420=='armour 420'){
 		$ProdName  = "  product_name like '%Precision+ S%' AND collection IN ('Entrepot Swiss','Entrepot Promo')  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%precision%' AND product_name not like '%360%' AND product_name  like '%420%' "; 
 	}else{
 		$ProdName  = "  product_name like '%Precision+ S%' AND collection IN ('Entrepot Swiss','Entrepot Promo')  AND product_name not like '%promo%'  AND product_name  NOT LIKE '%2ieme%' AND product_name NOT LIKE '%pair%'  AND product_name like '%precision%' AND product_name not like '%360%' AND product_name not like '%420%' "; 
@@ -20215,8 +20363,8 @@ case '2ND PRECISION+ S ':
 	
 	
 
-case '2ND PRECISION+ OAG':
-case '2ND PRECISION+ OAG ':
+case '2ND PRECISION+ OVG':
+case '2ND PRECISION+ OVG ':
 switch($EYE){	
 	case 'Both': 
 		if ($RE_ADD=='' || $LE_ADD==''){
@@ -20255,8 +20403,8 @@ break;
 
 
 
-case '2ND PRECISION OAG':
-case '2ND PRECISION OAG ':
+case '2ND PRECISION OVG':
+case '2ND PRECISION OVG ':
 switch($EYE){	
 	case 'Both': 
 		if ($RE_ADD=='' || $LE_ADD==''){
@@ -20272,9 +20420,9 @@ switch($EYE){
 	//Paramètres propre à ce produit seulement
 
 	if ($UV420<>''){
-		$ProdName  = "  product_name like '%Precision%' AND collection IN ('Entrepot OVG')  AND product_name not like '%promo%'  AND product_name  LIKE '%2ieme%' AND product_name LIKE '%pair%'  AND product_name like '%OVG%' AND product_name not like '%360%' AND product_name  like '%420%' "; 
+		$ProdName  = "  product_name like '%Precision%' AND product_name not like '%Precision+%' AND collection IN ('Entrepot OVG')  AND product_name not like '%promo%'  AND product_name  LIKE '%2ieme%' AND product_name LIKE '%pair%'  AND product_name like '%OVG%' AND product_name not like '%360%' AND product_name  like '%420%' "; 
 	}else{
-		$ProdName  = "  product_name like '%Precision%' AND collection IN ('Entrepot OVG')  AND product_name not like '%promo%'  AND product_name LIKE '%2ieme%' AND product_name LIKE '%pair%'  AND product_name like '%OVG%' AND product_name not like '%360%' AND product_name not like '%420%' "; 
+		$ProdName  = "  product_name like '%Precision%' AND product_name not like '%Precision+%' AND collection IN ('Entrepot OVG')  AND product_name not like '%promo%'  AND product_name LIKE '%2ieme%' AND product_name LIKE '%pair%'  AND product_name like '%OVG%' AND product_name not like '%360%' AND product_name not like '%420%' "; 
 	}
 	
 	
@@ -20294,8 +20442,8 @@ switch($EYE){
 break;
 
 
-case '2ND PRECISION+ 360 OAG':
-case '2ND PRECISION+ 360 OAG ':
+case '2ND PRECISION+ 360 OVG':
+case '2ND PRECISION+ 360 OVG ':
 switch($EYE){	
 	case 'Both': 
 		if ($RE_ADD=='' || $LE_ADD==''){
@@ -27782,7 +27930,7 @@ $ORDER_STATUS 		   = 'basket';
 					 echo '<br>COMMANDE ' .	 $OrderNumberOptipro . ' Deja importee';
 					 //$ErrorDetail.= '<br>Numero de facture Optipro <b>'. $OrderNumberOptipro. '</b>  a deja ete importee pour ce client<br>';
 					$InsererDansBD  = false;
-					 //$InsererDansBD  = true;
+					//$InsererDansBD  = true;
 				  }else{
 				  $InsererDansBD  = true;// Po_Num inconnue, on peut importer la commande
 				  // echo '<br>COMMANDE ' .	 $OrderNumberOptipro . ' prete pour etre  importee.'; 
@@ -27792,7 +27940,7 @@ $ORDER_STATUS 		   = 'basket';
 				$ErrorDetail.= '<br>Le champ Numero de commande Optipro est vide, impossible de verifier si la commande a deja ete importee<br>';
 				$InsererDansBD  = false;// Pas d'identifiant Eyelation ON NE PEUT PAS VALIDER SI LA COMMANDE A DEJA ETE RECUE
 				echo '<br>Pas de <b>reference Optipro</b>, on ne peut pas valider si la commande a deja ete recu';
-				}
+				} 
 			}//END IF EYELATION ORDER NUM IS NOT EMPTY
 			
 			
@@ -27801,7 +27949,7 @@ switch($DESIGN){
 	case 'conduite':        $FiltreDesign = " AND product_name like '%conduite%' ";        break;
 	case 'interieur':       $FiltreDesign = " AND product_name like '%interieur%' ";       break;
 	case 'exterieur':       $FiltreDesign = " AND product_name like '%exterieur%' ";       break;
-	case 'exterieur':       	$FiltreDesign = " AND product_name like '%exterieur%' ";       break;
+	case 'exterieur':       $FiltreDesign = " AND product_name like '%exterieur%' ";       break;
 	case 'lecture':         $FiltreDesign = " AND product_name like '%lecture%' ";         break;
 	case 'premier porteur': $FiltreDesign = " AND product_name like '%premier porteur%' "; break;
 	case 'quotidien':       $FiltreDesign = " AND product_name like '%quotidien%' ";       break;
@@ -27855,6 +28003,12 @@ switch(strtoupper($ORDER_PRODUCT_PHOTO)){
 	case 'EXTRA ACTIVE BROWN':$ProdPhoto  = " AND photo = 'Extra Active Brown'"; break;
 	case 'PHOTOVISION BROWN': $ProdPhoto  = " AND photo = 'photovision brown'"; break;
 	case 'PHOTOVISION GREY':  $ProdPhoto  = " AND photo = 'photovision grey'"; break;
+	case 'P BROWN': 		  $ProdPhoto  = " AND photo = 'P Brown'";    		    break;	
+	case 'P GREY': 			  $ProdPhoto  = " AND photo = 'P Grey'";    		    break;	
+	case 'P PINK': 			  $ProdPhoto  = " AND photo = 'P Pink'";    		    break;	
+	case 'P VIOLET': 		  $ProdPhoto  = " AND photo = 'P Purple'";    		    break;	
+	case 'P BLUE': 			  $ProdPhoto  = " AND photo = 'P Blue'";    		    break;	
+	case 'P GREEN': 		  $ProdPhoto  = " AND photo = 'P green'";    		    break;
 	
 	default:     			  $ProdPhoto  = " AND 3 = 4";  			    	    //De façon à ce qu'aucun produit soit dispo	
 }//End Switch
@@ -27903,6 +28057,13 @@ switch(strtoupper($ORDER_PRODUCT_COATING)){
 	case 'SUPER AR BACKSIDE':		$ProdCoating  = " AND coating = 'Super AR Backside'"; 		break;	
 	case 'AR-ES':		 			$ProdCoating  = " AND coating = 'AR-ES'"; 					break;
 	case 'SUN AR-ES':		 		$ProdCoating  = " AND coating = 'SUN AR-ES'"; 				break;
+	case 'AR EXCLUSIVE':		 	$ProdCoating  = " AND coating = 'AR Exclusive'"; 			break;
+	case 'AR EXCLUSIVE BACKSIDE':	$ProdCoating  = " AND coating = 'AR Exclusive backside'"; 	break;
+	case 'AQ3 BACKSIDE':		 	$ProdCoating  = " AND coating = 'AQ3 BACKSIDE'"; 			break;
+	case 'AQ3':		 	            $ProdCoating  = " AND coating = 'AQ3'"; 					break;
+	case 'AR+ETC RIGHT OPTICAL':    $ProdCoating  = "AND coating IN ('Dream AR','ITO AR','AR')" ;	                break;
+	case 'AR BACKSIDE RIGHT OPTICAL':    $ProdCoating  = "AND coating = 'AR Backside'" ;	break;
+	
 	default:     		 			$ProdCoating  = " AND 13 = 15";  
 													echo '<br>COATING:'.$ORDER_PRODUCT_COATING; break;//De façon à ce qu'aucun produit soit dispo	
 }//End Switch
@@ -28099,6 +28260,7 @@ switch (strtoupper($TINT)){
 	case 'RAV':      $DataProduct[collection] = 'Entrepot Swiss'; $TINT_COLOR = 'RAV';      $TINT = 'SOLID'; break;
 	case 'TEN':      $DataProduct[collection] = 'Entrepot Swiss'; $TINT_COLOR = 'TEN';      $TINT = 'SOLID'; break;
 	case 'AZU':      $DataProduct[collection] = 'Entrepot Swiss'; $TINT_COLOR = 'AZU';      $TINT = 'SOLID'; break;
+	case 'TINTSAMPLES': $DataProduct[collection] = 'Entrepot Swiss'; $TINT_COLOR = 'TINTSAMPLES';      $TINT = 'SOLID'; break;
 		
 
 }			
@@ -28640,15 +28802,34 @@ if ($InsererDansBD){//Si oui,on continue
 				}//End if ($validerProg)
 		}//End IF InsererDansBD
 
-	
+	//*****promo duo new ff
 	
 	//SI SAFE, UTILISER LE PRICE_DISCOUNTED..
 		if (($InsererDansBD) && ($ORDER_FROM <> 'safety')){//Si oui,on continue
 		
 			if ($EYE =='Both'){
+				
+
 				//echo '<br>Product Price: '. $DataProduct[price];
 				$order_product_price 	 = $DataProduct[price];
 				$order_product_discount  = $DataProduct[price];
+				
+				echo '<br>Product Price: A ' . $DataProduct['price'];
+				echo '<br>Product discount: A ' . $DataProduct['price_discounted'];
+				echo '<br>internal note: ' . $SPECIAL_INSTRUCTIONS;
+				
+					// Vérifiez si les instructions spéciales contiennent "duo"
+				$PositionDuo = strpos(strtolower($SPECIAL_INSTRUCTIONS), 'duo');
+				if ($PositionDuo !== false) {
+					$SPECIAL_INSTRUCTIONS = mysqli_real_escape_string($con, $SPECIAL_INSTRUCTIONS) . ' duo';
+					 echo '<br>internal note 25 : ' . $SPECIAL_INSTRUCTIONS;
+					$order_product_price = ($DataProduct['price']) -18; // Réduit de 18
+					$order_product_discount = ($DataProduct['price'])-18 ; // Réduit de 18
+					echo '<br>ORDER PRODUCT PRICE: Z1 ' . $order_product_price;
+					echo '<br>ORDER PRODUCT PRICE: Z ' .$order_product_price . ' - ET - ' . $order_product_discount;
+					
+				}
+				
 			}elseif(($EYE== 'R.E.') || ($EYE == 'L.E.')){
 				//echo '<br>Product Price: '. $DataProduct[price]/2;
 				$order_product_price 	 = $DataProduct[price]/2;

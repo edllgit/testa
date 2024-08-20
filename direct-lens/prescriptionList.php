@@ -47,13 +47,22 @@ case 'sv' 	    :$lenscategory = " lens_category IN('sv')"; break;
 case 'stock' 	:$lenscategory = " lens_category IN('stock')"; break; 
 //Lens Type
 case 'PSI HD':						$lenscategory = " product_name like '%$Lens_Category%' "; break;
-case 'IPL':						    $lenscategory = " product_name like '%IPL%' "; 		  break;
-case 'Acuform':					    $lenscategory = " product_name like '%Acuform%' "; 	  break;
-case 'FIT':					        $lenscategory = " product_name like '%Optimize FIT%' "; 	  	    break;
-case 'Horizon':					    $lenscategory = " product_name like '%Horizon%' ";      break;
-case 'DMT':					        $lenscategory = " product_name like '%DMT%' "; 	    	break;
-case 'Lifestyle':					$lenscategory = " product_name like '%office premium%' "; 	break;
-case 'Anti-Fatigue':				$lenscategory = " product_name like '%FATIGUE%'"; break;
+case 'Precision+ S':				$lenscategory = " product_name like '%Precision+ S%' ";   break;
+case 'Precision+360': 				$lenscategory = " product_name like '%Precision+ 360%' ";  break;
+case 'Maxiwide':					$lenscategory = " product_name like '%Maxiwide%' "; 	  break;
+case 'iRoom':				        $lenscategory = " product_name like '%iRoom%' "; 		  break;
+case 'Alpha':						$lenscategory = " product_name like '%Alpha%' "; 		  break;
+case 'Alpha HD':					$lenscategory = " product_name like '%Alpha HD%' "; 	  break;
+case 'FT28':						$lenscategory = " product_name like '%FT28%' "; 		  break;
+case 'Single Vision':				$lenscategory = " product_name like '%Single Vision%' ";  break;
+case 'Single Vision Stock':			$lenscategory = " product_name like '%Single Vision Stock%' "; 		  break;
+case 'IPL':						    $lenscategory = " product_name like '%IPL%' "; 		      break;
+case 'Acuform':					    $lenscategory = " product_name like '%Acuform%' "; 	      break;
+case 'FIT':					        $lenscategory = " product_name like '%Optimize FIT%' ";   break;
+case 'Horizon':					    $lenscategory = " product_name like '%Horizon%' ";        break;
+case 'DMT':					        $lenscategory = " product_name like '%DMT%' "; 	    	  break;
+case 'Lifestyle':					$lenscategory = " product_name like '%office premium%' "; break;
+case 'Anti-Fatigue':				$lenscategory = " product_name like '%FATIGUE%'";         break;
 case 'ELPS HD':						$lenscategory = " product_name like '%$Lens_Category%' "; break;
 case 'Ovation':						$lenscategory = " product_name like '%$Lens_Category%' "; break;
 case 'SelectionRx':					$lenscategory = " product_name like '%$Lens_Category%' "; break;
@@ -93,7 +102,7 @@ case 'Pro EZ':					    $lenscategory = " product_name like '%EZ HD%' "; break;
 case 'revolution':					$lenscategory = " product_name like '%revolution%' "; break;  
 case 'revolution sv':				$lenscategory = " product_name like '%revolution%' and lens_Category ='sv'"; break;  
 //Manufacturer
-case 'SOLA':						$lenscategory = " (product_name like '%Econo Choice%' OR product_name like '%Pro EZ%') "; break;
+/*case 'SOLA':						$lenscategory = " (product_name like '%Econo Choice%' OR product_name like '%Pro EZ%') "; break;
 case 'SHAMIR':						$lenscategory = " ( product_name like '%iFree%'  OR product_name like '%iRelax%' OR product_name like '%iAction%' OR product_name like '%iOffice%') "; break;
 case 'SEIKO':						$lenscategory = " (product_name like '%trueHD%' OR product_name like '%EasyOne%') "; break; 
 case 'RODENSTOCK':					$lenscategory = " ( product_name like '%Vision Classique HD%'  OR product_name like '%Purelife HD%' OR product_name like '%Life II%' OR product_name like '%Life XS%' ) "; break;
@@ -103,15 +112,34 @@ case 'PRECISION':					$lenscategory = " ( product_name like '%Precision Daily%' 
 case 'OPTIMIZE':					$lenscategory = "  product_name like '%Optimize%' "; break;     
 case 'CZV':							$lenscategory = "  product_name like '%EZ HD%' "; break;   
 case 'IOT':							$lenscategory = "  product_name like '%IOT%' "; break;      
-case 'OPTOTECH':					$lenscategory = "  product_name like '%Optimize%' "; break;              
+case 'OPTOTECH':					$lenscategory = "  product_name like '%Optimize%' "; break; */            
 }
 
 $COATING=$_POST[COATING];
 switch ($COATING) {
 	case 'ANY':$COATING = " AND 6=6 "; break;
-	case 'Hard Coat':$COATING = "AND coating IN  ('DH1','DH2','Hard Coat')";break;
-	case 'AR':$COATING = "AND coating IN   ('Aqua Dream AR','Dream AR','ITO AR','MultiClear AR','Smart AR','Xlr','Maxiivue','StressFree')";break;
-	case 'Uncoated':$COATING = " AND coating IN ('Uncoated')";break;                                    
+	case 'Hard Coat':$COATING = "AND coating IN  ('Hard Coat')";break;
+	case 'Aqua Dream AR':$COATING = "AND coating IN   ('Aqua Dream AR')";break;
+	case 'Uncoated':$COATING = " AND coating IN ('Uncoated')";break;        
+	case 'AR Backside':$COATING = "AND coating IN  ('AR Backside')";break;
+	case 'Blue AR':$COATING = "AND coating IN   ('Blue AR')";break;
+	case 'CrizalF':$COATING = " AND coating IN ('CrizalF')";break; 
+	case 'DH1':$COATING = " AND coating IN ('DH1') "; break;
+	case 'DH2':$COATING = "AND coating IN  ('DH2')";break;
+	case 'Dream AR':$COATING = "AND coating IN   ('Dream AR')";break;
+	case 'HC':$COATING = " AND coating IN ('HC')";break; 
+	case 'HD AR':$COATING = " AND coating IN ('HD AR') "; break;
+	case 'Iblu':$COATING = "AND coating IN  ('Iblu')";break;
+	case 'ITO AR':$COATING = "AND coating IN   ('ITO AR')";break;
+	case 'MaxiiVue':$COATING = " AND coating IN ('MaxiiVue')";break; 	
+	case 'MultiClear AR':$COATING = "AND coating IN  ('MultiClear AR')";break;
+	case 'Smart AR':$COATING = "AND coating IN   ('Smart AR')";break;
+	case 'StressFree':$COATING = " AND coating IN ('StressFree')";break;
+	case 'BluCut':$COATING = " AND coating IN ('BluCut')";break;
+	case 'AR-ES':$COATING = " AND coating IN ('AR-ES')";break;
+	case 'AR-ES Backside':$COATING = " AND coating IN ('AR-ES Backside')";break;
+	case 'Xlr':$COATING = " AND coating IN ('Xlr')";break;
+	case 'Xlr Backside':$COATING = " AND coating IN ('Xlr Backside')";break;
 }
 
 $INDEX=$_POST[INDEX];
@@ -160,16 +188,16 @@ $PHOTO='doesnotexist';
 if ((strtolower($_POST[TINT]) == 'gradient')&& ($PHOTO <> 'None'))
 $PHOTO='doesnotexist';
 
-//Prevent 1.59 + tint higher 60%
+//Prevent 1.59 + tint higher 85%
 $TeintePlus60 = 'non';
 $Pasde159 = " AND 1=1 ";
 
-if (($_POST[FROM_PERC] > 60) && ($_POST[FROM_PERC]  <> "")&& (isset($_POST[FROM_PERC]))){
+if (($_POST[FROM_PERC] > 85) && ($_POST[FROM_PERC]  <> "")&& (isset($_POST[FROM_PERC]))){
 $TeintePlus60 = 'oui';
 $Pasde159 = " AND INDEX_v NOT IN (1.59)" ;
 }
 
-if (($_POST[TO_PERC]   > 60) && ($_POST[TO_PERC]   <> "") && (isset($_POST[TO_PERC]))){
+if (($_POST[TO_PERC]   > 85) && ($_POST[TO_PERC]   <> "") && (isset($_POST[TO_PERC]))){
 $TeintePlus60 = 'oui';
 $Pasde159 = " AND INDEX_v NOT IN (1.59)" ;
 }
@@ -314,6 +342,7 @@ AND (add_min<=$LE_ADD)".$collectionString."
 AND acct_collections.acct_id = '".$_SESSION["id"]."' 
  $orderby"; //EXCLUSIVE
 
+echo '<br><br>'.$query;
 
 //if ($_SESSION["sessionUser_Id"] == 'Lenzandtrenz')
 //echo '<br><br>'.$query;
@@ -463,9 +492,9 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
              <?php 
 			if ($Pasde159 <> " AND 1=1 "){
 				 if ($mylang == 'lang_french'){
-				 	echo "<br><div>L'intensité maximale est de 60% sur le 1.59 tintable</div>";
+				 	echo "<br><div>L'intensité maximale est de 85% sur le 1.59 tintable</div>";
 				 }else{
-	 				 echo "<br><div>The max. intensity is 60% on 1.59 tintable</div>";	
+	 				 echo "<br><div>The max. intensity is 85% on 1.59 tintable</div>";	
 				 }
 			}?>
             

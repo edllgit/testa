@@ -163,7 +163,7 @@ echo '<br><br>' . $message;
 
 //$send_to_address = array();//LIVE: courriel de Wayne et Bella enlevé a leur demande
 
-$send_to_address = array('rapports@direct-lens.com','michelle.chan@quickwonder.com','sophia@superb-vision.com','riazzolino@opticalvisiongroup.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');
+$send_to_address = array('rapports@direct-lens.com','michelle.chan@quickwonder.com','sophia@superb-vision.com','riazzolino@opticalvisiongroup.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');
 
 
 

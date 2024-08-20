@@ -24,12 +24,12 @@ if (mysqli_connect_errno()) {
 }
 
 
-// Requête SQL pour sélectionner les ordres
+// Requête SQL pour sélectionner les ordres 
 $queryShape = "SELECT * FROM orders 
-               WHERE prescript_lab IN (10,25,73,69,76) 			
+               WHERE prescript_lab IN (10,25,73,69,76,77)		
                AND order_status = 'processing'
                AND shape_copied_ftp = '0000-00-00 00:00:00'
-               AND shape_name_bk <>'' ";
+               AND shape_name_bk <>''  ";
 
 // Exécution de la requête SQL
 $resultShape = mysqli_query($con, $queryShape);
@@ -138,6 +138,11 @@ while ($DataShape = mysqli_fetch_array($resultShape, MYSQLI_ASSOC)) {
 					echo '<br>	BLOCC' .$ftp_pass_destination; */
 					echo '<br>	CHEMIN DE DESTINATION = ' .$remote_dir_destination;
 					
+									
+
+				
+
+					
 
 					break;
 				case 25:
@@ -182,6 +187,27 @@ while ($DataShape = mysqli_fetch_array($resultShape, MYSQLI_ASSOC)) {
 					echo '<br>CHEMIN DE DESTINATION = ' .$remote_dir_destination;
 					
 					break;
+					
+					
+				case 77:
+					$ftp_server_destination = constant('PROCREA_FTP');
+					$ftp_user_destination = constant('FTP_USER_PROCREA');
+					$ftp_pass_destination = constant('FTP_PASSWORD_PROCREA');
+					$remote_dir_destination = '/';
+					$Supplier ='PROCREA';
+					
+					
+					echo '<br>	FOURNISSEUR : ' . $Supplier;
+					
+					echo '<br>SERVEUR = ' .$ftp_server_destination;
+					/*echo '<br>	BLOCB' .$ftp_user_destination;
+					echo '<br>	BLOCC' .$ftp_pass_destination; */
+					echo '<br>CHEMIN DE DESTINATION = ' .$remote_dir_destination;
+			
+					break; 
+					
+					
+					
 				case 76:
 					$ftp_server_destination = constant('OVG_LAB_FTP');
 					$ftp_user_destination = constant('FTP_USER_OVG_LAB');
@@ -190,16 +216,46 @@ while ($DataShape = mysqli_fetch_array($resultShape, MYSQLI_ASSOC)) {
 					$Supplier ='ovg_lab';
 					echo '<br>	FOURNISSEUR : ' . $Supplier;
 					
+					
 					echo '<br>SERVEUR = ' .$ftp_server_destination;
 					/*echo '<br>	BLOCB' .$ftp_user_destination;
 					echo '<br>	BLOCC' .$ftp_pass_destination;*/
 					echo '<br>CHEMIN DE DESTINATION = ' .$remote_dir_destination;
+					
+					  $conn_id_sftp = ssh2_connect($ftp_server_destination, 22);
+                if (ssh2_auth_password($conn_id_sftp, $ftp_user_destination, $ftp_pass_destination)) {
+                    $sftp = ssh2_sftp($conn_id_sftp);
+                    $sftp_stream = fopen("ssh2.sftp://$sftp$remote_dir_destination" . $NumeroCommandeEDLL . '.OMA', 'w');
+
+                    if ($sftp_stream) {
+                        $data_to_send = file_get_contents($local_file_renamed);
+                        if ($data_to_send === false) {
+                            die('Erreur lors de la lecture du fichier local.');
+                        }
+
+                        if (fwrite($sftp_stream, $data_to_send) === false) {
+                            die('Erreur lors de l\'écriture du fichier sur le serveur de destination.');
+                        }
+
+                        fclose($sftp_stream);
+                        echo "Le fichier a été copié avec succès sur le serveur de destination via SFTP.";
+                    } else {
+                        echo "Erreur lors de l'ouverture du fichier distant sur le serveur de destination.";
+                    }
+                } else {
+                    echo "La connexion SFTP au serveur de destination a échoué.";
+                }
+
+                continue 2; // Passer à l'itération suivante de la boucle while
+					
+					
 			
-					break;
+					
+
 				default:
 					// Handle the case when prescript_lab doesn't match any expected value
 					echo '<br>Labo introuvable ';
-					break;
+					 break; // Passer à l'itération suivante de la boucle while
 			}
 			
 		// Renommer le fichier avec la valeur de $NumeroCommandeEDLL
@@ -239,13 +295,13 @@ if ($conn_id_destination) {
     // Vérification si les variables nécessaires sont définies
     if (!empty($NumeroCommandeEDLL) && !empty($remote_dir_destination) && !empty($local_file_renamed)) {
 		
-	/*	echo '<br>A1' .$conn_id_destination;
+		echo '<br>A1' .$conn_id_destination;
 		echo '<br>A2' .$NumeroCommandeEDLL;
 		echo '<br>A3' .$remote_dir_destination;
-		echo '<br>A4' .$local_file_renamed;*/
+		echo '<br>A4' .$local_file_renamed;
         // Transférer le fichier vers le serveur de destination
         if (ftp_put($conn_id_destination, $remote_dir_destination . $NumeroCommandeEDLL . '.OMA', $local_file_renamed, FTP_BINARY)) {
-            echo "Le fichier a été copié avec succès sur le serveur de destination.";
+            echo " Le fichier a été copié avec succès sur le serveur de destination.";
             // Autres opérations après la copie réussie...
         } else {
             echo "Erreur lors de la copie du fichier sur le serveur de destination: " ;

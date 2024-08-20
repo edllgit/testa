@@ -1,6 +1,11 @@
 <?php
-include('../includes/phpmailer_email_functions.inc.php');
-require_once('../includes/class.ses.php');
+//include('../includes/phpmailer_email_functions.inc.php');
+//require_once('../includes/class.ses.php');
+error_reporting(E_COMPILE_ERROR|E_ERROR|E_CORE_ERROR); 
+ini_set('display_errors', '1');
+include("../sec_connectEDLL.inc.php");
+include('../phpmailer_email_functions.inc.php');
+require_once('../class.ses.php');
 
 function login_to_dl($user_test, $password_test){/* check user_id and password on login */
 include "../sec_connectEDLL.inc.php";

@@ -29,7 +29,7 @@ Perfect doit être avisé de ces ventes [car c'est PERFECT qui enverra  les mont
 
 INFORMATIONS PERTINENTES:
 1-Concerne quelles comptes:Tous les comptes des magasins EDLL
-2-Courriel ou sera envoyé ce rapport: info@perfectoptical.ca
+2-Courriel ou sera envoyé ce rapport: service@perfectoptical.ca
 3-Numéro de compte à utiliser: Numéro de magasin HBC, mai,il faut remplacer le premier 8 par un 9. Ex: 88440 = 98440. Ex 2: 88444 = 98444.
 4-Collections EDLL qui seront évaluées à chaque fois que ce rapport sera lancé:   
 	a)Esprit-ECA
@@ -50,14 +50,14 @@ $ladatedhier  = mktime(0,0,0,date("m"),date("d")-1,date("Y"));
 $hier     	  = date("Y-m-d", $ladatedhier);
 
 //A RECOMMENTER
-//$hier="2021-04-06";
+//$hier="2024-06-18";
 
 $ComptesAExclure=" AND user_id NOT IN ('BSG','eyeviewsafe','GARAGEMP','garantieatoutcasser','redo_supplier_quebec','redo_supplier_stc','redo_supplier_stc_ca',
 'redoifc','redoqc','redosafety','St.Catharines','villeshannon')";
 
-$CollectionsAEvaluer =" AND supplier IN ('ELLE-ECA','ELLE','ESPRIT-ECA','ESPRIT','RIPCURL')";
+$CollectionsAEvaluer =" AND supplier IN ('ELLE-ECA','ELLE','ESPRIT-ECA','ESPRIT','RIPCURL','Ad Lib','Charmant Blue Label')";
 
-//1- Les jobs exclusive qui en théorie ont utilisé un frame par commande
+//1- Les jobs exclusive qui en théorie ont utilisé un frame par commande = '2024-06-17'
 $rptQuery="SELECT * FROM orders, extra_product_orders 
 WHERE orders.order_num = extra_product_orders.order_num 
 AND order_product_type = 'exclusive'
@@ -67,7 +67,7 @@ AND extra_product_orders.category IN ('Frame')
 $ComptesAExclure
 $CollectionsAEvaluer
 AND orders.code_source_monture='V'
-AND order_date_processed = '$hier'  
+AND order_date_processed   = '$hier'
 AND orders.redo_order_num IS NULL
 GROUP BY orders.order_num ORDER BY user_id";
 
@@ -181,7 +181,7 @@ echo '<br><br>' . $message;
 //SEND EMAIL
 
 
-$send_to_address = array('rapports@direct-lens.com','info@perfectoptical.ca','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');
+$send_to_address = array('rapports@direct-lens.com','service@perfectoptical.ca','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');
 
 
 
@@ -191,7 +191,7 @@ $to_address=$send_to_address;
 $from_address='donotreply@entrepotdelalunette.com';
 $subject="Perfect Optical EDLL Frames order(s) of the day: $hier";
 $response=office365_mail($to_address, $from_address, $subject, null, $message);
-//Log email
+//Log email 
 	$compteur = 0;
 	foreach($to_address as $key => $value)
 	{

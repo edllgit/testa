@@ -120,7 +120,7 @@ echo '<br><br>' . $message;
 //SEND EMAIL
 
 $send_to_address = array('rapports@direct-lens.com','info@armourxsafety.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com',
-'kgawel@direct-lens.com','jmotyka@direct-lens.com');//PRODUCTION CREDENTIALS 
+'kgawel@direct-lens.com','jmotyka@direct-lens.com','fdjibrilla@entrepotdelalunette.com');//PRODUCTION CREDENTIALS 
 
 
  

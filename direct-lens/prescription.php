@@ -19,6 +19,9 @@ global $drawme;
  //require_once "upload/phpuploader/include_phpuploader.php"; 
 
 
+
+
+
 if($_SESSION["sessionUser_Id"]=="")
 	header("Location:loginfail.php");
 	
@@ -35,11 +38,33 @@ if($_SESSION["sessionUser_Id"]=="")
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>Direct-Lens - Prescription Search</title>
 
+   <script>
+        function captureSelectedValue() {
+            var coatingSelect = document.getElementById("COATING");
+            var selectedValue = coatingSelect.value; // Récupérer la valeur sélectionnée
+
+            // Afficher la valeur dans la console
+            console.log("La valeur sélectionnée est : " + selectedValue);
+
+            // Envoyer la valeur sélectionnée à PHP via AJAX
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "", true); // Envoyer la requête à la même page
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log("Réponse du serveur : " + xhr.responseText);
+					 document.getElementById("server-response").innerHTML = xhr.responseText; // Afficher la réponse dans la page
+                    // Vous pouvez traiter la réponse du serveur ici
+                }
+            };
+            xhr.send("valeurSelectionnee=" + encodeURIComponent(selectedValue));
+        }
+    </script>
 
 <style type="text/css">
 <!--
 body {
-	margin-left: 0px;
+	margin-left: 0px; 
 	margin-top: 0px;
 	margin-right: 0px;
 	margin-bottom: 0px;
@@ -162,7 +187,7 @@ $usercount=mysqli_num_rows($result);
                    <td align="center" valign="middle" class="formCellNosides"><?php echo $lbl_addition_txt_pl;?></td>
                    <td align="center" valign="middle" class="formCell"><?php echo $lbl_prism_txt_pl;?></td>
                    </tr>
-                   
+					
                    <?php
 				   $PositionPointRe = strpos($DataLastOrderDetail[re_sphere],'.');
 				   $PositionPointLe = strpos($DataLastOrderDetail[le_sphere],'.');
@@ -204,8 +229,9 @@ $usercount=mysqli_num_rows($result);
                    
   
                  <tr>
-                   <td align="center" valign="top"  class="formCellNosides"><a href="#" onclick="copyRE()"><img src="<?php echo constant('DIRECT_LENS_URL'); ?>/direct-lens/design_images/copy_arrow.gif" alt="Copy" width="17" height="17" border="0" title="Copy R.E. to L.E." /></a></td>
-                   <td align="right" valign="top"  class="formCell"><?php echo $lbl_re_txt_pl;?></td>
+                   <!--td align="center" valign="top"  class="formCellNosides"><a href="#" onclick="copyRE()"><img src="<?php echo constant('DIRECT_LENS_URL'); ?>/direct-lens/design_images/copy_arrow.gif" alt="Copy" width="17" height="17" border="0" title="Copy R.E. to L.E." /></a></td !-->
+                   <td align="center" valign="top"  class="formCellNosides" ></td>
+				   <td align="right" valign="top"  class="formCell"><?php echo $lbl_re_txt_pl;?></td>
                    <td align="center" valign="top" class="formCellNosides"><select name="RE_SPH_NUM" class="formText" id="RE_SPH_NUM" onchange="fixRE_SPH(this.form)" >
                      <option value="+14" <?php if(($ChargerDerniereCommande) && ($re_sph_num =='+14')) echo ' selected="selected"'; ?>>+14</option>
                      <option value="+13" <?php if(($ChargerDerniereCommande) && ($re_sph_num =='+13')) echo ' selected="selected"'; ?>>+13</option>
@@ -405,33 +431,12 @@ $usercount=mysqli_num_rows($result);
              </div>
              
              
-             <div id="spherechoice" style="display:none">
-			<table width="650" align="center">
-                 <tr >
-                <td colspan="7" align="right" valign="top" bgcolor="#B4D7FF"class="formCell">
-                <div style="width:500px; margin:0 auto;">
-                <input name="incfile" type="radio" id="incfile" value="yes" checked="checked" onchange="changestate('on')" /> 
-                  I would like to supply a lens profile file.
-                  <input type="radio" name="incfile" id="incfile" value="no" onchange="changestate('off')"/>
-                  I would like to supply a lens profile file later.
-                  </div>
-                  </td>
-                </tr>
-              <tr >
-                <td colspan="7" align="right" valign="top" bgcolor="#FFFFFF"class="formCell">
 
-               <div id="uploaderdiv" style="width:400px; margin:0 auto; text-align: center;">
-                 <p>
-                   <input type="file" name="myupload" id="myupload" size="40"></p>
-				</div>
-                </td></tr>               
-              </table>
-               </div>
             
              <div>
                <table width="650" border="0" align="center" cellpadding="3" cellspacing="0" class="formBox">
                  <tr>
-                   <td colspan="4" bgcolor="#000099" class="tableHead"><?php echo $lbl_lenschar_txt_pl;?>&nbsp;</td>
+                   <td colspan="6" bgcolor="#000099" class="tableHead"><?php echo $lbl_lenschar_txt_pl;?>&nbsp;</td>
                    </tr>
                  <tr>
                    <td width="33" align="right" class="formCell"><span class="tableSubHead"><?php echo $lbl_material_txt_pl;?></span></td>
@@ -439,30 +444,87 @@ $usercount=mysqli_num_rows($result);
                      <select name="INDEX" class="formText" id="INDEX">
                        <option value="ANY" selected="selected"><?php echo $lbl_material1_pl;?></option>
                        <?php
-  $query="SELECT index_v FROM exclusive group by index_v asc"; /* select all openings */
+  $query="SELECT index_v FROM exclusive where index_v in (1.50,1.53,1.56,1.59,1.6,1.67,1.74) group by index_v asc "; /*  select all openings SELECT index_v FROM exclusive group by index_v asc*/
 $result=mysqli_query($con,$query) or die ("Could not select items");
 $usercount=mysqli_num_rows($result);
- while ($listItem=mysqli_fetch_array($result,MYSQLI_ASSOC)){echo "<option value=\"$listItem[index_v]\">";$name=stripslashes($listItem[index_v]);echo "$name</option>";}?>
-                       </select>
-                     </span></td>
-                   <td width="33" align="right" class="formCell"><span class="tableSubHead"><?php echo $lbl_coating_txt_pl;?></span></td>
-                   <td align="left" class="formCellNosides"><span style="margin:11px">
-                     <select name="COATING" class="formText" id="COATING">
-                       <option value="ANY" selected="selected">ANY</option>
-                      <option value="Hard Coat">Hard Coat</option>
-                      <option value="AR">AR</option>
-                      <option value="Uncoated">Uncoated</option>                    
+ while ($listItem=mysqli_fetch_array($result,MYSQLI_ASSOC)){
+	 
 
-                    
-                       </select>
-                     </span></td>
+				echo "<option value=\"$listItem[index_v]\">";$name=stripslashes($listItem[index_v]);echo "$name</option>";}?>
+				</select>
+				</span></td>
+                   <td width="33" align="right" class="formCell"><span class="tableSubHead"><?php  echo $lbl_coating_txt_pl;?></span></td>
+                   <td align="left" class="formCellNosides"><span style="margin:11px">	
+				   
+				   <select name="COATING" class="formText" id="COATING">
+                       <option value="ANY" selected="selected">Select Traitement</option>
+                       <?php
+					  $query="SELECT coating FROM exclusive  group by coating asc "; /* <?php //echo $lbl_coating_txt_pl;?> select all openings SELECT index_v FROM exclusive group by index_v asc*/
+					$result=mysqli_query($con,$query) or die ("Could not select items");
+					$usercount=mysqli_num_rows($result);
+					 while ($listItem=mysqli_fetch_array($result,MYSQLI_ASSOC)){
+						 
+
+				echo "<option value=\"$listItem[coating]\">";$name=stripslashes($listItem[coating]);echo "$name</option>";}?>
+				</select id="server-response">
+
+				<!--select name="COATING" class="formText" id="COATING" onchange="captureSelectedValue()">
+				<option value="ANY" selected="selected">ANY</option>
+				<option value="Hard Coat" selected="selected">Hard Coat </option>
+				<option value="AR" selected="selected" >AR</option>
+				<option value="Uncoated"  >Uncoated</option>
+				
+			</select --!>
+
+			 
+
+    <?php
+  session_start();
+
+    // Vérifier si la valeur a été envoyée depuis la requête AJAX
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+       // echo '<pre>';
+      //  print_r($_POST); // Afficher toutes les données reçues pour le débogage
+      //  echo '</pre>';
+        
+        if (isset($_POST['valeurSelectionnee'])) {
+            $_SESSION['valeurSelectionnee'] = $_POST['valeurSelectionnee'];
+        }
+    }
+
+   /* // Afficher la valeur stockée dans la session
+    if (isset($_SESSION['valeurSelectionnee'])) {
+        echo 'La valeur stockée est : ' . htmlspecialchars($_SESSION['valeurSelectionnee']);
+    } else {
+        echo 'Aucune valeur n\'a été stockée.';
+    }*/
+
+    // Requête SQL avec la valeur stockée dans la session
+    if (isset($_SESSION['valeurSelectionnee'])) {
+        $coatingValue = htmlspecialchars($_SESSION['valeurSelectionnee']);
+        $query = "SELECT photo FROM exclusive  GROUP BY photo ASC";
+        // Exécuter la requête ici en utilisant votre connexion à la base de données WHERE COATING like '%$coatingValue%'
+        // Assurez-vous de bien gérer la connexion et l'exécution de la requête SQL
+		//echo "QUERY:" .$query;
+    }
+    ?>
+    
+				
+				
+                   
+
+
+					 </span></td>
                    </tr>
                  <tr>
                    <td align="right" class="formCell"><span class="tableSubHead"><?php echo $lbl_photochro_txt_pl;?></span></td>
                    <td align="left" class="formCellNosides"><span style="margin:11px"><select name="PHOTO" class="formText" id="PHOTO">
                      <option value="None" selected="selected"><?php echo $lbl_photochro1;?></option>
                      <?php
-  $query="SELECT photo FROM exclusive group by photo asc"; /* select all openings */
+					 
+					 
+
+  $query="SELECT photo FROM exclusive where photo not like '%P Brown%' and photo not like '%P grey%' group by photo asc"; /* select all openings */
 $result=mysqli_query($con,$query) or die ("Could not select items");
 $usercount=mysqli_num_rows($result);
  while ($listItem=mysqli_fetch_array($result,MYSQLI_ASSOC)){
@@ -522,65 +584,76 @@ $usercount=mysqli_num_rows($result);
                  <option   disabled="disabled" value="">CATEGORIE*</option>
                  <option   value="all" <?php if ($_POST['lens_category']=="all") echo 'selected="selected"'; ?>>Tous</option> 
                  <option   value="bifocal" <?php if ($_POST['lens_category']=="bifocal") echo 'selected="selected"'; ?>>Bi-focal</option>
-                 <option   value="glass" <?php if ($_POST['lens_category']=="glass") echo 'selected="selected"'; ?>>Verre</option>
+                 <!-- option   value="glass" <?php //if ($_POST['lens_category']=="glass") echo 'selected="selected"'; ?>>Verre</option --!>
                  <option   value="all prog" <?php if ($_POST['lens_category']=="all prog") echo 'selected="selected"'; ?>>Tous Progressifs</option>
-                 <option   value="prog cl" <?php if ($_POST['lens_category']=="prog cl") echo 'selected="selected"'; ?>>Progressif Classique</option>
-                 <option   value="prog ds" <?php if ($_POST['lens_category']=="prog ds") echo 'selected="selected"'; ?>>Progressif DS</option>
-                 <option   value="prog ff" <?php if ($_POST['lens_category']=="prog ff") echo 'selected="selected"'; ?>>Progressif FF</option>
-                 <option   value="sv" <?php if ($_POST['lens_category']=="sv") echo 'selected="selected"'; ?>>Sv</option>
+                 <!-- option   value="prog cl" <?php// if ($_POST['lens_category']=="prog cl") echo 'selected="selected"'; ?>>Progressif Classique</option>
+                 <option   value="prog ds" <?php //if ($_POST['lens_category']=="prog ds") echo 'selected="selected"'; ?>>Progressif DS</option>
+                 <option   value="prog ff" <?php //if ($_POST['lens_category']=="prog ff") echo 'selected="selected"'; ?>>Progressif FF</option --!>
+                 <option   value="Simple Vision" <?php if ($_POST['lens_category']=="Simple Vision") echo 'selected="selected"'; ?>>Simple Vison</option>
                  <option  disabled="disabled" value="">&nbsp;</option>
                  <option   disabled="disabled" value="">TYPE DE VERRES*</option>
-                 <option   value="iFree" <?php if ($_POST['lens_category']=="iFree") echo 'selected="selected"'; ?>>iFree</option> 
+                 <!--option   value="iFree" <?php// if ($_POST['lens_category']=="iFree") echo 'selected="selected"'; ?>>iFree</option --!> 
+				 <option   value="Precision+ S" <?php if ($_POST['lens_category']=="Precision+ S") echo 'selected="selected"'; ?>>Precision+ S</option> 
+				 <option   value="Precision+360" <?php if ($_POST['lens_category']=="Precision+360") echo 'selected="selected"'; ?>>Precision+360</option> 
+				 <option   value="Maxiwide" <?php if ($_POST['lens_category']=="Maxiwide") echo 'selected="selected"'; ?>>Maxiwide</option> 
+				 <option   value="iAction SV" <?php if ($_POST['lens_category']=="iAction SV") echo 'selected="selected"'; ?>>iAction SV</option> 
                  <option   value="iAction" <?php if ($_POST['lens_category']=="iAction") echo 'selected="selected"'; ?>>iAction</option> 
-                 <option   value="CMF 2 HD" <?php if ($_POST['lens_category']=="CMF 2 HD") echo 'selected="selected"'; ?>>CMF 2 HD</option> 
-                 <option   value="iAction SV" <?php if ($_POST['lens_category']=="iAction SV") echo 'selected="selected"'; ?>>iAction SV</option> 
-                 <option   value="iRelax" <?php if ($_POST['lens_category']=="iRelax") echo 'selected="selected"'; ?>>iRelax</option> 
-                 <option   value="iOffice" <?php if ($_POST['lens_category']=="iOffice") echo 'selected="selected"'; ?>>iOffice</option> 
-				 <option   value="Precision Daily" <?php if ($_POST['lens_category']=="Precision Daily") echo 'selected="selected"'; ?>>Precision Daily</option> 
-				 <option   value="Precision Active" <?php if ($_POST['lens_category']=="Precision Active") echo 'selected="selected"'; ?>>Precision Active</option> 
-                 <option   value="Precision SV HD" <?php if ($_POST['lens_category']=="Precision SV HD") echo 'selected="selected"'; ?>>Precision SV HD</option> 
-                 <option   value="Identity by Optotech" <?php if ($_POST['lens_category']=="Identity by Optotech") echo 'selected="selected"'; ?>>Identity by Optotech</option> 
- 				 <option   value="TrueHD" <?php if ($_POST['lens_category']=="TrueHD") echo 'selected="selected"'; ?>>TrueHD</option> 
-				 <option   value="EasyOne" <?php if ($_POST['lens_category']=="EasyOne") echo 'selected="selected"'; ?>>EasyOne</option> 
-                 <option   value="Infocus RX Direct Progressive" <?php if ($_POST['lens_category']=="Infocus RX Direct Progressive") echo 'selected="selected"'; ?>>Infocus RX Direct Progressive</option> 
- 				 <option   value="Infocus Flat Top" <?php if ($_POST['lens_category']=="Infocus Flat Top") echo 'selected="selected"'; ?>>Infocus Flat Top</option> 
-                 <option   value="Infocus Single Vision" <?php if ($_POST['lens_category']=="Infocus Single Vision") echo 'selected="selected"'; ?>>Infocus Single Vision</option> 
- 				 <option   value="Vision Pro HD" <?php if ($_POST['lens_category']=="Vision Pro HD") echo 'selected="selected"'; ?>>Vision Pro HD</option> 
- 				 <option   value="Mini Pro HD" <?php if ($_POST['lens_category']=="Mini Pro HD") echo 'selected="selected"'; ?>>Mini Pro HD</option> 
-                 <option   value="Innovative II DS" <?php if ($_POST['lens_category']=="Innovative II DS") echo 'selected="selected"'; ?>>Innovative II DS</option> 
- 				 <option   value="Econo Choice" <?php if ($_POST['lens_category']=="Econo Choice") echo 'selected="selected"'; ?>>Econo Choice</option> 
-  				 <option   value="Econo Choice Ultra Short" <?php if ($_POST['lens_category']=="Econo Choice Ultra Short") echo 'selected="selected"'; ?>>Econo Choice Ultra Short</option> 
-  				 <option   value="Econo Choice Ultra One" <?php if ($_POST['lens_category']=="Econo Choice Ultra One") echo 'selected="selected"'; ?>>Econo Choice Ultra One</option> 
- 				 <option   value="Pro EZ" <?php if ($_POST['lens_category']=="Pro EZ") echo 'selected="selected"'; ?>>Pro EZ HD</option>
- 			     <option   value="IPL"     <?php if ($_POST['lens_category']=="IPL")     echo 'selected="selected"'; ?>>Alpha (Formerly Optimize IPL)</option> 
-                 <option   value="Acuform" <?php if ($_POST['lens_category']=="Acuform") echo 'selected="selected"'; ?>>Optimize ACUFORM</option> 
-                 <option   value="FIT" <?php if ($_POST['lens_category']=="FIT") echo 'selected="selected"'; ?>>Optimize FIT</option> 
-                 <option   value="Horizon" <?php if ($_POST['lens_category']=="Horizon") echo 'selected="selected"'; ?>>Optimize Horizon+</option> 
-                 <option   value="DMT" <?php if ($_POST['lens_category']=="DMT") echo 'selected="selected"'; ?>>Innovative (Formerly DMT)</option> 
+                 <!--option   value="CMF 2 HD" <?php //if ($_POST['lens_category']=="CMF 2 HD") echo 'selected="selected"'; ?>>CMF 2 HD</option--!> 
+				 <option   value="Alpha" <?php if ($_POST['lens_category']=="Alpha") echo 'selected="selected"'; ?>>Alpha</option> 
+				 <option   value="Alpha HD" <?php if ($_POST['lens_category']=="Alpha HD") echo 'selected="selected"'; ?>>Alpha HD</option> 
+				 <option   value="iOffice" <?php if ($_POST['lens_category']=="iOffice") echo 'selected="selected"'; ?>>iOffice</option>
+				 <option   value="iReader" <?php if ($_POST['lens_category']=="iReader") echo 'selected="selected"'; ?>>iReader</option>
+				 <option   value="iRelax" <?php if ($_POST['lens_category']=="iRelax") echo 'selected="selected"'; ?>>iRelax</option>
+				 <option   value="iRoom" <?php if ($_POST['lens_category']=="iRoom") echo 'selected="selected"'; ?>>iRoom</option> 				 
                  <option   value="Lifestyle" <?php if ($_POST['lens_category']=="Lifestyle") echo 'selected="selected"'; ?>>Office Premium</option>
-                 <option   value="Anti-Fatigue" <?php if ($_POST['lens_category']=="Anti-Fatigue") echo 'selected="selected"'; ?>>Eye Fatigue</option>
-                 <option   value="Vision Classique HD" <?php if ($_POST['lens_category']=="Vision Classique HD") echo 'selected="selected"'; ?>>Vision Classique HD</option> 
-                 <option   value="Purelife HD" <?php if ($_POST['lens_category']=="Purelife HD") echo 'selected="selected"'; ?>>Purelife HD</option> 
-                 <option   value="Life II" <?php if ($_POST['lens_category']=="Life II") echo 'selected="selected"'; ?>>Life II</option> 
-                 <option   value="Life XS" <?php if ($_POST['lens_category']=="Life XS") echo 'selected="selected"'; ?>>Life XS</option> 
-                 <option   value="SelectionRx" <?php if ($_POST['lens_category']=="SelectionRx") echo 'selected="selected"'; ?>>SelectionRx</option> 
-  				 <option   value="SV" <?php if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>SV</option> 
-				 <option   value="ST-28" <?php if ($_POST['lens_category']=="ST-28") echo 'selected="selected"'; ?>>ST-28</option> 
-				 <option   value="ST-25" <?php if ($_POST['lens_category']=="ST-25") echo 'selected="selected"'; ?>>ST-25</option> 
-				 <option   value="Ovation" <?php if ($_POST['lens_category']=="Ovation") echo 'selected="selected"'; ?>>Ovation</option> 
-                 <option   value="ELPS HD" <?php if ($_POST['lens_category']=="ELPS HD") echo 'selected="selected"'; ?>>ELPS HD</option> 
-                 <option   value="PSI HD" <?php if ($_POST['lens_category']=="PSI HD") echo 'selected="selected"'; ?>>PSI HD</option>
+				 <option   value="Single vision" <?php if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>Simple Vision</option> 
+				 <option   value="Simple vision stock" <?php if ($_POST['lens_category']=="Simple Vision Stock") echo 'selected="selected"'; ?>>Simple Vision Stock</option>
+				 <option   value="FT28" <?php if ($_POST['lens_category']=="FT28") echo 'selected="selected"'; ?>>FT28</option> 	
+				 <option   value="Seiko" <?php if ($_POST['lens_category']=="Seiko") echo 'selected="selected"'; ?>>Seiko</option> 
+				 <!--option   value="Precision Daily" <?php //if ($_POST['lens_category']=="Precision Daily") echo 'selected="selected"'; ?>>Precision Daily</option> 
+				 <option   value="Precision Active" <?php //if ($_POST['lens_category']=="Precision Active") echo 'selected="selected"'; ?>>Precision Active</option> 
+                 <option   value="Precision SV HD" <?php //if ($_POST['lens_category']=="Precision SV HD") echo 'selected="selected"'; ?>>Precision SV HD</option> 
+                 <option   value="Identity by Optotech" <?php //if ($_POST['lens_category']=="Identity by Optotech") echo 'selected="selected"'; ?>>Identity by Optotech</option> 
+ 				 <option   value="TrueHD" <?php //if ($_POST['lens_category']=="TrueHD") echo 'selected="selected"'; ?>>TrueHD</option> 
+				 <option   value="EasyOne" <?php //if ($_POST['lens_category']=="EasyOne") echo 'selected="selected"'; ?>>EasyOne</option> 
+                 <option   value="Infocus RX Direct Progressive" <?php //if ($_POST['lens_category']=="Infocus RX Direct Progressive") echo 'selected="selected"'; ?>>Infocus RX Direct Progressive</option> 
+ 				 <option   value="Infocus Flat Top" <?php //if ($_POST['lens_category']=="Infocus Flat Top") echo 'selected="selected"'; ?>>Infocus Flat Top</option --!> 
+                 <!--option   value="Infocus Single Vision" <?php //if ($_POST['lens_category']=="Infocus Single Vision") echo 'selected="selected"'; ?>>Infocus Single Vision</option--!> 
+ 				 <!--option   value="Vision Pro HD" <?php// if ($_POST['lens_category']=="Vision Pro HD") echo 'selected="selected"'; ?>>Vision Pro HD</option> 
+ 				 <option   value="Mini Pro HD" <?php //if ($_POST['lens_category']=="Mini Pro HD") echo 'selected="selected"'; ?>>Mini Pro HD</option> 
+                 <option   value="Innovative II DS" <?php //if ($_POST['lens_category']=="Innovative II DS") echo 'selected="selected"'; ?>>Innovative II DS</option> 
+ 				 <option   value="Econo Choice" <?php// if ($_POST['lens_category']=="Econo Choice") echo 'selected="selected"'; ?>>Econo Choice</option> 
+  				 <option   value="Econo Choice Ultra Short" <?php// if ($_POST['lens_category']=="Econo Choice Ultra Short") echo 'selected="selected"'; ?>>Econo Choice Ultra Short</option> 
+  				 <option   value="Econo Choice Ultra One" <?php //if ($_POST['lens_category']=="Econo Choice Ultra One") echo 'selected="selected"'; ?>>Econo Choice Ultra One</option> 
+ 				 <option   value="Pro EZ" <?php //if ($_POST['lens_category']=="Pro EZ") echo 'selected="selected"'; ?>>Pro EZ HD</option --!>
+ 			     <!--option   value="IPL"     <?php//if ($_POST['lens_category']=="IPL")     echo 'selected="selected"'; ?>>Alpha (Formerly Optimize IPL)</option--!> 
+                 <!--option   value="Acuform" <?php//if ($_POST['lens_category']=="Acuform") echo 'selected="selected"'; ?>>Optimize ACUFORM</option> 
+                 <option   value="FIT" <?php// if ($_POST['lens_category']=="FIT") echo 'selected="selected"'; ?>>Optimize FIT</option> 
+                 <option   value="Horizon" <?php// if ($_POST['lens_category']=="Horizon") echo 'selected="selected"'; ?>>Optimize Horizon+</option> 
+              <option   value="DMT" <?php// if ($_POST['lens_category']=="DMT") echo 'selected="selected"'; ?>>Innovative (Formerly DMT)</option--!> 
+                 <!--option   value="Anti-Fatigue" <?php// if ($_POST['lens_category']=="Anti-Fatigue") echo 'selected="selected"'; ?>>Eye Fatigue</option>
+                 <option   value="Vision Classique HD" <?php// if ($_POST['lens_category']=="Vision Classique HD") echo 'selected="selected"'; ?>>Vision Classique HD</option> 
+                 <option   value="Purelife HD" <?php //if ($_POST['lens_category']=="Purelife HD") echo 'selected="selected"'; ?>>Purelife HD</option> 
+                 <option   value="Life II" <?php //if ($_POST['lens_category']=="Life II") echo 'selected="selected"'; ?>>Life II</option> 
+                 <option   value="Life XS" <?php //if ($_POST['lens_category']=="Life XS") echo 'selected="selected"'; ?>>Life XS</option> 
+                 <option   value="SelectionRx" <?php //if ($_POST['lens_category']=="SelectionRx") echo 'selected="selected"'; ?>>SelectionRx</option--!> 
+  				 <!--option   value="SV" <?php //if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>SV</option--! 
+				 <!--option   value="ST-28" <?php //if ($_POST['lens_category']=="ST-28") echo 'selected="selected"'; ?>>ST-28</option> 
+				 <option   value="ST-25" <?php //if ($_POST['lens_category']=="ST-25") echo 'selected="selected"'; ?>>ST-25</option> 
+				 <option   value="Ovation" <?php //if ($_POST['lens_category']=="Ovation") echo 'selected="selected"'; ?>>Ovation</option> 
+                 <option   value="ELPS HD" <?php //if ($_POST['lens_category']=="ELPS HD") echo 'selected="selected"'; ?>>ELPS HD</option> 
+                 <option   value="PSI HD" <?php// if ($_POST['lens_category']=="PSI HD") echo 'selected="selected"'; ?>>PSI HD</option-!>
                  <option   disabled="disabled" value="">&nbsp;</option>
-				 <option   disabled="disabled" value="">FABRICANT*</option>
-                 <option   value="ESSILOR" <?php if ($_POST['lens_category']=="ESSILOR") echo 'selected="selected"'; ?>>ESSILOR</option> 
-                 <option   value="MY WORLD" <?php if ($_POST['lens_category']=="MY WORLD") echo 'selected="selected"'; ?>>MY WORLD</option> 
-                 <option   value="OPTIMIZE" <?php if ($_POST['lens_category']=="OPTIMIZE") echo 'selected="selected"'; ?>>OPTIMIZE</option> 
-                 <option   value="OPTOTECH" <?php if ($_POST['lens_category']=="OPTOTECH") echo 'selected="selected"'; ?>>OPTOTECH</option> 
-                 <option   value="PRECISION" <?php if ($_POST['lens_category']=="PRECISION") echo 'selected="selected"'; ?>>PRECISION</option> 
-                 <option   value="RODENSTOCK" <?php if ($_POST['lens_category']=="RODENSTOCK") echo 'selected="selected"'; ?>>RODENSTOCK</option> 
-                 <option   value="SEIKO" <?php if ($_POST['lens_category']=="SEIKO") echo 'selected="selected"'; ?>>SEIKO</option> 
-                 <option   value="SHAMIR" <?php if ($_POST['lens_category']=="SHAMIR") echo 'selected="selected"'; ?>>SHAMIR</option> 
-                 <option   value="SOLA" <?php if ($_POST['lens_category']=="SOLA") echo 'selected="selected"'; ?>>SOLA</option>       
+				 <!-- option   disabled="disabled" value="">FABRICANT*</option>
+                 <option   value="ESSILOR" <?php// if ($_POST['lens_category']=="ESSILOR") echo 'selected="selected"'; ?>>ESSILOR</option> 
+                 <option   value="MY WORLD" <?php //if ($_POST['lens_category']=="MY WORLD") echo 'selected="selected"'; ?>>MY WORLD</option> 
+                 <option   value="OPTIMIZE" <?php //if ($_POST['lens_category']=="OPTIMIZE") echo 'selected="selected"'; ?>>OPTIMIZE</option> 
+                 <option   value="OPTOTECH" <?php //if ($_POST['lens_category']=="OPTOTECH") echo 'selected="selected"'; ?>>OPTOTECH</option> 
+                 <option   value="PRECISION" <?php //if ($_POST['lens_category']=="PRECISION") echo 'selected="selected"'; ?>>PRECISION</option> 
+                 <option   value="RODENSTOCK" <?php// if ($_POST['lens_category']=="RODENSTOCK") echo 'selected="selected"'; ?>>RODENSTOCK</option> 
+                 <option   value="SEIKO" <?php //if ($_POST['lens_category']=="SEIKO") echo 'selected="selected"'; ?>>SEIKO</option> 
+                 <option   value="SHAMIR" <?php// if ($_POST['lens_category']=="SHAMIR") echo 'selected="selected"'; ?>>SHAMIR</option> 
+                 <option   value="SOLA" <?php// if ($_POST['lens_category']=="SOLA") echo 'selected="selected"'; ?>>SOLA</option --!>       
         </select>
         
                 <?php 
@@ -590,65 +663,76 @@ $usercount=mysqli_num_rows($result);
                  <option  disabled="disabled" value="">LENS CATEGORY*</option>
                  <option   value="all" <?php if ($_POST['lens_category']=="all") echo 'selected="selected"'; ?>>All</option> 
                  <option   value="bifocal" <?php if ($_POST['lens_category']=="bifocal") echo 'selected="selected"'; ?>>Bi-focal</option>
-                 <option   value="glass" <?php if ($_POST['lens_category']=="glass") echo 'selected="selected"'; ?>>Glass</option>
+                 <!--option   value="glass" <?php //if ($_POST['lens_category']=="glass") echo 'selected="selected"'; ?>>Glass</option --!>
                  <option   value="all prog" <?php if ($_POST['lens_category']=="all prog") echo 'selected="selected"'; ?>>All Progressives</option>
-                 <option   value="prog cl" <?php if ($_POST['lens_category']=="prog cl") echo 'selected="selected"'; ?>>Progressive Classique</option>
-                 <option   value="prog ds" <?php if ($_POST['lens_category']=="prog ds") echo 'selected="selected"'; ?>>Progressif DS</option>
-                 <option   value="prog ff" <?php if ($_POST['lens_category']=="prog ff") echo 'selected="selected"'; ?>>Progressif FF</option>
-                 <option   value="sv" <?php if ($_POST['lens_category']=="sv") echo 'selected="selected"'; ?>>Sv</option>
+                 <!-- option   value="prog cl" <?php //if ($_POST['lens_category']=="prog cl") echo 'selected="selected"'; ?>>Progressive Classique</option>
+                 <option   value="prog ds" <?php //if ($_POST['lens_category']=="prog ds") echo 'selected="selected"'; ?>>Progressif DS</option>
+                 <option   value="prog ff" <?php //if ($_POST['lens_category']=="prog ff") echo 'selected="selected"'; ?>>Progressif FF</option --!>
+                 <option   value="Single Vision" <?php if ($_POST['lens_category']=="Single Vision") echo 'selected="selected"'; ?>>Single Vision</option >
                  <option  disabled="disabled" value="">&nbsp;</option>
                  <option  disabled="disabled" value="">LENS TYPE*</option>
-                 <option   value="iFree" <?php if ($_POST['lens_category']=="iFree") echo 'selected="selected"'; ?>>iFree</option> 
+                  <option   value="Precision+ S" <?php if ($_POST['lens_category']=="Precision+ S") echo 'selected="selected"'; ?>>Precision+ S</option> 
+				 <option   value="Precision+360" <?php if ($_POST['lens_category']=="Precision+360") echo 'selected="selected"'; ?>>Precision+360</option> 
+				 <option   value="Maxiwide" <?php if ($_POST['lens_category']=="Maxiwide") echo 'selected="selected"'; ?>>Maxiwide</option> 
+				 <option   value="iAction SV" <?php if ($_POST['lens_category']=="iAction SV") echo 'selected="selected"'; ?>>iAction SV</option> 
                  <option   value="iAction" <?php if ($_POST['lens_category']=="iAction") echo 'selected="selected"'; ?>>iAction</option> 
-                 <option   value="CMF 2 HD" <?php if ($_POST['lens_category']=="CMF 2 HD") echo 'selected="selected"'; ?>>CMF 2 HD</option> 
-                 <option   value="iAction SV" <?php if ($_POST['lens_category']=="iAction SV") echo 'selected="selected"'; ?>>iAction SV</option> 
-                 <option   value="iRelax" <?php if ($_POST['lens_category']=="iRelax") echo 'selected="selected"'; ?>>iRelax</option> 
-                 <option   value="iOffice" <?php if ($_POST['lens_category']=="iOffice") echo 'selected="selected"'; ?>>iOffice</option> 
-				 <option   value="Precision Daily" <?php if ($_POST['lens_category']=="Precision Daily") echo 'selected="selected"'; ?>>Precision Daily</option> 
-				 <option   value="Precision Active" <?php if ($_POST['lens_category']=="Precision Active") echo 'selected="selected"'; ?>>Precision Active</option> 
-                 <option   value="Precision SV HD" <?php if ($_POST['lens_category']=="Precision SV HD") echo 'selected="selected"'; ?>>Precision SV HD</option> 
-                 <option   value="Identity by Optotech" <?php if ($_POST['lens_category']=="Identity by Optotech") echo 'selected="selected"'; ?>>Identity by Optotech</option> 
- 				 <option   value="TrueHD" <?php if ($_POST['lens_category']=="TrueHD") echo 'selected="selected"'; ?>>TrueHD</option> 
-				 <option   value="EasyOne" <?php if ($_POST['lens_category']=="EasyOne") echo 'selected="selected"'; ?>>EasyOne</option> 
-                 <option   value="Infocus RX Direct Progressive" <?php if ($_POST['lens_category']=="Infocus RX Direct Progressive") echo 'selected="selected"'; ?>>Infocus RX Direct Progressive</option> 
- 				 <option   value="Infocus Flat Top" <?php if ($_POST['lens_category']=="Infocus Flat Top") echo 'selected="selected"'; ?>>Infocus Flat Top</option> 
-                 <option   value="Infocus Single Vision" <?php if ($_POST['lens_category']=="Infocus Single Vision") echo 'selected="selected"'; ?>>Infocus Single Vision</option> 
- 				 <option   value="Vision Pro HD" <?php if ($_POST['lens_category']=="Vision Pro HD") echo 'selected="selected"'; ?>>Vision Pro HD</option> 
- 				 <option   value="Mini Pro HD" <?php if ($_POST['lens_category']=="Mini Pro HD") echo 'selected="selected"'; ?>>Mini Pro HD</option> 
- 				 <option   value="Econo Choice" <?php if ($_POST['lens_category']=="Econo Choice") echo 'selected="selected"'; ?>>Econo Choice</option> 
-  				 <option   value="Econo Choice Ultra Short" <?php if ($_POST['lens_category']=="Econo Choice Ultra Short") echo 'selected="selected"'; ?>>Econo Choice Ultra Short</option> 
-  				 <option   value="Econo Choice Ultra One" <?php if ($_POST['lens_category']=="Econo Choice Ultra One") echo 'selected="selected"'; ?>>Econo Choice Ultra One</option> 
- 				 <option   value="Pro EZ HD" <?php if ($_POST['lens_category']=="Pro EZ HD") echo 'selected="selected"'; ?>>Pro EZ HD</option>
-                 <option   value="Innovative II DS" <?php if ($_POST['lens_category']=="Innovative II DS") echo 'selected="selected"'; ?>>Innovative II DS</option> 
- 				 <option   value="IPL"     <?php if ($_POST['lens_category']=="IPL")     echo 'selected="selected"'; ?>>Alpha (Formerly Optimize IPL)</option> 
-                 <option   value="Acuform" <?php if ($_POST['lens_category']=="Acuform") echo 'selected="selected"'; ?>>Optimize ACUFORM</option> 
-                 <option   value="FIT" <?php if ($_POST['lens_category']=="FIT") echo 'selected="selected"'; ?>>Optimize FIT</option> 
-                 <option   value="Horizon" <?php if ($_POST['lens_category']=="Horizon") echo 'selected="selected"'; ?>>Optimize Horizon+</option> 
-                 <option   value="DMT" <?php if ($_POST['lens_category']=="DMT") echo 'selected="selected"'; ?>>Innovative (Formerly DMT)</option> 
+                 <!--option   value="CMF 2 HD" <?php //if ($_POST['lens_category']=="CMF 2 HD") echo 'selected="selected"'; ?>>CMF 2 HD</option--!> 
+				 <option   value="Alpha" <?php if ($_POST['lens_category']=="Alpha") echo 'selected="selected"'; ?>>Alpha</option> 
+				 <option   value="Alpha HD" <?php if ($_POST['lens_category']=="Alpha HD") echo 'selected="selected"'; ?>>Alpha HD</option> 
+				 <option   value="iOffice" <?php if ($_POST['lens_category']=="iOffice") echo 'selected="selected"'; ?>>iOffice</option>
+				 <option   value="iReader" <?php if ($_POST['lens_category']=="iReader") echo 'selected="selected"'; ?>>iReader</option>
+				 <option   value="iRelax" <?php if ($_POST['lens_category']=="iRelax") echo 'selected="selected"'; ?>>iRelax</option>
+				 <option   value="iRoom" <?php if ($_POST['lens_category']=="iRoom") echo 'selected="selected"'; ?>>iRoom</option> 				 
                  <option   value="Lifestyle" <?php if ($_POST['lens_category']=="Lifestyle") echo 'selected="selected"'; ?>>Office Premium</option>
-                 <option   value="Anti-Fatigue" <?php if ($_POST['lens_category']=="Anti-Fatigue") echo 'selected="selected"'; ?>>Eye Fatigue</option>
-                 <option   value="Vision Classique HD" <?php if ($_POST['lens_category']=="Vision Classique HD") echo 'selected="selected"'; ?>>Vision Classique HD</option> 
-                 <option   value="Purelife HD" <?php if ($_POST['lens_category']=="Purelife HD") echo 'selected="selected"'; ?>>Purelife HD</option> 
-                 <option   value="Life II" <?php if ($_POST['lens_category']=="Life II") echo 'selected="selected"'; ?>>Life II</option> 
-                 <option   value="Life XS" <?php if ($_POST['lens_category']=="Life XS") echo 'selected="selected"'; ?>>Life XS</option> 
-                 <option   value="SelectionRx" <?php if ($_POST['lens_category']=="SelectionRx") echo 'selected="selected"'; ?>>SelectionRx</option> 
-  				 <option   value="SV" <?php if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>SV</option> 
-				 <option   value="ST-28" <?php if ($_POST['lens_category']=="ST-28") echo 'selected="selected"'; ?>>ST-28</option> 
-				 <option   value="ST-25" <?php if ($_POST['lens_category']=="ST-25") echo 'selected="selected"'; ?>>ST-25</option> 
-				 <option   value="Ovation" <?php if ($_POST['lens_category']=="Ovation") echo 'selected="selected"'; ?>>Ovation</option> 
-                 <option   value="ELPS HD" <?php if ($_POST['lens_category']=="ELPS HD") echo 'selected="selected"'; ?>>ELPS HD</option> 
-                 <option   value="PSI HD" <?php if ($_POST['lens_category']=="PSI HD") echo 'selected="selected"'; ?>>PSI HD</option>
+				 <option   value="Single vision" <?php if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>Single Vision</option> 
+				 <option   value="Single Vision Stock" <?php if ($_POST['lens_category']=="Single Vision Stock") echo 'selected="selected"'; ?>>Single Vision Stock</option>
+				 <option   value="FT28" <?php if ($_POST['lens_category']=="FT28") echo 'selected="selected"'; ?>>FT28</option> 
+				  <option   value="Seiko" <?php if ($_POST['lens_category']=="Seiko") echo 'selected="selected"'; ?>>Seiko</option> 
+				 <!--option   value="Precision Daily" <?php// if ($_POST['lens_category']=="Precision Daily") echo 'selected="selected"'; ?>>Precision Daily</option> 
+				 <option   value="Precision Active" <?php //if ($_POST['lens_category']=="Precision Active") echo 'selected="selected"'; ?>>Precision Active</option> 
+                 <option   value="Precision SV HD" <?php //if ($_POST['lens_category']=="Precision SV HD") echo 'selected="selected"'; ?>>Precision SV HD</option> 
+                 <option   value="Identity by Optotech" <?php //if ($_POST['lens_category']=="Identity by Optotech") echo 'selected="selected"'; ?>>Identity by Optotech</option> 
+ 				 <option   value="TrueHD" <?php //if ($_POST['lens_category']=="TrueHD") echo 'selected="selected"'; ?>>TrueHD</option> 
+				 <option   value="EasyOne" <?php //if ($_POST['lens_category']=="EasyOne") echo 'selected="selected"'; ?>>EasyOne</option> 
+                 <option   value="Infocus RX Direct Progressive" <?php //if ($_POST['lens_category']=="Infocus RX Direct Progressive") echo 'selected="selected"'; ?>>Infocus RX Direct Progressive</option> 
+ 				 <option   value="Infocus Flat Top" <?php //if ($_POST['lens_category']=="Infocus Flat Top") echo 'selected="selected"'; ?>>Infocus Flat Top</option--!> 
+                
+ 				 <!--option   value="Vision Pro HD" <?php //if ($_POST['lens_category']=="Vision Pro HD") echo 'selected="selected"'; ?>>Vision Pro HD</option> 
+ 				 <option   value="Mini Pro HD" <?php //if ($_POST['lens_category']=="Mini Pro HD") echo 'selected="selected"'; ?>>Mini Pro HD</option> 
+ 				 <option   value="Econo Choice" <?php //if ($_POST['lens_category']=="Econo Choice") echo 'selected="selected"'; ?>>Econo Choice</option> 
+  				 <option   value="Econo Choice Ultra Short" <?php //if ($_POST['lens_category']=="Econo Choice Ultra Short") echo 'selected="selected"'; ?>>Econo Choice Ultra Short</option> 
+  				 <option   value="Econo Choice Ultra One" <?php// if ($_POST['lens_category']=="Econo Choice Ultra One") echo 'selected="selected"'; ?>>Econo Choice Ultra One</option> 
+ 				 <option   value="Pro EZ HD" <?php //if ($_POST['lens_category']=="Pro EZ HD") echo 'selected="selected"'; ?>>Pro EZ HD</option>
+                 <option   value="Innovative II DS" <?php// if ($_POST['lens_category']=="Innovative II DS") echo 'selected="selected"'; ?>>Innovative II DS</option--!> 
+ 			
+                 <!--option   value="Acuform" <?php //if ($_POST['lens_category']=="Acuform") echo 'selected="selected"'; ?>>Optimize ACUFORM</option> 
+                 <option   value="FIT" <?php// if ($_POST['lens_category']=="FIT") echo 'selected="selected"'; ?>>Optimize FIT</option> 
+                 <option   value="Horizon" <?php //if ($_POST['lens_category']=="Horizon") echo 'selected="selected"'; ?>>Optimize Horizon+</option> 
+                 <option   value="DMT" <?php// if ($_POST['lens_category']=="DMT") echo 'selected="selected"'; ?>>Innovative (Formerly DMT)</option--!> 
+                 <!--option   value="Lifestyle" <?php// if ($_POST['lens_category']=="Lifestyle") echo 'selected="selected"'; ?>>Office Premium</option--!>
+                 <!--option   value="Anti-Fatigue" <?php// if ($_POST['lens_category']=="Anti-Fatigue") echo 'selected="selected"'; ?>>Eye Fatigue</option>
+                 <option   value="Vision Classique HD" <?php //if ($_POST['lens_category']=="Vision Classique HD") echo 'selected="selected"'; ?>>Vision Classique HD</option> 
+                 <option   value="Purelife HD" <?php //if ($_POST['lens_category']=="Purelife HD") echo 'selected="selected"'; ?>>Purelife HD</option> 
+                 <option   value="Life II" <?php //if ($_POST['lens_category']=="Life II") echo 'selected="selected"'; ?>>Life II</option> 
+                 <option   value="Life XS" <?php //if ($_POST['lens_category']=="Life XS") echo 'selected="selected"'; ?>>Life XS</option> 
+                 <option   value="SelectionRx" <?php// if ($_POST['lens_category']=="SelectionRx") echo 'selected="selected"'; ?>>SelectionRx</option --!> 
+  				 <!--ption   value="SV" <?php //if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>SV</option--!> 
+				 <!--option   value="ST-28" <?php// if ($_POST['lens_category']=="ST-28") echo 'selected="selected"'; ?>>ST-28</option> 
+				 <option   value="ST-25" <?php //if ($_POST['lens_category']=="ST-25") echo 'selected="selected"'; ?>>ST-25</option> 
+				 <option   value="Ovation" <?php// if ($_POST['lens_category']=="Ovation") echo 'selected="selected"'; ?>>Ovation</option> 
+                 <option   value="ELPS HD" <?php// if ($_POST['lens_category']=="ELPS HD") echo 'selected="selected"'; ?>>ELPS HD</option> 
+                 <option   value="PSI HD" <?php //if ($_POST['lens_category']=="PSI HD") echo 'selected="selected"'; ?>>PSI HD</option--!>
                  <option   disabled="disabled" value="">&nbsp;</option>
-				  <option  disabled="disabled" value="">MANUFACTURER*</option>
-                 <option   value="ESSILOR" <?php if ($_POST['lens_category']=="ESSILOR") echo 'selected="selected"'; ?>>ESSILOR</option> 
-                 <option   value="MY WORLD" <?php if ($_POST['lens_category']=="MY WORLD") echo 'selected="selected"'; ?>>MY WORLD</option> 
-                 <option   value="OPTIMIZE" <?php if ($_POST['lens_category']=="OPTIMIZE") echo 'selected="selected"'; ?>>OPTIMIZE</option> 
-                 <option   value="OPTOTECH" <?php if ($_POST['lens_category']=="OPTOTECH") echo 'selected="selected"'; ?>>OPTOTECH</option> 
-                 <option   value="PRECISION" <?php if ($_POST['lens_category']=="PRECISION") echo 'selected="selected"'; ?>>PRECISION</option> 
-                 <option   value="RODENSTOCK" <?php if ($_POST['lens_category']=="RODENSTOCK") echo 'selected="selected"'; ?>>RODENSTOCK</option> 
-                 <option   value="SEIKO" <?php if ($_POST['lens_category']=="SEIKO") echo 'selected="selected"'; ?>>SEIKO</option> 
-                 <option   value="SHAMIR" <?php if ($_POST['lens_category']=="SHAMIR") echo 'selected="selected"'; ?>>SHAMIR</option> 
-                 <option   value="SOLA" <?php if ($_POST['lens_category']=="SOLA") echo 'selected="selected"'; ?>>SOLA</option>       
+				  <!-- option  disabled="disabled" value="">MANUFACTURER*</option>
+                 <option   value="ESSILOR" <?php //if ($_POST['lens_category']=="ESSILOR") echo 'selected="selected"'; ?>>ESSILOR</option> 
+                 <option   value="MY WORLD" <?php// if ($_POST['lens_category']=="MY WORLD") echo 'selected="selected"'; ?>>MY WORLD</option> 
+                 <option   value="OPTIMIZE" <?php// if ($_POST['lens_category']=="OPTIMIZE") echo 'selected="selected"'; ?>>OPTIMIZE</option> 
+                 <option   value="OPTOTECH" <?php// if ($_POST['lens_category']=="OPTOTECH") echo 'selected="selected"'; ?>>OPTOTECH</option> 
+                 <option   value="PRECISION" <?php //if ($_POST['lens_category']=="PRECISION") echo 'selected="selected"'; ?>>PRECISION</option> 
+                 <option   value="RODENSTOCK" <?php //if ($_POST['lens_category']=="RODENSTOCK") echo 'selected="selected"'; ?>>RODENSTOCK</option> 
+                 <option   value="SEIKO" <?php //if ($_POST['lens_category']=="SEIKO") echo 'selected="selected"'; ?>>SEIKO</option> 
+                 <option   value="SHAMIR" <?php// if ($_POST['lens_category']=="SHAMIR") echo 'selected="selected"'; ?>>SHAMIR</option> 
+                 <option   value="SOLA" <?php //if ($_POST['lens_category']=="SOLA") echo 'selected="selected"'; ?>>SOLA</option --!>       
         </select>
                
 				<?php
@@ -660,35 +744,46 @@ $usercount=mysqli_num_rows($result);
                  <option   value="all" <?php if ($_POST['lens_category']=="all") echo 'selected="selected"'; ?>>All</option> 
                  <option   value="bifocal" <?php if ($_POST['lens_category']=="bifocal") echo 'selected="selected"'; ?>>HD Bifocal</option>
                  <option   value="all prog" <?php if ($_POST['lens_category']=="all prog") echo 'selected="selected"'; ?>>All Progressives</option>
-                 <option   value="prog ds" <?php if ($_POST['lens_category']=="prog ds") echo 'selected="selected"'; ?>>Progressif DS</option>
-                 <option   value="prog ff" <?php if ($_POST['lens_category']=="prog ff") echo 'selected="selected"'; ?>>Progressif FF</option>
-                 <option   value="sv" <?php if ($_POST['lens_category']=="sv") echo 'selected="selected"'; ?>>SV</option>    
-                 <option   value="stock" <?php if ($_POST['lens_category']=="stock") echo 'selected="selected"'; ?>>Stock</option>       
+                 <!--option   value="prog ds" <?php// if ($_POST['lens_category']=="prog ds") echo 'selected="selected"'; ?>>Progressif DS</option>
+                 <option   value="prog ff" <?php //if ($_POST['lens_category']=="prog ff") echo 'selected="selected"'; ?>>Progressif FF</option --!>
+                 <option   value="Simple Vision" <?php if ($_POST['lens_category']=="Single Vision") echo 'selected="selected"'; ?>>Single Vision</option>    
+                 <!--option   value="stock" <?php //if ($_POST['lens_category']=="stock") echo 'selected="selected"'; ?>>Stock</option --!>       
                  <option  disabled="disabled" value="">&nbsp;</option>
                  <option  disabled="disabled" value="">LENS TYPE*</option>
+				    <option   value="iFree" <?php if ($_POST['lens_category']=="iFree") echo 'selected="selected"'; ?>>iFree</option> 
+				 <option   value="Precision+ S" <?php if ($_POST['lens_category']=="Precision+ S") echo 'selected="selected"'; ?>>Precision+ S</option> 
+				 <option   value="Precision+360" <?php if ($_POST['lens_category']=="Precision+360") echo 'selected="selected"'; ?>>Precision+360</option> 
+				 <option   value="Maxiwide" <?php if ($_POST['lens_category']=="Maxiwide") echo 'selected="selected"'; ?>>Maxiwide</option> 
                  <option   value="iAction" <?php if ($_POST['lens_category']=="iAction") echo 'selected="selected"'; ?>>iAction</option> 
                  <option   value="iAction SV" <?php if ($_POST['lens_category']=="iAction SV") echo 'selected="selected"'; ?>>iAction SV</option> 
-                 <option   value="iFree" <?php if ($_POST['lens_category']=="iFree") echo 'selected="selected"'; ?>>iFree</option> 
+                 <!--option   value="iFree" <?php if ($_POST['lens_category']=="iFree") echo 'selected="selected"'; ?>>iFree</option --!> 
                  <option   value="iOffice" <?php if ($_POST['lens_category']=="iOffice") echo 'selected="selected"'; ?>>iOffice</option> 
                  <option   value="iReader" <?php if ($_POST['lens_category']=="iReader") echo 'selected="selected"'; ?>>iReader</option> 
                  <option   value="iRelax" <?php if ($_POST['lens_category']=="iRelax") echo 'selected="selected"'; ?>>iRelax</option> 
                  <option   value="iReader" <?php if ($_POST['lens_category']=="iReader") echo 'selected="selected"'; ?>>iReader</option> 
-                 <option   value="Acuform" <?php if ($_POST['lens_category']=="Acuform") echo 'selected="selected"'; ?>>Universal (Formerly Optimize Acuform)</option> 
-                 <option   value="IPL"     <?php if ($_POST['lens_category']=="IPL")     echo 'selected="selected"'; ?>>Alpha (Formerly Optimize IPL)</option> 
-                 <option   value="DMT" <?php if ($_POST['lens_category']=="DMT") echo 'selected="selected"'; ?>>Innovative (Formerly DMT)</option> 
-				 <option   value="Lifestyle" <?php if ($_POST['lens_category']=="Lifestyle") echo 'selected="selected"'; ?>>Office Premium</option>
-                 <option   value="Anti-Fatigue" <?php if ($_POST['lens_category']=="Anti-Fatigue") echo 'selected="selected"'; ?>>Eye Fatigue</option>
-                 <option   value="Pro EZ HD" <?php if ($_POST['lens_category']=="Pro EZ HD") echo 'selected="selected"'; ?>>Pro EZ HD</option>
-                 <option   value="revolution" <?php if ($_POST['lens_category']=="revolution") echo 'selected="selected"'; ?>>Revolution</option>
- 				 <option   value="revolution sv" <?php if ($_POST['lens_category']=="revolution sv") echo 'selected="selected"'; ?>>Revolution SV</option>
-  				 <option   value="SV" <?php if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>SV</option> 
-                 <option   value="camber" <?php if ($_POST['lens_category']=="camber") echo 'selected="selected"'; ?>>Ultimate Freestyle (Camber)</option> 
-				 <option   value="maxiwide" <?php if ($_POST['lens_category']=="maxiwide") echo 'selected="selected"'; ?>>New! MaxiWide</option> 
+				  <option   value="iRoom" <?php if ($_POST['lens_category']=="iRoom") echo 'selected="selected"'; ?>>iRoom</option> 
+				 <option   value="Alpha" <?php if ($_POST['lens_category']=="Alpha") echo 'selected="selected"'; ?>>Alpha</option> 
+				 <option   value="FT28" <?php if ($_POST['lens_category']=="FT28") echo 'selected="selected"'; ?>>FT28</option> 
+				 <option   value="Seiko" <?php if ($_POST['lens_category']=="Seiko") echo 'selected="selected"'; ?>>Seiko</option> 
+				 <option   value="Single vision" <?php if ($_POST['lens_category']=="Single Vision") echo 'selected="selected"'; ?>>Single Vision</option> 
+				 <option   value="Single Vision Stock" <?php if ($_POST['lens_category']=="Single vision stock") echo 'selected="selected"'; ?>>Single Vision Stock</option> 
+				 
+                 <!--option   value="Acuform" <?php //if ($_POST['lens_category']=="Acuform") echo 'selected="selected"'; ?>>Universal (Formerly Optimize Acuform)</option> 
+                 <option   value="IPL"     <?php //if ($_POST['lens_category']=="IPL")     echo 'selected="selected"'; ?>>Alpha (Formerly Optimize IPL)</option> 
+                 <option   value="DMT" <?php// if ($_POST['lens_category']=="DMT") echo 'selected="selected"'; ?>>Innovative (Formerly DMT)</option> 
+				 <option   value="Lifestyle" <?php// if ($_POST['lens_category']=="Lifestyle") echo 'selected="selected"'; ?>>Office Premium</option>
+                 <option   value="Anti-Fatigue" <?php //if ($_POST['lens_category']=="Anti-Fatigue") echo 'selected="selected"'; ?>>Eye Fatigue</option>
+                 <option   value="Pro EZ HD" <?php //if ($_POST['lens_category']=="Pro EZ HD") echo 'selected="selected"'; ?>>Pro EZ HD</option>
+                 <option   value="revolution" <?php //if ($_POST['lens_category']=="revolution") echo 'selected="selected"'; ?>>Revolution</option>
+ 				 <option   value="revolution sv" <?php //if ($_POST['lens_category']=="revolution sv") echo 'selected="selected"'; ?>>Revolution SV</option>
+  				 <option   value="SV" <?php //if ($_POST['lens_category']=="SV") echo 'selected="selected"'; ?>>SV</option> 
+                 <option   value="camber" <?php //if ($_POST['lens_category']=="camber") echo 'selected="selected"'; ?>>Ultimate Freestyle (Camber)</option> 
+				 <option   value="maxiwide" <?php// if ($_POST['lens_category']=="maxiwide") echo 'selected="selected"'; ?>>New! MaxiWide</option> 
                  <option   disabled="disabled" value="">&nbsp;</option>
 				 <option  disabled="disabled" value="">SOFTWARE DESIGN*</option>
-                 <option   value="IOT" <?php if ($_POST['lens_category']=="IOT") echo 'selected="selected"'; ?>>IOT</option> 
-                 <option   value="OPTOTECH" <?php if ($_POST['lens_category']=="OPTOTECH") echo 'selected="selected"'; ?>>OPTOTECH</option> 
-                 <option   value="SHAMIR" <?php if ($_POST['lens_category']=="SHAMIR") echo 'selected="selected"'; ?>>SHAMIR</option> 
+                 <option   value="IOT" <?php// if ($_POST['lens_category']=="IOT") echo 'selected="selected"'; ?>>IOT</option> 
+                 <option   value="OPTOTECH" <?php// if ($_POST['lens_category']=="OPTOTECH") echo 'selected="selected"'; ?>>OPTOTECH</option> 
+                 <option   value="SHAMIR" <?php //if ($_POST['lens_category']=="SHAMIR") echo 'selected="selected"'; ?>>SHAMIR</option--!> 
                     
         </select>
                
@@ -704,6 +799,20 @@ $usercount=mysqli_num_rows($result);
 				?></span></td>
                    <td align="left" width="157" align="left" class="formCellNosides">
                   <span style="margin:11px">  <select name="rush" class="formText" id="rush">
+                    	<option selected="selected" value="no" >No</option>
+                      	<option value="yes">Yes</option>                    
+					</select></span>
+                   </td>
+				   
+				     <td align="right" class="formCell"><span class="tableSubHead">
+                    <?php if ($mylang == 'lang_french'){
+				echo 'Miroir';
+				}else {
+				echo 'Mirror';
+				}
+				?></span></td>
+                   <td align="left" width="157" align="left" class="formCellNosides">
+                  <span style="margin:11px">  <select name="miror" class="formText" id="miror">
                     	<option selected="selected" value="no" >No</option>
                       	<option value="yes">Yes</option>                    
 					</select></span>
@@ -735,7 +844,51 @@ $usercount=mysqli_num_rows($result);
                         <option value="7">7</option>
                         <option value=" 8">8</option>                   
 					</select></span>
-                   </td></tr>
+                   </td>
+				   
+				                    
+						<td align="right" class="formCell"><span class="tableSubHead">
+						<?php if ($mylang == 'lang_french'){
+					echo 'Design';
+					}else {
+					echo 'Design';
+					}
+					?></span></td> 
+					   
+				  <td align="left" width="157" align="left" class="formCellNosides">
+                  <span style="margin:11px">  
+                  <select name="Design" class="formText" id="Design">
+                    	<option selected="selected" value="" >Select Design </option>
+                        <option value="interieur"> In Door </option>
+                        <option value="exterieur"> Out Door</option>
+                        <option value=" tout Usage"> All Usage</option>                   
+					</select></span>
+                   </td>
+				   
+				   
+				   						<td align="right" class="formCell"><span class="tableSubHead">
+						<?php if ($mylang == 'lang_french'){
+					echo 'Corridor';
+					}else {
+					echo 'Corridor';
+					}
+					?></span></td> 
+				   
+				   <td align="left" width="157" align="left" class="formCellNosides">
+                  <span style="margin:11px">  
+                  <select name="Corridor" class="formText" id="Corridor">
+                    	<option selected="selected" value="" >Select Corridor </option>
+						 <option value="5">5</option>
+                      	<option value="7">7</option>
+                        <option value="9">9</option>
+                        <option value="11">11</option>
+                        <option value="13">13</option>
+                        <option value="15">15</option>
+                               
+					</select></span>
+                   </td>
+				   
+				   </tr>
                    
                     
                </table>
@@ -856,9 +1009,9 @@ $usercount=mysqli_num_rows($result);
 				   ?>&nbsp;</td>
                    </tr>
                  <tr>
-                   <td align="right" class="formCell"><?php echo $lbl_engrav_txt_pl;?> </td>
-                   <td align="left" class="formCellNosides">&nbsp;
-                     <input name="ENGRAVING" type="text" class="formText" id="ENGRAVING" size="4" maxlength="8" <?php if($ChargerDerniereCommande) echo ' value="'. $DataLastOrderDetail[engraving] . '"'; ?> /></td>
+                   <!--td align="right" class="formCell"><?php echo $lbl_engrav_txt_pl;?> </td>
+                   <td align="left" class="formCellNosides"--!>&nbsp;
+                     <!--input name="ENGRAVING" type="text" class="formText" id="ENGRAVING" size="4" maxlength="8" <?php if($ChargerDerniereCommande) echo ' value="'. $DataLastOrderDetail[engraving] . '"'; ?> /--!></td >
                    <td align="right" class="formCell"><?php echo $lbl_tint_txt_pl;?>&nbsp;</td>
                    <td align="left" class="formCellNosides"><span style="margin:11px"><select name="TINT" class="formText" id="TINT" onchange="updateTINT(this.form)" >
                      <option value="None" <?php if(($ChargerDerniereCommande) && ($DataTintDetail[tint]=='None')) echo ' selected="selected"'; ?>><?php echo $lbl_tint1_pl;?></option>

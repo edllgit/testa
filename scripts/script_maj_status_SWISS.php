@@ -177,8 +177,8 @@ echo "<table width=\"600\" cellpadding=\"2\"  cellspacing=\"0\" class=\"TextSize
 				case "504":				$file_order_status= "delay issue 4";		$file_order_status_display="Delay Issue 4";			break;
 				case "505":				$file_order_status= "delay issue 5";		$file_order_status_display="Delay Issue 5";			break;
 				case "506":				$file_order_status= "delay issue 6";		$file_order_status_display="Delay Issue 6";			break;
-				case "508":				$file_order_status= "waiting for frame swiss";	$file_order_status_display="Waiting for Frame Swiss";	break;
-				case "601":				$file_order_status= "waiting for frame swiss";	$file_order_status_display="Waiting for Frame Swiss";	break;
+				case "508":				$file_order_status= "waiting for frame SWISS";	$file_order_status_display="Waiting for Frame SWISS";	break;
+				case "601":				$file_order_status= "waiting for frame SWISS";	$file_order_status_display="Waiting for Frame SWISS";	break;
 				case "509":				$file_order_status= "waiting for shape";	$file_order_status_display="Waiting for Shape";		break;
 				default:				$file_order_status= "";				    	$file_order_status_display="NO CODE RECOGNIZED";	break;
 
@@ -209,7 +209,7 @@ echo "<table width=\"600\" cellpadding=\"2\"  cellspacing=\"0\" class=\"TextSize
 				case "delay issue 5":				$order_status_display= "Delay Issue 5";			break;
 				case "delay issue 6":				$order_status_display= "Delay Issue 6";			break;	
 				case "waiting for frame":			$order_status_display= "Waiting for Frame";		break;
-				case "waiting for frame swiss":		$order_status_display= "Waiting for Frame Swiss";		break;
+				case "waiting for frame SWISS":		$order_status_display= "Waiting for Frame SWISS";break;
 				case "waiting for lens":			$order_status_display= "Waiting for Lens";		break;
 				case "waiting for shape":			$order_status_display= "Waiting for Shape";		break;
 				case "information in hand":			$order_status_display= "Information in Hand";	break;
