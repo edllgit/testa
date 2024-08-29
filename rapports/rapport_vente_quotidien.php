@@ -894,8 +894,8 @@ $rptQueryRedos     = "SELECT count(order_num) AS NbrRedos, sum(order_total) AS t
 //echo '<br>'. $rptQueryRedos;
 $rptResultRedos = mysqli_query($con,$rptQueryRedos)	or die  ('I cannot select items because: ' . mysqli_error($con));
 $DataRedos      = mysqli_fetch_array($rptResultRedos,MYSQLI_ASSOC);
-$Nbr_EDM 	= $DataCommandes[NbrOrders];
-$Amount_EDM = $DataCommandes[ttl_originales];
+$Nbr_Vau 	= $DataCommandes[NbrOrders];
+$Amount_Vau = $DataCommandes[ttl_originales];
 $Moyenne 	= $DataCommandes[ttl_originales]/$DataCommandes[NbrOrders];
 $Moyenne 	= money_format('%.2n',$Moyenne);  		
 
@@ -923,8 +923,8 @@ $rptQueryRedos     = "SELECT count(order_num) AS NbrRedos, sum(order_total) AS t
 //echo '<br>'. $rptQueryRedos;
 $rptResultRedos = mysqli_query($con,$rptQueryRedos)	or die  ('I cannot select items because: ' . mysqli_error($con));
 $DataRedos      = mysqli_fetch_array($rptResultRedos,MYSQLI_ASSOC);
-$Nbr_EDM 	= $DataCommandes[NbrOrders];
-$Amount_EDM = $DataCommandes[ttl_originales];
+$Nbr_So 	= $DataCommandes[NbrOrders];
+$Amount_So = $DataCommandes[ttl_originales];
 $Moyenne 	= $DataCommandes[ttl_originales]/$DataCommandes[NbrOrders];
 $Moyenne 	= money_format('%.2n',$Moyenne);  		
 
@@ -955,8 +955,8 @@ $rptQueryRedos     = "SELECT count(order_num) AS NbrRedos, sum(order_total) AS t
 //echo '<br>'. $rptQueryRedos;
 $rptResultRedos = mysqli_query($con,$rptQueryRedos)	or die  ('I cannot select items because: ' . mysqli_error($con));
 $DataRedos      = mysqli_fetch_array($rptResultRedos,MYSQLI_ASSOC);
-$Nbr_EDM 	= $DataCommandes[NbrOrders];
-$Amount_EDM = $DataCommandes[ttl_originales];
+$Nbr_Mct 	= $DataCommandes[NbrOrders];
+$Amount_Mct = $DataCommandes[ttl_originales];
 $Moyenne 	= $DataCommandes[ttl_originales]/$DataCommandes[NbrOrders];
 $Moyenne 	= money_format('%.2n',$Moyenne);  		
 
@@ -983,8 +983,8 @@ $rptQueryRedos     = "SELECT count(order_num) AS NbrRedos, sum(order_total) AS t
 //echo '<br>'. $rptQueryRedos;
 $rptResultRedos = mysqli_query($con,$rptQueryRedos)	or die  ('I cannot select items because: ' . mysqli_error($con));
 $DataRedos      = mysqli_fetch_array($rptResultRedos,MYSQLI_ASSOC);
-$Nbr_EDM 	= $DataCommandes[NbrOrders];
-$Amount_EDM = $DataCommandes[ttl_originales];
+$Nbr_Fred 	= $DataCommandes[NbrOrders];
+$Amount_Fred = $DataCommandes[ttl_originales];
 $Moyenne 	= $DataCommandes[ttl_originales]/$DataCommandes[NbrOrders];
 $Moyenne 	= money_format('%.2n',$Moyenne);  		
 
@@ -997,6 +997,63 @@ $Moyenne 	= money_format('%.2n',$Moyenne);
 	$message.= "<td align=\"center\">".$Moyenne."$</td>";	
 	
 	
+
+//St-John
+$Company = "St-John";
+$user_id = " user_id IN ('stjohn','stjohnsafe')";
+//Commandes Originales
+$rptQueryCommandes = "SELECT count(order_num) AS NbrOrders, sum(order_total) AS ttl_originales FROM orders WHERE $user_id  AND orders.order_date_processed between '$date1'  and '$date2' AND redo_order_num IS  NULL";
+//echo '<br>'. $rptQueryCommandes;
+$rptResultCommandes = mysqli_query($con,$rptQueryCommandes)	or die  ('I cannot select items because: '. $rptQueryCommandes . mysqli_error($con));
+$DataCommandes 		= mysqli_fetch_array($rptResultCommandes,MYSQLI_ASSOC);
+//Reprises
+$rptQueryRedos     = "SELECT count(order_num) AS NbrRedos, sum(order_total) AS total_redos FROM orders WHERE $user_id  AND orders.order_date_processed between '$date1'  and '$date2' AND redo_order_num IS NOT NULL";
+//echo '<br>'. $rptQueryRedos;
+$rptResultRedos = mysqli_query($con,$rptQueryRedos)	or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataRedos      = mysqli_fetch_array($rptResultRedos,MYSQLI_ASSOC);
+$Nbr_STJOHN 	= $DataCommandes[NbrOrders];
+$Amount_STJOHN = $DataCommandes[ttl_originales];
+$Moyenne 	= $DataCommandes[ttl_originales]/$DataCommandes[NbrOrders];
+$Moyenne 	= money_format('%.2n',$Moyenne);  		
+
+	$amtTotalDisplay=money_format('%.2n',$amtTotal);
+
+	$message.= "<tr><td align=\"center\">".$Company."</td>";
+	$message.= "<td align=\"center\">".$DataCommandes[NbrOrders]."</td>";
+	$message.= "<td align=\"center\">".$DataRedos[NbrRedos]."</td>";
+	$message.= "<td align=\"center\">".$DataCommandes[ttl_originales]."$</td>";
+	$message.= "<td align=\"center\">".$Moyenne."$</td>";	
+	
+	
+
+//Dartmouth
+$Company = "Dartmouth";
+$user_id = " user_id IN ('dartmouth','dartmouthsafe')";
+//Commandes Originales
+$rptQueryCommandes = "SELECT count(order_num) AS NbrOrders, sum(order_total) AS ttl_originales FROM orders WHERE $user_id  AND orders.order_date_processed between '$date1'  and '$date2' AND redo_order_num IS  NULL";
+//echo '<br>'. $rptQueryCommandes;
+$rptResultCommandes = mysqli_query($con,$rptQueryCommandes)	or die  ('I cannot select items because: '. $rptQueryCommandes . mysqli_error($con));
+$DataCommandes 		= mysqli_fetch_array($rptResultCommandes,MYSQLI_ASSOC);
+//Reprises
+$rptQueryRedos     = "SELECT count(order_num) AS NbrRedos, sum(order_total) AS total_redos FROM orders WHERE $user_id  AND orders.order_date_processed between '$date1'  and '$date2' AND redo_order_num IS NOT NULL";
+//echo '<br>'. $rptQueryRedos;
+$rptResultRedos = mysqli_query($con,$rptQueryRedos)	or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataRedos      = mysqli_fetch_array($rptResultRedos,MYSQLI_ASSOC);
+$Nbr_DARTMOUTH 	= $DataCommandes[NbrOrders];
+$Amount_DARTMOUTH = $DataCommandes[ttl_originales];
+$Moyenne 	= $DataCommandes[ttl_originales]/$DataCommandes[NbrOrders];
+$Moyenne 	= money_format('%.2n',$Moyenne);  		
+
+	$amtTotalDisplay=money_format('%.2n',$amtTotal);
+
+	$message.= "<tr><td align=\"center\">".$Company."</td>";
+	$message.= "<td align=\"center\">".$DataCommandes[NbrOrders]."</td>";
+	$message.= "<td align=\"center\">".$DataRedos[NbrRedos]."</td>";
+	$message.= "<td align=\"center\">".$DataCommandes[ttl_originales]."$</td>";
+	$message.= "<td align=\"center\">".$Moyenne."$</td>";		
+
+
+
 
 //GRIFFE
 //Trouver comment aller chercher le data de Griffé et l'ajouter dans ce rapport avant de l'envoyer..
@@ -1031,8 +1088,8 @@ $Moyenne 	= money_format('%.2n',$Moyenne);
 //Fin GRIFFÉ
 
 
-$TotalCommandes = $Nbr_TR + $Nbr_DR + $Nbr_GR + $Nbr_LE + $Nbr_CH + $Nbr_LV + $Nbr_TE + $Nbr_SH + $Nbr_LO + $Nbr_SMB + $Nbr_QC +$Nbr_HA +$Nbr_MTL + $Nbr_GAT + $Nbr_STJ +$Nbr_GRF_TR + $Nbr_EDM; 
-$totalCharles   = $Amount_TR + $Amount_DR+ $Amount_GR+ $Amount_LE+ $Amount_CH+ $Amount_LV+ $Amount_TE+ $Amount_SH+ $Amount_LO+ $Amount_SMB +  $Amount_QC+ $Amount_HA+ $Amount_MTL + $Amount_GAT + $Amount_STJ +$Amount_GRF_TR + $Amount_EDM;
+$TotalCommandes = $Nbr_TR + $Nbr_DR + $Nbr_GR + $Nbr_LE + $Nbr_CH + $Nbr_LV + $Nbr_TE + $Nbr_SH + $Nbr_LO + $Nbr_SMB + $Nbr_QC +$Nbr_HA +$Nbr_MTL + $Nbr_GAT + $Nbr_STJ +$Nbr_GRF_TR + $Nbr_EDM + $Nbr_Vau + $Nbr_So + $Nbr_Mct + $Nbr_Fred + $Nbr_STJOHN + $Nbr_DARTMOUTH; 
+$totalCharles   = $Amount_TR + $Amount_DR+ $Amount_GR+ $Amount_LE+ $Amount_CH+ $Amount_LV+ $Amount_TE+ $Amount_SH+ $Amount_LO+ $Amount_SMB +  $Amount_QC+ $Amount_HA+ $Amount_MTL + $Amount_GAT + $Amount_STJ +$Amount_GRF_TR + $Amount_EDM + $Amount_Vau + $Amount_So + $Amount_Mct + $Amount_Fred + $Amount_DARTMOUTH;
 $totalCharles 	= money_format('%.2n',$totalCharles);  		
 
 
@@ -1040,7 +1097,7 @@ $totalCharles 	= money_format('%.2n',$totalCharles);
 	$message.= "<tr><td align=\"right\" colspan=\"2\">Total:</td><td colspan=\"3\">$TotalCommandes orders = $totalCharles $</td></tr>
 	</table></body></html>";
 	$subject ="Daily Sales report: Ifc.ca Production:" . $date1;
-	$Report_Email	= array('thahn@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','r.iazzolino@direct-lens.com','rh@entrepotdelalunette.com');
+	$Report_Email	= array('thahn@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','dbeaulieu@direct-lens.com','r.iazzolino@direct-lens.com');
     //$Report_Email	= array('dbeaulieu@direct-lens.com');//TODO A RECOMMENTER APRÈS MES TESTS
 
 echo '<br><br>';

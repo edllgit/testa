@@ -26,11 +26,7 @@ switch($Plateforme){
 	OR
 	prescript_lab='$lab_pkey' AND orders.lab!='$lab_pkey' 
     AND orders.order_date_processed='$today' AND lab in (59) AND orders.user_id NOT IN ('redosafety','entrepotsafe','safedr',
-<<<<<<< HEAD
 'warehousestcsafe','lavalsafe','warehousehalsafe','terrebonnesafe','quebecsafe','sherbrookesafe','chicoutimisafe','granbysafe','stemariesafe','quebecsafe','gatineausafe','stjeromesafe')
-=======
-'warehousestcsafe','lavalsafe','warehousehalsafe','terrebonnesafe','quebecsafe','sherbrookesafe','chicoutimisafe','granbysafe','stemariesafe','quebecsafe','gatineausafe','stjeromesafe','montrealsafe')
->>>>>>> 1be7eac0462ae683853d430c61d5dbf3f6619078
     AND (orders.order_status!='cancelled' AND orders.order_status!='basket')
     GROUP BY order_num";	
 	break;

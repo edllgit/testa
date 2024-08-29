@@ -40,6 +40,7 @@ switch($_SESSION["accessid"]){
 		case 243: $User_ID_IN = " ('sorel','sorelsafe','garantieatoutcasser','redosafety') ";    				break;
 		case 244: $User_ID_IN = " ('moncton','monctonsafe','garantieatoutcasser','redosafety') ";    			break;
 		case 250: $User_ID_IN = " ('fredericton','frederictonsafe','garantieatoutcasser','redosafety') ";    	break;
+		case 255: $User_ID_IN = " ('stjohn','stjohnsafe','garantieatoutcasser','redosafety') ";    	            break;
 		default:  $User_ID_IN = " ('garantieatoutcasser','redosafety') ";    									break;
 }	
 

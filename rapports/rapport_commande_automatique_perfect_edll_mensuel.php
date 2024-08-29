@@ -29,7 +29,7 @@ Perfect doit être avisé de ces ventes [car c'est PERFECT qui enverra  les mont
 
 INFORMATIONS PERTINENTES:
 1-Concerne quelles comptes:Tous les comptes des magasins EDLL
-2-Courriel ou sera envoyé ce rapport: info@perfectoptical.ca
+2-Courriel ou sera envoyé ce rapport: service@perfectoptical.ca
 3-Numéro de compte à utiliser: Numéro de magasin HBC, mai,il faut remplacer le premier 8 par un 9. Ex: 88440 = 98440. Ex 2: 88444 = 98444.
 4-Collections EDLL qui seront évaluées à chaque fois que ce rapport sera lancé:   
 	a)Esprit-ECA
@@ -178,6 +178,8 @@ $ordersnum=mysqli_num_rows($rptResult);
 				case 'moncton':		case 'monctonsafe':    			$AccountNumberWithPerfect = '2200';			break;
 				case 'fredericton': case 'frederictonsafe':    		$AccountNumberWithPerfect = '92300';		break;
 				case '88666':       case '88666':    		        $AccountNumberWithPerfect = '98200';		break;
+				case 'stjohn':	    case 'stjohnsafe':    		    $AccountNumberWithPerfect = '2400';		break;
+				case 'dartmouth':	case 'dartmouthsafe':    		$AccountNumberWithPerfect = '2400';		break;
 			}
 		
 
@@ -218,7 +220,7 @@ echo '<br><br>' . $message;
 //SEND EMAIL
 
 
-$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');
+$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');
 
 
 

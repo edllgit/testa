@@ -167,7 +167,7 @@ if ($oldest_file <> ''){
 				case "504":		$file_order_status_display="Delay Issue 4";			break;
 				case "505":		$file_order_status_display="Delay Issue 5";			break;
 				case "506":		$file_order_status_display="Delay Issue 6";			break;
-				case "508":		$file_order_status_display="Waiting for Frame";		break;
+				case "508":		$file_order_status_display="Waiting for Frame GKB";		break;
 				case "509":		$file_order_status_display="Waiting for Shape";		break;
 				default:		$file_order_status_display="NO CODE RECOGNIZED";	break;
 			}
@@ -209,7 +209,7 @@ if ($oldest_file <> ''){
 				case "504":				$file_order_status= "delay issue 4";		$file_order_status_display="Delay Issue 4";			break;
 				case "505":				$file_order_status= "delay issue 5";		$file_order_status_display="Delay Issue 5";			break;
 				case "506":				$file_order_status= "delay issue 6";		$file_order_status_display="Delay Issue 6";			break;
-				case "508":				$file_order_status= "waiting for frame";	$file_order_status_display="Waiting for Frame";		break;
+				case "508":				$file_order_status= "waiting for frame GKB";$file_order_status_display="Waiting for Frame GKB";		break;
 				case "509":				$file_order_status= "waiting for shape";	$file_order_status_display="Waiting for Shape";		break;
 				default:				$file_order_status= "";				    	$file_order_status_display="NO CODE RECOGNIZED";	break;
 			}
@@ -238,7 +238,7 @@ if ($oldest_file <> ''){
 				case "delay issue 4":				$order_status_display= "Delay Issue 4";			break;
 				case "delay issue 5":				$order_status_display= "Delay Issue 5";			break;
 				case "delay issue 6":				$order_status_display= "Delay Issue 6";			break;	
-				case "waiting for frame":			$order_status_display= "Waiting for Frame";		break;
+				case "waiting for frame GKB":		$order_status_display= "Waiting for Frame GKB";		break;
 				case "waiting for lens":			$order_status_display= "Waiting for Lens";		break;
 				case "waiting for shape":			$order_status_display= "Waiting for Shape";		break;
 				case "information in hand":			$order_status_display= "Information in Hand";	break;

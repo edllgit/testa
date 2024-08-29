@@ -138,8 +138,8 @@ echo '<br><br>' . $message;
  
 
 //warranty@afterbangeyewear.com
-
- $send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');//LIVE
+$send_to_address = array('fdjibrilla@entrepotdelalunette.com');
+ //$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');//LIVE
 
  //ob_start();
 
@@ -150,7 +150,7 @@ echo '<br><br>' . $message;
 
 
 //$send_to_address = array('rapports@direct-lens.com');
-//$send_to_address = array('fdjibrilla@entrepotdelalunette.com');//TEST,
+//TEST,
 
 echo "<br>".var_dump($send_to_address);
 $curTime= date("m-d-Y");	
@@ -184,17 +184,9 @@ $response=office365_mail($to_address, $from_address, $subject, null, $message);
 		$cheminFichierHtml = 'C:/All_Rapports_EDLL/general/Commande/Automatique/' . $nomFichier . '.html';
 		file_put_contents($cheminFichierHtml, $message);
 
-		$nomFichier = 'r_commande_afterBang_'. $timestamp;
 	
-		// Enregistrez le contenu HTML dans un fichier
-		$cheminFichierHtml = 'C:/All_Rapports_EDLL/general/Commande/Automatique/' . $nomFichier . '.html';
-		file_put_contents($cheminFichierHtml, $message);
-
-		$nomFichier = 'r_commande_afterBang'. $timestamp;
 	
-		// Enregistrez le contenu HTML dans un fichier
-		$cheminFichierHtml = 'C:/All_Rapports_EDLL/general/Commande/Automatique/' . $nomFichier . '.html';
-		file_put_contents($cheminFichierHtml, $contenuHtml);
+	
 
 	
 		echo 'Rapport sauvegardé au format HTML : ' . $cheminFichierHtml . '<br>';

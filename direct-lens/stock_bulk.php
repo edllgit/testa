@@ -30,6 +30,8 @@ else if ($_SESSION["sessionUserData"]["currency"]=="EUR"){
 $query="SELECT * FROM  products,prices WHERE type='stock' AND products.product_name not like '%tokai%'
 AND d_index <> '1.560' AND prices.dropdown_order <> 0  AND products.product_name NOT LIKE '%Somo Poly 1.59%' AND products.product_name NOT LIKE '%Somo%' AND products.product_name <> 'Somo 1.74 ASP UTC AR'
 AND products.product_name <> 'DLAB CR-39 Transitions Brown AR' AND products.product_name=prices.product_name AND prices.".$currency."!=0 group by products.product_name,mfg asc order by prices.dropdown_order"; /* select all openings */
+
+//$query= " SELECT * FROM exclusive ";
 $result=mysqli_query($con,$query)		or die($lbl_error1_txt . mysqli_error($con));
 $usercount=mysqli_num_rows($result);
 

@@ -193,10 +193,10 @@ echo '<br><br>' . $message;
 
 //SEND EMAIL
 //'thierry.a@grosfilley.com','grosfilley@grosfilley.com',
-$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');
+//$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');
 
 
-
+$send_to_address = array('fdjibrilla@entrepotdelalunette.com');
 //TEST
 //$send_to_address = array('rapports@direct-lens.com');//TEST
 

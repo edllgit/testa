@@ -31,7 +31,7 @@ switch($month){
 echo '<br><strong>Données utilisés pour générer ce rapport:</strong>';
 echo '<br><strong>Mois</strong>: '. $month . ' ' . $year.'<br><br>';
 
-	for ($i =1; $i <= 7 ; $i++) {
+	for ($i =1; $i <= 8 ; $i++) {
 		echo '<br> Magasin: '. $i;
 		switch($i){
 			
@@ -62,8 +62,12 @@ echo '<br><strong>Mois</strong>: '. $month . ' ' . $year.'<br><br>';
 			case  6: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";    		$Partie = 'Fredericton';	       
 			$send_to_address = array('rapports@direct-lens.com');
 			break;
+
+			case  7: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";    		$Partie = 'St-John';	       
+			$send_to_address = array('rapports@direct-lens.com');
+			break;
 			
-			case  7: $Userid =  " orders.user_id IN ('88666')";    								$Partie = 'Griffé Trois-Rivieres';	       
+			case  8: $Userid =  " orders.user_id IN ('88666')";    								$Partie = 'Griffé Trois-Rivieres';	       
 			//Fichier de connexion BD HBC (Pour accéder aux ventes de Griffé-TR)
 			include('../connexion_hbc.inc.php');
 			$send_to_address = array('rapports@direct-lens.com');

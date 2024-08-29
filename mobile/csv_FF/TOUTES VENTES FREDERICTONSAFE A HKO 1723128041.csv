@@ -1,0 +1,5 @@
+user_id,order_num,order_num_optipro,prescript_lab,order_date_processed,order_product_price,order_total
+frederictonsafe,1637397,512,25,2023-10-26,94.30,111.54
+frederictonsafe,1645393,864,25,2023-12-27,144.30,177.30
+frederictonsafe,1645923,898,25,2024-01-03,168.00,191.25
+frederictonsafe,1660112,1462,25,2024-04-17,186.30,209.54

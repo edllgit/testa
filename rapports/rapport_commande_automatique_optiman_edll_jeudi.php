@@ -141,10 +141,9 @@ echo '<br><br>' . $message;
 //SEND EMAIL
 
 //,'service@optimaninc.com','ericlaskar@optimaninc.com'
-$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com',
-'approvisionnement@entrepotdelalunette.com','kgawel@direct-lens.com','jmotyka@direct-lens.com');//LIVE
+//$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','fdjibrilla@entrepotdelalunette.com');//LIVE
 
-
+$send_to_address = array('fdjibrilla@entrepotdelalunette.com');
 
 
 

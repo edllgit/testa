@@ -150,6 +150,8 @@ switch($listItem[user_id]){
 	case 'redoifc':      $entrepot = 'Compte Reprise'; break; 
 	case 'St.Catharines':$entrepot = 'Compte Reprise'; break; 
 	case 'fredericton':	 $entrepot = 'Fredericton';    break; 
+	case 'stjohn':	     $entrepot = 'St-John';        break;
+	case 'dartmouth':	 $entrepot = 'Dartmouth';      break;
 	default: $entrepot = "Inconnu";
 }
 
@@ -186,7 +188,7 @@ switch($listItem[user_id]){
 
 //SEND EMAIL
 
-$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');
+$send_to_address = array('rapports@direct-lens.com','monture@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');
 
 
 

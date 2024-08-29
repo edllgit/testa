@@ -34,11 +34,14 @@ $queryShape =  "SELECT * FROM orders
 				AND     shape_name_bk<>''";
 //TODO: Ajouter les autres fournisseurs qui peuvent recevoir des shapes éventuellement (Quand la partie Swiss fonctionnera #1)				
 echo '<br>'. $queryShape. '<br>';				
+echo "Oui1"; 
 	
 $resultShape = mysqli_query($con,$queryShape)	or die ("Could not select items 4". mysql_error($con));
 
 while ($DataShape   = mysqli_fetch_array($resultShape,MYSQLI_ASSOC)){
 $Prescription_Lab   = $DataShape[prescript_lab];
+echo "Oui2"; 
+
 
 /*
 [x]	0-Passer les commandes  fabriqués par SWISS pour lesquels aucune shape n'a été envoyé a Swiss une par une   
@@ -51,7 +54,34 @@ $Prescription_Lab   = $DataShape[prescript_lab];
 
 	echo '<br>----------------------------------------------------------------------------
 	<br>EDLL Order <b>#'. $DataShape[order_num] . '</b><br> Shape: <b>'. $DataShape[shape_name_bk] . '</b>';
-	$NomdeLaFormeAtrouver = './' . $DataShape[shape_name_bk]; //echo '<br>nom'.var_dump($NomdeLaFormeAtrouver);
+	
+	// Chaîne complète
+	$shape = $DataShape['shape_name_bk'];
+	
+/*
+// Vérifier si la variable contient le mot 'Shapes/'
+if (strpos($shape, 'Shapes/') !== false) {
+    echo "Oui"; // Afficher 'Oui' si le mot 'Shapes/' est présent
+	// Trouver la position du premier espace après "Shapes/"
+	$pos = strpos($shape, 'Shapes/') + strlen('Shapes/');
+	
+	// Extraire la sous-chaîne à partir de cette position
+	$specific_part = substr($shape, $pos);
+	
+	echo "<br>Shape1: " . $specific_part;
+	
+	$NomdeLaFormeAtrouver = './' .$specific_part; echo '<br>nom'.$NomdeLaFormeAtrouver;
+} else {
+    echo "Non"; // Afficher 'Non' si le mot 'Shapes/' n'est pas présent
+	$NomdeLaFormeAtrouver = './' .$shape; echo '<br>nom'.$NomdeLaFormeAtrouver;
+}*/
+	
+	
+	
+	//===============================
+
+	
+	
 	$NumeroCommandeEDLL   = $DataShape[order_num];
 	
 	//1-Aller trouver la forme OMA qui correspond parmis la bibliothèque sur Serveur Windows VM dans C:\ftp_root\Banque de traces
@@ -75,15 +105,16 @@ $Prescription_Lab   = $DataShape[prescript_lab];
 	
 	//Insérer les fichiers au format OMA dans un Array
 	$filteredOMAFiles = ftp_nlist( $conn_id, ".");  //echo '<br>nomfiltre' . print_r($filteredOMAFiles, true);
-	$filteredOMAFiles = preg_grep( '/\.oma$/i', $filteredOMAFiles ); // echo '<br>nomfiltre2' . print_r($filteredOMAFiles, true);
+	$filteredOMAFiles = preg_grep( '/\.oma$/i', $filteredOMAFiles );  echo '<br>nomfiltre2' . print_r($filteredOMAFiles, true);
 	
 	//2-3: Chercher la forme dans l'array
 	echo '<br>Je cherche ceci dans l\'array: '. $NomdeLaFormeAtrouver.'<br>';
 	$decodedPath = urldecode($NomdeLaFormeAtrouver);
+	echo '<br>code'.$decodedPath.'<br>';
 	$PositionFormedansArray = array_search($decodedPath, $filteredOMAFiles);
 	//$PositionFormedansArray = array_search($NomdeLaFormeAtrouver, $filteredOMAFiles);
 	echo '<br>position'.var_dump($PositionFormedansArray);
-	echo '<br>Position dans l\'Array:'. $PositionFormedansArray ;
+	//echo '<br>Position dans l\'Array:'. $PositionFormedansArray ;
 
 	//Si un résultat a été trouvé: on poursuit
 	if ($PositionFormedansArray!==false){
@@ -219,7 +250,7 @@ $Prescription_Lab   = $DataShape[prescript_lab];
 
 		ftp_pasv($conn_idKNR,true);//Activate Passive mode
 		
-		ftp_chdir($conn_idKNR,"ftp_root/Echange avec Fournisseurs/K and R/FROM DIRECT-LENS/shapes");
+		ftp_chdir($conn_idKNR,"ftp_root/Echange avec Fournisseurs/K and R/FROM DIRECT-LENS/Order Jobs/Shapes");
 		$directoryKNR=ftp_pwd($conn_idKNR);
 		//echo "Dossier actuel : ".$directoryKNR;
 		//ftp_chdir($conn_idKNR,"shapes");
@@ -232,7 +263,7 @@ $Prescription_Lab   = $DataShape[prescript_lab];
 				
 		if (ftp_put($conn_idKNR, $remote_file, $local_file,  FTP_BINARY)) {
 			echo "<br><b>Successfully</b> uploaded $remote_file\n";
-			//Flagger la shape comme copiée sur le ftp d'HKO dans la DB
+			//Flagger la shape comme copiée sur le ftp de knr dans la DB
 			//avec les champs 
 			//shape_copied_swiss_ftp et result_copy_ftp_swiss
 			$queryUpdateFlag =  "UPDATE orders
@@ -350,6 +381,7 @@ $Prescription_Lab   = $DataShape[prescript_lab];
 			case 25: 	$Supplier ='hko'; 		break;	
 			case 3: 	$Supplier ='stc'; 		break;	
 			case 69: 	$Supplier ='gkb'; 		break;	
+			case 73: 	$Supplier ='KNR'; 		break;	
 			case 76: 	$Supplier ='ovg_lab'; 		break;	
 			//Todo ajouter d'autres fournisseurs ? GKB ? 
 		default: 	$Supplier ='unknown';

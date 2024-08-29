@@ -78,7 +78,7 @@ $MontanttotalRedos          = 0;
 		
 	
 //FOR pour parcourir les Succursales
-for ($i = 1; $i <= 19; $i++) {
+for ($i = 1; $i <= 21; $i++) {
    // echo '<br>'. $i;	
 		
 //Nouvelle partie
@@ -102,7 +102,9 @@ switch($i){
 	case 16: $Userid =  " orders.user_id IN ('sorel','sorelsafe')";       		  $Compagnie = 'L\'Entrepot de la lunette Sorel';  				$Succ = 'Sorel'; 			break;  	
 	case 17: $Userid =  " orders.user_id IN ('moncton','monctonsafe')";       	  $Compagnie = 'L\'Entrepot de la lunette Moncton';  			$Succ = 'Moncton'; 			break;  	
 	case 18: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";   $Compagnie = 'L\'Entrepot de la lunette Fredericton'; 		$Succ = 'Fredericton'; 		break; 
-	case 19: $Userid =  " orders.user_id IN ('88666')";                           $Compagnie = 'Griffe Trois-Rivieres'; 						$Succ = 'Griffe Lunetier #88666'; 		break;  	 	
+	case 19: $Userid =  " orders.user_id IN ('88666')";                           $Compagnie = 'Griffe Trois-Rivieres'; 						$Succ = 'Griffe Lunetier #88666'; 		break;  
+	case 20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";             $Compagnie = 'L\'Entrepot de la lunette St-John'; 		    $Succ = 'St-John'; 		break; 
+	case 21: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";       $Compagnie = 'L\'Entrepot de la lunette Dartmouth'; 		    $Succ = 'Dartmouth'; 		break; 		 	
 }//End Switch
 
 
@@ -864,6 +866,278 @@ $message.="
 
 //Fin Fredericton
 
+
+
+//Vente par lens category:St-John
+$rptQuery2="SELECT lens_category, count( lens_category ) AS Nbr_Category
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('stjohn','stjohnsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+AND redo_order_num IS NULL
+GROUP BY lens_category ORDER BY Nbr_Category LIMIT 0 , 15000";
+if($Debug == 'yes')
+echo '<br>Query: <br>'. $rptQuery2 . '<br>';
+
+$rptResult2=mysqli_query($con,$rptQuery2)		or die  ('I cannot select items because: ' . mysqli_error($con));
+	
+$count   = 0;	
+$message.= "<table width=\"50%\" class=\"table\" border=\"1\">
+<tr><td align=\"center\" colspan=\"3\"><b>Entrepot St-John</b></td></tr>
+<tr>
+	<th align=\"center\">Lens Category</th>
+	<th align=\"center\">Nbr Sold (First order)</th>
+	<th align=\"center\">Nbr Redos</th>
+</tr>";
+				
+while ($listItem2=mysqli_fetch_array($rptResult2,MYSQLI_ASSOC)){	
+
+$rptQuery2Redos="SELECT  count(order_num) AS Nbr_Redos
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('stjohn','stjohnsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND lens_category = '$listItem2[lens_category]'
+LIMIT 0 , 15000";
+
+//echo '<br>$rptQuery2Redos:' . $rptQuery2Redos . '<br>';
+$rptResult2Redos =mysqli_query($con,$rptQuery2Redos)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$Data2Redo=mysqli_fetch_array($rptResult2Redos,MYSQLI_ASSOC);
+	$count++;
+	if (($count%2)==0)
+		$bgcolor="#E5E5E5";
+	else 
+		$bgcolor="#FFFFFF";
+		
+	 $message.="
+	<tr>
+		<td align=\"center\">$listItem2[lens_category]</td>
+		<td align=\"center\">$listItem2[Nbr_Category]</td>
+		<td align=\"center\">$Data2Redo[Nbr_Redos]</td>
+	</tr>";
+}//END WHILE
+
+$rptQueryCamber="SELECT count(order_num) as nbrCamber FROM orders
+WHERE orders.user_id IN ('stjohn','stjohnsafe') AND order_product_name like '%Maxiwide%'
+AND redo_order_num IS NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultCamber=mysqli_query($con,$rptQueryCamber)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataCamber = mysqli_fetch_array($rptResultCamber,MYSQLI_ASSOC);
+$nbrCamber  = $DataCamber[nbrCamber];
+
+
+$rptQueryCamberRedo  = "SELECT count(order_num) as nbrCamberRedo FROM orders
+WHERE orders.user_id IN ('stjohn','stjohnsafe') AND order_product_name like '%Maxiwide%'
+AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND order_status NOT in ('cancelled')
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultCamberRedo = mysqli_query($con,$rptQueryCamberRedo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataCamberRedo = mysqli_fetch_array($rptResultCamberRedo,MYSQLI_ASSOC);
+$nbrCamberRedo  = $DataCamberRedo[nbrCamberRedo];
+
+$message.="
+	<tr>
+		<td align=\"center\">MaxiWide</td>
+		<td align=\"center\">$nbrCamber</td>
+		<td align=\"center\">$nbrCamberRedo</td>
+	</tr>";
+
+
+$rptQueryPromoDuo="SELECT count(order_num) as NbrPromoDuo FROM orders
+WHERE orders.user_id IN ('stjohn','stjohnsafe') AND order_product_name like '%promo%'
+AND redo_order_num IS NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultPromoDuo=mysqli_query($con,$rptQueryPromoDuo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataPromoDuo = mysqli_fetch_array($rptResultPromoDuo,MYSQLI_ASSOC);
+$NbrPromoDuo  = $DataPromoDuo[NbrPromoDuo];
+
+
+$rptQueryPromoDuoRedo="SELECT count(order_num) as NbrPromoDuoRedo FROM orders
+WHERE orders.user_id IN ('stjohn','stjohnsafe') AND order_product_name like '%promo%'
+AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND order_status NOT in ('cancelled')
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultPromoDuoRedo=mysqli_query($con,$rptQueryPromoDuoRedo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataPromoDuoRedo = mysqli_fetch_array($rptResultPromoDuoRedo,MYSQLI_ASSOC);
+$NbrPromoDuoRedo  = $DataPromoDuoRedo[NbrPromoDuoRedo];
+
+$message.="
+	<tr>
+		<td align=\"center\">Promo Duo</td>
+		<td align=\"center\">$NbrPromoDuo</td>
+		<td align=\"center\">$NbrPromoDuoRedo</td>
+	</tr><br>";
+	
+	
+	
+	
+$rptQueryAdvance="SELECT count(order_num) as NbrAdvance FROM orders
+WHERE orders.user_id IN ('stjohn','stjohnsafe') 
+AND order_product_name like '%advance%' AND redo_order_num IS NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultAdvance=mysqli_query($con,$rptQueryAdvance)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAdvance = mysqli_fetch_array($rptResultAdvance,MYSQLI_ASSOC);
+$NbrAdvance  = $DataAdvance[NbrAdvance];
+
+
+$rptQueryAdvanceRedo="SELECT count(order_num) as NbrAdvanceRedo FROM orders
+WHERE orders.user_id IN ('stjohn','stjohnsafe')
+ AND order_product_name like '%advance%' AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultAdvanceRedo=mysqli_query($con,$rptQueryAdvanceRedo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAdvanceRedo = mysqli_fetch_array($rptResultAdvanceRedo,MYSQLI_ASSOC);
+$NbrAdvanceRedo  = $DataAdvanceRedo[NbrAdvanceRedo];
+
+$message.="
+	<tr>
+		<td align=\"center\">Advance</td>
+		<td align=\"center\">$NbrAdvance</td>
+		<td align=\"center\">$NbrAdvanceRedo</td>
+	</tr><br>";
+
+//Fin St-John
+
+
+
+
+//Vente par lens category:Dartmouth
+$rptQuery2="SELECT lens_category, count( lens_category ) AS Nbr_Category
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('dartmouth','dartmouthsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+AND redo_order_num IS NULL
+GROUP BY lens_category ORDER BY Nbr_Category LIMIT 0 , 15000";
+if($Debug == 'yes')
+echo '<br>Query: <br>'. $rptQuery2 . '<br>';
+
+$rptResult2=mysqli_query($con,$rptQuery2)		or die  ('I cannot select items because: ' . mysqli_error($con));
+	
+$count   = 0;	
+$message.= "<table width=\"50%\" class=\"table\" border=\"1\">
+<tr><td align=\"center\" colspan=\"3\"><b>Entrepot St-John</b></td></tr>
+<tr>
+	<th align=\"center\">Lens Category</th>
+	<th align=\"center\">Nbr Sold (First order)</th>
+	<th align=\"center\">Nbr Redos</th>
+</tr>";
+				
+while ($listItem2=mysqli_fetch_array($rptResult2,MYSQLI_ASSOC)){	
+
+$rptQuery2Redos="SELECT  count(order_num) AS Nbr_Redos
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('dartmouth','dartmouthsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND lens_category = '$listItem2[lens_category]'
+LIMIT 0 , 15000";
+
+//echo '<br>$rptQuery2Redos:' . $rptQuery2Redos . '<br>';
+$rptResult2Redos =mysqli_query($con,$rptQuery2Redos)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$Data2Redo=mysqli_fetch_array($rptResult2Redos,MYSQLI_ASSOC);
+	$count++;
+	if (($count%2)==0)
+		$bgcolor="#E5E5E5";
+	else 
+		$bgcolor="#FFFFFF";
+		
+	 $message.="
+	<tr>
+		<td align=\"center\">$listItem2[lens_category]</td>
+		<td align=\"center\">$listItem2[Nbr_Category]</td>
+		<td align=\"center\">$Data2Redo[Nbr_Redos]</td>
+	</tr>";
+}//END WHILE
+
+$rptQueryCamber="SELECT count(order_num) as nbrCamber FROM orders
+WHERE orders.user_id IN ('dartmouth','dartmouthsafe') AND order_product_name like '%Maxiwide%'
+AND redo_order_num IS NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultCamber=mysqli_query($con,$rptQueryCamber)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataCamber = mysqli_fetch_array($rptResultCamber,MYSQLI_ASSOC);
+$nbrCamber  = $DataCamber[nbrCamber];
+
+
+$rptQueryCamberRedo  = "SELECT count(order_num) as nbrCamberRedo FROM orders
+WHERE orders.user_id IN ('dartmouth','dartmouthsafe') AND order_product_name like '%Maxiwide%'
+AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND order_status NOT in ('cancelled')
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultCamberRedo = mysqli_query($con,$rptQueryCamberRedo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataCamberRedo = mysqli_fetch_array($rptResultCamberRedo,MYSQLI_ASSOC);
+$nbrCamberRedo  = $DataCamberRedo[nbrCamberRedo];
+
+$message.="
+	<tr>
+		<td align=\"center\">MaxiWide</td>
+		<td align=\"center\">$nbrCamber</td>
+		<td align=\"center\">$nbrCamberRedo</td>
+	</tr>";
+
+
+$rptQueryPromoDuo="SELECT count(order_num) as NbrPromoDuo FROM orders
+WHERE orders.user_id IN ('dartmouth','dartmouthsafe') AND order_product_name like '%promo%'
+AND redo_order_num IS NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultPromoDuo=mysqli_query($con,$rptQueryPromoDuo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataPromoDuo = mysqli_fetch_array($rptResultPromoDuo,MYSQLI_ASSOC);
+$NbrPromoDuo  = $DataPromoDuo[NbrPromoDuo];
+
+
+$rptQueryPromoDuoRedo="SELECT count(order_num) as NbrPromoDuoRedo FROM orders
+WHERE orders.user_id IN ('dartmouth','dartmouthsafe') AND order_product_name like '%promo%'
+AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND order_status NOT in ('cancelled')
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultPromoDuoRedo=mysqli_query($con,$rptQueryPromoDuoRedo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataPromoDuoRedo = mysqli_fetch_array($rptResultPromoDuoRedo,MYSQLI_ASSOC);
+$NbrPromoDuoRedo  = $DataPromoDuoRedo[NbrPromoDuoRedo];
+
+$message.="
+	<tr>
+		<td align=\"center\">Promo Duo</td>
+		<td align=\"center\">$NbrPromoDuo</td>
+		<td align=\"center\">$NbrPromoDuoRedo</td>
+	</tr><br>";
+	
+	
+	
+	
+$rptQueryAdvance="SELECT count(order_num) as NbrAdvance FROM orders
+WHERE orders.user_id IN ('dartmouth','dartmouthsafe') 
+AND order_product_name like '%advance%' AND redo_order_num IS NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultAdvance=mysqli_query($con,$rptQueryAdvance)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAdvance = mysqli_fetch_array($rptResultAdvance,MYSQLI_ASSOC);
+$NbrAdvance  = $DataAdvance[NbrAdvance];
+
+
+$rptQueryAdvanceRedo="SELECT count(order_num) as NbrAdvanceRedo FROM orders
+WHERE orders.user_id IN ('dartmouth','dartmouthsafe')
+ AND order_product_name like '%advance%' AND order_status NOT in ('cancelled')
+AND redo_order_num IS NOT NULL
+AND  order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'";
+$rptResultAdvanceRedo=mysqli_query($con,$rptQueryAdvanceRedo)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAdvanceRedo = mysqli_fetch_array($rptResultAdvanceRedo,MYSQLI_ASSOC);
+$NbrAdvanceRedo  = $DataAdvanceRedo[NbrAdvanceRedo];
+
+$message.="
+	<tr>
+		<td align=\"center\">Advance</td>
+		<td align=\"center\">$NbrAdvance</td>
+		<td align=\"center\">$NbrAdvanceRedo</td>
+	</tr><br>";
+
+//Fin Dartmouth
 
 	
 //Vente par lens category:Griffe
@@ -3098,6 +3372,90 @@ while ($listItem3=mysqli_fetch_array($rptResult3,MYSQLI_ASSOC)){
 }//END WHILE
 $message.="<tr><td colspan=\"2\">&nbsp;</td></tr>";
 //Fin Fredericton
+
+
+
+//Vente par traitement vendus: St-John
+$rptQuery3="SELECT  order_product_coating as Coating, count(order_product_coating) as NbrSold
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('stjohn','stjohnsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+GROUP BY order_product_coating 
+ORDER BY nbrSold";
+
+if($Debug == 'yes')
+echo '<br>Query: <br>'. $rptQuery3 . '<br>';
+
+$rptResult3 = mysqli_query($con,$rptQuery3)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$ordersnum  = mysqli_num_rows($rptResult3);
+$count      = 0;	
+$message.="<table width=\"50%\" class=\"table\" border=\"1\">
+<tr><td align=\"center\"  colspan=\"2\"><b>Entrepot St-John</b></td></tr>
+<tr>
+	<td align=\"center\">Coating</td>
+	<td align=\"center\">Nbr Sold</td>
+</tr>";
+				
+while ($listItem3=mysqli_fetch_array($rptResult3,MYSQLI_ASSOC)){
+	$count++;
+	if (($count%2)==0)
+		$bgcolor="#E5E5E5";
+	else 
+		$bgcolor="#FFFFFF";
+	
+	$message.="
+	<tr>
+		<td align=\"center\">$listItem3[Coating]</td>
+		<td align=\"center\">$listItem3[NbrSold]</td>
+	</tr>";
+}//END WHILE
+$message.="<tr><td colspan=\"2\">&nbsp;</td></tr>";
+//Fin st-John
+
+
+
+
+//Vente par traitement vendus: Dartmouth
+$rptQuery3="SELECT  order_product_coating as Coating, count(order_product_coating) as NbrSold
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('dartmouth','dartmouthsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+GROUP BY order_product_coating 
+ORDER BY nbrSold";
+
+if($Debug == 'yes')
+echo '<br>Query: <br>'. $rptQuery3 . '<br>';
+
+$rptResult3 = mysqli_query($con,$rptQuery3)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$ordersnum  = mysqli_num_rows($rptResult3);
+$count      = 0;	
+$message.="<table width=\"50%\" class=\"table\" border=\"1\">
+<tr><td align=\"center\"  colspan=\"2\"><b>Entrepot St-John</b></td></tr>
+<tr>
+	<td align=\"center\">Coating</td>
+	<td align=\"center\">Nbr Sold</td>
+</tr>";
+				
+while ($listItem3=mysqli_fetch_array($rptResult3,MYSQLI_ASSOC)){
+	$count++;
+	if (($count%2)==0)
+		$bgcolor="#E5E5E5";
+	else 
+		$bgcolor="#FFFFFF";
+	
+	$message.="
+	<tr>
+		<td align=\"center\">$listItem3[Coating]</td>
+		<td align=\"center\">$listItem3[NbrSold]</td>
+	</tr>";
+}//END WHILE
+$message.="<tr><td colspan=\"2\">&nbsp;</td></tr>";
+//Fin Dartmouth
+
+
+
 
 
 //Vente par traitement vendus: Griffé

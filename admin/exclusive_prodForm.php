@@ -865,6 +865,11 @@ $usercount=mysqli_num_rows($result);
           <option value="0.50"<?php if($productData[add_max]=='0.50') echo " selected"; ?>>+0.50</option>
           <option value="0.00"<?php if($productData[add_max]=='0.00') echo " selected"; ?>>+0.00</option>
         </select></td>
+		
+		
+		
+		
+		
         <td align="right" valign="middle" nowrap="nowrap" bgcolor="#FFFFFF"><p><font size="1" face="Helvetica, sans-serif, Arial">ADD
           Min: </font></p></td>
         <td align="left" nowrap="nowrap" bgcolor="#FFFFFF"><select name="add_min" class="formText" id="add_min">
@@ -887,8 +892,14 @@ $usercount=mysqli_num_rows($result);
           <option value="0.00"<?php if($productData[add_min]=='0.00') echo " selected"; ?>>+0.00</option>
         </select></td>
       </tr>
+	  
+	  
+	   <tr><td colspan="2"><font size="1" face="Arial, Helvetica, sans-serif">Corridor:</font> <input name="corridor" type="text" class="formText" id="corridor" value="<?php echo "$productData[corridor]"; ?>" size="30" /></td></tr>
+	  
+	  
+	  
       <tr bgcolor="#FFFFFF">
-        <td colspan="6" align="center" bgcolor="#DDDDDD"><input name="old_product_name" type="hidden" id="old_product_name" value="<?php echo "$productData[product_name]"; ?>" />
+        <td colspan="6" align="center" bgcolor="#FFFFFF"><input name="old_product_name" type="hidden" id="old_product_name" value="<?php echo "$productData[product_name]"; ?>" />
           <input type="hidden" name="pkey" value="<?php echo "$productData[primary_key]"; ?>" />
        <?php  if (($_POST[dupeProduct] == "Create Product and Duplicate Values for New Product")||($_POST[createProduct] == "Create Product")){
 	echo "<input type=\"submit\" name=\"createProduct\" id=\"edit\" value=\"Create Product\"> 
@@ -900,3 +911,4 @@ $usercount=mysqli_num_rows($result);
       </tr>
     </table>
   </form>
+ 

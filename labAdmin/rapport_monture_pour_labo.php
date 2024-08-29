@@ -143,6 +143,10 @@ function scrollTo(hash) {
 					 case 250: $UserIDIN = "('fredericton','frederictonsafe','garantieatoutcasser')";      
 					 $CompteIfc = 'fredericton'; $CompteSafe='frederictonsafe';   $IdentificationEntrepot = "Entrepot de la lunette Fredericton";    
 					 break;
+
+					 case 255: $UserIDIN = "('stjohn','stjohnsafe','garantieatoutcasser')";      
+					 $CompteIfc = 'stjohn'; $CompteSafe='stjohnsafe';   $IdentificationEntrepot = "Entrepot de la lunette St-John";    
+					 break;
 					 
 					 default:  $UserIDIN = "('aaa')"; 
 				 }
@@ -392,6 +396,12 @@ if ($_REQUEST[rpt_search]=='Envoyer cette liste au Lab'){
 		$UserIDIN = "('fredericton','frederictonsafe')";         $IdentificationEntrepot = "Entrepot de la lunette Fredericton";    
 		$send_to_address = array('rapports@direct-lens.com','jmotyka@direct-lens.com','kgawel@direct-lens.com');   
 		$InternalNotelike = "UPDATE orders set frame_sent_saintcath ='no' WHERE user_id='GARANTIEATOUTCASSER' AND frame_Sent_saintcath = 'yes'  AND INTERNAL_NOTE LIKE '%fredericton%'  ";
+		break;
+
+		case 255: 
+		$UserIDIN = "('stjohn','stjohnsafe')";         $IdentificationEntrepot = "Entrepot de la lunette St-John";    
+		$send_to_address = array('rapports@direct-lens.com','jmotyka@direct-lens.com','kgawel@direct-lens.com');   
+		$InternalNotelike = "UPDATE orders set frame_sent_saintcath ='no' WHERE user_id='GARANTIEATOUTCASSER' AND frame_Sent_saintcath = 'yes'  AND INTERNAL_NOTE LIKE '%stjohn%'  ";
 		break;
 		
 		default:  $UserIDIN = "('aaa')"; $send_to_address = array('rapports@direct-lens.com','jmotyka@direct-lens.com','kgawel@direct-lens.com');  

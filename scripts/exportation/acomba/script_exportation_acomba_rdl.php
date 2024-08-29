@@ -16,8 +16,8 @@ $datefin   = date("Y-m-d");//"2018-06-18";
 $FichierestVide = 'oui';//pour identifier si le fichier est vide ou non, et donc si on doit le copier sur le ftp
 
 //DATE HARD CODÉ
-//$datedebut ="2024-02-13";
-//$datefin   ="2024-02-13";
+//$datedebut ="2024-04-29";
+//$datefin   ="2024-05-08";
 
 echo '<br><br>FichierestVide:' . $FichierestVide . '<br>';
 $LigneCommentaire = 'Du ' . $datedebut . ' au ' . $datefin;
@@ -264,6 +264,22 @@ fwrite($fp,$outputstring);
 }
 echo '<br><br>4P1- EDLL Partie Verres FREDERICTON<br>';
 
+
+//PARTIE ST-JOHN
+$orderQuery="SELECT distinct order_num FROM ORDERS WHERE order_total > 0 AND order_status='filled' AND order_date_shipped  <=  '$datefin'
+AND transfered_acomba_dln_customer <> 'yes' AND order_from in ('ifcclubca','safety')
+AND order_product_type <> 'frame_stock_tray'  AND orders.user_id in ('stjohn','stjohnsafe')
+ AND order_date_processed > '2016-01-01'  ORDER by order_num";
+echo $orderQuery;
+$orderResult=mysqli_query($con,$orderQuery)	or die  ('I cannot select items because: ' . mysqli_error($con));
+$itemcount=mysqli_num_rows($orderResult);
+while ($orderData=mysqli_fetch_array($orderResult,MYSQLI_ASSOC)){
+$outputstring=export_order_acomba($orderData[order_num]);
+if ($outputstring <> '')
+$FichierestVide = 'non';
+fwrite($fp,$outputstring);
+}
+echo '<br><br>4P1- EDLL Partie Verres Saint-John<br>';
 
 // 5-Partie 2 IFC.CA & IFC.US FRAMES SEULEMENT
 $orderQuery="SELECT distinct order_num FROM ORDERS WHERE order_total > 0 AND order_status='filled' AND order_date_shipped  <=  '$datefin'
@@ -525,6 +541,18 @@ $FichierestVide = 'non';
 fwrite($fp,$outputstring);
 }
 
+
+//EXPORTER CRÉDITS stjohn
+$QueryCredit="SELECT * FROM memo_credits WHERE  transfered_acomba_dln_customer <> 'yes'  AND mcred_date  <=  '$datefin' 
+AND mcred_acct_user_id IN ('stjohn','stjohnsafe')"; 
+echo '<br>'. $QueryCredit;
+$ResultCredit=mysqli_query($con,$QueryCredit)	or die  ('I cannot select items because: ' . mysqli_error($con));
+while ($DataCredit=mysqli_fetch_array($ResultCredit,MYSQLI_ASSOC)){
+$outputstring=export_credit_Acomba($DataCredit[mcred_primary_key]);
+if ($outputstring <> '')
+$FichierestVide = 'non';
+fwrite($fp,$outputstring);
+}
 
 //Ajout des 2 sauts de ligne a la fin du fichier pour le terminer
 $outputstring=  "\r\n". "\r\n";

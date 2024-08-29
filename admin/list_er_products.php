@@ -24,11 +24,11 @@ if ($type=="stock"){
 }
 else{//IF EXCLUSIVE PRODUCT
 	if($_GET[sort_by]!=""){
-		$query="select * from exclusive where prod_status='active' and collection IN ('ER TR','ER HKO','ER Crystal','ER Swiss','ER STC','ER CSC','ER Versano') order by ".$_GET[sort_by];
+		$query="select * from exclusive where prod_status='active' and collection IN ('ER TR','ER HKO','ER Crystal','ER Swiss','ER STC','ER CSC','ER Versano','ER Canlab') order by ".$_GET[sort_by];
 		$_GET[sort_by]="";
 		}
 	else{
-		$query="select * from exclusive where prod_status='active' and collection IN ('ER TR','ER HKO','ER Crystal','ER Swiss','ER STC','ER CSC','ER Versano')  order by collection, product_name";
+		$query="select * from exclusive where prod_status='active' and collection IN ('ER TR','ER HKO','ER Crystal','ER Swiss','ER STC','ER CSC','ER Versano','ER Canlab')  order by collection, product_name";
 		}
 }
 $catResult=mysqli_query($con,$query)	or die ( "Query failed: " . mysqli_error($con));

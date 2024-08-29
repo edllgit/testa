@@ -653,8 +653,23 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
                        <option value="waiting for frame hko"<?php if(strtolower($orderData[order_status])=="waiting for frame hko") echo " selected";?>>
                       <?php if ($mylang == 'lang_french') {?>Attente de monture HKO<?php }else{ ?>Waiting for Frame HKO<?php } ?>
                       </option>
+					  
+					  
+					   <option value="waiting for frame gkb"<?php if(strtolower($orderData[order_status])=="waiting for frame GKB") echo " selected";?>>
+                      <?php if ($mylang == 'lang_french') {?>Attente de monture GKB<?php }else{ ?>Waiting for Frame GKB<?php } ?>
+                      </option>
+					  
+					   <option value="waiting for frame knr"<?php if(strtolower($orderData[order_status])=="waiting for frame KNR") echo " selected";?>>
+                      <?php if ($mylang == 'lang_french') {?>Attente de monture KNR<?php }else{ ?>Waiting for Frame KNR<?php } ?>
+                      </option>
                      
+					  <option value="waiting for frame ovg"<?php if(strtolower($orderData[order_status])=="waiting for frame OVG") echo " selected";?>>
+                      <?php if ($mylang == 'lang_french') {?>Attente de monture OVG<?php }else{ ?>Waiting for Frame OVG<?php } ?>
+                      </option>
 					
+					 <option value="waiting for frame procrea"<?php if(strtolower($orderData[order_status])=="waiting for frame PROCREA") echo " selected";?>>
+                      <?php if ($mylang == 'lang_french') {?>Attente de monture PROCREA<?php }else{ ?>Waiting for Frame PROCREA<?php } ?>
+                      </option>
                       
 					  <option value="waiting for lens"<?php if(strtolower($orderData[order_status])=="waiting for lens") echo " selected";?>>
                       <?php if ($mylang == 'lang_french') {?>Attente de verres<?php }else{ ?>Waiting for Lens<?php } ?>

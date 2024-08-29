@@ -62,7 +62,7 @@ $message_Halifax="<html>
 $from_address='donotreply@entrepotdelalunette.com';
 
 
-for ($i = 1; $i <= 19 ; $i++) {
+for ($i = 1; $i <= 21 ; $i++) {
 		//echo '<br> Magasin: '. $i;
 		echo '<br>Passe dans case :'. $i;
 		switch($i){
@@ -148,6 +148,14 @@ for ($i = 1; $i <= 19 ; $i++) {
 			case  19:
 			//include('../sec_connectEDLL.inc.php');
 			$Userid =  " ('fredericton')";  		$Partie = 'Fredericton';		$send_to_address = array('rapports@direct-lens.com');break;
+
+			case  20:
+				//include('../sec_connectEDLL.inc.php');
+				$Userid =  " ('stjohn')";  		$Partie = 'St-John';		$send_to_address = array('rapports@direct-lens.com');break;
+
+			case  21:
+				//include('../sec_connectEDLL.inc.php');
+				$Userid =  " ('dartmouth')";  		$Partie = 'Dartmouth';		$send_to_address = array('rapports@direct-lens.com');break;
 		}//End Switch
 		
 	//$TotalIfreePlusAdvance  = 0;//Initialise le compteur de bonus Ifree_Plus_Advance

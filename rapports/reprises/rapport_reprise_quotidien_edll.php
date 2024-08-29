@@ -101,7 +101,7 @@ $ordersnum=mysqli_num_rows($rptResult);
 		if ($listItem[extra_product] == '0')
 		$listItem[extra_product]="";
 		
-		$queryManufacturer  = "SELECT lab_name FROM labs WHERE primary_key =  (SELECT prescript_lab FROM orders WHERE order_num = $listItem[redo_order_num])";
+		$queryManufacturer  = "SELECT lab_name FROM labs WHERE primary_key =  (SELECT prescript_lab FROM orders WHERE order_num = $listItem[redo_order_num])";//
 		$resultManufacturer = mysqli_query($con,$queryManufacturer)			or die ( "Query failed: " . mysqli_error($con));
 		$DataManufacturer   = mysqli_fetch_array($resultManufacturer,MYSQLI_ASSOC);
 		$Manufacturer       = $DataManufacturer[lab_name];
@@ -228,7 +228,7 @@ $ordersnum=mysqli_num_rows($rptResult);
 		
 
 		
-	//$to_address = array('rapports@direct-lens.com');
+	//$to_address = array('fdjibrilla@entrepotdelalunette.com');
 	$to_address = array('rapports@direct-lens.com','ebaillargeon@entrepotdelalunette.com','abedard@entrepotdelalunette.com','kgawel@direct-lens.com','dbeaulieu@entrepotdelalunette.com');
 
 

@@ -59,7 +59,7 @@ $CompteurValeurReprisesGlobal_Comparaison 	= 0;
 $CompteurVentesGlobalComparaison 			= 0;
 	
 //FOR pour parcourir les Succursales
-for ($i = 1; $i <= 19; $i++) {
+for ($i = 1; $i <= 21; $i++) {
    // echo '<br>'. $i;	
 		
 //Nouvelle partie
@@ -139,6 +139,11 @@ switch($i){
 	case 19: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";    		$Compagnie = 'Fredericton';		$Succ = 'Fredericton'; 		
 	$send_to_address = array('rapports@direct-lens.com'); 			ob_start(); 	break;	
 
+	case 20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";    		$Compagnie = 'St-John';		$Succ = 'St-John'; 		
+	$send_to_address = array('rapports@direct-lens.com'); 			ob_start(); 	break;	
+
+	case 21: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";    		$Compagnie = 'Dartmouth';		$Succ = 'Dartmouth'; 		
+	$send_to_address = array('rapports@direct-lens.com'); 			ob_start(); 	break;	
 }//End Switch
 
 echo '<br>Courriel envoyé vers :'. var_dump($send_to_address);

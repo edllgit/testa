@@ -475,11 +475,7 @@ $LastUpdate = $DataUpd['update_time'];
 //SEND EMAIL
  $send_to_address = array('rapports@direct-lens.com');
 
-<<<<<<< HEAD
  //ob_start();
-=======
- ob_start();
->>>>>>> e561f3bca8b31f6eb243b078a4b66d20a791407c
 
 //echo "<br>".$send_to_address;
 $curTime      = date("m-d-Y");	
@@ -500,28 +496,16 @@ $response   = office365_mail($to_address, $from_address, $subject, null, $messag
 	
 
     	// Générer le contenu HTML du rapport
-<<<<<<< HEAD
 	//$contenuHtml = ob_get_clean();
-=======
-	$contenuHtml = ob_get_clean();
->>>>>>> e561f3bca8b31f6eb243b078a4b66d20a791407c
 
 	// Créez un nom de fichier unique avec un horodatage
 	$date = new DateTime();
 	$timestamp = $date->format('Y-m-d_H-i-s');
-<<<<<<< HEAD
 	$nomFichier = 'r_gkb_stock_order_'. $timestamp;
 
 	// Enregistrez le contenu HTML dans un fichier
 	$cheminFichierHtml = 'C:/All_Rapports_EDLL/Fournisseur/' . $nomFichier . '.html';
 	file_put_contents($cheminFichierHtml, $message);
-=======
-	$nomFichier = 'r_gkb_stock_order'. $timestamp;
-
-	// Enregistrez le contenu HTML dans un fichier
-	$cheminFichierHtml = 'C:/All_Rapports_EDLL/Fournisseur/' . $nomFichier . '.html';
-	file_put_contents($cheminFichierHtml, $contenuHtml);
->>>>>>> e561f3bca8b31f6eb243b078a4b66d20a791407c
 
 	echo 'Rapport sauvegardé au format HTML : ' . $cheminFichierHtml . '<br>';
 

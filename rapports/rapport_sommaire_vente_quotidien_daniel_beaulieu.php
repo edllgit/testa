@@ -507,7 +507,7 @@ $rptQuery="Select  SUM( order_total) as total from orders
 	$lelab   = 59;
 	echo '<br>SAFESAFE';	
 	$CompteSafeEDLL = "('redosafety','GARAGEMP','entrepotsafe','safedr','lavalsafe','warehousehalsafe','terrebonnesafe','sherbrookesafe',
-'chicoutimisafe','quebecsafe','longueuilsafe','stemariesafe','levissafe','gatineausafe','stjeromesafe','edmundstonsafe','vaudreuilsafe','sorelsafe','monctonsafe', 'frederictonsafe')";
+'chicoutimisafe','quebecsafe','longueuilsafe','stemariesafe','levissafe','gatineausafe','stjeromesafe','edmundstonsafe','vaudreuilsafe','sorelsafe','monctonsafe', 'frederictonsafe','stjohnsafe','darmouthsafe')";
 	$rptEscompte="Select order_num, global_dsc, order_total, additional_dsc, discount_type, extra_product_price from orders 
 	WHERE orders.user_id not in $Redo_Account AND orders.order_date_processed between '$datefrom' and '$dateto'  AND orders.redo_order_num is NULL AND orders.lab = $lelab AND order_from='safety'  AND user_id NOT IN $CompteSafeEDLL 
 	AND orders.order_total NOT IN ('-1000','-5000') AND (orders.order_status!='cancelled' AND orders.order_status!='basket')";
@@ -2412,7 +2412,7 @@ $message.="<tr>
 	$Nomdulab = "SAFE"; //EXCLURE LES SAFE VENDU AUX EDLL
 	$lelab   = 59;	
 	$CompteSafeEDLL = "('redosafety','GARAGEMP','entrepotsafe','safedr','lavalsafe','warehousehalsafe','terrebonnesafe','sherbrookesafe',
-'chicoutimisafe','stemariesafe','longueuilsafe','granbysafe','quebecsafe','gatineausafe','stjeromesafe','edmundstonsafe','vaudreuilsafe','sorelsafe','monctonsafe', 'frederictonsafe')";
+'chicoutimisafe','stemariesafe','longueuilsafe','granbysafe','quebecsafe','gatineausafe','stjeromesafe','edmundstonsafe','vaudreuilsafe','sorelsafe','monctonsafe', 'frederictonsafe','stjohnsafe','darmouthsafe')";
 	$rptEscompte="Select order_num, global_dsc, order_total, additional_dsc, discount_type, extra_product_price from orders 
 	WHERE orders.user_id not in $Redo_Account AND orders.order_date_processed between '$datefrom' and '$dateto'  AND orders.redo_order_num is NULL AND orders.lab = $lelab AND order_from='safety'  AND user_id IN $CompteSafeEDLL 
 	AND orders.order_total NOT IN ('-1000','-5000') AND (orders.order_status!='cancelled' AND orders.order_status!='basket')";

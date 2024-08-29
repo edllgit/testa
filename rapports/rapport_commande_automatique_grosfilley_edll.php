@@ -258,7 +258,8 @@ $ordersnum=mysqli_num_rows($rptResult);
 echo '<br><br>' . $message;
 
 //SEND EMAIL
-$send_to_address = array('rapports@direct-lens.com');//LIVE
+//$send_to_address = array('rapports@direct-lens.com');//LIVE
+$send_to_address = array('fdjibrilla@entrepotdelalunette.com');
 //$send_to_address = array('rapports@direct-lens.com');//TEST
 
 

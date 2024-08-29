@@ -4421,6 +4421,457 @@ $message.="<tr bgcolor=\"$bgcolor\">
 			</tr></table><br><br><br>";
 //Fin partie Fredericton
 
+
+
+
+//Partie St-John
+$user_id     = "('stjohn')";
+$Nom_de_l_entrepot = 'Entrepot de la lunette St-John';
+$queryHC  = "SELECT count(order_num) as HC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HC','Hard Coat')
+AND order_status NOT IN ('cancelled')";
+$resultHC = mysqli_query($con,$queryHC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHC   = mysqli_fetch_array($resultHC,MYSQLI_ASSOC);
+$NB_HC    = $DataHC[HC];		
+
+$queryAR_Backside  = "SELECT count(order_num) as AR_Backside FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('AR Backside','Super AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultAR_Backside = mysqli_query($con,$queryAR_Backside) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_Backside   = mysqli_fetch_array($resultAR_Backside,MYSQLI_ASSOC);
+$NB_AR_Backside    = $DataAR_Backside[AR_Backside];
+	
+$queryAR_ETC  = "SELECT count(order_num) as AR_ETC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Dream AR','ITO AR','MultiClear AR','Super AR')
+AND order_status NOT IN ('cancelled')";
+$resultAR_ETC = mysqli_query($con,$queryAR_ETC) or die  ('I cannot select items because: ' . mysql_error($con));
+$DataAR_ETC   = mysqli_fetch_array($resultAR_ETC,MYSQLI_ASSOC);
+$NB_AR_ETC    = $DataAR_ETC[AR_ETC];
+	
+	
+$queryiBlu  = "SELECT count(order_num) as iBlu FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('iBlu','iblue')
+AND order_status NOT IN ('cancelled')";
+$resultiBlu = mysqli_query($con,$queryiBlu) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiBlu   = mysqli_fetch_array($resultiBlu,MYSQLI_ASSOC);
+$NB_iBlu    = $DataiBlu[iBlu];
+	
+	
+$queryXlr  = "SELECT count(order_num) as Xlr FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Xlr','Xlr Backside','MaxiiVue')
+AND order_status NOT IN ('cancelled')";
+$resultXlr = mysqli_query($con,$queryXlr) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataXlr   = mysqli_fetch_array($resultXlr,MYSQLI_ASSOC);
+$NB_Xlr    = $DataXlr[Xlr];	
+	
+$queryStressFree  = "SELECT count(order_num) as StressFree FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('StressFree','StressFree 32')
+AND order_status NOT IN ('cancelled')";
+$resultStressFree = mysqli_query($con,$queryStressFree) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataStressFree   = mysqli_fetch_array($resultStressFree,MYSQLI_ASSOC);
+$NB_StressFree    = $DataStressFree[StressFree];	
+	
+
+$queryHD_AR  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HD AR','HD AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultHD_AR = mysqli_query($con,$queryHD_AR) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHD_AR   = mysqli_fetch_array($resultHD_AR,MYSQLI_ASSOC);
+$NB_HD_AR    = $DataHD_AR[HD_AR];				
+
+
+$queryLowReflexion  = "SELECT count(order_num) as Low_Reflexion FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Low Reflexion')
+AND order_status NOT IN ('cancelled')";
+$resultLR = mysqli_query($con,$queryLowReflexion) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataLR   = mysqli_fetch_array($resultLR,MYSQLI_ASSOC);
+$NB_LowReflexion    = $DataLR[Low_Reflexion];	
+
+$queryNightVision  = "SELECT count(order_num) as Night_Vision FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Night Vision')
+AND order_status NOT IN ('cancelled')";
+$resultNV = mysqli_query($con,$queryNightVision) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataNV   = mysqli_fetch_array($resultNV,MYSQLI_ASSOC);
+$NB_NightVision    = $DataNV[Night_Vision];	
+
+$total = $NB_HC +  $NB_AR_Backside + $NB_AR_ETC + $NB_iBlu + $NB_Xlr  + $NB_StressFree  +  $NB_HD_AR +$NB_LowReflexion + $NB_NightVision;
+$total_STJOHN = $total;
+
+
+//2-Partie Pourcentage 
+$queryHC  = "SELECT count(order_num) as HC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HC','Hard Coat')
+AND order_status NOT IN ('cancelled')";
+$resultHC = mysqli_query($con,$queryHC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHC   = mysqli_fetch_array($resultHC,MYSQLI_ASSOC);
+$Pourcentage_HC    = ($DataHC[HC]/$total_STJOHN) * 100;		
+$Pourcentage_HC=money_format('%.2n',$Pourcentage_HC);
+
+
+$queryAR_Backside  = "SELECT count(order_num) as AR_Backside FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('AR Backside','Super AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultAR_Backside = mysqli_query($con,$queryAR_Backside) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_Backside   = mysqli_fetch_array($resultAR_Backside,MYSQLI_ASSOC);
+$Pourcentage_AR_Backside    = ($DataAR_Backside[AR_Backside]/$total_STJOHN)*100;
+$Pourcentage_AR_Backside=money_format('%.2n',$Pourcentage_AR_Backside);
+	
+	
+$queryAR_ETC  = "SELECT count(order_num) as AR_ETC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Dream AR','ITO AR','MultiClear AR','Super AR')
+AND order_status NOT IN ('cancelled')";
+$resultAR_ETC = mysqli_query($con,$queryAR_ETC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_ETC   = mysqli_fetch_array($resultAR_ETC,MYSQLI_ASSOC);
+$Pourcentage_AR_ETC    = ($DataAR_ETC[AR_ETC]/$total_STJOHN)*100;
+$Pourcentage_AR_ETC=money_format('%.2n',$Pourcentage_AR_ETC);
+	
+$queryiBlu  = "SELECT count(order_num) as iBlu FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('iBlu','iblue')
+AND order_status NOT IN ('cancelled')";
+$resultiBlu = mysqli_query($con,$queryiBlu) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiBlu   = mysqli_fetch_array($resultiBlu,MYSQLI_ASSOC);
+$Pourcentage_iBlu    = ($DataiBlu[iBlu]/$total_STJOHN)*100;
+$Pourcentage_iBlu=money_format('%.2n',$Pourcentage_iBlu);	
+	
+	
+$queryXlr  = "SELECT count(order_num) as Xlr FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Xlr','Xlr Backside','MaxiiVue')
+AND order_status NOT IN ('cancelled')";
+$resultXlr = mysqli_query($con,$queryXlr) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataXlr   = mysqli_fetch_array($resultXlr,MYSQLI_ASSOC);
+$Pourcentage_Xlr    = ($DataXlr[Xlr]/$total_STJOHN)*100;	
+$Pourcentage_Xlr=money_format('%.2n',$Pourcentage_Xlr);	
+
+	
+$queryStressFree  = "SELECT count(order_num) as StressFree FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('StressFree','StressFree 32')
+AND order_status NOT IN ('cancelled')";
+$resultStressFree = mysqli_query($con,$queryStressFree) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataStressFree   = mysqli_fetch_array($resultStressFree,MYSQLI_ASSOC);
+$Pourcentage_StressFree    = ($DataStressFree[StressFree]/$total_STJOHN)*100;	
+$Pourcentage_StressFree=money_format('%.2n',$Pourcentage_StressFree);	
+
+
+$queryHD_AR  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HD AR','HD AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultHD_AR = mysqli_query($con,$queryHD_AR) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHD_AR   = mysqli_fetch_array($resultHD_AR,MYSQLI_ASSOC);
+$Pourcentage_HD_AR = ($DataHD_AR[HD_AR]/$total_STJOHN)*100;					
+$Pourcentage_HD_AR = money_format('%.2n',$Pourcentage_HD_AR);
+
+
+$queryLowReflexion  = "SELECT count(order_num) as Low_Reflexion FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Low Reflexion')
+AND order_status NOT IN ('cancelled')";
+$resultLR = mysqli_query($con,$queryLowReflexion) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataLR   = mysqli_fetch_array($resultLR,MYSQLI_ASSOC);
+$Pourcentage_LR = ($DataLR[Low_Reflexion]/$total_STJOHN)*100;					
+$Pourcentage_LR = money_format('%.2n',$Pourcentage_LR);
+
+$queryNightVision  = "SELECT count(order_num) as Night_Vision FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Night Vision')
+AND order_status NOT IN ('cancelled')";
+$resultNV = mysqli_query($con,$queryNightVision) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataNV   = mysqli_fetch_array($resultNV,MYSQLI_ASSOC);
+$Pourcentage_NV = ($DataNV[Night_Vision]/$total_STJOHN)*100;					
+$Pourcentage_NV = money_format('%.2n',$Pourcentage_NV);
+
+$message.="<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\"><b>$Nom_de_l_entrepot<b></td>
+			    <td align=\"center\"><b>$NB_HC</b> ($Pourcentage_HC%)</td>
+				<td align=\"center\"><b>$NB_AR_Backside</b> ($Pourcentage_AR_Backside%)</td>
+			    <td align=\"center\"><b>$NB_AR_ETC</b> ($Pourcentage_AR_ETC%)</td>
+                <td align=\"center\"><b>$NB_iBlu</b> ($Pourcentage_iBlu%)</td>
+                <td align=\"center\"><b>$NB_Xlr</b> ($Pourcentage_Xlr%)</td>
+				<td align=\"center\"><b>$NB_StressFree</b> ($Pourcentage_StressFree%)</td>
+				<td align=\"center\"><b>$NB_HD_AR</b> ($Pourcentage_HD_AR%)</td>
+				<td align=\"center\"><b>$NB_LowReflexion</b> ($Pourcentage_LR%)</td>
+				<td align=\"center\"><b>$NB_NightVision</b> ($Pourcentage_NV%)</td>
+				<td align=\"center\"><b>$total</b></td>
+			</tr></table><br><br><br>";
+//Fin partie St-John
+
+
+
+
+//Partie dartmouth
+$user_id     = "('dartmouth')";
+$Nom_de_l_entrepot = 'Entrepot de la lunette Dartmouth';
+$queryHC  = "SELECT count(order_num) as HC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HC','Hard Coat')
+AND order_status NOT IN ('cancelled')";
+$resultHC = mysqli_query($con,$queryHC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHC   = mysqli_fetch_array($resultHC,MYSQLI_ASSOC);
+$NB_HC    = $DataHC[HC];		
+
+$queryAR_Backside  = "SELECT count(order_num) as AR_Backside FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('AR Backside','Super AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultAR_Backside = mysqli_query($con,$queryAR_Backside) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_Backside   = mysqli_fetch_array($resultAR_Backside,MYSQLI_ASSOC);
+$NB_AR_Backside    = $DataAR_Backside[AR_Backside];
+	
+$queryAR_ETC  = "SELECT count(order_num) as AR_ETC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Dream AR','ITO AR','MultiClear AR','Super AR')
+AND order_status NOT IN ('cancelled')";
+$resultAR_ETC = mysqli_query($con,$queryAR_ETC) or die  ('I cannot select items because: ' . mysql_error($con));
+$DataAR_ETC   = mysqli_fetch_array($resultAR_ETC,MYSQLI_ASSOC);
+$NB_AR_ETC    = $DataAR_ETC[AR_ETC];
+	
+	
+$queryiBlu  = "SELECT count(order_num) as iBlu FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('iBlu','iblue')
+AND order_status NOT IN ('cancelled')";
+$resultiBlu = mysqli_query($con,$queryiBlu) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiBlu   = mysqli_fetch_array($resultiBlu,MYSQLI_ASSOC);
+$NB_iBlu    = $DataiBlu[iBlu];
+	
+	
+$queryXlr  = "SELECT count(order_num) as Xlr FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Xlr','Xlr Backside','MaxiiVue')
+AND order_status NOT IN ('cancelled')";
+$resultXlr = mysqli_query($con,$queryXlr) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataXlr   = mysqli_fetch_array($resultXlr,MYSQLI_ASSOC);
+$NB_Xlr    = $DataXlr[Xlr];	
+	
+$queryStressFree  = "SELECT count(order_num) as StressFree FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('StressFree','StressFree 32')
+AND order_status NOT IN ('cancelled')";
+$resultStressFree = mysqli_query($con,$queryStressFree) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataStressFree   = mysqli_fetch_array($resultStressFree,MYSQLI_ASSOC);
+$NB_StressFree    = $DataStressFree[StressFree];	
+	
+
+$queryHD_AR  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HD AR','HD AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultHD_AR = mysqli_query($con,$queryHD_AR) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHD_AR   = mysqli_fetch_array($resultHD_AR,MYSQLI_ASSOC);
+$NB_HD_AR    = $DataHD_AR[HD_AR];				
+
+
+$queryLowReflexion  = "SELECT count(order_num) as Low_Reflexion FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Low Reflexion')
+AND order_status NOT IN ('cancelled')";
+$resultLR = mysqli_query($con,$queryLowReflexion) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataLR   = mysqli_fetch_array($resultLR,MYSQLI_ASSOC);
+$NB_LowReflexion    = $DataLR[Low_Reflexion];	
+
+$queryNightVision  = "SELECT count(order_num) as Night_Vision FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Night Vision')
+AND order_status NOT IN ('cancelled')";
+$resultNV = mysqli_query($con,$queryNightVision) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataNV   = mysqli_fetch_array($resultNV,MYSQLI_ASSOC);
+$NB_NightVision    = $DataNV[Night_Vision];	
+
+$total = $NB_HC +  $NB_AR_Backside + $NB_AR_ETC + $NB_iBlu + $NB_Xlr  + $NB_StressFree  +  $NB_HD_AR +$NB_LowReflexion + $NB_NightVision;
+$total_DARTMOUTH = $total;
+
+
+//2-Partie Pourcentage 
+$queryHC  = "SELECT count(order_num) as HC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HC','Hard Coat')
+AND order_status NOT IN ('cancelled')";
+$resultHC = mysqli_query($con,$queryHC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHC   = mysqli_fetch_array($resultHC,MYSQLI_ASSOC);
+$Pourcentage_HC    = ($DataHC[HC]/$total_DARTMOUTH) * 100;		
+$Pourcentage_HC=money_format('%.2n',$Pourcentage_HC);
+
+
+$queryAR_Backside  = "SELECT count(order_num) as AR_Backside FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('AR Backside','Super AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultAR_Backside = mysqli_query($con,$queryAR_Backside) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_Backside   = mysqli_fetch_array($resultAR_Backside,MYSQLI_ASSOC);
+$Pourcentage_AR_Backside    = ($DataAR_Backside[AR_Backside]/$total_DARTMOUTH)*100;
+$Pourcentage_AR_Backside=money_format('%.2n',$Pourcentage_AR_Backside);
+	
+	
+$queryAR_ETC  = "SELECT count(order_num) as AR_ETC FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Dream AR','ITO AR','MultiClear AR','Super AR')
+AND order_status NOT IN ('cancelled')";
+$resultAR_ETC = mysqli_query($con,$queryAR_ETC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_ETC   = mysqli_fetch_array($resultAR_ETC,MYSQLI_ASSOC);
+$Pourcentage_AR_ETC    = ($DataAR_ETC[AR_ETC]/$total_DARTMOUTH)*100;
+$Pourcentage_AR_ETC=money_format('%.2n',$Pourcentage_AR_ETC);
+	
+$queryiBlu  = "SELECT count(order_num) as iBlu FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('iBlu','iblue')
+AND order_status NOT IN ('cancelled')";
+$resultiBlu = mysqli_query($con,$queryiBlu) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiBlu   = mysqli_fetch_array($resultiBlu,MYSQLI_ASSOC);
+$Pourcentage_iBlu    = ($DataiBlu[iBlu]/$total_DARTMOUTH)*100;
+$Pourcentage_iBlu=money_format('%.2n',$Pourcentage_iBlu);	
+	
+	
+$queryXlr  = "SELECT count(order_num) as Xlr FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Xlr','Xlr Backside','MaxiiVue')
+AND order_status NOT IN ('cancelled')";
+$resultXlr = mysqli_query($con,$queryXlr) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataXlr   = mysqli_fetch_array($resultXlr,MYSQLI_ASSOC);
+$Pourcentage_Xlr    = ($DataXlr[Xlr]/$total_DARTMOUTH)*100;	
+$Pourcentage_Xlr=money_format('%.2n',$Pourcentage_Xlr);	
+
+	
+$queryStressFree  = "SELECT count(order_num) as StressFree FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('StressFree','StressFree 32')
+AND order_status NOT IN ('cancelled')";
+$resultStressFree = mysqli_query($con,$queryStressFree) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataStressFree   = mysqli_fetch_array($resultStressFree,MYSQLI_ASSOC);
+$Pourcentage_StressFree    = ($DataStressFree[StressFree]/$total_DARTMOUTH)*100;	
+$Pourcentage_StressFree=money_format('%.2n',$Pourcentage_StressFree);	
+
+
+$queryHD_AR  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HD AR','HD AR Backside')
+AND order_status NOT IN ('cancelled')";
+$resultHD_AR = mysqli_query($con,$queryHD_AR) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHD_AR   = mysqli_fetch_array($resultHD_AR,MYSQLI_ASSOC);
+$Pourcentage_HD_AR = ($DataHD_AR[HD_AR]/$total_DARTMOUTH)*100;					
+$Pourcentage_HD_AR = money_format('%.2n',$Pourcentage_HD_AR);
+
+
+$queryLowReflexion  = "SELECT count(order_num) as Low_Reflexion FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Low Reflexion')
+AND order_status NOT IN ('cancelled')";
+$resultLR = mysqli_query($con,$queryLowReflexion) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataLR   = mysqli_fetch_array($resultLR,MYSQLI_ASSOC);
+$Pourcentage_LR = ($DataLR[Low_Reflexion]/$total_DARTMOUTH)*100;					
+$Pourcentage_LR = money_format('%.2n',$Pourcentage_LR);
+
+$queryNightVision  = "SELECT count(order_num) as Night_Vision FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Night Vision')
+AND order_status NOT IN ('cancelled')";
+$resultNV = mysqli_query($con,$queryNightVision) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataNV   = mysqli_fetch_array($resultNV,MYSQLI_ASSOC);
+$Pourcentage_NV = ($DataNV[Night_Vision]/$total_DARTMOUTH)*100;					
+$Pourcentage_NV = money_format('%.2n',$Pourcentage_NV);
+
+$message.="<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\"><b>$Nom_de_l_entrepot<b></td>
+			    <td align=\"center\"><b>$NB_HC</b> ($Pourcentage_HC%)</td>
+				<td align=\"center\"><b>$NB_AR_Backside</b> ($Pourcentage_AR_Backside%)</td>
+			    <td align=\"center\"><b>$NB_AR_ETC</b> ($Pourcentage_AR_ETC%)</td>
+                <td align=\"center\"><b>$NB_iBlu</b> ($Pourcentage_iBlu%)</td>
+                <td align=\"center\"><b>$NB_Xlr</b> ($Pourcentage_Xlr%)</td>
+				<td align=\"center\"><b>$NB_StressFree</b> ($Pourcentage_StressFree%)</td>
+				<td align=\"center\"><b>$NB_HD_AR</b> ($Pourcentage_HD_AR%)</td>
+				<td align=\"center\"><b>$NB_LowReflexion</b> ($Pourcentage_LR%)</td>
+				<td align=\"center\"><b>$NB_NightVision</b> ($Pourcentage_NV%)</td>
+				<td align=\"center\"><b>$total</b></td>
+			</tr></table><br><br><br>";
+//Fin partie Dartmouth
+
+
 	
 
 //Partie Griffe
@@ -5021,6 +5472,46 @@ $message.=  "<tr bgcolor=\"$bgcolor\">
  				<td align=\"center\">$Nom_de_l_entrepot</td>
 			    <td align=\"center\">$NB_A420</td>
 			</tr>";	
+
+
+//STJOHN
+$Nom_de_l_entrepot = "Entrepot de St-John";
+$user_id    = "('stjohn')";
+$queryA420  = "SELECT count(order_num) as A420 FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_name like '%420%'
+AND order_status NOT IN ('cancelled')";
+$resultA420  = mysqli_query($con,$queryA420) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataA420    = mysqli_fetch_array($resultA420,MYSQLI_ASSOC);
+$NB_A420     = $DataA420[A420];	
+
+$message.=  "<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\">$Nom_de_l_entrepot</td>
+			    <td align=\"center\">$NB_A420</td>
+			</tr>";	
+
+
+
+//DARTMOUTH
+$Nom_de_l_entrepot = "Entrepot de Dartmouth";
+$user_id    = "('dartmouth')";
+$queryA420  = "SELECT count(order_num) as A420 FROM orders  
+WHERE order_date_processed BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_name like '%420%'
+AND order_status NOT IN ('cancelled')";
+$resultA420  = mysqli_query($con,$queryA420) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataA420    = mysqli_fetch_array($resultA420,MYSQLI_ASSOC);
+$NB_A420     = $DataA420[A420];	
+
+$message.=  "<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\">$Nom_de_l_entrepot</td>
+			    <td align=\"center\">$NB_A420</td>
+			</tr>";	
+
 
 
 

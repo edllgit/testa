@@ -208,7 +208,7 @@ echo "<table width=\"600\" cellpadding=\"2\"  cellspacing=\"0\" class=\"TextSize
 				case "504":				$file_order_status= "delay issue 4";		$file_order_status_display="Delay Issue 4";			break;
 				case "505":				$file_order_status= "delay issue 5";		$file_order_status_display="Delay Issue 5";			break;
 				case "506":				$file_order_status= "delay issue 6";		$file_order_status_display="Delay Issue 6";			break;
-				case "508":				$file_order_status= "waiting for frame knr"; $file_order_status_display="Waiting for Frame KNR";	break;
+				case "508":				$file_order_status= "waiting for frame KNR"; $file_order_status_display="Waiting for Frame KNR";	break;
 				case "509":				$file_order_status= "waiting for shape";	$file_order_status_display="Waiting for Shape";		break;
 				default:				$file_order_status= "";						$file_order_status_display="NO CODE RECOGNIZED";	break;
 			}
@@ -243,7 +243,7 @@ echo "<table width=\"600\" cellpadding=\"2\"  cellspacing=\"0\" class=\"TextSize
 				case "in transit":					$order_status_display= "In Transit";			break;
 				case "filled":						$order_status_display= "Shipped";				break;
 				case "waiting for lens":			$order_status_display= "Waiting for Lens";		break;
-				case "waiting for frame knr":		$order_status_display= "Waiting for Frame KNR";	break;
+				case "waiting for frame KNR":		$order_status_display= "Waiting for Frame KNR";	break;
 				default:							$order_status_display= "NO STATUS";				break;
 			}
 			

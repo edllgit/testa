@@ -64,7 +64,7 @@ echo '<br>JourFin:'. $JourFin.'<br><br>';
 //Boucle For qui passe les différents magasins pour générer le tableau correspondant à ce magasin. 1 courriel par magasin.
 
 
-for ($i = 1; $i <= 18; $i++) {
+for ($i = 1; $i <= 20; $i++) {
 
 
 //echo '<br><br>Valeur de I:'. $i ;
@@ -176,8 +176,23 @@ switch($i){
 	//ob_start();
 
 	break;
+	
+	case 18: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";       $Compagnie = 'L\'Entrepot de la lunette St-John';  $Succ = 'St-John'; 	  			   
+	//$send_to_address = array('rapports@direct-lens.com'); break;
+	$send_to_address = array('rapports@direct-lens.com');
+	//ob_start();
 
-	case 18: $Userid =  " orders.user_id IN ('88666')";       $Compagnie = 'Griffe Trois-rivieres';  $Succ = 'Griffe lunetier #88666'; 	  			   
+	break;
+
+
+	case 19: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";       $Compagnie = 'L\'Entrepot de la lunette Dartmouth';  $Succ = 'Dartmouth'; 	  			   
+	//$send_to_address = array('rapports@direct-lens.com'); break;
+	$send_to_address = array('rapports@direct-lens.com');
+	//ob_start();
+
+	break;
+
+	case 20: $Userid =  " orders.user_id IN ('88666')";       $Compagnie = 'Griffe Trois-rivieres';  $Succ = 'Griffe lunetier #88666'; 	  			   
 	//$send_to_address = array('rapports@direct-lens.com'); break;
 	$send_to_address = array('rapports@direct-lens.com');
 	//ob_start();
@@ -236,6 +251,25 @@ AND $Userid";
 $resultCommandeParfournisseur_KNR=mysqli_query($con,$queryCommandeParfournisseur_KNR)		or die  ('I cannot select items because: ' . mysqli_error($con));
 $DataCommandeparFournisseur_KNR=mysqli_fetch_array($resultCommandeParfournisseur_KNR,MYSQLI_ASSOC);
 
+//OVG LAB
+$queryCommandeParfournisseur_OVG = "SELECT count(order_num) as Nbr_Commande_OVG FROM orders 
+WHERE order_date_shipped BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND prescript_lab=76
+AND $Userid";
+//echo '<br>Requete OVG: '. $queryCommandeParfournisseur_OVG;
+$resultCommandeParfournisseur_OVG=mysqli_query($con,$queryCommandeParfournisseur_OVG)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataCommandeparFournisseur_OVG=mysqli_fetch_array($resultCommandeParfournisseur_OVG,MYSQLI_ASSOC);
+
+
+//PROCREA
+$queryCommandeParfournisseur_PROCREA = "SELECT count(order_num) as Nbr_Commande_PROCREA FROM orders 
+WHERE order_date_shipped BETWEEN '$AnneeEnCours-$JourDebut' AND '$AnneeEnCours-$JourFin'
+AND prescript_lab=77
+AND $Userid";
+//echo '<br>Requete PROCREA: '. $queryCommandeParfournisseur_PROCREA;
+$resultCommandeParfournisseur_PROCREA=mysqli_query($con,$queryCommandeParfournisseur_PROCREA)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataCommandeparFournisseur_PROCREA=mysqli_fetch_array($resultCommandeParfournisseur_PROCREA,MYSQLI_ASSOC);
+
 
 //Fabriquer le tableau des résultats
 $count=0;
@@ -259,12 +293,14 @@ $count=0;
 							<th width=\"80\" align=\"center\">Central Lab</th>
 							<th width=\"80\" align=\"center\">Essilor Lab</th>
 							<th width=\"80\" align=\"center\">Can Lab</th>
+							<th width=\"80\" align=\"center\">OVG Lab</th>
+							<th width=\"80\" align=\"center\">PROCREA Lab</th>
 							<th width=\"80\" align=\"center\">TOTAL</th>
 					</tr>";
 
 $Total = 0;
 $Total = $DataCommandeparFournisseur_STC[Nbr_Commande_STC] + $DataCommandeparFournisseur_SWISS[Nbr_Commande_SWISS] + $DataCommandeparFournisseur_HKO[Nbr_Commande_HKO] + $DataCommandeparFournisseur_GKB[Nbr_Commande_GKB] +
- $DataCommandeparFournisseur_KNR[Nbr_Commande_KNR];
+ $DataCommandeparFournisseur_KNR[Nbr_Commande_KNR] + $DataCommandeparFournisseur_OVG[Nbr_Commande_OVG] + $DataCommandeparFournisseur_PROCREA[Nbr_Commande_PROCREA];
 
 		$message.="<tr bgcolor=\"CCCCCC\">
 							<th width=\"80\" align=\"center\">$DataCommandeparFournisseur_STC[Nbr_Commande_STC]</th>
@@ -272,6 +308,8 @@ $Total = $DataCommandeparFournisseur_STC[Nbr_Commande_STC] + $DataCommandeparFou
 							<th width=\"80\" align=\"center\">$DataCommandeparFournisseur_HKO[Nbr_Commande_HKO]</th>
 							<th width=\"80\" align=\"center\">$DataCommandeparFournisseur_GKB[Nbr_Commande_GKB]</th>
 							<th width=\"80\" align=\"center\">$DataCommandeparFournisseur_KNR[Nbr_Commande_KNR]</th>
+							<th width=\"80\" align=\"center\">$DataCommandeparFournisseur_OVG[Nbr_Commande_OVG]</th>
+							<th width=\"80\" align=\"center\">$DataCommandeparFournisseur_PROCREA[Nbr_Commande_PROCREA]</th>
 							<th width=\"80\" align=\"center\">$Total</th>
 					</tr>";
 
@@ -296,7 +334,7 @@ echo '<br><br>'. $message;
 
 
 	
-$send_to_address = array('dbeaulieu@direct-lens.com','rapports@direct-lens.com');//LIVE
+$send_to_address = array('dbeaulieu@direct-lens.com','rapports@direct-lens.com','fdjibrilla@entrepotdelalunette.com');//LIVE
 //$send_to_address = array('rapports@direct-lens.com');//TEST
 echo "<br>".var_dump($send_to_address);
 $curTime= date("m-d-Y");	

@@ -14,112 +14,125 @@ $sheet = $spreadsheet->getActiveSheet();
 
 $time_start = microtime(true);	
 
-for ($i = 1; $i <= 19; $i++) {
+for ($i = 1; $i <= 21; $i++) {
     echo '<br>'. $i;
 	
 switch($i){
 	case  1: $Userid =  " orders.user_id IN ('entrepotifc','entrepotsafe')";      $Partie = 'Trois-Rivieres';	       
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	break;
 
 	
 	case  2: $Userid =  " orders.user_id IN ('entrepotdr','safedr')";        	  $Partie = 'Drummondville';		   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
  	break;
 
 	
 	case  3: $Userid =  " orders.user_id IN ('warehousehal','warehousehalsafe')"; $Partie = 'Halifax'; 				  
-	 $send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	 $send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
     break;
 	 
 
 	case  4: $Userid =  " orders.user_id IN ('laval','lavalsafe')"; 			  $Partie = 'Laval';				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	break;
 	
 
 	/*case  5: $Userid =  " orders.user_id IN ('montreal','montrealsafe')";         $Partie = 'Montreal HBC Zone Tendance 1';  
 	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
-<<<<<<< HEAD
-	//ob_start();
+
     break; */
 
 	
 
 	case  6: $Userid =  " orders.user_id IN ('terrebonne','terrebonnesafe')"; 	  $Partie = 'Terrebonne'; 			   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
     break;
 	
 
 	case  7: $Userid =  " orders.user_id IN ('sherbrooke','sherbrookesafe')";     $Partie = 'Sherbrooke'; 			  
-	 $send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	 $send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
    	break;
 	 
 	case  8: $Userid =  " orders.user_id IN ('chicoutimi','chicoutimisafe')";     $Partie = 'Chicoutimi';		       
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	break;
 	
 	case  9: $Userid =  " orders.user_id IN ('levis','levissafe')"; 			  $Partie = 'Lévis';      			   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	break;
 	
 	case 10: $Userid =  " orders.user_id IN ('longueuil','longueuilsafe')";       $Partie = 'Longueuil';  			   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
     break;
 	
 	case 11: $Userid =  " orders.user_id IN ('granby','granbysafe')";             $Partie = 'Granby';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	break;
 	
 	case 12: $Userid =  " orders.user_id IN ('stjerome','stjeromesafe')";             $Partie = 'St-Jerome';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	 break;
 	
 
 	case 13: $Userid =  " orders.user_id IN ('gatineau','gatineausafe')";             $Partie = 'Gatineau';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	 break;
 	
 	case 14: $Userid =  " orders.user_id IN ('edmundston','edmundston')";             $Partie = 'Edmundston';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	 break;
 	
 	case 15: $Userid =  " orders.user_id IN ('vaudreuil','vaudreuilsafe')";             $Partie = 'Vaudreuil';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	break;
 	
 	case 16: $Userid =  " orders.user_id IN ('sorel','sorelsafe')";             $Partie = 'Sorel';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
 	break;
 	
 	case 17: $Userid =  " orders.user_id IN ('moncton','monctonsafe')";             $Partie = 'Moncton';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 
    	break;
 	
 	case 18: $Userid =  " orders.user_id IN ('fredericton','frederictonsafe')";             $Partie = 'Fredericton';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
-<<<<<<< HEAD
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
+
 	//ob_start();
 	break;
 
 	case 19: $Userid =  " orders.user_id IN ('88666')";             $Partie = '#88666-GR';  				   
-	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com');  
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
+	//ob_start();
+
+	break;
+
+
+	case 20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";             $Partie = 'St-John';  				   
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
+	//ob_start();
+
+	break;
+
+
+	case 21: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";             $Partie = 'Dartmouth';  				   
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 	//ob_start();
 
 	break;
@@ -238,6 +251,8 @@ switch($i){
 			case 'garantieatoutcasser' :       			   	$Succursale = 'Garantieatoutcasser';            break;
 			case 'stemarie' :   case 'stemariesafe' :    	$Succursale = 'Sainte-Marie de Beauce';         break;
 			case 'fredericton' :  case 'frederictonsafe' :  $Succursale = 'Fredericton';         			break;
+			case 'stjohn' :  	case 'stjohnsafe' :  		$Succursale = 'St-John';         				break;
+			case 'dartmouth' :   case 'dartmouthsafe' :     $Succursale = 'Dartmouth';         				break;
 			case '88666' :                                  $Succursale = 'Griffe lunetier #88666';         break;
 			case 'redoifc' :       							$Succursale = 'Compte de reprise Interne IFC';  break;
 			case 'redosafety' :       						$Succursale = 'Compte de reprise Interne SAFE'; break;
