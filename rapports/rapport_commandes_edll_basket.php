@@ -17,7 +17,7 @@ $time_start = microtime(true);
 
 
 
-for ($i = 1; $i <= 21; $i++) {
+for ($i = 1; $i <= 22; $i++) {
     echo '<br>'. $i;
 	
 switch($i){
@@ -130,7 +130,10 @@ switch($i){
 	break;
 
 	case 21: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";             $Partie = 'stjohn';
-	$send_to_address = array('rapports@direct-lens.com');        
+	$send_to_address = array('rapports@direct-lens.com');     
+	
+	case 22: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";             $Partie = 'dartmouth';
+	$send_to_address = array('rapports@direct-lens.com'); 
 	 
 	break;
 }//End Switch
@@ -204,6 +207,7 @@ switch($i){
 			case 'entrepotquebec' :   case 'quebecsafe'  :  $Succursale = 'Québec';        					break;
 			case 'fredericton' :  case 'frederictonsafe'  : $Succursale = 'Fredericton';        			break;
 			case 'stjohn' :  	  case 'stjohnsafe'  : 		$Succursale = 'stjohn';        					break;
+			case 'dartmouth' :    case 'dartmouthsafe'  :   $Succursale = 'dartmouth';        				break;
 			case '88666' :        case '88666'  :           $Succursale = '#88666 Griffé';        			break;
 			case 'garantieatoutcasser' :       			   	$Succursale = 'Garantieatoutcasser';            break;
 			case 'redoifc' :       							$Succursale = 'Compte de reprise Interne IFC';  break;

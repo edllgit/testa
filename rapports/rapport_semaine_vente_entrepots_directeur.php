@@ -30,7 +30,7 @@ $aujourdhui    = "2018-04-21";
 $count    = 0;
 
 //FOR pour parcourir les Succursales
-for ($i = 1; $i <= 21; $i++) {
+for ($i = 1; $i <= 22; $i++) {
     echo '<br>'. $i;
 	
 
@@ -179,6 +179,11 @@ switch($i){
 
 
 	case 21: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";       $Compagnie = 'L\'Entrepot de la lunette St-John';  $Succ = 'St-John'; 	  			   
+	$send_to_address = array('rapports@direct-lens.com'); 
+
+	break;
+
+	case 22: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";       $Compagnie = 'L\'Entrepot de la lunette Dartmouth';  $Succ = 'Dartmouth'; 	  			   
 	$send_to_address = array('rapports@direct-lens.com'); 
 
 	break;

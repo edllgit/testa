@@ -14,7 +14,7 @@ $sheet = $spreadsheet->getActiveSheet();
 
 $time_start = microtime(true);	
 
-for ($i = 1; $i <= 20; $i++) {
+for ($i = 1; $i <= 21; $i++) {
     echo '<br>'. $i;
 	
 switch($i){
@@ -125,6 +125,13 @@ switch($i){
 
 
 	case 20: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')";             $Partie = 'St-John';  				   
+	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
+	//ob_start();
+
+	break;
+
+
+	case 21: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";             $Partie = 'Dartmouth';  				   
 	$send_to_address = array('rapports@direct-lens.com','kgawel@direct-lens.com','jmotyka@direct-lens.com','abedard@entrepotdelalunette.com','ebaillargeon@entrepotdelalunette.com','approvisionnement@entrepotdelalunette.com','fdjibrilla@entrepotdelalunette.com');  
 	//ob_start();
 
@@ -245,6 +252,7 @@ switch($i){
 			case 'stemarie' :   case 'stemariesafe' :    	$Succursale = 'Sainte-Marie de Beauce';         break;
 			case 'fredericton' :  case 'frederictonsafe' :  $Succursale = 'Fredericton';         			break;
 			case 'stjohn' :  	case 'stjohnsafe' :  		$Succursale = 'St-John';         				break;
+			case 'dartmouth' :   case 'dartmouthsafe' :     $Succursale = 'Dartmouth';         				break;
 			case '88666' :                                  $Succursale = 'Griffe lunetier #88666';         break;
 			case 'redoifc' :       							$Succursale = 'Compte de reprise Interne IFC';  break;
 			case 'redosafety' :       						$Succursale = 'Compte de reprise Interne SAFE'; break;

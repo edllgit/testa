@@ -70,7 +70,7 @@ $total_KNR = 0;
 $total_OVG = 0;
 $total_PROCREA = 0;
 
-for ($i = 1; $i <= 19; $i++) {
+for ($i = 1; $i <= 20; $i++) {
     switch($i) {
         case  1: $Userid =  " orders.user_id IN ('entrepotifc','entrepotsafe')"; $Compagnie = 'L\'Entrepot de la lunette Trois-Rivieres'; $Succ = 'Trois-Rivieres'; $send_to_address = array('fdjibrilla@entrepotdelalunette.com'); break;
         case  2: $Userid =  " orders.user_id IN ('entrepotdr','safedr')"; $Compagnie = 'L\'Entrepot de la lunette Drummondville'; $Succ = 'Drummondville'; $send_to_address = array('fdjibrilla@entrepotdelalunette.com'); break;
@@ -91,7 +91,7 @@ for ($i = 1; $i <= 19; $i++) {
         case 17: $Userid =  " orders.user_id IN ('stjohn','stjohnsafe')"; $Compagnie = 'L\'Entrepot de la lunette St-John'; $Succ = 'St-John'; $send_to_address = array('fdjibrilla@entrepotdelalunette.com'); break;
 		case 18: $Userid =  " orders.user_id IN ('sorel','sorelsafe')"; $Compagnie = 'L\'Entrepot de la lunette Sorel-tracy'; $Succ = 'Sorel-Tracy'; $send_to_address = array('fdjibrilla@entrepotdelalunette.com'); break;
 		case 19: $Userid =  " orders.user_id IN ('vaudreuil','vaudreuilsafe')"; $Compagnie = 'L\'Entrepot de la lunette Vaudreuil'; $Succ = 'Vaudreuil'; $send_to_address = array('fdjibrilla@entrepotdelalunette.com'); break;
- 
+		case 20: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')"; $Compagnie = 'L\'Entrepot de la lunette Dartmouth'; $Succ = 'Dartmouth'; $send_to_address = array('fdjibrilla@entrepotdelalunette.com'); break;
     }
 
     $queryCommandeParfournisseur_STC = "SELECT count(order_num) as Nbr_Commande_STC FROM orders 

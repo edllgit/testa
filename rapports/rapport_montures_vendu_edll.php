@@ -151,6 +151,7 @@ switch($listItem[user_id]){
 	case 'St.Catharines':$entrepot = 'Compte Reprise'; break; 
 	case 'fredericton':	 $entrepot = 'Fredericton';    break; 
 	case 'stjohn':	     $entrepot = 'St-John';        break;
+	case 'dartmouth':	 $entrepot = 'Dartmouth';      break;
 	default: $entrepot = "Inconnu";
 }
 

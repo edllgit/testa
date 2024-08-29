@@ -184,17 +184,9 @@ $response=office365_mail($to_address, $from_address, $subject, null, $message);
 		$cheminFichierHtml = 'C:/All_Rapports_EDLL/general/Commande/Automatique/' . $nomFichier . '.html';
 		file_put_contents($cheminFichierHtml, $message);
 
-		$nomFichier = 'r_commande_afterBang_'. $timestamp;
 	
-		// Enregistrez le contenu HTML dans un fichier
-		$cheminFichierHtml = 'C:/All_Rapports_EDLL/general/Commande/Automatique/' . $nomFichier . '.html';
-		file_put_contents($cheminFichierHtml, $message);
-
-		$nomFichier = 'r_commande_afterBang'. $timestamp;
 	
-		// Enregistrez le contenu HTML dans un fichier
-		$cheminFichierHtml = 'C:/All_Rapports_EDLL/general/Commande/Automatique/' . $nomFichier . '.html';
-		file_put_contents($cheminFichierHtml, $contenuHtml);
+	
 
 	
 		echo 'Rapport sauvegardé au format HTML : ' . $cheminFichierHtml . '<br>';

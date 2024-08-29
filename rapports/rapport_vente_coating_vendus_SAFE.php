@@ -1861,7 +1861,7 @@ $DataSFP   = mysqli_fetch_array($resultSFP,MYSQLI_ASSOC);
 $NB_SFP    = $DataSFP[HD_AR];	
 
 $total = $NB_HC  + $NB_AR_ETC + $NB_iBlu + $NB_Xlr  + $NB_StressFree + $NB_HD_AR  + $NB_SFP ;
-$total_FREDERICTON = $total;
+$total_STJOHN = $total;
 $message.="<tr bgcolor=\"$bgcolor\">
  				<td align=\"center\">$Nom_de_l_entrepot</td>
 			    <td align=\"center\">$NB_HC</td>
@@ -1874,6 +1874,107 @@ $message.="<tr bgcolor=\"$bgcolor\">
 				<td align=\"center\">$total</td>
 			</tr>";
 //Fin partie St-John
+
+
+
+
+//Partie Dartmouth 
+$user_id     = "('dartmouthsafe')";
+$Nom_de_l_entrepot = 'Entrepot de Dartmouth';
+$queryHC  = "SELECT count(order_num) as HC FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HC','Hard Coat')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryHC. '<br>';
+$resultHC = mysqli_query($con,$queryHC) or die  ('I cannot select items because 20: ' . mysqli_error($con));
+$DataHC   = mysqli_fetch_array($resultHC,MYSQLI_ASSOC);
+$NB_HC    = $DataHC[HC];		
+
+
+
+$queryAR_ETC  = "SELECT count(order_num) as AR_ETC FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Dream AR','ITO AR','AR')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryAR_ETC. '<br>';
+$resultAR_ETC = mysqli_query($con,$queryAR_ETC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_ETC   = mysqli_fetch_array($resultAR_ETC,MYSQLI_ASSOC);
+$NB_AR_ETC    = $DataAR_ETC[AR_ETC];
+	
+	
+$queryiBlu  = "SELECT count(order_num) as iBlu FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('iBlu','iblue')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryiBlu. '<br>';
+$resultiBlu = mysqli_query($con,$queryiBlu) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiBlu   = mysqli_fetch_array($resultiBlu,MYSQLI_ASSOC);
+$NB_iBlu    = $DataiBlu[iBlu];
+	
+$queryXlr  = "SELECT count(order_num) as Xlr FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Xlr')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $querySFP. '<br>';
+$resultXlr = mysqli_query($con,$queryXlr) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataXlr   = mysqli_fetch_array($resultXlr,MYSQLI_ASSOC);
+$NB_Xlr    = $DataXlr[Xlr];	
+	
+$queryStressFree  = "SELECT count(order_num) as StressFree FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('StressFree')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryStressFree. '<br>';
+$resultStressFree = mysqli_query($con,$queryStressFree) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataStressFree   = mysqli_fetch_array($resultStressFree,MYSQLI_ASSOC);
+$NB_StressFree    = $DataStressFree[StressFree];				
+
+$queryHD_AR  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HD AR')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryHD_AR. '<br>';
+$resultHD_AR = mysqli_query($con,$queryHD_AR) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHD_AR   = mysqli_fetch_array($resultHD_AR,MYSQLI_ASSOC);
+$NB_HD_AR    = $DataHD_AR[HD_AR];	
+
+$querySFP  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('SFP')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $querySFP. '<br>';
+$resultSFP = mysqli_query($con,$querySFP) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataSFP   = mysqli_fetch_array($resultSFP,MYSQLI_ASSOC);
+$NB_SFP    = $DataSFP[HD_AR];	
+
+$total = $NB_HC  + $NB_AR_ETC + $NB_iBlu + $NB_Xlr  + $NB_StressFree + $NB_HD_AR  + $NB_SFP ;
+$total_DARTMOUTH = $total;
+$message.="<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\">$Nom_de_l_entrepot</td>
+			    <td align=\"center\">$NB_HC</td>
+			    <td align=\"center\">$NB_AR_ETC</td>
+                <td align=\"center\">$NB_iBlu</td>
+                <td align=\"center\">$NB_Xlr</td>
+				<td align=\"center\">$NB_StressFree</td>
+				<td align=\"center\">$NB_HD_AR</td>
+				<td align=\"center\">$NB_SFP</td>
+				<td align=\"center\">$total</td>
+			</tr>";
+//Fin partie Dartmouth
 
 
 
@@ -4001,7 +4102,7 @@ $message.=  "<tr bgcolor=\"$bgcolor\">
 
 //Partie St-John
 $user_id     = "('stjohnsafe')";
-$Nom_de_l_entrepot = 'Entrepot de Fredericton';
+$Nom_de_l_entrepot = 'Entrepot de St-John';
 $queryHC  = "SELECT count(order_num) as HC FROM orders  
 WHERE order_date_processed BETWEEN '$date1' and '$date2'
 AND user_id in $user_id
@@ -4101,6 +4202,112 @@ $message.=  "<tr bgcolor=\"$bgcolor\">
 				<td align=\"center\">$Pourcentage_SFP%</td>
 			</tr>";
 //Fin partie St-John
+
+
+
+
+//Partie Dartmouth
+$user_id     = "('dartmouthsafe')";
+$Nom_de_l_entrepot = 'Entrepot de Dartmouth';
+$queryHC  = "SELECT count(order_num) as HC FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HC','Hard Coat')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryHC. '<br>';
+$resultHC = mysqli_query($con,$queryHC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHC   = mysqli_fetch_array($resultHC,MYSQLI_ASSOC);
+$Pourcentage_HC    = ($DataHC[HC]/$total_DARTMOUTH) * 100;		
+$Pourcentage_HC=money_format('%.2n',$Pourcentage_HC);
+
+
+$queryAR_ETC  = "SELECT count(order_num) as AR_ETC FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Dream AR','ITO AR','AR')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryAR_ETC. '<br>';
+$resultAR_ETC = mysqli_query($con,$queryAR_ETC) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataAR_ETC   = mysqli_fetch_array($resultAR_ETC,MYSQLI_ASSOC);
+$Pourcentage_AR_ETC    = ($DataAR_ETC[AR_ETC]/$total_DARTMOUTH)*100;
+$Pourcentage_AR_ETC=money_format('%.2n',$Pourcentage_AR_ETC);
+	
+$queryiBlu  = "SELECT count(order_num) as iBlu FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('iBlu','iblue')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryiBlu. '<br>';
+$resultiBlu = mysqli_query($con,$queryiBlu) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataiBlu   = mysqli_fetch_array($resultiBlu,MYSQLI_ASSOC);
+$Pourcentage_iBlu    = ($DataiBlu[iBlu]/$total_DARTMOUTH)*100;
+$Pourcentage_iBlu=money_format('%.2n',$Pourcentage_iBlu);	
+	
+	
+$queryXlr  = "SELECT count(order_num) as Xlr FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('Xlr')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryXlr. '<br>';
+$resultXlr = mysqli_query($con,$queryXlr) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataXlr   = mysqli_fetch_array($resultXlr,MYSQLI_ASSOC);
+$Pourcentage_Xlr    = ($DataXlr[Xlr]/$total_DARTMOUTH)*100;	
+$Pourcentage_Xlr=money_format('%.2n',$Pourcentage_Xlr);	
+
+	
+$queryStressFree  = "SELECT count(order_num) as StressFree FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('StressFree')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryStressFree. '<br>';
+$resultStressFree = mysqli_query($con,$queryStressFree) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataStressFree   = mysqli_fetch_array($resultStressFree,MYSQLI_ASSOC);
+$Pourcentage_StressFree    = ($DataStressFree[StressFree]/$total_DARTMOUTH)*100;	
+$Pourcentage_StressFree=money_format('%.2n',$Pourcentage_StressFree);	
+
+$queryHD_AR  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('HD AR')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $queryHD_AR. '<br>';
+$resultHD_AR = mysqli_query($con,$queryHD_AR) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataHD_AR   = mysqli_fetch_array($resultHD_AR,MYSQLI_ASSOC);
+$Pourcentage_HD_AR = ($DataHD_AR[HD_AR]/$total_DARTMOUTH)*100;					
+$Pourcentage_HD_AR = money_format('%.2n',$Pourcentage_HD_AR);
+	
+$querySFP  = "SELECT count(order_num) as HD_AR FROM orders  
+WHERE order_date_processed BETWEEN '$date1' and '$date2'
+AND user_id in $user_id
+AND redo_order_num is null
+AND order_product_coating IN ('SFP')
+AND order_status NOT IN ('cancelled')";
+//echo '<br>'. $querySFP. '<br>';
+$resultSFP = mysqli_query($con,$querySFP) or die  ('I cannot select items because: ' . mysqli_error($con));
+$DataSFP   = mysqli_fetch_array($resultSFP,MYSQLI_ASSOC);
+$Pourcentage_SFP = ($DataSFP[HD_AR]/$total_DARTMOUTH)*100;					
+$Pourcentage_SFP = money_format('%.2n',$Pourcentage_SFP);
+		
+$message.=  "<tr bgcolor=\"$bgcolor\">
+ 				<td align=\"center\">$Nom_de_l_entrepot</td>
+			    <td align=\"center\">$Pourcentage_HC%</td>
+			    <td align=\"center\">$Pourcentage_AR_ETC%</td>
+                <td align=\"center\">$Pourcentage_iBlu%</td>
+                <td align=\"center\">$Pourcentage_Xlr%</td>
+				
+				<td align=\"center\">$Pourcentage_StressFree%</td>
+				<td align=\"center\">$Pourcentage_HD_AR%</td>
+				<td align=\"center\">$Pourcentage_SFP%</td>
+			</tr>";
+//Fin partie DARTMOUTH
 
 
 

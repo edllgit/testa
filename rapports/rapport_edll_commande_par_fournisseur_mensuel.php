@@ -64,7 +64,7 @@ echo '<br>JourFin:'. $JourFin.'<br><br>';
 //Boucle For qui passe les différents magasins pour générer le tableau correspondant à ce magasin. 1 courriel par magasin.
 
 
-for ($i = 1; $i <= 19; $i++) {
+for ($i = 1; $i <= 20; $i++) {
 
 
 //echo '<br><br>Valeur de I:'. $i ;
@@ -184,7 +184,15 @@ switch($i){
 
 	break;
 
-	case 19: $Userid =  " orders.user_id IN ('88666')";       $Compagnie = 'Griffe Trois-rivieres';  $Succ = 'Griffe lunetier #88666'; 	  			   
+
+	case 19: $Userid =  " orders.user_id IN ('dartmouth','dartmouthsafe')";       $Compagnie = 'L\'Entrepot de la lunette Dartmouth';  $Succ = 'Dartmouth'; 	  			   
+	//$send_to_address = array('rapports@direct-lens.com'); break;
+	$send_to_address = array('rapports@direct-lens.com');
+	//ob_start();
+
+	break;
+
+	case 20: $Userid =  " orders.user_id IN ('88666')";       $Compagnie = 'Griffe Trois-rivieres';  $Succ = 'Griffe lunetier #88666'; 	  			   
 	//$send_to_address = array('rapports@direct-lens.com'); break;
 	$send_to_address = array('rapports@direct-lens.com');
 	//ob_start();

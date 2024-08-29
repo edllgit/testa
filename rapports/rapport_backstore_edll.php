@@ -147,6 +147,7 @@ switch($listItem[user_id]){
 	case 'moncton':	 	 $entrepot = 'Moncton'; 	   break; 
 	case 'fredericton':	 $entrepot = 'Fredericton';    break; 
 	case 'stjohn':	 	 $entrepot = 'stjohn';         break; 
+	case 'dartmouth':	 $entrepot = 'dartmouthsafe';  break; 
 	case '88666':	     $entrepot = '#88666 Griffe';    break; 
 	default: $entrepot = "Inconnu";
 }

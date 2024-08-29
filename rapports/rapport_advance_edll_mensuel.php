@@ -75,7 +75,7 @@ $WidthTableau = "100%";		//Pixels
 //Paramètres communs
 $from_address='donotreply@entrepotdelalunette.com';
 
-for ($i = 1; $i <= 17 ; $i++) {
+for ($i = 1; $i <= 18 ; $i++) {
 		//echo '<br> Magasin: '. $i;
 		switch($i){
 			case  1:  $Userid =  " ('chicoutimi')";    	$Partie = 'Chicoutimi';	 	
@@ -162,6 +162,9 @@ for ($i = 1; $i <= 17 ; $i++) {
 			break;
 
 			case  17: $Userid =  " ('stjohn')";   $Partie = 'stjohn';		       $send_to_address = array('rapports@direct-lens.com');
+			ob_start();
+
+			case  18: $Userid =  " ('dartmouth')";   $Partie = 'dartmouth';		       $send_to_address = array('rapports@direct-lens.com');
 			ob_start();
 			break;
 		}//End Switch

@@ -40,7 +40,7 @@ if ($_REQUEST[debug]=='yes'){
 //Ventes totales pour chaque entrepot avec nombre de commandes
 $rptQuery="SELECT accounts.company, sum( order_total ) AS TotalPurchase, count(order_num) as NbrOrder
 FROM accounts, orders 
-WHERE accounts.user_id IN ('entrepotifc', 'entrepotdr', 'laval', 'warehousehal','terrebonne','sherbrooke','chicoutimi','levis','longueuil','granby','entrepotquebec','gatineau','stjerome','edmundston','vaudreuil','sorel','fredericton','88666','stjohn')
+WHERE accounts.user_id IN ('entrepotifc', 'entrepotdr', 'laval', 'warehousehal','terrebonne','sherbrooke','chicoutimi','levis','longueuil','granby','entrepotquebec','gatineau','stjerome','edmundston','vaudreuil','sorel','fredericton','88666','stjohn','dartmouth')
 AND orders.user_id = accounts.user_id 
 AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
 GROUP BY accounts.user_id 
@@ -178,7 +178,7 @@ while ($listItem2=mysqli_fetch_array($rptResult2,MYSQLI_ASSOC)){
 $message.="<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";	
 
 
-//Vente par lens category:Fredericton
+//Vente par lens category:St-John
 $rptQuery2="SELECT lens_category, count( lens_category ) AS Nbr_Category
 FROM orders, ifc_ca_exclusive
 WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
@@ -196,6 +196,47 @@ $count      = 0;
 $message.= "
 <table class=\"table\">
 <tr><td><b>Entrepot St-John</b></td></tr>
+<tr>
+    <td>Lens Category</td>
+    <td>Nbr Sold</td>
+</tr>";
+				
+while ($listItem2=mysqli_fetch_array($rptResult2,MYSQLI_ASSOC)){
+	$count++;
+	if (($count%2)==0)
+		$bgcolor="#E5E5E5";
+	else 
+		$bgcolor="#FFFFFF";
+	
+	$message.="
+	<tr>
+		<td>$listItem2[lens_category]</td>
+		<td>$listItem2[Nbr_Category]</td>
+	</tr>";
+}//END WHILE
+$message.="<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";
+
+
+
+
+//Vente par lens category:Dartmouth
+$rptQuery2="SELECT lens_category, count( lens_category ) AS Nbr_Category
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('dartmouth','dartmouthsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+GROUP BY lens_category 
+ORDER BY Nbr_Category";
+
+if($Debug == 'yes')
+echo '<br>Query: <br>'. $rptQuery2 . '<br>';
+
+$rptResult2 = mysqli_query($con,$rptQuery2)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$ordersnum  = mysqli_num_rows($rptResult2);
+$count      = 0;			
+$message.= "
+<table class=\"table\">
+<tr><td><b>Entrepot Dartmouth</b></td></tr>
 <tr>
     <td>Lens Category</td>
     <td>Nbr Sold</td>
@@ -1140,6 +1181,47 @@ $message.="<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";
 //Fin St-John
 
 
+//Vente par traitement vendus: dartmouth
+$rptQuery3="SELECT  order_product_coating as Coating, count(order_product_coating) as NbrSold
+FROM orders, ifc_ca_exclusive
+WHERE orders.order_product_id = ifc_ca_exclusive.primary_key
+AND orders.user_id IN ('dartmouth','dartmouthsafe')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+GROUP BY order_product_coating 
+ORDER BY nbrSold";
+
+if($Debug == 'yes')
+echo '<br>Query: <br>'. $rptQuery3 . '<br>';
+
+$rptResult3 = mysqli_query($con,$rptQuery3)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$ordersnum  = mysqli_num_rows($rptResult3);
+$count      = 0;
+	
+$message.="<tr><td><b>Entrepot Dartmouth</b></td></tr>
+<tr>
+	<td>Coating</td>
+	<td>Nbr Sold</td>
+</tr>";
+				
+while ($listItem3=mysqli_fetch_array($rptResult3,MYSQLI_ASSOC)){
+	$count++;
+	if (($count%2)==0)
+		$bgcolor="#E5E5E5";
+	else 
+		$bgcolor="#FFFFFF";
+	
+	
+	$message.="
+	<tr>
+		<td>$listItem3[Coating]</td>
+		<td>$listItem3[NbrSold]</td>
+	</tr>";
+}//END WHILE
+$message.="<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";
+//Fin Dartmouth
+
+
+
 
 //Vente par traitement vendus: Griffe
 $rptQuery3="SELECT  order_product_coating as Coating, count(order_product_coating) as NbrSold
@@ -1952,7 +2034,7 @@ $message.="<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";
 
 
 //Redo St-John
-$rptQuery3="SELECT  count(*) as nbrRedoFREDERICTON  FROM orders
+$rptQuery3="SELECT  count(*) as nbrRedoSTJOHN FROM orders
 WHERE  orders.user_id IN ('stjohn')
 AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
 AND order_status NOT in ('cancelled')
@@ -1977,11 +2059,44 @@ while ($listItem3=mysqli_fetch_array($rptResult3,MYSQLI_ASSOC)){
 		$bgcolor="#FFFFFF";
 	
 	$message.="
-	$listItem3[nbrRedoFREDERICTON]</td>
+	$listItem3[nbrRedoSTJOHN]</td>
 	</tr>";
 }//END WHILE
 $message.="<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";	
 //Fin St-John
+
+
+//Redo St-John
+$rptQuery3="SELECT  count(*) as nbrRedoDartmouth  FROM orders
+WHERE  orders.user_id IN ('Dartmouth')
+AND order_date_processed BETWEEN '$dateaweekago' AND '$aujourdhui'
+AND order_status NOT in ('cancelled')
+and redo_order_num is not null";
+
+if($Debug == 'yes')
+echo '<br>Query: <br>'. $rptQuery3 . '<br>'; 
+
+$rptResult3 = mysqli_query($con,$rptQuery3)		or die  ('I cannot select items because: ' . mysqli_error($con));
+$ordersnum  = mysqli_num_rows($rptResult3);
+$count      = 0;	
+		
+$message.="<tr><td><b>EDLL-Dartmouth</b></td></tr>
+<tr>
+	<td>Redos";
+				
+while ($listItem3=mysqli_fetch_array($rptResult3,MYSQLI_ASSOC)){
+	$count++;
+	if (($count%2)==0)
+		$bgcolor="#E5E5E5";
+	else 
+		$bgcolor="#FFFFFF";
+	
+	$message.="
+	$listItem3[nbrRedoDartmouth]</td>
+	</tr>";
+}//END WHILE
+$message.="<tr><td>&nbsp;</td></tr><tr><td>&nbsp;</td></tr>";	
+//Fin Dartmouth
 
 
 
