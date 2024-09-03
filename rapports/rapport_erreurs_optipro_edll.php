@@ -1365,7 +1365,7 @@ echo "</tbody></table>";
 		
 	
 	<tr>
-		<th align="center">DARTMOUTH</th>
+		<th align="center">Dartmouth</th>
 		<th align="center" bgcolor="#ECAAAB"><?php if ($NbrCommandeIfc_DARTMOUTH == 15){ 
 														echo '<h2>'.$NbrCommandeIfc_DARTMOUTH.'</h2>';
 													}else {

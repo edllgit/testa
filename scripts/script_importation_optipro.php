@@ -1151,6 +1151,7 @@ if (strtolower($SAFETY=='safety')){
 			case 'sorel':				$USER_ID = 'sorelsafe';    	   $ORDER_FROM = 'safety'; break;
 			case 'fredericton':			$USER_ID = 'frederictonsafe';  $ORDER_FROM = 'safety'; break;
 			case 'stjohn':			    $USER_ID = 'stjohnsafe';       $ORDER_FROM = 'safety'; break;
+			case 'dartmouth':			$USER_ID = 'dartmouthsafe';    $ORDER_FROM = 'safety'; break;
 			case '88666':												$ORDER_FROM = 'safety'; break;
 		}//End Switch                                                 
 	}//End IF Safety
@@ -1201,6 +1202,10 @@ switch($USER_ID){
 	//STJOHN
 	case 'stjohn':  	     $LAB = 66; 	$EmailSuccursale="st-John@opticalwarehouse.ca";  	        break;	
 	case 'stjohnsafe':       $LAB = 59;		$EmailSuccursale="st-John@opticalwarehouse.ca";  	        break;	
+
+	//DARTMOUTH
+	case 'dartmouth':  	     $LAB = 66; 	$EmailSuccursale="dartmouth@opticalwarehouse.ca";  	        break;	
+	case 'dartmouthsafe':    $LAB = 59;		$EmailSuccursale="dartmouth@opticalwarehouse.ca";  	        break;	
 
 
 	//DR
